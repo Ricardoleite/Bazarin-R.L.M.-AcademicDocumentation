@@ -1,0 +1,97 @@
+/* Base background and text */
+html, body, .wy-body-for-nav, .wy-nav-content-wrap, .wy-nav-content, .document {
+    background-color: #111 !important;
+    color: #eee !important;
+}
+
+/* Sidebar background and text */
+.wy-nav-side {
+    background-color: #1a1a1a !important;
+    color: #eee !important;
+}
+
+/* Sidebar search */
+.wy-side-nav-search {
+    background-color: #222 !important;
+    border: none !important;
+}
+
+.wy-side-nav-search input {
+    background-color: #333 !important;
+    color: #eee !important;
+    border: none !important;
+}
+
+/* Sidebar links */
+.wy-menu-vertical a {
+    color: #ccc !important;
+}
+
+.wy-menu-vertical a:hover, .wy-menu-vertical li.current > a {
+    background-color: #333 !important;
+    color: #fff !important;
+}
+
+/* Main content */
+.rst-content {
+    background-color: #111 !important;
+    color: #eee !important;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    color: #fff !important;
+}
+
+p, div, li {
+    color: #eee !important;
+}
+
+/* Only override span color if it has no style applied */
+span:not([style]) {
+    color: #eee !important;
+}
+
+
+/* Figures, captions, and code blocks */
+figure, figcaption, .caption, .literal-block, pre, code {
+    background-color: #222 !important;
+    color: #ddd !important;
+}
+
+/* Equations and math blocks */
+.math, .math.display {
+    color: #eee !important;
+}
+
+/* Links */
+a {
+    color: #4aa3df !important;
+}
+
+a:hover {
+    color: #66c2ff !important;
+}
+
+/* Toggle blocks and details */
+details, summary, .admonition, .toggle, .dropdown {
+    background-color: #222 !important;
+    color: #eee !important;
+    border-color: #444 !important;
+}
+
+/* Tables */
+table, th, td {
+    background-color: #222 !important;
+    color: #eee !important;
+    border-color: #444 !important;
+}
+
+/* Footer */
+footer, .rst-footer-buttons {
+    background-color: #111 !important;
+    color: #ccc !important;
+}
+
+
+

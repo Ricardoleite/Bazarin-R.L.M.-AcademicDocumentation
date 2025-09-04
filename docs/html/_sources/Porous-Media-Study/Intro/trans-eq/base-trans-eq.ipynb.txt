@@ -1,0 +1,161 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "4d6086bc",
+   "metadata": {},
+   "source": [
+    "# Introdution for Transport Equations\n",
+    "\n",
+    "The transport equation is given by\n",
+    "\n",
+    "$$\n",
+    "\\partial_{t}u+c\\partial_{x}u=0\n",
+    "$$(Tansp-Eq-Sup)\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9cac68c8-2f2e-473a-a57c-9ae311b5ef6d",
+   "metadata": {},
+   "source": [
+    "<img src=\"corda-naval.gif\" width=\"18%\"> <img src=\"gif-onda-violao.gif\" width=\"20%\"> <img src=\"water.gif\" width=\"18%\"> <img src=\"BOUNCING.gif\" width=\"21%\"> <img src=\"2V4OvG.gif\" width=\"21%\">"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "6b52c4f2-1f95-435d-a860-291071d08f27",
+   "metadata": {},
+   "source": [
+    "```{figure} wave-transport-Illustration.svg\n",
+    "---\n",
+    "scale: 80%\n",
+    "align: center\n",
+    "name: wave-trans-evo\n",
+    "---\n",
+    "Wave evolution in space and time: a) 2D plots over time; 3D plot in $u\\times x\\times t$.\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "00f7715b-81a1-4804-9df9-ed4a20e3ba5d",
+   "metadata": {},
+   "source": [
+    "As $u$ is constant through a characteristic line, if we take advective derivative of $u$ evolving over time through the characteristic line, we have\n",
+    "\n",
+    "$$ \\frac{d u[x,t]}{dt}= \\frac{d u[ct+x_{0},t]}{dt}=0 \\quad \\quad \\rightarrow \\quad \\quad  \\partial_{t}u\\frac{dt}{dt}+\\partial_{x}u\\frac{d(ct+x_{0})}{dt}= \\partial_{t}u +c\\partial_{x}u=0, $$\n",
+    "\n",
+    "recovering a transport equation."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5e160f51-a4ef-40ab-ac0b-ab5fcb1a9938",
+   "metadata": {},
+   "source": [
+    "## Solving Transport Equation"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "e0a9176e-d5ff-4907-8a64-19c4f0838500",
+   "metadata": {},
+   "source": [
+    "<img src=\"sol-sli-1.png\" width=\"45%\"> <img src=\"sol-sli-2.png\" width=\"45%\">"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "0d8966ee-c51e-46bc-a993-ca0547c58933",
+   "metadata": {},
+   "source": [
+    "## Method of Characteristics"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "1f2fbda1-eccb-4710-b72d-8a6092429713",
+   "metadata": {},
+   "source": [
+    "<img src=\"meth-charac-sli-1.png\" width=\"45%\"> <img src=\"meth-charac-sli-2.png\" width=\"45%\">"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "91f4f174-7b46-4cc9-8ecc-bbc5c58e1a19",
+   "metadata": {},
+   "source": [
+    "### Exercise 1"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "8f41bab9-7d24-4eb0-bd5e-1fe4cdc378a6",
+   "metadata": {},
+   "source": [
+    "<img src=\"meth-charac-sli-exercise-1.png\" width=\"45%\">"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "58383bf7-c249-421c-98a7-85e15e71c6a0",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "celltoolbar": "Edit Metadata",
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.12.5"
+  },
+  "varInspector": {
+   "cols": {
+    "lenName": 16,
+    "lenType": 16,
+    "lenVar": 40
+   },
+   "kernels_config": {
+    "python": {
+     "delete_cmd_postfix": "",
+     "delete_cmd_prefix": "del ",
+     "library": "var_list.py",
+     "varRefreshCmd": "print(var_dic_list())"
+    },
+    "r": {
+     "delete_cmd_postfix": ") ",
+     "delete_cmd_prefix": "rm(",
+     "library": "var_list.r",
+     "varRefreshCmd": "cat(var_dic_list()) "
+    }
+   },
+   "types_to_exclude": [
+    "module",
+    "function",
+    "builtin_function_or_method",
+    "instance",
+    "_Feature"
+   ],
+   "window_display": false
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}

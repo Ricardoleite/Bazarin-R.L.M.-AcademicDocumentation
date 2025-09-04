@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Poisson Equation &mdash; Academic-Live-Documentation 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/sphinx_rtd_size.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sphinx-thebe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/eqno.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script src="../_static/design-tabs.js?v=36754332"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+        <script async="async" src="../_static/sphinx-thebe.js?v=afe5de03"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Citations" href="../Citations.html" />
+    <link rel="prev" title="Introdution" href="../Porous-Media-Study/Intro/Intro-PM-MFinPCPM.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Academic-Live-Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Porous Media - Multiphase Flow in Porous Continuous Porous Media:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Porous-Media-Study/Intro/Intro-PM-MFinPCPM.html">Introdution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Porous-Media-Study/Intro/Intro-PM-MFinPCPM.html#mass-balance-for-two-fluids-continuous-porous-media">Mass Balance for two-fluids (Continuous Porous Media)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Lattice Boltzmann Method - Application to Different Partial differential Equation:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Poisson Equation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#lattice-boltzmann-equation">Lattice Boltzmann Equation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lattice-direction-moments">Lattice Direction Moments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#chapmann-enskog-analysis">Chapmann-Enskog Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#zero-order-moment-balance">Zero-Order Moment Balance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#boundary-conditions">Boundary Conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#benchmarks">Benchmarks</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Citations.html">Citations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Porous-Media-Study/Intro/trans-eq/base-trans-eq.html">Introdution for Transport Equations</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Academic-Live-Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Poisson Equation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/LBM-Study/Poisson-Equation.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="poisson-equation">
+<h1>Poisson Equation<a class="headerlink" href="#poisson-equation" title="Link to this heading"></a></h1>
+<p>The Poisson is partial differential equation usual employed to represent problems as the pressure distribution over steady-state in space.</p>
+<div class="math notranslate nohighlight" id="equation-poisson-eq-lb">
+<span class="eqno">(18)<a class="headerlink" href="#equation-poisson-eq-lb" title="Link to this equation"></a></span>\[
+\partial_{\alpha}\left( -D \partial_{\alpha}p \right) = 0.
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(p\)</span> is the pressure and <span class="math notranslate nohighlight">\(D\)</span> diffusive control paremeter.</p>
+<section id="lattice-boltzmann-equation">
+<h2>Lattice Boltzmann Equation<a class="headerlink" href="#lattice-boltzmann-equation" title="Link to this heading"></a></h2>
+<p>Describing the problem through the BGK lattice Boltzmann equation (BGK-LB):</p>
+<div class="math notranslate nohighlight" id="equation-lb-poisson-eq">
+<span class="eqno">(19)<a class="headerlink" href="#equation-lb-poisson-eq" title="Link to this equation"></a></span>\[
+f_i( x_{\alpha} + e_{i,\alpha} \delta t, t'+\delta t) = f_i(x_{\alpha}, t')  -\left( \frac{ f_{i} - f_{i}^{eq} }{ \tau } \right), 
+\]</div>
+<p>the equilibrium distribution function is defined by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+f^{eq}_{i} = \left\{ \begin{array}{ll}
+   \left(w_{0} - 1\right)\widehat{p}(x_{\alpha}, t')  &amp; i=0 \\
+   w_{i}\widehat{p}(x_{\alpha}, t')  &amp; i\neq 0
+\end{array} \right. ,
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\widehat{p}\)</span> is the dimensionless pressure, scaled by a reference pressure <span class="math notranslate nohighlight">\(p_{0}\)</span>, i.e., <span class="math notranslate nohighlight">\(p=p_{0}\widehat{p}\)</span>. The equilibrium moments are given by</p>
+<div class="math notranslate nohighlight" id="equation-moments-fi">
+<span class="eqno">(20)<a class="headerlink" href="#equation-moments-fi" title="Link to this equation"></a></span>\[
+\displaystyle\sum_{i=0} f_{i}^{eq}=0, \quad \quad \frac{1}{1-w_{0}}\displaystyle\sum_{i=1} f_{i}^{eq} = \frac{1}{1-w_{0}} \displaystyle\sum_{i=1} f_{i}=\widehat{p}, \quad \quad  \displaystyle\sum_{i}f_{i}^{eq} e_{i,\alpha} =0 \quad \quad \textrm{and} \quad \quad  \displaystyle\sum_{i}f_{i}^{eq} e_{i,\alpha} e_{i,\beta} =c_{s}^{2} \widehat{p} \delta_{\alpha\beta} .
+\]</div>
+<p>Through Chapman–Enskog analysis, it is demonstrated that the first-order non-equilibrium moment describes the pressure gradient and, consequently, the average velocity:</p>
+<div class="math notranslate nohighlight">
+\[
+m^{neq}_{\alpha} = \displaystyle\sum_{i} e_{i,\alpha}\left( f_i-f_i^{eq}\right)  = -(c_{s}^{2} \tau \delta_{t})\partial_{\alpha}\widehat{p} \quad \quad \textrm{and} \quad\quad \tau = \displaystyle\frac{D}{c_{s}^{2} \delta_{t}} +\frac{1}{2}.
+\]</div>
+<section id="lattice-direction-moments">
+<h3>Lattice Direction Moments<a class="headerlink" href="#lattice-direction-moments" title="Link to this heading"></a></h3>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pylab</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">S</span><span class="p">,</span> <span class="n">collect</span><span class="p">,</span> <span class="n">expand</span><span class="p">,</span> <span class="n">factor</span><span class="p">,</span> <span class="n">Wild</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">fraction</span><span class="p">,</span> <span class="n">Rational</span><span class="p">,</span> <span class="n">Symbol</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">Rational</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Math</span><span class="p">,</span> <span class="n">Latex</span>
+<span class="c1">#-------------------------------------------------Símbolos----------------------------------------------</span>
+<span class="n">omega</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;omega, p, w&#39;</span><span class="p">)</span>
+<span class="n">wi</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">cs</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;w_</span><span class="si">{i}</span><span class="s1"> c_</span><span class="si">{x}</span><span class="s1"> c_</span><span class="si">{y}</span><span class="s1"> c_</span><span class="si">{s}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">fi</span><span class="p">,</span> <span class="n">f0</span><span class="p">,</span> <span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="n">f3</span><span class="p">,</span> <span class="n">f4</span><span class="p">,</span> <span class="n">f5</span><span class="p">,</span> <span class="n">f6</span><span class="p">,</span> <span class="n">f7</span><span class="p">,</span> <span class="n">f8</span><span class="p">,</span>  <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;f_</span><span class="si">{i}</span><span class="s1"> f_</span><span class="si">{0}</span><span class="s1"> f_</span><span class="si">{1}</span><span class="s1"> f_</span><span class="si">{2}</span><span class="s1"> f_</span><span class="si">{3}</span><span class="s1"> f_</span><span class="si">{4}</span><span class="s1"> f_</span><span class="si">{5}</span><span class="s1"> f_</span><span class="si">{6}</span><span class="s1"> f_</span><span class="si">{7}</span><span class="s1"> f_</span><span class="si">{8}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1">#-------------------------------------------------Funções----------------------------------------------</span>
+<span class="n">feq</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="s1">&#39;feq&#39;</span><span class="p">)(</span><span class="n">wi</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">)</span>
+<span class="n">fneq</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="s1">&#39;fneq&#39;</span><span class="p">)(</span><span class="n">wi</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">)(</span><span class="n">fi</span><span class="p">)</span>
+<span class="c1">#-------------------------------------------------Variáveis----------------------------------------------</span>
+<span class="n">fi</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">,</span><span class="n">f3</span><span class="p">,</span><span class="n">f4</span><span class="p">,</span><span class="n">f5</span><span class="p">,</span><span class="n">f6</span><span class="p">,</span><span class="n">f7</span><span class="p">,</span><span class="n">f8</span><span class="p">])</span>
+<span class="n">w0</span><span class="o">=</span><span class="n">Rational</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">);</span><span class="n">w1</span><span class="o">=</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">);</span><span class="n">w2</span><span class="o">=</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">36</span><span class="p">)</span>
+<span class="n">wi</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">w0</span><span class="p">,</span><span class="n">w1</span><span class="p">,</span><span class="n">w1</span><span class="p">,</span><span class="n">w1</span><span class="p">,</span><span class="n">w1</span><span class="p">,</span><span class="n">w2</span><span class="p">,</span><span class="n">w2</span><span class="p">,</span><span class="n">w2</span><span class="p">,</span><span class="n">w2</span><span class="p">])</span>
+<span class="n">cx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">cy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">as2</span><span class="o">=</span><span class="n">Rational</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">cs2</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">as2</span>
+<span class="c1">#-------------------------------------------------Calc.Func------------------------------------------------</span>
+<span class="n">f</span><span class="o">=</span> <span class="n">fi</span>
+<span class="n">feq</span><span class="o">=</span><span class="n">wi</span><span class="o">*</span><span class="n">p</span>
+<span class="n">feq</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">w0</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">p</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a0</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w0</span><span class="p">)</span>
+<span class="c1"># display(Math(r&quot;\underbrace{\sum_{i=1}^{8}f_{i}^{eq} =\sum_{i=1}^{8}f_{i} }_{\textrm{Zero-Order Moment}} =&quot; +  sp.latex(a0) ))</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cx</span><span class="p">))</span>
+<span class="c1"># display(Math(r&quot;\sum_{i=0}^{8}f_{i}^{eq}e_{i,x} =&quot; +  sp.latex(ax) ))</span>
+<span class="n">ay</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cy</span><span class="p">))</span>
+<span class="c1"># display(Math(r&quot;\sum_{i=0}^{8}f_{i}^{eq}e_{i,y} =&quot; +  sp.latex(ay) ))</span>
+<span class="n">axx</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cx</span><span class="o">*</span><span class="n">cx</span><span class="p">))</span>
+<span class="c1"># display(Math(r&quot;\sum_{i=0}^{8}f_{i}^{eq}e_{i,x}e_{i,x} =&quot; +  sp.latex(axx) ))</span>
+<span class="n">axy</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cx</span><span class="o">*</span><span class="n">cy</span><span class="p">))</span>
+<span class="c1"># display(Math(r&quot;\sum_{i=0}^{8}f_{i}^{eq}e_{i,x}e_{i,y} =&quot; +  sp.latex(axy) ))</span>
+<span class="n">ayy</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cy</span><span class="o">*</span><span class="n">cy</span><span class="p">))</span>
+<span class="c1"># display(Math(r&quot;\sum_{i=0}^{8}f_{i}^{eq}e_{i,y}e_{i,y} =&quot; +  sp.latex(ayy) ))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> =\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2"> }_{\textrm{Zero-Order Moment}} =0,&quot;</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot; \quad \quad \underbrace{\frac</span><span class="si">{1}</span><span class="s2">{1-w_</span><span class="si">{0}</span><span class="s2">}\sum_{i=1} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> = \frac</span><span class="si">{1}</span><span class="s2">{1-w_</span><span class="si">{0}</span><span class="s2">}\sum_{i=1} f_</span><span class="si">{i}</span><span class="s2"> }_{\textrm{Zero-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">e_{i,x} }_{\textrm{x-First-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">e_{i,y} }_{\textrm{y-First-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">ay</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,</span><span class="se">\\</span><span class="s2"> \quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">e_{i,x}e_{i,x} }_{\textrm{xx-Second-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">axx</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">e_{i,x}e_{i,y} }_{\textrm{xy-Second-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">axy</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot; \quad \quad and \quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">e_{i,y}e_{i,y} }_{\textrm{yy-Second-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">ayy</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \underbrace{\sum_{i=0} f_{i}^{eq} =\sum_{i=0} f_{i} }_{\textrm{Zero-Order Moment}} =0, \quad \quad \underbrace{\frac{1}{1-w_{0}}\sum_{i=1} f_{i}^{eq} = \frac{1}{1-w_{0}}\sum_{i=1} f_{i} }_{\textrm{Zero-Order Moment}} =p,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}e_{i,x} }_{\textrm{x-First-Order Moment}} =0,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}e_{i,y} }_{\textrm{y-First-Order Moment}} =0,\\ \quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}e_{i,x}e_{i,x} }_{\textrm{xx-Second-Order Moment}} =\frac{p}{3},\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}e_{i,x}e_{i,y} }_{\textrm{xy-Second-Order Moment}} =0 \quad \quad and \quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}e_{i,y}e_{i,y} }_{\textrm{yy-Second-Order Moment}} =\frac{p}{3}\end{split}\]</div>
+</div>
+</div>
+</section>
+</section>
+<section id="chapmann-enskog-analysis">
+<h2>Chapmann-Enskog Analysis<a class="headerlink" href="#chapmann-enskog-analysis" title="Link to this heading"></a></h2>
+<p>Applying the Chapmann-Enskog procedure to LB equation, we expand the term <span class="math notranslate nohighlight">\(f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)\)</span> in a Taylor series to recover the derivative form of the equation, i.e.,</p>
+<div class="math notranslate nohighlight" id="equation-eqexp-poisson-eq">
+<span class="eqno">(21)<a class="headerlink" href="#equation-eqexp-poisson-eq" title="Link to this equation"></a></span>\[
+f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\boldsymbol{x}, t)=\displaystyle\sum_{j=1}^{\infty}\frac{\Delta t^{j}}{j!}D_{t}^{j}f_{i}= -\left( \frac{ f_{i} - f_{i}^{eq} }{ \tau } \right).
+\]</div>
+<p>Rescaling the dimensionless form of the Eq. <a class="reference internal" href="#equation-eqexp-poisson-eq">(21)</a> in terms of the Knudsen number (<span class="math notranslate nohighlight">\(Kn\)</span>), we have</p>
+<div class="math notranslate nohighlight">
+\[
+\displaystyle \sum^{\infty}_{j=1}  \frac{Kn^{(j-1)}}{j!} D_{t}^{j} f_{i} = - \frac{1}{Kn}\left( \frac{ f_{i} - f_{eq,i} }{ \tau } \right) \quad \quad \rightarrow \quad \quad \displaystyle \sum^{\infty}_{j=1}  \frac{Kn^{(j)}}{j!} D_{t}^{j} f_{i} = -  \frac{ f_{i} - f_{i}^{eq} }{ \tau },
+\]</div>
+<p>applying the asymptotic expansion in both the distribution function (<span class="math notranslate nohighlight">\(f_{i}=f_{i}^{(0)}+Kn f_{i}^{(1)} + Kn^{2} f_{i}^{(2)}+\cdots\)</span>) and time partial derivative (<span class="math notranslate nohighlight">\(\partial_{t}=\partial_{t}^{(0)}+ Kn \partial_{t}^{(1)}+Kn^{2} \partial_{t}^{(2)}+\cdots\)</span>), and separating the equation in orders up to the order <span class="math notranslate nohighlight">\(Kn^{2}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-chap-kn-poisson-eq">
+<span class="eqno">(22)<a class="headerlink" href="#equation-chap-kn-poisson-eq" title="Link to this equation"></a></span>\[\begin{split}
+\begin{array}{ll}
+    (Kn^{(0)}):&amp; f_{i}^{(0)}= f_{i}^{eq},\\
+    (Kn^{(1)}):&amp; \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)}= - \displaystyle\frac{ f_{i}^{(1)} }{ \tau } , \\
+    (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)} + \displaystyle\frac{\left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)^{2} f_{i}^{(0)}}{2}= - \displaystyle\frac{ f_{i}^{(2)} }{ \tau },\\
+    \textrm{ou}\\
+    (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)\displaystyle\left(1 - \frac{1}{2\tau}\right) f_{i}^{(1)} =  - \displaystyle\frac{ f_{i}^{(2)} }{ \tau } \quad\quad \rightarrow \quad\quad  f_{i}^{(1)}\textrm{ Formulation} \\
+    \textrm{ou}\\
+    (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)^{2} \displaystyle\left(\frac{1}{2} - \tau\right) f_{i}^{(0)} =  - \displaystyle\frac{ f_{i}^{(2)} }{ \tau } \quad\quad \rightarrow  \quad\quad f_{i}^{(0)}\textrm{ Formulation}.
+ \end{array}
+\end{split}\]</div>
+</section>
+<section id="zero-order-moment-balance">
+<h2>Zero-Order Moment Balance<a class="headerlink" href="#zero-order-moment-balance" title="Link to this heading"></a></h2>
+<p>To retrieve the balance equation, we sum the Eq. <a class="reference internal" href="#equation-chap-kn-poisson-eq">(22)</a> for <span class="math notranslate nohighlight">\(Kn^{(1)}\)</span> and <span class="math notranslate nohighlight">\(Kn^{(2)}\)</span> over <span class="math notranslate nohighlight">\(\sum_{i=0} \)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{l}
+(Kn^{(1)}): \displaystyle\sum_{i}\left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)}= \displaystyle\sum_{i} \left(- \displaystyle\frac{ f_{i}^{(1)} }{ \tau } \right),\\
+(Kn^{(1)}): 0  =0,
+\end{array}
+\end{split}\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{l}
+(Kn^{(2)}): \displaystyle\sum_{i}\left( \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)^{2} \displaystyle\left( \frac{1}{2}-\tau\right) f_{i}^{(0)} \right) =  \displaystyle\sum_{i}\left( - \displaystyle\frac{ f_{i}^{(2)} }{ \tau } \right), \\
+(Kn^{(2)}): \left( \displaystyle\frac{1}{2}-\tau\right) \partial_{\alpha}\partial_{\beta} \left(c_{s}^{2} p \delta_{\alpha\beta} \right) =0. 
+\end{array}
+\end{split}\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight" id="equation-kn1-0-b0">
+<span class="eqno">(23)<a class="headerlink" href="#equation-kn1-0-b0" title="Link to this equation"></a></span>\[\begin{split}
+\begin{array}{l}
+(Kn^{(2)}):&amp; \displaystyle\sum_{i}\left[ \partial_{t}^{(1)} f_{i}^{(0)} - \left(1-\displaystyle\frac{1}{2\tau}\right)\left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right) f_{i}^{(1)}   \right]=  \displaystyle\sum_{i}\left( - \displaystyle\frac{f_{i}^{(2)}}{\tau} \right), \nonumber \\
+(Kn^{(2)}):&amp; - \left(1-\displaystyle\frac{1}{2\tau}\right) m^{(1)}_{\alpha} = 0.
+\end{array}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(m^{(1)}_{\alpha}\)</span> is the first-order moment of <span class="math notranslate nohighlight">\(f_{i}^{(1)}\)</span> and <span class="math notranslate nohighlight">\(1/(1-w_{0})\sum_{i=1}f_{i}^{(j)}=0\)</span> for <span class="math notranslate nohighlight">\(j\geq 1\)</span> due to imposition of <span class="math notranslate nohighlight">\(\widehat{p}\)</span> conservation. To compute the moment <span class="math notranslate nohighlight">\(m^{(1)}_{\alpha}\)</span>, we multiply Eq. <a class="reference internal" href="#equation-chap-kn-poisson-eq">(22)</a> by <span class="math notranslate nohighlight">\(e_{i,\alpha}\)</span> and sum over all lattice directions:</p>
+<div class="math notranslate nohighlight" id="equation-kn0-b1">
+<span class="eqno">(24)<a class="headerlink" href="#equation-kn0-b1" title="Link to this equation"></a></span>\[\begin{split}
+\begin{array}{l}
+(Kn^{(1)}): \displaystyle\sum_{i}e_{\alpha,i}\left( \partial_{t}^{(0)} + e_{\beta,i}\partial_{\beta} \right)f_{i}^{(0)}= \displaystyle\sum_{i} e_{\alpha,i} \left( -\frac{f_{i}^{(1)}}{\tau}  \right),\\
+(Kn^{(1)}): m^{(1)}_{\alpha} =-\tau \partial_{\beta}\left( c_{s}^{2} \widehat{p} \delta_{\alpha\beta}  \right).
+\end{array}
+\end{split}\]</div>
+<p>By substituting Eq. <a class="reference internal" href="#equation-kn0-b1">(24)</a> into Eq. <a class="reference internal" href="#equation-kn1-0-b0">(23)</a>, we recover the Eq. <a class="reference internal" href="#equation-poisson-eq-lb">(18)</a>, where <span class="math notranslate nohighlight">\(D=c_{s}^{2}(\tau-1/2)\)</span>. In the regularized formulation of the lattice Boltzmann equation, the first-order correction is approximated as <span class="math notranslate nohighlight">\(f_{i}^{(1)}\approx (f_{i}-f_{i}^{(0)})=f_{i}^{neq}\)</span>, where higher-order Knudsen moments are filtered out.</p>
+</section>
+<section id="boundary-conditions">
+<h2>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Link to this heading"></a></h2>
+</section>
+<section id="benchmarks">
+<h2>Benchmarks<a class="headerlink" href="#benchmarks" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./LBM-Study"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Porous-Media-Study/Intro/Intro-PM-MFinPCPM.html" class="btn btn-neutral float-left" title="Introdution" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Citations.html" class="btn btn-neutral float-right" title="Citations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Ricardo LMB.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

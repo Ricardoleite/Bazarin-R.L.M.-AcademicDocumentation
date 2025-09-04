@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introdution &mdash; Academic-Live-Documentation 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/sphinx_rtd_size.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sphinx-thebe.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/eqno.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script src="../../_static/design-tabs.js?v=36754332"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+        <script async="async" src="../../_static/sphinx-thebe.js?v=afe5de03"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Poisson Equation" href="../../LBM-Study/Poisson-Equation.html" />
+    <link rel="prev" title="Project-Documentation" href="../../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Academic-Live-Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Porous Media - Multiphase Flow in Porous Continuous Porous Media:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introdution</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#nomenclature">Nomenclature</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#mass-balance-for-two-fluids-continuous-porous-media">Mass Balance for two-fluids (Continuous Porous Media)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#fractional-flow-concept-and-buckley-leverett-equation">Fractional Flow Concept and Buckley-Leverett Equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#analytical-solution-for-1d-convective-formulation-of-the-buckley-leverett-equation">Analytical Solution for 1D Convective Formulation of the Buckley-Leverett Equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#buckley-leverett-equation-and-alternative-differential-formulations">Buckley-Leverett Equation and Alternative Differential Formulations</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Lattice Boltzmann Method - Application to Different Partial differential Equation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../LBM-Study/Poisson-Equation.html">Poisson Equation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Citations.html">Citations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="trans-eq/base-trans-eq.html">Introdution for Transport Equations</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Academic-Live-Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Introdution</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Porous-Media-Study/Intro/Intro-PM-MFinPCPM.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="introdution">
+<h1>Introdution<a class="headerlink" href="#introdution" title="Link to this heading"></a></h1>
+<p>Multiphase/multicomponent flow through porous media governs a variety of natural and engineered processes. Typical examples include the interaction between water and air (or other fluids) during soil infiltration after rainfall, water movement during agricultural irrigation, and the transport of contaminants leaked from landfills or other pollution sources. Figure <a class="reference internal" href="#soilmult"><span class="std std-numref">Fig. 1</span></a> a) illustrates multiphase–multicomponent fluid transport in an unsaturated soil column. Another topic that receives considerable attention in the academic literature, owing to its economic importance and the investment oil companies make in related research, is the interaction of oil with native or injected fluids in oil reservoirs (Figure <a class="reference internal" href="#soilmult"><span class="std std-numref">Fig. 1</span></a> b). (OBS: Add other examples with good Illustrations)</p>
+<figure class="align-center" id="soilmult">
+<a class="reference internal image-reference" href="../../_images/soil-multiphase.svg"><img alt="../../_images/soil-multiphase.svg" src="../../_images/soil-multiphase.svg" style="width: 1197.5px; height: 257.5px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Illustrative cases of multiphase/multicomponent flow through porous media: a) fluid transport in unsaturated soil (Adapted from <span id="id1">Zhang <em>et al.</em> [<a class="reference internal" href="../../Citations.html#id2" title="Xueyi Zhang, Zhi Dou, Mayumi Hamada, Pietro de Anna, and Joaquin Jimenez-Martinez. Enhanced reaction kinetics in stationary two-phase flow through porous media. Environmental Science &amp; Technology, 2025.">1</a>]</span>); b) fuid-fluid interaction in pore-scale oil reservoir.</span><a class="headerlink" href="#soilmult" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Due to the large scale of the problem and the infeasibility of explicitly describing the entire porous media domain, an alternative approach is to represent a porous volume containing <span class="math notranslate nohighlight">\(n\)</span> fluids with a single gray voxel. This voxel stores representative properties of the underlying pore structure, such as porosity, fluid saturations, relative permeabilities, and average fluid velocities. Figure <a class="reference internal" href="#gray-voxel-illu"><span class="std std-numref">Fig. 2</span></a> illustrates the representation of a two-fluids displacement in a 3D porous media by a gray voxel.</p>
+<p><a class="reference internal" href="../../_images/multi-lbm.gif"><img alt="../../_images/multi-lbm.gif" src="../../_images/multi-lbm.gif" style="width: 45%;" /></a> <a class="reference internal" href="../../_images/arrow.svg"><img alt="../../_images/arrow.svg" src="../../_images/arrow.svg" style="width: 05%;" /></a> <a class="reference internal" href="../../_images/gray-voxel.svg"><img alt="../../_images/gray-voxel.svg" src="../../_images/gray-voxel.svg" style="width: 42%;" /></a></p>
+<figure class="align-center" id="gray-voxel-illu">
+<a class="reference internal image-reference" href="../../_images/blank.svg"><img alt="../../_images/blank.svg" src="../../_images/blank.svg" style="width: 367.5px; height: 12.5px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Porous continuous description of a multiphase/multicomponent porous volume.</span><a class="headerlink" href="#gray-voxel-illu" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<section id="nomenclature">
+<h2>Nomenclature<a class="headerlink" href="#nomenclature" title="Link to this heading"></a></h2>
+<p>To view the detailed nomenclature used in the mathematical development of this section, click the toggle button below.</p>
+<div class="toggle docutils container">
+<p><strong>Nomenclature</strong>:</p>
+<!-- --- Subsection(PCM) --- -->
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(k\)</span>: the superscript <span class="math notranslate nohighlight">\(k\)</span> indicate the fluid phase, <span class="math notranslate nohighlight">\(w\)</span> wetting or <span class="math notranslate nohighlight">\(nw\)</span> non-wetting</p></li>
+<li><p><span class="math notranslate nohighlight">\(\overline{k}\)</span>: the superscript <span class="math notranslate nohighlight">\(\overline{k}\)</span> indicate the opposite fluid to <span class="math notranslate nohighlight">\(k\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho\)</span>: mixture density, <span class="math notranslate nohighlight">\(kg/m^{3}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(s\)</span>:  fluid saturation</p></li>
+<li><p><span class="math notranslate nohighlight">\(\varphi\)</span>:  porosity</p></li>
+<li><p><span class="math notranslate nohighlight">\(V\)</span>:  volume, <span class="math notranslate nohighlight">\(m^{3}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\langle u_{\alpha}^{p}\rangle\)</span>:  mixture average velocity vector, <span class="math notranslate nohighlight">\(m/s\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\langle u \rangle_{\alpha}^{p}\)</span>:  mixture intrinsic average velocity vector, <span class="math notranslate nohighlight">\(m/s\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\langle u_{\alpha}^{(k)}\rangle\)</span>:  <span class="math notranslate nohighlight">\(k\)</span> fluid average velocity vector, <span class="math notranslate nohighlight">\(m/s\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\langle u \rangle_{\alpha}^{(k)}\)</span>:  <span class="math notranslate nohighlight">\(k\)</span> fluid intrinsic average velocity vector, <span class="math notranslate nohighlight">\(m/s\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\chi^{(k)}\)</span>:  fluid fraction of the component <span class="math notranslate nohighlight">\(k\)</span></p></li>
+<li><p><span style="color:red">——-</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(B_{\alpha}\)</span>:  convective fractional flux vector, <span class="math notranslate nohighlight">\(m/s\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda\)</span>:  diffusive constant, <span class="math notranslate nohighlight">\(m^{2}/s\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(C_{\alpha}\)</span>:  diffusive capillary vector, <span class="math notranslate nohighlight">\(m^{-1}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\epsilon\)</span>:  dynamic pressure constant, <span class="math notranslate nohighlight">\(s^{2}/m^{2}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\langle \bar{u}_{\alpha}^{p}\rangle\)</span>:  average buoyancy vector, <span class="math notranslate nohighlight">\(m/s\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(F^{(k)}\)</span>:  fractional flux of <span class="math notranslate nohighlight">\(k\)</span> fluid</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma\)</span>:  interfacial tension, <span class="math notranslate nohighlight">\(N/m\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu\)</span>:  dynamic viscosity, <span class="math notranslate nohighlight">\(Pa.s\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(K\)</span>:  absolute permeability, <span class="math notranslate nohighlight">\(m^{2}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(g^{e}_{\alpha}\)</span>:  external acceleration vector, <span class="math notranslate nohighlight">\(m/s^{2}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\widehat{p}_{c}(s_{k})\)</span>:  dimensionless capillary pressure</p></li>
+<li><p><span class="math notranslate nohighlight">\(\zeta\)</span>:  damping or non-equilibrium coefficient, <span class="math notranslate nohighlight">\(s\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\nu_{e}\)</span>:  effective kinematic viscosity, <span class="math notranslate nohighlight">\(m^{2}/s\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(F_{e}\)</span>:  geometric factor, <span class="math notranslate nohighlight">\(m^{2}/s\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(L_{REV}\)</span>:  length of the representative elementary volume, <span class="math notranslate nohighlight">\(m\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\overline{\delta}_{pore}\)</span>:  average pore diameter, <span class="math notranslate nohighlight">\(m\)</span></p></li>
+</ul>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="mass-balance-for-two-fluids-continuous-porous-media">
+<h1>Mass Balance for two-fluids (Continuous Porous Media)<a class="headerlink" href="#mass-balance-for-two-fluids-continuous-porous-media" title="Link to this heading"></a></h1>
+<p>Applying a mass balance volume-control analysis to two-components (Figure <a class="reference internal" href="#gray-voxel-illu"><span class="std std-numref">Fig. 2</span></a> illustrates a 2D volume-control surface balance), the ibalance equations are given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqmassmtp-0">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eqmassmtp-0" title="Link to this equation"></a></span>\[
+ \partial_{t} \left(\rho^{(k)} \chi^{(k)} \Delta x \Delta y \right) + \left[\left(\rho^{(k)} \chi^{(k)} \langle u\rangle_{x}^{(k)} \right)_{x+\frac{\Delta x}{2}} - \left(\rho^{(k)} \chi^{(k)} \langle u\rangle_{x}^{(k)} \right)_{x-\frac{\Delta x}{2}}\right]\Delta y +
+ \left[\left(\rho^{(k)} \chi^{(k)} \langle u\rangle_{y}^{(k)}\right)_{y+\frac{\Delta y}{2}} - \left(\rho^{(k)} \chi^{(k)} \langle u_{k}\rangle_{y}^{(k)}\right)_{y-\frac{\Delta y}{2}}\right]\Delta x = 0
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\chi^{(k)}=V^{(k)}/V\)</span> is the fraction of ﬂuid component <span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(\rho\)</span> is the fluid density and <span class="math notranslate nohighlight">\(\langle u \rangle_{\alpha}^{(k)}\)</span> is the intrinsic average velocity. The two fluid componente are considered a wetting fluid <span class="math notranslate nohighlight">\((w)\)</span> and non-wetting fluid <span class="math notranslate nohighlight">\((nw)\)</span>. Taking the limit in the Eq. <a class="reference internal" href="#equation-eqmassmtp-0">(1)</a> and defining the porosity (<span class="math notranslate nohighlight">\(\varphi\)</span>) as:</p>
+<div class="math notranslate nohighlight">
+\[
+\varphi=\displaystyle\frac{\textrm{pore volume}}{\textrm{total volume}}=\displaystyle\frac{V^{(w)}+V^{(nw)}}{\Delta x \Delta y}=\displaystyle\frac{V^{p}}{V}
+\]</div>
+<p>we obtain the balance mass equation in the form</p>
+<div class="math notranslate nohighlight" id="equation-eqmassmtp-1">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eqmassmtp-1" title="Link to this equation"></a></span>\[
+\partial_{t} \left( \rho^{(k)}\varphi s^{(k)} \right)+ \partial_{\alpha} \left(\rho^{(k)}\varphi s^{(k)} \langle u \rangle_{\alpha}^{(k)} \right)=0, 
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(s^{(k)}=V^{(k)}/V^{p}\)</span> is the saturation of ﬂuid component <span class="math notranslate nohighlight">\(k\)</span>. By definition <span class="math notranslate nohighlight">\(s^{(w)}+s^{(nw)}=1\)</span>. For a incompressible fluid flow, we can rewrite Eq. <a class="reference internal" href="#equation-eqmassmtp-1">(2)</a> for</p>
+<div class="math notranslate nohighlight" id="equation-eqmassmtp-2">
+<span class="eqno">(3)<a class="headerlink" href="#equation-eqmassmtp-2" title="Link to this equation"></a></span>\[
+\partial_{t} \left(\varphi s^{(k)}\right)+ \partial_{\alpha} \left(\langle u_{\alpha}^{(k)} \rangle \right)=0,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\langle u_{\alpha}^{(k)}\rangle\)</span> is the average fluid velocity represented by</p>
+<div class="math notranslate nohighlight">
+\[
+\langle u_{\alpha}^{(k)}\rangle =\frac{1}{V}\int_{V^{(k)}} u_{\alpha}^{(k)}dV = \varphi s^{(k)}\langle u \rangle_{\alpha}^{(k)} = \varphi s^{(k)}\frac{1}{V^{(k)}}\int_{V^{(k)}}u_{\alpha}^{(k)}dV.
+\]</div>
+<section id="fractional-flow-concept-and-buckley-leverett-equation">
+<h2>Fractional Flow Concept and Buckley-Leverett Equation<a class="headerlink" href="#fractional-flow-concept-and-buckley-leverett-equation" title="Link to this heading"></a></h2>
+<p>Employing the fractional flow concept, we define the fluid mobility by</p>
+<div class="math notranslate nohighlight" id="equation-mobk-term">
+<span class="eqno">(4)<a class="headerlink" href="#equation-mobk-term" title="Link to this equation"></a></span>\[
+\lambda^{(k)}=\displaystyle\frac{KK_{r}^{(k)}}{\mu^{(k)}},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(K\)</span> is the absolute permeability, <span class="math notranslate nohighlight">\(K_{r}\)</span> is the absolute permeability and. Having the total mobility defined by <span class="math notranslate nohighlight">\(\lambda^{T}=\lambda^{(w)}+\lambda^{(nw)}\)</span>, the fractional flux term is defined by</p>
+<div class="math notranslate nohighlight" id="equation-fractiona-term">
+<span class="eqno">(5)<a class="headerlink" href="#equation-fractiona-term" title="Link to this equation"></a></span>\[
+F^{(k)}=\displaystyle\frac{\lambda^{(k)}}{\lambda^{T}}.
+\]</div>
+<p>Defining the capillary pressure inside of the continuous porous media:</p>
+<div class="math notranslate nohighlight" id="equation-cap-press-term-pcm">
+<span class="eqno">(6)<a class="headerlink" href="#equation-cap-press-term-pcm" title="Link to this equation"></a></span>\[
+\langle p\rangle^{c} = \langle p\rangle^{(w)} - \langle p\rangle^{(nw)},
+\]</div>
+<p>the term is given by difference of the intrinsic average pressure of the wetting and non-wetting fluid. And also defining the relative permeability of the fluid <span class="math notranslate nohighlight">\(k\)</span> by</p>
+<div class="math notranslate nohighlight" id="equation-darcy-krel">
+<span class="eqno">(7)<a class="headerlink" href="#equation-darcy-krel" title="Link to this equation"></a></span>\[
+\langle u^{(k)}_{\alpha}\rangle = - \frac{KK_{r}^{(k)}}{\mu^{(k)}} \left(\partial_{\alpha} \langle p\rangle^{(k)} - \rho^{(k)} g_{\alpha} \right)= -\lambda^{(k)}\left(\partial_{\alpha} \langle p\rangle^{(k)} - \rho^{(k)} g_{\alpha} \right),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mu^{(k)}\)</span> is dynamic viscosity and <span class="math notranslate nohighlight">\(g_{\alpha}\)</span> is gravity acceleration.</p>
+<p>Manipulating the Eqs. <a class="reference internal" href="#equation-eqmassmtp-2">(3)</a>, <a class="reference internal" href="#equation-mobk-term">(4)</a> <a class="reference internal" href="#equation-fractiona-term">(5)</a>, <a class="reference internal" href="#equation-cap-press-term-pcm">(6)</a> and <a class="reference internal" href="#equation-darcy-krel">(7)</a>, we obtain the convective-diffusive formulation of Buckley-Leverett equation given by</p>
+<div class="math notranslate nohighlight" id="equation-bl-w">
+<span class="eqno">(8)<a class="headerlink" href="#equation-bl-w" title="Link to this equation"></a></span>\[
+\partial_{t} \left(\varphi s^{(w)} \right) + \partial_{\alpha} \left( F^{(w)} \langle u_{\alpha}^{p}\rangle \right) + \partial_{\alpha}\left( F^{(w)} \lambda^{(nw)} \left( \rho^{(w)}-\rho^{(nw)} \right)g_{\alpha} \right)  +  \partial_{\alpha}\left( F^{(w)} \lambda^{(nw)} \partial_{\alpha} \langle p\rangle^{c} \right)   = 0,
+\]</div>
+<div class="math notranslate nohighlight" id="equation-bl-nw">
+<span class="eqno">(9)<a class="headerlink" href="#equation-bl-nw" title="Link to this equation"></a></span>\[
+\partial_{t} \left(\varphi s^{(nw)} \right) + \partial_{\alpha} \left( F^{(nw)} \langle u_{\alpha}^{p}\rangle \right) + \partial_{\alpha}\left( F^{(nw)} \lambda^{(w)} \left( \rho^{(nw)}-\rho^{(w)} \right)g_{\alpha} \right)  -  \partial_{\alpha}\left( F^{(nw)} \lambda^{(w)} \partial_{\alpha} \langle p\rangle^{c} \right)   = 0,
+\]</div>
+<p>for details of the Eqs. <a class="reference internal" href="#equation-bl-w">(8)</a> and <a class="reference internal" href="#equation-bl-nw">(9)</a> deduction click in toggle button bellow.</p>
+<div class="toggle docutils container">
+<p><strong>Buckley-Leverett Deduction</strong>:</p>
+<p>Defining the fractiona flow function by</p>
+<div class="math notranslate nohighlight" id="equation-fk-fff">
+<span class="eqno">(10)<a class="headerlink" href="#equation-fk-fff" title="Link to this equation"></a></span>\[
+f^{(k)}=\displaystyle\frac{ \langle u_{\alpha}^{(k)}\rangle }{\langle u_{\alpha}^{(w)}\rangle+\langle u_{\alpha}^{(nw)}\rangle}=\displaystyle\frac{ \langle u_{\alpha}^{(k)}\rangle }{\langle u_{\alpha}^{p}\rangle},
+\]</div>
+<p>we can rewrite the Eq. <a class="reference internal" href="#equation-darcy-krel">(7)</a> for each fluid in the form</p>
+<div class="math notranslate nohighlight" id="equation-darcy-krel-w">
+<span class="eqno">(11)<a class="headerlink" href="#equation-darcy-krel-w" title="Link to this equation"></a></span>\[
+f^{(w)} \langle u_{\alpha}^{p}\rangle = -\lambda^{(w)}\left(\partial_{\alpha} \langle p\rangle^{(w)} - \rho^{(w)} g_{\alpha} \right),
+\]</div>
+<div class="math notranslate nohighlight" id="equation-darcy-krel-nw">
+<span class="eqno">(12)<a class="headerlink" href="#equation-darcy-krel-nw" title="Link to this equation"></a></span>\[
+-(1-f^{(w)}) \langle u_{\alpha}^{p}\rangle = -\lambda^{(nw)}\left(\partial_{\alpha} \langle p\rangle^{(nw)} - \rho^{(nw)} g_{\alpha} \right).
+\]</div>
+<p>Summing the Eqs. <a class="reference internal" href="#equation-darcy-krel-w">(11)</a> and <a class="reference internal" href="#equation-darcy-krel-nw">(12)</a> and isolating the <span class="math notranslate nohighlight">\(f^{(w)}\)</span>, we have</p>
+<div class="math notranslate nohighlight" id="equation-frac-flow-function-w">
+<span class="eqno">(13)<a class="headerlink" href="#equation-frac-flow-function-w" title="Link to this equation"></a></span>\[
+f^{(w)} = \frac{\lambda^{(w)} +\displaystyle\frac{\lambda^{(w)}\lambda^{(nw)}}{\langle u_{\alpha}^{p}\rangle}\left(\partial_{\alpha} \langle p\rangle^{c}  (\rho^{(w)}-\rho^{(nw)}) g_{\alpha} \right)}{\lambda^{(w)}+\lambda^{(nw)}} = F^{(w)} +\displaystyle\frac{F^{(w)}\lambda^{(nw)}}{\langle u_{\alpha}^{p}\rangle}\left(\partial_{\alpha} \langle p\rangle^{c} + (\rho^{(w)}-\rho^{(nw)}) g_{\alpha} \right) ,
+\]</div>
+<p>by definition <span class="math notranslate nohighlight">\(f^{(w)} + f^{(nw)} = 1\)</span>, and consequently,</p>
+<div class="math notranslate nohighlight" id="equation-frac-flow-function-nw">
+<span class="eqno">(14)<a class="headerlink" href="#equation-frac-flow-function-nw" title="Link to this equation"></a></span>\[
+f^{(nw)}  = F^{(nw)} +\displaystyle\frac{F^{(nw)}\lambda^{(w)}}{\langle u_{\alpha}^{p}\rangle}\left(-\partial_{\alpha} \langle p\rangle^{c} + (\rho^{(nw)}-\rho^{(w)}) g_{\alpha} \right).
+\]</div>
+<p>Shifting <span class="math notranslate nohighlight">\(\langle u_{\alpha}^{p}\rangle\)</span> to left-hand, we obtain each fluic velocity</p>
+<div class="math notranslate nohighlight" id="equation-frac-flow-function-uw">
+<span class="eqno">(15)<a class="headerlink" href="#equation-frac-flow-function-uw" title="Link to this equation"></a></span>\[
+\langle u_{\alpha}^{(w)}\rangle = f^{(w)} \langle u_{\alpha}^{p}\rangle =  F^{(w)}\langle u_{\alpha}^{p}\rangle +F^{(w)}\lambda^{(nw)}\left(\partial_{\alpha} \langle p\rangle^{c} + (\rho^{(w)}-\rho^{(nw)}) g_{\alpha} \right) ,
+\]</div>
+<div class="math notranslate nohighlight" id="equation-frac-flow-function-unw">
+<span class="eqno">(16)<a class="headerlink" href="#equation-frac-flow-function-unw" title="Link to this equation"></a></span>\[
+\langle u_{\alpha}^{(nw)}\rangle =f^{(nw)} \langle u_{\alpha}^{p}\rangle  = F^{(nw)} \langle u_{\alpha}^{p}\rangle + F^{(nw)}\lambda^{(w)} \left(-\partial_{\alpha} \langle p\rangle^{c} + (\rho^{(nw)}-\rho^{(w)}) g_{\alpha} \right),
+\]</div>
+<p>finally, replacing the velocities (Eqs. <a class="reference internal" href="#equation-frac-flow-function-uw">(15)</a> and <a class="reference internal" href="#equation-frac-flow-function-unw">(16)</a>) into mass balance Eq. <a class="reference internal" href="#equation-eqmassmtp-1">(2)</a>, we obtain Buckley-Leveret convective-diffusive formulation given by the Eqs. <a class="reference internal" href="#equation-bl-w">(8)</a> and <a class="reference internal" href="#equation-bl-nw">(9)</a>.</p>
+</div>
+</section>
+<section id="analytical-solution-for-1d-convective-formulation-of-the-buckley-leverett-equation">
+<h2>Analytical Solution for 1D Convective Formulation of the Buckley-Leverett Equation<a class="headerlink" href="#analytical-solution-for-1d-convective-formulation-of-the-buckley-leverett-equation" title="Link to this heading"></a></h2>
+<p>Considering null effect of gravity and capillary pressure, also porosity constant over the time evolution, we have for an 1D the balance Equation:</p>
+<div class="math notranslate nohighlight" id="equation-bl-w-conv">
+<span class="eqno">(17)<a class="headerlink" href="#equation-bl-w-conv" title="Link to this equation"></a></span>\[
+\varphi \partial_{t} s^{(w)}  + \partial_{x} \left( F^{(w)} \langle u_{\alpha}^{p}\rangle \right)   = 0,
+\]</div>
+<p>representing the relative permeability by a correlation as a function of the respective fluid saturation (relative permeability inside of fractional flux term <span class="math notranslate nohighlight">\(F^{(w)}\)</span>), consequently we <span class="math notranslate nohighlight">\(F^{(w)}[s^{(w)}]\)</span> (the <span class="math notranslate nohighlight">\([]\)</span> bracket symblo indicate the parameter dependence of the term as function)</p>
+</section>
+<section id="buckley-leverett-equation-and-alternative-differential-formulations">
+<h2>Buckley-Leverett Equation and Alternative Differential Formulations<a class="headerlink" href="#buckley-leverett-equation-and-alternative-differential-formulations" title="Link to this heading"></a></h2>
+<p><span style="color:red">Considering the fluid flow as Newtonian, the Darcy-law can be employed in the partial differential equation of mass balance. This approach represents a two-component form of the black-oil model, as described by <span id="id2">Wu [<a class="reference internal" href="../../Citations.html#id62" title="Yu-Shu Wu. Multiphase fluid flow in porous and fractured reservoirs. Gulf professional publishing, 2015.">2</a>]</span>. The Darcy-law for multiphase flow is given by:</span></p>
+<p>This is <span style="color:red">red text</span> and
+this is <span style="color:#1E90FF">dodger-blue <span class="math notranslate nohighlight">\(\phi\)</span> text</span>.</p>
+<!-- --- Subsection(PCM) --- --></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Porous-Media-Study/Intro"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../index.html" class="btn btn-neutral float-left" title="Project-Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../LBM-Study/Poisson-Equation.html" class="btn btn-neutral float-right" title="Poisson Equation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Ricardo LMB.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,342 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "4d6086bc",
+   "metadata": {},
+   "source": [
+    "# Introdution\n",
+    "\n",
+    "Multiphase/multicomponent flow through porous media governs a variety of natural and engineered processes. Typical examples include the interaction between water and air (or other fluids) during soil infiltration after rainfall, water movement during agricultural irrigation, and the transport of contaminants leaked from landfills or other pollution sources. Figure {numref}`soilmult` a) illustrates multiphase–multicomponent fluid transport in an unsaturated soil column. Another topic that receives considerable attention in the academic literature, owing to its economic importance and the investment oil companies make in related research, is the interaction of oil with native or injected fluids in oil reservoirs (Figure {numref}`soilmult` b). (OBS: Add other examples with good Illustrations)\n"
+   ]
+  },
+  {
+   "attachments": {},
+   "cell_type": "markdown",
+   "id": "92372f0d-2a2b-42ce-82f8-142007f6a3b3",
+   "metadata": {},
+   "source": [
+    "```{figure} soil-multiphase.svg\n",
+    "---\n",
+    "scale: 250%\n",
+    "align: center\n",
+    "name: soilmult\n",
+    "---\n",
+    "Illustrative cases of multiphase/multicomponent flow through porous media: a) fluid transport in unsaturated soil (Adapted from {cite:t}`zhang2025enhanced`); b) fuid-fluid interaction in pore-scale oil reservoir.\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d6090d28-e24d-48cc-9c51-f082a5896e18",
+   "metadata": {},
+   "source": [
+    "Due to the large scale of the problem and the infeasibility of explicitly describing the entire porous media domain, an alternative approach is to represent a porous volume containing $n$ fluids with a single gray voxel. This voxel stores representative properties of the underlying pore structure, such as porosity, fluid saturations, relative permeabilities, and average fluid velocities. Figure {numref}`Gray-Voxel-Illu` illustrates the representation of a two-fluids displacement in a 3D porous media by a gray voxel."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "ea4aaed6-4bc5-4d31-bceb-0fbb37442ad3",
+   "metadata": {},
+   "source": [
+    "<img src=\"multi-lbm.gif\" width=\"45%\"> <img src=\"arrow.svg\" width=\"05%\"> <img src=\"gray-voxel.svg\" width=\"42%\">\n",
+    "\n",
+    "```{figure} blank.svg\n",
+    "---\n",
+    "scale: 250%\n",
+    "align: center\n",
+    "name: Gray-Voxel-Illu\n",
+    "---\n",
+    "Porous continuous description of a multiphase/multicomponent porous volume.\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "1d99646c-65b1-4c24-a68d-3a63fd8559c9",
+   "metadata": {},
+   "source": [
+    "## Nomenclature\n",
+    "\n",
+    "To view the detailed nomenclature used in the mathematical development of this section, click the toggle button below.\n",
+    "\n",
+    "```{toggle}\n",
+    "**Nomenclature**:\n",
+    "\n",
+    "<!-- --- Subsection(PCM) --- -->\n",
+    "- $k$: the superscript $k$ indicate the fluid phase, $w$ wetting or $nw$ non-wetting\n",
+    "- $\\overline{k}$: the superscript $\\overline{k}$ indicate the opposite fluid to $k$\n",
+    "- $\\rho$: mixture density, $kg/m^{3}$\n",
+    "- $s$:  fluid saturation\n",
+    "- $\\varphi$:  porosity\n",
+    "- $V$:  volume, $m^{3}$\n",
+    "- $\\langle u_{\\alpha}^{p}\\rangle$:  mixture average velocity vector, $m/s$\n",
+    "- $\\langle u \\rangle_{\\alpha}^{p}$:  mixture intrinsic average velocity vector, $m/s$\n",
+    "- $\\langle u_{\\alpha}^{(k)}\\rangle$:  $k$ fluid average velocity vector, $m/s$\n",
+    "- $\\langle u \\rangle_{\\alpha}^{(k)}$:  $k$ fluid intrinsic average velocity vector, $m/s$\n",
+    "- $\\chi^{(k)}$:  fluid fraction of the component $k$\n",
+    "\n",
+    "- <span style=\"color:red\">-------</span> \n",
+    "- $B_{\\alpha}$:  convective fractional flux vector, $m/s$\n",
+    "- $\\lambda$:  diffusive constant, $m^{2}/s$\n",
+    "- $C_{\\alpha}$:  diffusive capillary vector, $m^{-1}$\n",
+    "- $\\epsilon$:  dynamic pressure constant, $s^{2}/m^{2}$\n",
+    "- $\\langle \\bar{u}_{\\alpha}^{p}\\rangle$:  average buoyancy vector, $m/s$\n",
+    "- $F^{(k)}$:  fractional flux of $k$ fluid\n",
+    "- $\\sigma$:  interfacial tension, $N/m$\n",
+    "- $\\mu$:  dynamic viscosity, $Pa.s$\n",
+    "- $K$:  absolute permeability, $m^{2}$\n",
+    "- $g^{e}_{\\alpha}$:  external acceleration vector, $m/s^{2}$\n",
+    "- $\\widehat{p}_{c}(s_{k})$:  dimensionless capillary pressure\n",
+    "- $\\zeta$:  damping or non-equilibrium coefficient, $s$\n",
+    "- $\\nu_{e}$:  effective kinematic viscosity, $m^{2}/s$\n",
+    "- $F_{e}$:  geometric factor, $m^{2}/s$\n",
+    "- $L_{REV}$:  length of the representative elementary volume, $m$\n",
+    "- $\\overline{\\delta}_{pore}$:  average pore diameter, $m$\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f051f8ae-05a2-4ecc-b59b-4c74d0c504cd",
+   "metadata": {},
+   "source": [
+    "# Mass Balance for two-fluids (Continuous Porous Media)\n",
+    "\n",
+    "Applying a mass balance volume-control analysis to two-components (Figure {numref}`Gray-Voxel-Illu` illustrates a 2D volume-control surface balance), the ibalance equations are given by:\n",
+    "\n",
+    "$$\n",
+    " \\partial_{t} \\left(\\rho^{(k)} \\chi^{(k)} \\Delta x \\Delta y \\right) + \\left[\\left(\\rho^{(k)} \\chi^{(k)} \\langle u\\rangle_{x}^{(k)} \\right)_{x+\\frac{\\Delta x}{2}} - \\left(\\rho^{(k)} \\chi^{(k)} \\langle u\\rangle_{x}^{(k)} \\right)_{x-\\frac{\\Delta x}{2}}\\right]\\Delta y +\n",
+    " \\left[\\left(\\rho^{(k)} \\chi^{(k)} \\langle u\\rangle_{y}^{(k)}\\right)_{y+\\frac{\\Delta y}{2}} - \\left(\\rho^{(k)} \\chi^{(k)} \\langle u_{k}\\rangle_{y}^{(k)}\\right)_{y-\\frac{\\Delta y}{2}}\\right]\\Delta x = 0\n",
+    "$$(EqMassMTP-0)\n",
+    "\n",
+    "where $\\chi^{(k)}=V^{(k)}/V$ is the fraction of ﬂuid component $k$, $\\rho$ is the fluid density and $\\langle u \\rangle_{\\alpha}^{(k)}$ is the intrinsic average velocity. The two fluid componente are considered a wetting fluid $(w)$ and non-wetting fluid $(nw)$. Taking the limit in the Eq. {eq}`EqMassMTP-0` and defining the porosity ($\\varphi$) as:\n",
+    "\n",
+    "$$\n",
+    "\\varphi=\\displaystyle\\frac{\\textrm{pore volume}}{\\textrm{total volume}}=\\displaystyle\\frac{V^{(w)}+V^{(nw)}}{\\Delta x \\Delta y}=\\displaystyle\\frac{V^{p}}{V}\n",
+    "$$\n",
+    "\n",
+    "we obtain the balance mass equation in the form\n",
+    "\n",
+    "$$\n",
+    "\\partial_{t} \\left( \\rho^{(k)}\\varphi s^{(k)} \\right)+ \\partial_{\\alpha} \\left(\\rho^{(k)}\\varphi s^{(k)} \\langle u \\rangle_{\\alpha}^{(k)} \\right)=0, \n",
+    "$$(EqMassMTP-1)\n",
+    "\n",
+    "where $s^{(k)}=V^{(k)}/V^{p}$ is the saturation of ﬂuid component $k$. By definition $s^{(w)}+s^{(nw)}=1$. For a incompressible fluid flow, we can rewrite Eq. {eq}`EqMassMTP-1` for\n",
+    "\n",
+    "$$\n",
+    "\\partial_{t} \\left(\\varphi s^{(k)}\\right)+ \\partial_{\\alpha} \\left(\\langle u_{\\alpha}^{(k)} \\rangle \\right)=0,\n",
+    "$$(EqMassMTP-2)\n",
+    "\n",
+    "where $\\langle u_{\\alpha}^{(k)}\\rangle$ is the average fluid velocity represented by\n",
+    "\n",
+    "$$\n",
+    "\\langle u_{\\alpha}^{(k)}\\rangle =\\frac{1}{V}\\int_{V^{(k)}} u_{\\alpha}^{(k)}dV = \\varphi s^{(k)}\\langle u \\rangle_{\\alpha}^{(k)} = \\varphi s^{(k)}\\frac{1}{V^{(k)}}\\int_{V^{(k)}}u_{\\alpha}^{(k)}dV.\n",
+    "$$\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f0151e02-4bd8-435c-bee1-99cac3e8fc19",
+   "metadata": {},
+   "source": [
+    "## Fractional Flow Concept and Buckley-Leverett Equation "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "dc30aac4-0418-4662-a24e-1a697cb9bb73",
+   "metadata": {},
+   "source": [
+    "Employing the fractional flow concept, we define the fluid mobility by\n",
+    "\n",
+    "$$\n",
+    "\\lambda^{(k)}=\\displaystyle\\frac{KK_{r}^{(k)}}{\\mu^{(k)}},\n",
+    "$$(mobk-Term)\n",
+    "\n",
+    "where $K$ is the absolute permeability, $K_{r}$ is the absolute permeability and. Having the total mobility defined by $\\lambda^{T}=\\lambda^{(w)}+\\lambda^{(nw)}$, the fractional flux term is defined by\n",
+    "\n",
+    "$$\n",
+    "F^{(k)}=\\displaystyle\\frac{\\lambda^{(k)}}{\\lambda^{T}}.\n",
+    "$$(Fractiona-Term)\n",
+    "\n",
+    "Defining the capillary pressure inside of the continuous porous media:\n",
+    "\n",
+    "$$\n",
+    "\\langle p\\rangle^{c} = \\langle p\\rangle^{(w)} - \\langle p\\rangle^{(nw)},\n",
+    "$$(Cap-Press-Term-PCM)\n",
+    "\n",
+    "the term is given by difference of the intrinsic average pressure of the wetting and non-wetting fluid. And also defining the relative permeability of the fluid $k$ by\n",
+    "\n",
+    "$$\n",
+    "\\langle u^{(k)}_{\\alpha}\\rangle = - \\frac{KK_{r}^{(k)}}{\\mu^{(k)}} \\left(\\partial_{\\alpha} \\langle p\\rangle^{(k)} - \\rho^{(k)} g_{\\alpha} \\right)= -\\lambda^{(k)}\\left(\\partial_{\\alpha} \\langle p\\rangle^{(k)} - \\rho^{(k)} g_{\\alpha} \\right),\n",
+    "$$(Darcy-Krel)\n",
+    "\n",
+    "where $\\mu^{(k)}$ is dynamic viscosity and $g_{\\alpha}$ is gravity acceleration.\n",
+    "\n",
+    "Manipulating the Eqs. {eq}`EqMassMTP-2`, {eq}`mobk-Term` {eq}`Fractiona-Term`, {eq}`Cap-Press-Term-PCM` and {eq}`Darcy-Krel`, we obtain the convective-diffusive formulation of Buckley-Leverett equation given by\n",
+    "\n",
+    "$$\n",
+    "\\partial_{t} \\left(\\varphi s^{(w)} \\right) + \\partial_{\\alpha} \\left( F^{(w)} \\langle u_{\\alpha}^{p}\\rangle \\right) + \\partial_{\\alpha}\\left( F^{(w)} \\lambda^{(nw)} \\left( \\rho^{(w)}-\\rho^{(nw)} \\right)g_{\\alpha} \\right)  +  \\partial_{\\alpha}\\left( F^{(w)} \\lambda^{(nw)} \\partial_{\\alpha} \\langle p\\rangle^{c} \\right)   = 0,\n",
+    "$$(BL-w)\n",
+    "\n",
+    "$$\n",
+    "\\partial_{t} \\left(\\varphi s^{(nw)} \\right) + \\partial_{\\alpha} \\left( F^{(nw)} \\langle u_{\\alpha}^{p}\\rangle \\right) + \\partial_{\\alpha}\\left( F^{(nw)} \\lambda^{(w)} \\left( \\rho^{(nw)}-\\rho^{(w)} \\right)g_{\\alpha} \\right)  -  \\partial_{\\alpha}\\left( F^{(nw)} \\lambda^{(w)} \\partial_{\\alpha} \\langle p\\rangle^{c} \\right)   = 0,\n",
+    "$$(BL-nw)\n",
+    "\n",
+    "for details of the Eqs. {eq}`BL-w` and {eq}`BL-nw` deduction click in toggle button bellow.\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "17ba8578-abd1-47e3-a147-4c6c3981f9de",
+   "metadata": {},
+   "source": [
+    "```{toggle}\n",
+    "**Buckley-Leverett Deduction**:\n",
+    "\n",
+    "Defining the fractiona flow function by\n",
+    "\n",
+    "$$\n",
+    "f^{(k)}=\\displaystyle\\frac{ \\langle u_{\\alpha}^{(k)}\\rangle }{\\langle u_{\\alpha}^{(w)}\\rangle+\\langle u_{\\alpha}^{(nw)}\\rangle}=\\displaystyle\\frac{ \\langle u_{\\alpha}^{(k)}\\rangle }{\\langle u_{\\alpha}^{p}\\rangle},\n",
+    "$$(fk-fff)\n",
+    "\n",
+    "we can rewrite the Eq. {eq}`Darcy-Krel` for each fluid in the form\n",
+    "\n",
+    "$$\n",
+    "f^{(w)} \\langle u_{\\alpha}^{p}\\rangle = -\\lambda^{(w)}\\left(\\partial_{\\alpha} \\langle p\\rangle^{(w)} - \\rho^{(w)} g_{\\alpha} \\right),\n",
+    "$$(Darcy-Krel-w)\n",
+    "\n",
+    "$$\n",
+    "-(1-f^{(w)}) \\langle u_{\\alpha}^{p}\\rangle = -\\lambda^{(nw)}\\left(\\partial_{\\alpha} \\langle p\\rangle^{(nw)} - \\rho^{(nw)} g_{\\alpha} \\right).\n",
+    "$$(Darcy-Krel-nw)\n",
+    "\n",
+    "Summing the Eqs. {eq}`Darcy-Krel-w` and {eq}`Darcy-Krel-nw` and isolating the $f^{(w)}$, we have\n",
+    "\n",
+    "$$\n",
+    "f^{(w)} = \\frac{\\lambda^{(w)} +\\displaystyle\\frac{\\lambda^{(w)}\\lambda^{(nw)}}{\\langle u_{\\alpha}^{p}\\rangle}\\left(\\partial_{\\alpha} \\langle p\\rangle^{c}  (\\rho^{(w)}-\\rho^{(nw)}) g_{\\alpha} \\right)}{\\lambda^{(w)}+\\lambda^{(nw)}} = F^{(w)} +\\displaystyle\\frac{F^{(w)}\\lambda^{(nw)}}{\\langle u_{\\alpha}^{p}\\rangle}\\left(\\partial_{\\alpha} \\langle p\\rangle^{c} + (\\rho^{(w)}-\\rho^{(nw)}) g_{\\alpha} \\right) ,\n",
+    "$$(frac-flow-function-w)\n",
+    "\n",
+    "by definition $f^{(w)} + f^{(nw)} = 1$, and consequently,\n",
+    "\n",
+    "$$\n",
+    "f^{(nw)}  = F^{(nw)} +\\displaystyle\\frac{F^{(nw)}\\lambda^{(w)}}{\\langle u_{\\alpha}^{p}\\rangle}\\left(-\\partial_{\\alpha} \\langle p\\rangle^{c} + (\\rho^{(nw)}-\\rho^{(w)}) g_{\\alpha} \\right).\n",
+    "$$(frac-flow-function-nw)\n",
+    "\n",
+    "Shifting $\\langle u_{\\alpha}^{p}\\rangle$ to left-hand, we obtain each fluic velocity\n",
+    "\n",
+    "$$\n",
+    "\\langle u_{\\alpha}^{(w)}\\rangle = f^{(w)} \\langle u_{\\alpha}^{p}\\rangle =  F^{(w)}\\langle u_{\\alpha}^{p}\\rangle +F^{(w)}\\lambda^{(nw)}\\left(\\partial_{\\alpha} \\langle p\\rangle^{c} + (\\rho^{(w)}-\\rho^{(nw)}) g_{\\alpha} \\right) ,\n",
+    "$$(frac-flow-function-uw)\n",
+    "\n",
+    "$$\n",
+    "\\langle u_{\\alpha}^{(nw)}\\rangle =f^{(nw)} \\langle u_{\\alpha}^{p}\\rangle  = F^{(nw)} \\langle u_{\\alpha}^{p}\\rangle + F^{(nw)}\\lambda^{(w)} \\left(-\\partial_{\\alpha} \\langle p\\rangle^{c} + (\\rho^{(nw)}-\\rho^{(w)}) g_{\\alpha} \\right),\n",
+    "$$(frac-flow-function-unw)\n",
+    "\n",
+    "finally, replacing the velocities (Eqs. {eq}`frac-flow-function-uw` and {eq}`frac-flow-function-unw`) into mass balance Eq. {eq}`EqMassMTP-1`, we obtain Buckley-Leveret convective-diffusive formulation given by the Eqs. {eq}`BL-w` and {eq}`BL-nw`.\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "8749935d-63a0-4634-a609-87b8f840bb5d",
+   "metadata": {},
+   "source": [
+    "## Analytical Solution for 1D Convective Formulation of the Buckley-Leverett Equation\n",
+    "\n",
+    "Considering null effect of gravity and capillary pressure, also porosity constant over the time evolution, we have for an 1D the balance Equation:\n",
+    "\n",
+    "$$\n",
+    "\\varphi \\partial_{t} s^{(w)}  + \\partial_{x} \\left( F^{(w)} \\langle u_{\\alpha}^{p}\\rangle \\right)   = 0,\n",
+    "$$(BL-w-conv)\n",
+    "\n",
+    "representing the relative permeability by a correlation as a function of the respective fluid saturation (relative permeability inside of fractional flux term $F^{(w)}$), consequently we $F^{(w)}[s^{(w)}]$ (the $[]$ bracket symblo indicate the parameter dependence of the term as function)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "6816a148-741d-4cea-b3a9-9bc22aa0f3fd",
+   "metadata": {},
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "id": "0c6f0fc8-bfad-490e-abb3-8c248ffd9111",
+   "metadata": {},
+   "source": [
+    "## Buckley-Leverett Equation and Alternative Differential Formulations \n",
+    "\n",
+    "<span style=\"color:red\">Considering the fluid flow as Newtonian, the Darcy-law can be employed in the partial differential equation of mass balance. This approach represents a two-component form of the black-oil model, as described by {cite:t}`wu2015multiphase`. The Darcy-law for multiphase flow is given by:</span>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "4193bbf6-aa13-449a-afc0-06abb80ed811",
+   "metadata": {},
+   "source": [
+    "This is <span style=\"color:red\">red text</span> and\n",
+    "this is <span style=\"color:#1E90FF\">dodger-blue $\\phi$ text</span>.\n",
+    "\n",
+    "<!-- --- Subsection(PCM) --- -->"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9cac68c8-2f2e-473a-a57c-9ae311b5ef6d",
+   "metadata": {},
+   "source": []
+  }
+ ],
+ "metadata": {
+  "celltoolbar": "Edit Metadata",
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.12.5"
+  },
+  "varInspector": {
+   "cols": {
+    "lenName": 16,
+    "lenType": 16,
+    "lenVar": 40
+   },
+   "kernels_config": {
+    "python": {
+     "delete_cmd_postfix": "",
+     "delete_cmd_prefix": "del ",
+     "library": "var_list.py",
+     "varRefreshCmd": "print(var_dic_list())"
+    },
+    "r": {
+     "delete_cmd_postfix": ") ",
+     "delete_cmd_prefix": "rm(",
+     "library": "var_list.r",
+     "varRefreshCmd": "cat(var_dic_list()) "
+    }
+   },
+   "types_to_exclude": [
+    "module",
+    "function",
+    "builtin_function_or_method",
+    "instance",
+    "_Feature"
+   ],
+   "window_display": false
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
