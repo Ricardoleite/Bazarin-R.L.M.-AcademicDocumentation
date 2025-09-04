@@ -1,0 +1,22 @@
+sphinx>=7
+sphinx-rtd-theme
+sphinx-rtd-size
+sphinx-copybutton
+sphinx-togglebutton
+sphinx-design
+sphinx-comments
+sphinx-thebe
+sphinxcontrib-bibtex
+sphinxcontrib-tikz
+nbsphinx
+nbsphinx-link
+myst-nb
+jupyter-book
+sphinx-jupyterbook-latex
+# Jupyter + nbconvert stack for notebooks
+nbconvert
+nbclient
+ipykernel
+jupyter
+# Theme you import (even if not used as html_theme)
+sphinx-pdj-theme
