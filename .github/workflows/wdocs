@@ -1,0 +1,56 @@
+name: Build & Deploy Sphinx Docs
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'docs/**'
+      - '.github/workflows/docs.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: docs-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install system dependencies (Graphviz & Pandoc)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y graphviz pandoc
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r docs/requirements.txt
+          # If your docs import your package via autodoc, uncomment:
+          # pip install -e .
+
+      - name: Build Sphinx HTML
+        run: |
+          sphinx-build -b html docs/source docs/_build/html
+          touch docs/_build/html/.nojekyll
+          # If using a custom domain, uncomment:
+          # echo "docs.example.org" > docs/_build/html/CNAME
+
+      - name: Deploy to GitHub Pages (gh-pages branch)
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/_build/html
+          # publish_branch: gh-pages  # (default)
