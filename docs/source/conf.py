@@ -32,6 +32,7 @@ extensions = [    'sphinx.ext.doctest',
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
     'sphinx.ext.mathjax',
+    "sphinxemoji.sphinxemoji",
     'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
@@ -93,3 +94,6 @@ html_css_files = [
 ]
 
 numfig_format = {'figure': 'Fig. %s', 'table': 'Table %s', 'code-block': 'Listing %s'}
+
+# Show current build date in desired format
+today_fmt = '%d/%B/%Y'   # e.g. 05/September/2025
