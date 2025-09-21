@@ -72,13 +72,16 @@
       <summary style="cursor:pointer;">Or edit JSON here (then click “Reload from JSON”)</summary>
       <div style="margin-top:6px; font-weight:600; font-size:12px;">nodes JSON</div>
       <textarea id="nodesJSON">[
-  {"id":"Meng2016","label":"Meng, 2016","author":"Meng","year":2016,"citations":41,"group":"LBM-Multiscale","url":"https://doi.org/10.1016/j.ijheatmasstransfer.2016.04.095","notes":"Linear Convective-Diffusive"},
-  {"id":"Baz2024","label":"Bazarin, 2024","author":"Bazarin","year":2024,"citations":1,"group":"Your work","url":"https://doi.org/10.1103/PhysRevE.110.015303","notes":"Multicomponent numerical modeling"},
-  {"id":"Baz2025","label":"Bazarin, 2025","author":"Bazarin","year":2025,"citations":2,"group":"LBM-Multiscale","url":"https://doi.org/10.1063/5.0264878","notes":"Dynamic capillary"}
+  {"id":"Pan2006","label":"Pan, 2006","author":"Pan","year":2006,"citations":5,"group":"LBM Absolute-Permeability","url":"https://doi.org/10.1016/j.compfluid.2005.03.008","notes":"Viscosity-Permeability"},
+  {"id":"Baz2021","label":"Bazarin, 2021","author":"Bazarin","year":2021,"citations":5,"group":"LBM Absolute-Permeability","url":"https://doi.org/10.1007/s11242-020-01530-w","notes":"Fractal-Porous Media"},
+  {"id":"Meng2016","label":"Meng, 2016","author":"Meng","year":2016,"citations":1,"group":"LBM-Multiscale","url":"https://doi.org/10.1016/j.ijheatmasstransfer.2016.04.095","notes":"Linear Convective-Diffusive"},
+  {"id":"Baz2024","label":"Bazarin, 2024","author":"Bazarin","year":2024,"citations":10,"group":"Your work","url":"https://doi.org/10.1103/PhysRevE.110.015303","notes":"Multicomponent numerical modeling"},
+  {"id":"Baz2025","label":"Bazarin, 2025","author":"Bazarin","year":2025,"citations":1,"group":"LBM-Multiscale","url":"https://doi.org/10.1063/5.0264878","notes":"Dynamic capillary"}
 ]</textarea>
       <div style="font-weight:600; font-size:12px;">links JSON</div>
       <textarea id="linksJSON">[
-  {"source":"Meng2016","target":"Baz2025","weight":1}
+  {"source":"Meng2016","target":"Baz2025","weight":1},
+  {"source":"Pan2006","target":"Baz2021","weight":1}
 ]</textarea>
       <button id="reloadJSON" style="margin-top:6px;">Reload from JSON</button>
     </details>
@@ -93,6 +96,7 @@
 <script>
 // ======= Color mapping by group =======
 const GROUP_COLORS = {
+  "LBM Absolute-Permeability":"#8B0000",
   "LBM BCs":"#e74c3c",
   "LBM multiphase":"#27ae60",
   "LBM-Multiscale":"#2ecc71",

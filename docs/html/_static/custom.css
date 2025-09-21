@@ -49,7 +49,7 @@ p, div, li {
 
 /* Only override span color if it has no style applied */
 span:not([style]) {
-    color: #eee !important;
+    color: #4aa3df !important;
 }
 
 
@@ -91,6 +91,23 @@ table, th, td {
 footer, .rst-footer-buttons {
     background-color: #111 !important;
     color: #ccc !important;
+}
+
+/* Ensure cross-references and inline links stay blue */
+a, a:visited, a:link, a:active {
+    color: #4aa3df !important;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #66c2ff !important;
+    text-decoration: underline;
+}
+
+/* Cross-reference roles (like {doc}, {ref}) */
+.rst-content a.internal {
+    color: #4aa3df !important;
+    font-weight: 500;
 }
 
 

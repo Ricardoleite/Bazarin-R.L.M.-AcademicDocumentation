@@ -71,7 +71,6 @@ Academic Material:
    :maxdepth: 1
    :caption: Lattice Boltzmann Method - Application to Different Partial differential Equation:
 
-
    /LBM-Study/Poisson-Equation
 
 .. toctree::
@@ -84,6 +83,7 @@ Academic Material:
    :maxdepth: 1
    :caption: Appendix:
 
+   /LBM-Study/bcs-D2Q5-poisson-equation
    /Porous-Media-Study/Intro/trans-eq/base-trans-eq
 
 
