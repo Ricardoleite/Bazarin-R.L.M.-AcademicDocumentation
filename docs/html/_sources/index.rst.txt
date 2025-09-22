@@ -72,6 +72,7 @@ Academic Material:
    :caption: Lattice Boltzmann Method - Application to Different Partial differential Equation:
 
    /LBM-Study/Poisson-Equation
+   /LBM-Study/Ementa
 
 .. toctree::
    :maxdepth: 1
