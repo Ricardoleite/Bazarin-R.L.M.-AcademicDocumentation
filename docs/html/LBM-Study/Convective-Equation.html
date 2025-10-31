@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Diffusive Equation &mdash; Academic-Live-Documentation 1.0.0 documentation</title>
+  <title>Convective Equation (Transport Equation) &mdash; Academic-Live-Documentation 1.0.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/sphinx_rtd_size.css" type="text/css" />
@@ -51,8 +51,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Poisson Equation (Steady-State Diffusive Equation)" href="Poisson-Equation.html" />
-    <link rel="prev" title="Convective Equation (Transport Equation)" href="Convective-Equation.html" /> 
+    <link rel="next" title="Diffusive Equation" href="Diffusive-Equation.html" />
+    <link rel="prev" title="Introdution" href="../Porous-Media-Study/Intro/Intro-PM-MFinPCPM.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -81,8 +81,8 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Lattice Boltzmann Method - Application to Different Partial differential Equation:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="Convective-Equation.html">Convective Equation (Transport Equation)</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Diffusive Equation</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Convective Equation (Transport Equation)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#numerical-discretization">Numerical Discretization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lattice-boltzmann-equation">Lattice Boltzmann Equation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#lattice-direction-moments">Lattice Direction Moments</a></li>
 </ul>
@@ -98,6 +98,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="#benchmarks-2-analytical-solution">Benchmarks - 2 (Analytical Solution)</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="Diffusive-Equation.html">Diffusive Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Poisson-Equation.html">Poisson Equation (Steady-State Diffusive Equation)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Ementa.html">Ementa - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</a></li>
 </ul>
@@ -125,9 +126,9 @@ const thebe_selector_output = ".output, .cell_output"
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Diffusive Equation</li>
+      <li class="breadcrumb-item active">Convective Equation (Transport Equation)</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/LBM-Study/Diffusive-Equation.ipynb.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/LBM-Study/Convective-Equation.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -135,37 +136,48 @@ const thebe_selector_output = ".output, .cell_output"
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section class="tex2jax_ignore mathjax_ignore" id="diffusive-equation">
-<h1>Diffusive Equation<a class="headerlink" href="#diffusive-equation" title="Link to this heading"></a></h1>
-<p>The diffusive equation is described by</p>
-<div class="math notranslate nohighlight" id="equation-df-eq-lb">
-<span class="eqno">(24)<a class="headerlink" href="#equation-df-eq-lb" title="Link to this equation"></a></span>\[
-\partial_t \phi + \partial_{\alpha}\left( \nu \partial_{\alpha}\phi \right) = 0
+  <section class="tex2jax_ignore mathjax_ignore" id="convective-equation-transport-equation">
+<h1>Convective Equation (Transport Equation)<a class="headerlink" href="#convective-equation-transport-equation" title="Link to this heading"></a></h1>
+<p>The convective equation also known as transport equation is a partial diferential equation (PDE) usually described by</p>
+<div class="math notranslate nohighlight" id="equation-cv-eq-lb">
+<span class="eqno">(18)<a class="headerlink" href="#equation-cv-eq-lb" title="Link to this equation"></a></span>\[
+\partial_t u + \partial_{\alpha}B_{\alpha}  = 0
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\phi(\alpha,t)\)</span> is a time and space dependent parameter and <span class="math notranslate nohighlight">\(\nu\)</span> is diffusive coeficient.</p>
+<p>where <span class="math notranslate nohighlight">\(u(\alpha,t)\)</span> is a time and space dependent parameter that is being transporte and <span class="math notranslate nohighlight">\(B_{\alpha}(\alpha,t)\)</span> is a second time and space dependent parameter that can also be depende of <span class="math notranslate nohighlight">\(u(\alpha,t)\)</span> in non-linear convective diffusive equations.</p>
+<section id="numerical-discretization">
+<h2>Numerical Discretization<a class="headerlink" href="#numerical-discretization" title="Link to this heading"></a></h2>
+<p>Discretizing the above equation in regular grid of 1D domain, we have</p>
+<figure class="align-center" id="mesh-1-convective">
+<a class="reference internal image-reference" href="../_images/mesh-1-convective.svg"><img alt="../_images/mesh-1-convective.svg" src="../_images/mesh-1-convective.svg" style="width: 306.0px; height: 138.0px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">1D regulas grid.</span><a class="headerlink" href="#mesh-1-convective" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
 <section id="lattice-boltzmann-equation">
 <h2>Lattice Boltzmann Equation<a class="headerlink" href="#lattice-boltzmann-equation" title="Link to this heading"></a></h2>
 <p>Describing the problem through the BGK lattice Boltzmann equation (BGK-LB):</p>
-<div class="math notranslate nohighlight" id="equation-lb-df-eq">
-<span class="eqno">(25)<a class="headerlink" href="#equation-lb-df-eq" title="Link to this equation"></a></span>\[
-f_i( x_{\alpha} + e_{i,\alpha} \delta t, t+\delta t) = f_i(x_{\alpha}, t)  -\left( \frac{ f_{i} - f_{i}^{eq} }{ \tau } \right), 
+<div class="math notranslate nohighlight" id="equation-lb-cv-eq">
+<span class="eqno">(19)<a class="headerlink" href="#equation-lb-cv-eq" title="Link to this equation"></a></span>\[
+f_i( x_{\alpha} + e_{i,\alpha} \delta t, t+\delta t) = f_{i}^{eq} , 
 \]</div>
 <p>where the equilibrium distribution function is defined by</p>
 <div class="math notranslate nohighlight">
 \[
-f^{eq}_{i} = w_{i}\phi(x_{\alpha}, t),
+f^{eq}_{i} = w_{i}\left( u + \frac{e_{i,\alpha} B_{\alpha}}{c_{s}^{2}} \right),
 \]</div>
-<p>and the equilibrium moments are given by</p>
-<div class="math notranslate nohighlight" id="equation-moments-fi-df">
-<span class="eqno">(26)<a class="headerlink" href="#equation-moments-fi-df" title="Link to this equation"></a></span>\[
+<!-- and the equilibrium moments are given by 
+
+$$
 \displaystyle\sum_{i=0} f_{i}^{eq}=\phi, \quad \quad  \displaystyle\sum_{i}f_{i}^{eq} e_{i,\alpha} =0 \quad \quad \textrm{and} \quad \quad  \displaystyle\sum_{i}f_{i}^{eq} e_{i,\alpha} e_{i,\beta} =c_{s}^{2} \phi \delta_{\alpha\beta}.
-\]</div>
-<p>Through Chapman–Enskog analysis, it is demonstrated that the first-order non-equilibrium moment describes the pressure gradient and, consequently, the average velocity:</p>
-<div class="math notranslate nohighlight">
-\[
+$$(moments-fi-df)
+
+Through Chapman–Enskog analysis, it is demonstrated that the first-order non-equilibrium moment describes the pressure gradient and, consequently, the average velocity:
+
+$$
 m^{neq}_{\alpha} = \displaystyle\sum_{i} e_{i,\alpha}\left( f_i-f_i^{eq}\right)  = -(c_{s}^{2} \tau \delta_{t})\partial_{\alpha}\phi  \quad \quad \textrm{and} \quad\quad \tau = \displaystyle\frac{\nu}{c_{s}^{2} \delta_{t}} +\frac{1}{2}.
-\]</div>
-<section id="lattice-direction-moments">
+$$ --><section id="lattice-direction-moments">
 <h3>Lattice Direction Moments<a class="headerlink" href="#lattice-direction-moments" title="Link to this heading"></a></h3>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -243,17 +255,17 @@ m^{neq}_{\alpha} = \displaystyle\sum_{i} e_{i,\alpha}\left( f_i-f_i^{eq}\right) 
 <h2>Chapmann-Enskog Analysis<a class="headerlink" href="#chapmann-enskog-analysis" title="Link to this heading"></a></h2>
 <p>Applying the Chapmann-Enskog procedure to LB equation, we expand the term <span class="math notranslate nohighlight">\(f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)\)</span> in a Taylor series to recover the derivative form of the equation, i.e.,</p>
 <div class="math notranslate nohighlight" id="equation-eqexp-df-eq">
-<span class="eqno">(27)<a class="headerlink" href="#equation-eqexp-df-eq" title="Link to this equation"></a></span>\[
+<span class="eqno">(20)<a class="headerlink" href="#equation-eqexp-df-eq" title="Link to this equation"></a></span>\[
 f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\boldsymbol{x}, t)=\displaystyle\sum_{j=1}^{\infty}\frac{\Delta t^{j}}{j!}D_{t}^{j}f_{i}= -\left( \frac{ f_{i} - f_{i}^{eq} }{ \tau } \right).
 \]</div>
-<p>Rescaling the dimensionless form of the Eq. <a class="reference internal" href="#equation-eqexp-df-eq">(27)</a> in terms of the Knudsen number (<span class="math notranslate nohighlight">\(Kn\)</span>), we have</p>
+<p>Rescaling the dimensionless form of the Eq. <a class="reference internal" href="Diffusive-Equation.html#equation-eqexp-df-eq">(27)</a> in terms of the Knudsen number (<span class="math notranslate nohighlight">\(Kn\)</span>), we have</p>
 <div class="math notranslate nohighlight">
 \[
 \displaystyle \sum^{\infty}_{j=1}  \frac{Kn^{(j-1)}}{j!} D_{t}^{j} f_{i} = - \frac{1}{Kn}\left( \frac{ f_{i} - f_{eq,i} }{ \tau } \right) \quad \quad \rightarrow \quad \quad \displaystyle \sum^{\infty}_{j=1}  \frac{Kn^{(j)}}{j!} D_{t}^{j} f_{i} = -  \frac{ f_{i} - f_{i}^{eq} }{ \tau },
 \]</div>
 <p>applying the asymptotic expansion in both the distribution function (<span class="math notranslate nohighlight">\(f_{i}=f_{i}^{(0)}+Kn f_{i}^{(1)} + Kn^{2} f_{i}^{(2)}+\cdots\)</span>) and time partial derivative (<span class="math notranslate nohighlight">\(\partial_{t}=\partial_{t}^{(0)}+ Kn \partial_{t}^{(1)}+Kn^{2} \partial_{t}^{(2)}+\cdots\)</span>), and separating the equation in orders up to the order <span class="math notranslate nohighlight">\(Kn^{2}\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-chap-kn-df-eq">
-<span class="eqno">(28)<a class="headerlink" href="#equation-chap-kn-df-eq" title="Link to this equation"></a></span>\[\begin{split}
+<span class="eqno">(21)<a class="headerlink" href="#equation-chap-kn-df-eq" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{ll}
     (Kn^{(0)}):&amp; f_{i}^{(0)}= f_{i}^{eq},\\
     (Kn^{(1)}):&amp; \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)}= - \displaystyle\frac{ f_{i}^{(1)} }{ \tau } , \\
@@ -267,7 +279,7 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
 </section>
 <section id="zero-order-moment-balance">
 <h2>Zero-Order Moment Balance<a class="headerlink" href="#zero-order-moment-balance" title="Link to this heading"></a></h2>
-<p>To retrieve the balance equation, we sum the Eq. <a class="reference internal" href="#equation-chap-kn-df-eq">(28)</a> for <span class="math notranslate nohighlight">\(Kn^{(1)}\)</span> and <span class="math notranslate nohighlight">\(Kn^{(2)}\)</span> over <span class="math notranslate nohighlight">\(\sum_{i=0} \)</span>:</p>
+<p>To retrieve the balance equation, we sum the Eq. <a class="reference internal" href="Diffusive-Equation.html#equation-chap-kn-df-eq">(28)</a> for <span class="math notranslate nohighlight">\(Kn^{(1)}\)</span> and <span class="math notranslate nohighlight">\(Kn^{(2)}\)</span> over <span class="math notranslate nohighlight">\(\sum_{i=0} \)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{l}
@@ -285,21 +297,21 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
 \end{split}\]</div>
 <p>or</p>
 <div class="math notranslate nohighlight" id="equation-df-kn1-0-b0">
-<span class="eqno">(29)<a class="headerlink" href="#equation-df-kn1-0-b0" title="Link to this equation"></a></span>\[\begin{split}
+<span class="eqno">(22)<a class="headerlink" href="#equation-df-kn1-0-b0" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{l}
 (Kn^{(2)}):&amp; \displaystyle\sum_{i}\left[ \partial_{t}^{(1)} f_{i}^{(0)} - \left(1-\displaystyle\frac{1}{2\tau}\right)\left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right) f_{i}^{(1)}   \right]=  \displaystyle\sum_{i}\left( - \displaystyle\frac{f_{i}^{(2)}}{\tau} \right), \nonumber \\
 (Kn^{(2)}):&amp; \partial_{t}^{(1)}\phi - \left(1-\displaystyle\frac{1}{2\tau}\right) m^{(1)}_{\alpha} = 0.
 \end{array}
 \end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(m^{(1)}_{\alpha}\)</span> is the first-order moment of <span class="math notranslate nohighlight">\(f_{i}^{(1)}\)</span> and <span class="math notranslate nohighlight">\(\sum_{i=1}f_{i}^{(j)}=0\)</span> for <span class="math notranslate nohighlight">\(j\geq 1\)</span> due to imposition of <span class="math notranslate nohighlight">\(\phi\)</span> conservation. To compute the moment <span class="math notranslate nohighlight">\(m^{(1)}_{\alpha}\)</span>, we multiply Eq. <a class="reference internal" href="#equation-chap-kn-df-eq">(28)</a> by <span class="math notranslate nohighlight">\(e_{i,\alpha}\)</span> and sum over all lattice directions:</p>
+<p>where <span class="math notranslate nohighlight">\(m^{(1)}_{\alpha}\)</span> is the first-order moment of <span class="math notranslate nohighlight">\(f_{i}^{(1)}\)</span> and <span class="math notranslate nohighlight">\(\sum_{i=1}f_{i}^{(j)}=0\)</span> for <span class="math notranslate nohighlight">\(j\geq 1\)</span> due to imposition of <span class="math notranslate nohighlight">\(\phi\)</span> conservation. To compute the moment <span class="math notranslate nohighlight">\(m^{(1)}_{\alpha}\)</span>, we multiply Eq. <a class="reference internal" href="Diffusive-Equation.html#equation-chap-kn-df-eq">(28)</a> by <span class="math notranslate nohighlight">\(e_{i,\alpha}\)</span> and sum over all lattice directions:</p>
 <div class="math notranslate nohighlight" id="equation-df-kn0-b1">
-<span class="eqno">(30)<a class="headerlink" href="#equation-df-kn0-b1" title="Link to this equation"></a></span>\[\begin{split}
+<span class="eqno">(23)<a class="headerlink" href="#equation-df-kn0-b1" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{l}
 (Kn^{(1)}): \displaystyle\sum_{i}e_{\alpha,i}\left( \partial_{t}^{(0)} + e_{\beta,i}\partial_{\beta} \right)f_{i}^{(0)}= \displaystyle\sum_{i} e_{\alpha,i} \left( -\frac{f_{i}^{(1)}}{\tau}  \right),\\
 (Kn^{(1)}): m^{(1)}_{\alpha} =-\tau \partial_{\beta}\left( c_{s}^{2} \phi \delta_{\alpha\beta}  \right).
 \end{array}
 \end{split}\]</div>
-<p>By substituting Eq. <a class="reference internal" href="#equation-df-kn0-b1">(30)</a> into Eq. <a class="reference internal" href="#equation-df-kn1-0-b0">(29)</a>, we recover the Eq. <a class="reference internal" href="#equation-df-eq-lb">(24)</a>, where <span class="math notranslate nohighlight">\(\nu=c_{s}^{2}(\tau-1/2)\)</span>. In the regularized formulation of the lattice Boltzmann equation, the first-order correction is approximated as <span class="math notranslate nohighlight">\(f_{i}^{(1)}\approx (f_{i}-f_{i}^{(0)})=f_{i}^{neq}\)</span>, where higher-order Knudsen moments are filtered out and the collision term is reformulated in terms of <span class="math notranslate nohighlight">\(f_{i}^{neq}\)</span>.</p>
+<p>By substituting Eq. <a class="reference internal" href="Diffusive-Equation.html#equation-df-kn0-b1">(30)</a> into Eq. <a class="reference internal" href="Diffusive-Equation.html#equation-df-kn1-0-b0">(29)</a>, we recover the Eq. <a class="reference internal" href="Diffusive-Equation.html#equation-df-eq-lb">(24)</a>, where <span class="math notranslate nohighlight">\(\nu=c_{s}^{2}(\tau-1/2)\)</span>. In the regularized formulation of the lattice Boltzmann equation, the first-order correction is approximated as <span class="math notranslate nohighlight">\(f_{i}^{(1)}\approx (f_{i}-f_{i}^{(0)})=f_{i}^{neq}\)</span>, where higher-order Knudsen moments are filtered out and the collision term is reformulated in terms of <span class="math notranslate nohighlight">\(f_{i}^{neq}\)</span>.</p>
 </section>
 <section id="boundary-conditions">
 <h2>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Link to this heading"></a></h2>
@@ -652,8 +664,8 @@ T(x,t)=1-\sum_{n=0}^\infty \frac{2}{L\mu_n}\,e^{-\nu\,\mu_n^{2}\,t}\,\sin(\mu_n 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="Convective-Equation.html" class="btn btn-neutral float-left" title="Convective Equation (Transport Equation)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="Poisson-Equation.html" class="btn btn-neutral float-right" title="Poisson Equation (Steady-State Diffusive Equation)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../Porous-Media-Study/Intro/Intro-PM-MFinPCPM.html" class="btn btn-neutral float-left" title="Introdution" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Diffusive-Equation.html" class="btn btn-neutral float-right" title="Diffusive Equation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

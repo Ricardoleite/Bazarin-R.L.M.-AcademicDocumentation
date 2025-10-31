@@ -71,6 +71,7 @@ Academic Material:
    :maxdepth: 1
    :caption: Lattice Boltzmann Method - Application to Different Partial differential Equation:
 
+   /LBM-Study/Convective-Equation
    /LBM-Study/Diffusive-Equation
    /LBM-Study/Poisson-Equation
    /LBM-Study/Ementa
