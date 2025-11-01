@@ -82,20 +82,19 @@ const thebe_selector_output = ".output, .cell_output"
 <p class="caption" role="heading"><span class="caption-text">Lattice Boltzmann Method - Application to Different Partial differential Equation:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Convective Equation (Transport Equation)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#numerical-discretization">Numerical Discretization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lattice-boltzmann-equation">Lattice Boltzmann Equation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#lattice-direction-moments">Lattice Direction Moments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#numerical-discretization">Numerical Discretization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fdm-discretization">FDM Discretization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lattice-boltzmann-equation">Lattice Boltzmann Equation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lattice-direction-moments">Lattice Direction Moments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chapmann-enskog-analysis">Chapmann-Enskog Analysis</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#chapmann-enskog-analysis">Chapmann-Enskog Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#zero-order-moment-balance">Zero-Order Moment Balance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#boundary-conditions">Boundary Conditions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#benchmarks-1">Benchmarks - 1</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#steady-state-analytical-solution">Steady-State Analytical Solution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#benchmark-1d-non-linear-convective-formulation-of-the-buckley-leverett-equation">Benchmark - 1D Non-Linear Convective formulation of the Buckley-Leverett Equation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#transient-analytical-solution">Transient Analytical Solution</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#benchmarks-2-analytical-solution">Benchmarks - 2 (Analytical Solution)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Diffusive-Equation.html">Diffusive Equation</a></li>
@@ -148,19 +147,31 @@ const thebe_selector_output = ".output, .cell_output"
 <h2>Numerical Discretization<a class="headerlink" href="#numerical-discretization" title="Link to this heading"></a></h2>
 <p>Discretizing the above equation in regular grid of 1D domain, we have</p>
 <figure class="align-center" id="mesh-1-convective">
-<a class="reference internal image-reference" href="../_images/mesh-1-convective.svg"><img alt="../_images/mesh-1-convective.svg" src="../_images/mesh-1-convective.svg" style="width: 306.0px; height: 138.0px;" />
+<a class="reference internal image-reference" href="../_images/mesh-1-convective.svg"><img alt="../_images/mesh-1-convective.svg" src="../_images/mesh-1-convective.svg" style="width: 382.5px; height: 172.5px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">1D regulas grid.</span><a class="headerlink" href="#mesh-1-convective" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">1D regular grid.</span><a class="headerlink" href="#mesh-1-convective" title="Link to this image"></a></p>
 </figcaption>
 </figure>
+<section id="fdm-discretization">
+<h3>FDM Discretization<a class="headerlink" href="#fdm-discretization" title="Link to this heading"></a></h3>
+<p>Discretizing the Eq. <a class="reference internal" href="#equation-cv-eq-lb">(18)</a> through finite diference method, we have for forward time and forward space (FTFS) discretizations:</p>
+<div class="math notranslate nohighlight">
+\[
+\partial_t u + \partial_{x}B_{\alpha}  = \frac{u(x,t + \Delta_{t}) - u(x,t) }{\Delta_{t}} + \frac{B_{\alpha}(x,t) - B_{\alpha}(x + \Delta_{x},t) }{\Delta_{x}} =0,
+\]</div>
+<p>isolating the term <span class="math notranslate nohighlight">\(u(x,t + \Delta_{t})\)</span>, we can describe the <span class="math notranslate nohighlight">\(u\)</span> time evolution:</p>
+<div class="math notranslate nohighlight">
+\[
+u(x,t + \Delta_{t})   = u(x,t) - \frac{\Delta_{t}}{\Delta_{x}} \left( B_{\alpha}(x,t) - B_{\alpha}(x + \Delta_{x},t) \right) .
+\]</div>
 </section>
 <section id="lattice-boltzmann-equation">
-<h2>Lattice Boltzmann Equation<a class="headerlink" href="#lattice-boltzmann-equation" title="Link to this heading"></a></h2>
-<p>Describing the problem through the BGK lattice Boltzmann equation (BGK-LB):</p>
+<h3>Lattice Boltzmann Equation<a class="headerlink" href="#lattice-boltzmann-equation" title="Link to this heading"></a></h3>
+<p>Describing the problem through the BGK lattice Boltzmann equation, we assume a equilibrium state for the present problem, where <span class="math notranslate nohighlight">\( f_{i}= f_{i}^{eq}\)</span> and the BGK lattice Boltzmann equation reduces to:</p>
 <div class="math notranslate nohighlight" id="equation-lb-cv-eq">
 <span class="eqno">(19)<a class="headerlink" href="#equation-lb-cv-eq" title="Link to this equation"></a></span>\[
-f_i( x_{\alpha} + e_{i,\alpha} \delta t, t+\delta t) = f_{i}^{eq} , 
+f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\boldsymbol{x}, t)= -\left( \frac{ f_{i} - f_{i}^{eq} }{ \tau } \right) \quad \quad \rightarrow \quad \quad f_i( x_{\alpha} + e_{i,\alpha} \delta t, t+\delta t) = f_{i}^{eq} , 
 \]</div>
 <p>where the equilibrium distribution function is defined by</p>
 <div class="math notranslate nohighlight">
@@ -178,7 +189,7 @@ Through Chapman–Enskog analysis, it is demonstrated that the first-order non-e
 $$
 m^{neq}_{\alpha} = \displaystyle\sum_{i} e_{i,\alpha}\left( f_i-f_i^{eq}\right)  = -(c_{s}^{2} \tau \delta_{t})\partial_{\alpha}\phi  \quad \quad \textrm{and} \quad\quad \tau = \displaystyle\frac{\nu}{c_{s}^{2} \delta_{t}} +\frac{1}{2}.
 $$ --><section id="lattice-direction-moments">
-<h3>Lattice Direction Moments<a class="headerlink" href="#lattice-direction-moments" title="Link to this heading"></a></h3>
+<h4>Lattice Direction Moments<a class="headerlink" href="#lattice-direction-moments" title="Link to this heading"></a></h4>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -198,24 +209,23 @@ $$ --><section id="lattice-direction-moments">
 <span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Math</span><span class="p">,</span> <span class="n">Latex</span>
 <span class="c1">#-------------------------------------------------Símbolos----------------------------------------------</span>
-<span class="n">omega</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;omega, </span><span class="se">\\</span><span class="s1">phi, w&#39;</span><span class="p">)</span>
+<span class="n">omega</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;omega, u, B_{</span><span class="se">\\</span><span class="s1">alpha}, w&#39;</span><span class="p">)</span>
 <span class="n">wi</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">cs</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;w_</span><span class="si">{i}</span><span class="s1"> c_</span><span class="si">{x}</span><span class="s1"> c_</span><span class="si">{y}</span><span class="s1"> c_</span><span class="si">{s}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">fi</span><span class="p">,</span> <span class="n">f0</span><span class="p">,</span> <span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="n">f3</span><span class="p">,</span> <span class="n">f4</span><span class="p">,</span> <span class="n">f5</span><span class="p">,</span> <span class="n">f6</span><span class="p">,</span> <span class="n">f7</span><span class="p">,</span> <span class="n">f8</span><span class="p">,</span>  <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;f_</span><span class="si">{i}</span><span class="s1"> f_</span><span class="si">{0}</span><span class="s1"> f_</span><span class="si">{1}</span><span class="s1"> f_</span><span class="si">{2}</span><span class="s1"> f_</span><span class="si">{3}</span><span class="s1"> f_</span><span class="si">{4}</span><span class="s1"> f_</span><span class="si">{5}</span><span class="s1"> f_</span><span class="si">{6}</span><span class="s1"> f_</span><span class="si">{7}</span><span class="s1"> f_</span><span class="si">{8}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">fi</span><span class="p">,</span> <span class="n">f0</span><span class="p">,</span> <span class="n">f1</span><span class="p">,</span> <span class="n">f2</span>  <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;f_</span><span class="si">{i}</span><span class="s1"> f_</span><span class="si">{0}</span><span class="s1"> f_</span><span class="si">{1}</span><span class="s1"> f_</span><span class="si">{2}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="c1">#-------------------------------------------------Funções----------------------------------------------</span>
 <span class="n">feq</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="s1">&#39;feq&#39;</span><span class="p">)(</span><span class="n">wi</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">)</span>
 <span class="n">fneq</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="s1">&#39;fneq&#39;</span><span class="p">)(</span><span class="n">wi</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">)</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">)(</span><span class="n">fi</span><span class="p">)</span>
 <span class="c1">#----------------------------------------------Lattice-D2Q9---Variáveis----------------------------------------------</span>
-<span class="n">fi</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">,</span><span class="n">f3</span><span class="p">,</span><span class="n">f4</span><span class="p">,</span><span class="n">f5</span><span class="p">,</span><span class="n">f6</span><span class="p">,</span><span class="n">f7</span><span class="p">,</span><span class="n">f8</span><span class="p">])</span>
-<span class="n">w0</span><span class="o">=</span><span class="n">Rational</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">);</span><span class="n">w1</span><span class="o">=</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">);</span><span class="n">w2</span><span class="o">=</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">36</span><span class="p">)</span>
-<span class="n">wi</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">w0</span><span class="p">,</span><span class="n">w1</span><span class="p">,</span><span class="n">w1</span><span class="p">,</span><span class="n">w1</span><span class="p">,</span><span class="n">w1</span><span class="p">,</span><span class="n">w2</span><span class="p">,</span><span class="n">w2</span><span class="p">,</span><span class="n">w2</span><span class="p">,</span><span class="n">w2</span><span class="p">])</span>
-<span class="n">cx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">cy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">fi</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">f0</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">])</span>
+<span class="n">w0</span><span class="o">=</span><span class="n">Rational</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span><span class="n">w1</span><span class="o">=</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">wi</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">w0</span><span class="p">,</span><span class="n">w1</span><span class="p">,</span><span class="n">w1</span><span class="p">])</span>
+<span class="n">cx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">as2</span><span class="o">=</span><span class="n">Rational</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">cs2</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">as2</span>
 <span class="c1">#-------------------------------------------------Calc.Func------------------------------------------------</span>
 <span class="n">f</span><span class="o">=</span> <span class="n">fi</span>
-<span class="n">feq</span><span class="o">=</span><span class="n">wi</span><span class="o">*</span><span class="n">p</span>
+<span class="n">feq</span><span class="o">=</span><span class="n">wi</span><span class="o">*</span><span class="p">(</span><span class="n">u</span> <span class="o">+</span> <span class="n">cx</span><span class="o">*</span><span class="n">B</span><span class="o">/</span><span class="n">cs2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -230,91 +240,93 @@ $$ --><section id="lattice-direction-moments">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a0</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cx</span><span class="p">))</span>
-<span class="n">ay</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cy</span><span class="p">))</span>
 <span class="n">axx</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cx</span><span class="o">*</span><span class="n">cx</span><span class="p">))</span>
-<span class="n">axy</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cx</span><span class="o">*</span><span class="n">cy</span><span class="p">))</span>
-<span class="n">ayy</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cy</span><span class="o">*</span><span class="n">cy</span><span class="p">))</span>
+<span class="n">axxx</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cx</span><span class="o">*</span><span class="n">cx</span><span class="o">*</span><span class="n">cx</span><span class="p">))</span>
 <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> =\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2"> }_{\textrm{Zero-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span> 
             <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">e_{i,x} }_{\textrm{x-First-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
-            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">e_{i,y} }_{\textrm{y-First-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">ay</span><span class="p">)</span>
-            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,</span><span class="se">\\</span><span class="s2"> \quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">e_{i,x}e_{i,x} }_{\textrm{xx-Second-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">axx</span><span class="p">)</span>
-            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">e_{i,x}e_{i,y} }_{\textrm{xy-Second-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">axy</span><span class="p">)</span>
-            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot; \quad \quad and \quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">e_{i,y}e_{i,y} }_{\textrm{yy-Second-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">ayy</span><span class="p">)))</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,</span><span class="se">\\</span><span class="s2"> \quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> e_{i,x}e_{i,x} }_{\textrm{xx-Second-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">axx</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,</span><span class="se">\\</span><span class="s2"> \quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> e_{i,x}e_{i,x}e_{i,x} }_{\textrm{xxx-Third-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">axxx</span><span class="p">)</span> <span class="p">))</span>
+
+<span class="n">aH0</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="p">))</span>
+<span class="n">aHx</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cx</span><span class="p">))</span>
+<span class="n">aHxx</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="p">(</span><span class="n">cx</span><span class="o">*</span><span class="n">cx</span><span class="o">-</span><span class="n">cs2</span><span class="p">)))</span>
+<span class="n">aHxxx</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="p">(</span><span class="n">cx</span><span class="o">*</span><span class="n">cx</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">cs2</span><span class="p">)</span><span class="o">*</span><span class="n">cx</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> =\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2"> }_{\textrm{Zero-Order Hermite Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">aH0</span><span class="p">)</span> 
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">e_{i,x} }_{\textrm{x-First-Order Hermite Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">aHx</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,</span><span class="se">\\</span><span class="s2"> \quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> \left(e_{i,x}e_{i,x} - \frac</span><span class="si">{1}</span><span class="s2">{c_</span><span class="si">{s}</span><span class="s2">^</span><span class="si">{2}</span><span class="s2">}\right) }_{\textrm{xx-Second-Order Hermite Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">aHxx</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,</span><span class="se">\\</span><span class="s2"> \quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> \left(e_{i,x}e_{i,x} - \frac</span><span class="si">{3}</span><span class="s2">{c_</span><span class="si">{s}</span><span class="s2">^</span><span class="si">{2}</span><span class="s2">}\right) e_{i,x} }_{\textrm{xxx-Third-Order Hermite Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">aHxxx</span><span class="p">)</span> <span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\displaystyle \underbrace{\sum_{i=0} f_{i}^{eq} =\sum_{i=0} f_{i} }_{\textrm{Zero-Order Moment}} =\phi,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}e_{i,x} }_{\textrm{x-First-Order Moment}} =0,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}e_{i,y} }_{\textrm{y-First-Order Moment}} =0,\\ \quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}e_{i,x}e_{i,x} }_{\textrm{xx-Second-Order Moment}} =\frac{\phi}{3},\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}e_{i,x}e_{i,y} }_{\textrm{xy-Second-Order Moment}} =0 \quad \quad and \quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}e_{i,y}e_{i,y} }_{\textrm{yy-Second-Order Moment}} =\frac{\phi}{3}\end{split}\]</div>
+\[\begin{split}\displaystyle \underbrace{\sum_{i=0} f_{i}^{eq} =\sum_{i=0} f_{i} }_{\textrm{Zero-Order Moment}} =u,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}e_{i,x} }_{\textrm{x-First-Order Moment}} =B_{\alpha},\\ \quad \quad \underbrace{\sum_{i=0} f_{i}^{eq} e_{i,x}e_{i,x} }_{\textrm{xx-Second-Order Moment}} =\frac{u}{3},\\ \quad \quad \underbrace{\sum_{i=0} f_{i}^{eq} e_{i,x}e_{i,x}e_{i,x} }_{\textrm{xxx-Third-Order Moment}} =B_{\alpha}\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \underbrace{\sum_{i=0} f_{i}^{eq} =\sum_{i=0} f_{i} }_{\textrm{Zero-Order Hermite Moment}} =u,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}e_{i,x} }_{\textrm{x-First-Order Hermite Moment}} =B_{\alpha},\\ \quad \quad \underbrace{\sum_{i=0} f_{i}^{eq} \left(e_{i,x}e_{i,x} - \frac{1}{c_{s}^{2}}\right) }_{\textrm{xx-Second-Order Hermite Moment}} =0,\\ \quad \quad \underbrace{\sum_{i=0} f_{i}^{eq} \left(e_{i,x}e_{i,x} - \frac{3}{c_{s}^{2}}\right) e_{i,x} }_{\textrm{xxx-Third-Order Hermite Moment}} =0\end{split}\]</div>
 </div>
 </div>
-</section>
 </section>
 <section id="chapmann-enskog-analysis">
-<h2>Chapmann-Enskog Analysis<a class="headerlink" href="#chapmann-enskog-analysis" title="Link to this heading"></a></h2>
+<h4>Chapmann-Enskog Analysis<a class="headerlink" href="#chapmann-enskog-analysis" title="Link to this heading"></a></h4>
 <p>Applying the Chapmann-Enskog procedure to LB equation, we expand the term <span class="math notranslate nohighlight">\(f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)\)</span> in a Taylor series to recover the derivative form of the equation, i.e.,</p>
-<div class="math notranslate nohighlight" id="equation-eqexp-df-eq">
-<span class="eqno">(20)<a class="headerlink" href="#equation-eqexp-df-eq" title="Link to this equation"></a></span>\[
-f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\boldsymbol{x}, t)=\displaystyle\sum_{j=1}^{\infty}\frac{\Delta t^{j}}{j!}D_{t}^{j}f_{i}= -\left( \frac{ f_{i} - f_{i}^{eq} }{ \tau } \right).
+<div class="math notranslate nohighlight" id="equation-eqexp-cv-eq">
+<span class="eqno">(20)<a class="headerlink" href="#equation-eqexp-cv-eq" title="Link to this equation"></a></span>\[
+f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\boldsymbol{x}, t)=\displaystyle\sum_{j=1}^{\infty}\frac{\Delta t^{j}}{j!}D_{t}^{j}f_{i}= -\left( \frac{ f_{i} - f_{i}^{eq} }{ \tau } \right) \quad \quad \overbrace{\rightarrow}^{\textrm{Equilibrium State}} \quad \quad f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)=\displaystyle\sum_{j=0}^{\infty}\frac{\Delta t^{j}}{j!}D_{t}^{j}f_{i}= f_{i}^{eq}(\boldsymbol{x}, t).
 \]</div>
-<p>Rescaling the dimensionless form of the Eq. <a class="reference internal" href="Diffusive-Equation.html#equation-eqexp-df-eq">(27)</a> in terms of the Knudsen number (<span class="math notranslate nohighlight">\(Kn\)</span>), we have</p>
+<p>Rescaling the dimensionless form of the Eq. <a class="reference internal" href="#equation-eqexp-cv-eq">(20)</a> in terms of the Knudsen number (<span class="math notranslate nohighlight">\(Kn\)</span>), we have</p>
 <div class="math notranslate nohighlight">
 \[
-\displaystyle \sum^{\infty}_{j=1}  \frac{Kn^{(j-1)}}{j!} D_{t}^{j} f_{i} = - \frac{1}{Kn}\left( \frac{ f_{i} - f_{eq,i} }{ \tau } \right) \quad \quad \rightarrow \quad \quad \displaystyle \sum^{\infty}_{j=1}  \frac{Kn^{(j)}}{j!} D_{t}^{j} f_{i} = -  \frac{ f_{i} - f_{i}^{eq} }{ \tau },
+\displaystyle \sum^{\infty}_{j=0}  \frac{Kn^{(j-1)}}{j!} D_{t}^{j} f_{i} = f_{i}^{eq}(\boldsymbol{x}, t),
 \]</div>
 <p>applying the asymptotic expansion in both the distribution function (<span class="math notranslate nohighlight">\(f_{i}=f_{i}^{(0)}+Kn f_{i}^{(1)} + Kn^{2} f_{i}^{(2)}+\cdots\)</span>) and time partial derivative (<span class="math notranslate nohighlight">\(\partial_{t}=\partial_{t}^{(0)}+ Kn \partial_{t}^{(1)}+Kn^{2} \partial_{t}^{(2)}+\cdots\)</span>), and separating the equation in orders up to the order <span class="math notranslate nohighlight">\(Kn^{2}\)</span>:</p>
-<div class="math notranslate nohighlight" id="equation-chap-kn-df-eq">
-<span class="eqno">(21)<a class="headerlink" href="#equation-chap-kn-df-eq" title="Link to this equation"></a></span>\[\begin{split}
+<div class="math notranslate nohighlight" id="equation-chap-kn-cv-eq">
+<span class="eqno">(21)<a class="headerlink" href="#equation-chap-kn-cv-eq" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{ll}
     (Kn^{(0)}):&amp; f_{i}^{(0)}= f_{i}^{eq},\\
-    (Kn^{(1)}):&amp; \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)}= - \displaystyle\frac{ f_{i}^{(1)} }{ \tau } , \\
-    (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)} + \displaystyle\frac{\left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)^{2} f_{i}^{(0)}}{2}= - \displaystyle\frac{ f_{i}^{(2)} }{ \tau },\\
+    (Kn^{(1)}):&amp; \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)}= 0, \\
+    (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(1)} + \displaystyle\frac{\left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)^{2} f_{i}^{(0)}}{2}= 0,\\
     \textrm{ou}\\
-    (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)\displaystyle\left(1 - \frac{1}{2\tau}\right) f_{i}^{(1)} =  - \displaystyle\frac{ f_{i}^{(2)} }{ \tau } \quad\quad \rightarrow \quad\quad  f_{i}^{(1)}\textrm{ Formulation} \\
+    (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(1)} = 0,\\
+    (Kn^{(3)}):&amp; \partial_{t}^{(2)} f_{i}^{(0)} +\partial_{t}^{(1)} f_{i}^{(1)} + \partial_{t}^{(1)}\left( \left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right)f_{i}^{(0)} \right) + \left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right)f_{i}^{(2)} + \displaystyle\frac{\left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right)^{2} f_{i}^{(1)}}{2} +  \displaystyle\frac{\left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right)^{3} f_{i}^{(0)}}{6} =  0,  \\
     \textrm{ou}\\
-    (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)^{2} \displaystyle\left(\frac{1}{2} - \tau\right) f_{i}^{(0)} =  - \displaystyle\frac{ f_{i}^{(2)} }{ \tau } \quad\quad \rightarrow  \quad\quad f_{i}^{(0)}\textrm{ Formulation}.
+    (Kn^{(3)}):&amp; \partial_{t}^{(2)} f_{i}^{(0)} +\partial_{t}^{(1)} f_{i}^{(1)} + \left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right)f_{i}^{(2)} =  0.  \\
  \end{array}
 \end{split}\]</div>
-</section>
 <section id="zero-order-moment-balance">
-<h2>Zero-Order Moment Balance<a class="headerlink" href="#zero-order-moment-balance" title="Link to this heading"></a></h2>
-<p>To retrieve the balance equation, we sum the Eq. <a class="reference internal" href="Diffusive-Equation.html#equation-chap-kn-df-eq">(28)</a> for <span class="math notranslate nohighlight">\(Kn^{(1)}\)</span> and <span class="math notranslate nohighlight">\(Kn^{(2)}\)</span> over <span class="math notranslate nohighlight">\(\sum_{i=0} \)</span>:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
+<h5>Zero-Order Moment Balance<a class="headerlink" href="#zero-order-moment-balance" title="Link to this heading"></a></h5>
+<p>To retrieve the balance equation, we sum the Eq. <a class="reference internal" href="#equation-chap-kn-cv-eq">(21)</a> for <span class="math notranslate nohighlight">\(Kn^{(1)}\)</span> and <span class="math notranslate nohighlight">\(Kn^{(2)}\)</span> over <span class="math notranslate nohighlight">\(\sum_{i=0} \)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-cv-kn1-0-b0">
+<span class="eqno">(22)<a class="headerlink" href="#equation-cv-kn1-0-b0" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{l}
-(Kn^{(1)}): \displaystyle\sum_{i}\left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)}= \displaystyle\sum_{i} \left(- \displaystyle\frac{ f_{i}^{(1)} }{ \tau } \right),\\
-(Kn^{(1)}): \partial_{t}^{(0)}  \phi =0,
+(Kn^{(1)}): \displaystyle\sum_{i}\left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)}= 0,\\
+(Kn^{(1)}): \partial_{t}^{(0)}  u + \partial_{\alpha} B_{\alpha} =0,
+\end{array}
+\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-cv-kn2-0-b0">
+<span class="eqno">(23)<a class="headerlink" href="#equation-cv-kn2-0-b0" title="Link to this equation"></a></span>\[\begin{split}
+\begin{array}{l}
+(Kn^{(2)}):&amp; \displaystyle\sum_{i}\left[ \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right) f_{i}^{(1)}   \right]=  0, \nonumber \\
+(Kn^{(2)}):&amp; \partial_{t}^{(1)} u + \partial_{\alpha} m^{(1)}_{\alpha} = 0,
 \end{array}
 \end{split}\]</div>
 <p>and</p>
+<div class="math notranslate nohighlight" id="equation-cv-kn3-0-b0">
+<span class="eqno">(24)<a class="headerlink" href="#equation-cv-kn3-0-b0" title="Link to this equation"></a></span>\[\begin{split}
+\begin{array}{l}
+(Kn^{(3)}):&amp; \displaystyle\sum_{i}\left[ \partial_{t}^{(2)} f_{i}^{(0)} +\partial_{t}^{(1)} f_{i}^{(1)} + \left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right)f_{i}^{(2)}   \right]=  0, \nonumber \\
+(Kn^{(3)}):&amp; \partial_{t}^{(2)} u + \partial_{\alpha} m^{(2)}_{\alpha} = 0.
+\end{array}
+\end{split}\]</div>
+<p>By summing the Eqs. <code class="xref eq docutils literal notranslate"><span class="pre">cv-Kn1-B0</span></code>, <code class="xref eq docutils literal notranslate"><span class="pre">cv-Kn1-B0</span></code>, and <code class="xref eq docutils literal notranslate"><span class="pre">cv-Kn1-B0</span></code>, and also extending to higher orders of Knudsen, we have</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{array}{l}
-(Kn^{(2)}): \displaystyle\sum_{i}\left( \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)^{2} \displaystyle\left( \frac{1}{2}-\tau\right) f_{i}^{(0)} \right) =  \displaystyle\sum_{i}\left( - \displaystyle\frac{ f_{i}^{(2)} }{ \tau } \right), \\
-(Kn^{(2)}): \partial_{t}^{(1)}\phi + \left( \displaystyle\frac{1}{2}-\tau\right) \partial_{\alpha}\partial_{\beta} \left(c_{s}^{2} \phi \delta_{\alpha\beta} \right) =0. 
-\end{array}
-\end{split}\]</div>
-<p>or</p>
-<div class="math notranslate nohighlight" id="equation-df-kn1-0-b0">
-<span class="eqno">(22)<a class="headerlink" href="#equation-df-kn1-0-b0" title="Link to this equation"></a></span>\[\begin{split}
-\begin{array}{l}
-(Kn^{(2)}):&amp; \displaystyle\sum_{i}\left[ \partial_{t}^{(1)} f_{i}^{(0)} - \left(1-\displaystyle\frac{1}{2\tau}\right)\left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right) f_{i}^{(1)}   \right]=  \displaystyle\sum_{i}\left( - \displaystyle\frac{f_{i}^{(2)}}{\tau} \right), \nonumber \\
-(Kn^{(2)}):&amp; \partial_{t}^{(1)}\phi - \left(1-\displaystyle\frac{1}{2\tau}\right) m^{(1)}_{\alpha} = 0.
-\end{array}
-\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(m^{(1)}_{\alpha}\)</span> is the first-order moment of <span class="math notranslate nohighlight">\(f_{i}^{(1)}\)</span> and <span class="math notranslate nohighlight">\(\sum_{i=1}f_{i}^{(j)}=0\)</span> for <span class="math notranslate nohighlight">\(j\geq 1\)</span> due to imposition of <span class="math notranslate nohighlight">\(\phi\)</span> conservation. To compute the moment <span class="math notranslate nohighlight">\(m^{(1)}_{\alpha}\)</span>, we multiply Eq. <a class="reference internal" href="Diffusive-Equation.html#equation-chap-kn-df-eq">(28)</a> by <span class="math notranslate nohighlight">\(e_{i,\alpha}\)</span> and sum over all lattice directions:</p>
-<div class="math notranslate nohighlight" id="equation-df-kn0-b1">
-<span class="eqno">(23)<a class="headerlink" href="#equation-df-kn0-b1" title="Link to this equation"></a></span>\[\begin{split}
-\begin{array}{l}
-(Kn^{(1)}): \displaystyle\sum_{i}e_{\alpha,i}\left( \partial_{t}^{(0)} + e_{\beta,i}\partial_{\beta} \right)f_{i}^{(0)}= \displaystyle\sum_{i} e_{\alpha,i} \left( -\frac{f_{i}^{(1)}}{\tau}  \right),\\
-(Kn^{(1)}): m^{(1)}_{\alpha} =-\tau \partial_{\beta}\left( c_{s}^{2} \phi \delta_{\alpha\beta}  \right).
-\end{array}
-\end{split}\]</div>
-<p>By substituting Eq. <a class="reference internal" href="Diffusive-Equation.html#equation-df-kn0-b1">(30)</a> into Eq. <a class="reference internal" href="Diffusive-Equation.html#equation-df-kn1-0-b0">(29)</a>, we recover the Eq. <a class="reference internal" href="Diffusive-Equation.html#equation-df-eq-lb">(24)</a>, where <span class="math notranslate nohighlight">\(\nu=c_{s}^{2}(\tau-1/2)\)</span>. In the regularized formulation of the lattice Boltzmann equation, the first-order correction is approximated as <span class="math notranslate nohighlight">\(f_{i}^{(1)}\approx (f_{i}-f_{i}^{(0)})=f_{i}^{neq}\)</span>, where higher-order Knudsen moments are filtered out and the collision term is reformulated in terms of <span class="math notranslate nohighlight">\(f_{i}^{neq}\)</span>.</p>
+\[
+\partial_{t}  u + \partial_{\alpha} B_{\alpha} + \underbrace{\partial_{\alpha} \left( m^{(1)}_{\alpha} + m^{(2)}_{\alpha} + ...\right) }_{\textrm{Numerical Errors}} =0,
+\]</div>
+<p>where these numerical error can be related to the numerical error from the approximation of a derivative term by an expansion in Taylor series.</p>
 </section>
 <section id="boundary-conditions">
-<h2>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Link to this heading"></a></h2>
+<h5>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Link to this heading"></a></h5>
 <p>The boundary conditions for the lattices can be derived by solving a linear system of known moments.</p>
 <table class="docutils align-default">
 <thead>
@@ -337,9 +349,9 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
 <tr class="row-odd"><td><p></p></td>
 <td><p>Unknown <span class="math notranslate nohighlight">\(f_{i}\)</span></p></td>
 <td><p></p></td>
-<td><p><span class="math notranslate nohighlight">\(f_2=\phi_{e} - f_1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(f_2=u_{e} - f_1 - f_0\)</span></p></td>
 <td><p></p></td>
-<td><p><span class="math notranslate nohighlight">\(f_1=\phi_{w} - f_2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(f_1=u_{w} - f_2 - f_0\)</span></p></td>
 </tr>
 <tr class="row-even"><td><p></p></td>
 <td><p></p></td>
@@ -347,297 +359,50 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
 <td><p></p></td>
 <td><p></p></td>
 <td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p>D2Q5:</p></td>
-<td><p>Boundaries</p></td>
-<td><p></p></td>
-<td><p>Layers</p></td>
-<td><p></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p>North</p></td>
-<td><p></p></td>
-<td><p>South</p></td>
-</tr>
-<tr class="row-odd"><td><p></p></td>
-<td><p>Unknown <span class="math notranslate nohighlight">\(f_{i}\)</span></p></td>
-<td><p></p></td>
-<td><p><span class="math notranslate nohighlight">\(f_2=\phi_{n} - (f_0+f_1+f_3+f_4)\)</span></p></td>
-<td><p></p></td>
-<td><p><span class="math notranslate nohighlight">\(f_4=\phi_{s} - (f_0+f_1+f_2+f_3)\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p>East</p></td>
-<td><p></p></td>
-<td><p>East</p></td>
-</tr>
-<tr class="row-odd"><td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p><span class="math notranslate nohighlight">\(f_3=\phi_{e} - (f_0+f_1+f_2+f_4)\)</span></p></td>
-<td><p></p></td>
-<td><p><span class="math notranslate nohighlight">\(f_1=\phi_{w} - (f_0+f_2+f_3+f_4)\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p></p></td>
-<td><p>Boundaries</p></td>
-<td><p></p></td>
-<td><p>Concave Corners</p></td>
-<td><p></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p>Northwest</p></td>
-<td><p></p></td>
-<td><p>Northeast</p></td>
-</tr>
-<tr class="row-even"><td><p></p></td>
-<td><p>Unknown <span class="math notranslate nohighlight">\(f_{i}\)</span></p></td>
-<td><p></p></td>
-<td><p><span class="math notranslate nohighlight">\(f_1=-(\partial_{x}p+\partial_{y}p)\tau c_{s}^{2}/2 - f_2 + \widehat{p}_{nw}/3\)</span></p></td>
-<td><p></p></td>
-<td><p><span class="math notranslate nohighlight">\(f_3=(\partial_{x}p-\partial_{y}p)\tau c_{s}^{2}/2 - f_2 + \widehat{p}_{ne}/3\)</span></p></td>
-</tr>
-<tr class="row-odd"><td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p><span class="math notranslate nohighlight">\(f_4=(\partial_{x}p+\partial_{y}p)\tau c_{s}^{2}/2 - f_3 + \widehat{p}_{nw}/3\)</span></p></td>
-<td><p></p></td>
-<td><p><span class="math notranslate nohighlight">\(f_4=-(\partial_{x}p-\partial_{y}p)\tau c_{s}^{2}/2 - f_1 + \widehat{p}_{ne}/3\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p>Southwest</p></td>
-<td><p></p></td>
-<td><p>Southeast</p></td>
-</tr>
-<tr class="row-odd"><td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p><span class="math notranslate nohighlight">\(f_1=-(\partial_{x}p-\partial_{y}p)\tau c_{s}^{2}/2 - f_4 + \widehat{p}_{sw}/3\)</span></p></td>
-<td><p></p></td>
-<td><p><span class="math notranslate nohighlight">\(f_2=-(\partial_{x}p+\partial_{y}p)\tau c_{s}^{2}/2 - f_1 + \widehat{p}_{se}/3\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p><span class="math notranslate nohighlight">\(f_2=(\partial_{x}p-\partial_{y}p)\tau c_{s}^{2}/2 - f_3 + \widehat{p}_{sw}/3\)</span></p></td>
-<td><p></p></td>
-<td><p><span class="math notranslate nohighlight">\(f_3=(\partial_{x}p+\partial_{y}p)\tau c_{s}^{2}/2 - f_4 + \widehat{p}_{se}/3\)</span></p></td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="benchmarks-1">
-<h2>Benchmarks - 1<a class="headerlink" href="#benchmarks-1" title="Link to this heading"></a></h2>
-<p>Analyzing the accuracy of diffusive equation solver, we apply it to a one-dimensional analytical case. The geometry is described by a domain of length <span class="math notranslate nohighlight">\(L\)</span> initialized with a constant temperatura <span class="math notranslate nohighlight">\(T(x,t=0)=0\)</span>. The boundary conditions are given <span class="math notranslate nohighlight">\(T(x=0,t)=1\)</span> and <span class="math notranslate nohighlight">\(T(x=L,t)=0\)</span>.</p>
-<section id="steady-state-analytical-solution">
-<h3>Steady-State Analytical Solution<a class="headerlink" href="#steady-state-analytical-solution" title="Link to this heading"></a></h3>
-<p>The analytical solution of this problem is given by:</p>
-<div class="math notranslate nohighlight">
-\[
-T(x,t\rightarrow \infty)= -\frac{x}{L} + 1.
-\]</div>
 </section>
+</section>
+</section>
+<section id="benchmark-1d-non-linear-convective-formulation-of-the-buckley-leverett-equation">
+<h2>Benchmark - 1D Non-Linear Convective formulation of the Buckley-Leverett Equation<a class="headerlink" href="#benchmark-1d-non-linear-convective-formulation-of-the-buckley-leverett-equation" title="Link to this heading"></a></h2>
+<p>Considering a pure convective formulation of the Buckley-Leverett equation, where gravitational effects and capillary pressure are neglected, we have:</p>
+<div class="math notranslate nohighlight" id="equation-eqmassmtp-bl-sim">
+<span class="eqno">(25)<a class="headerlink" href="#equation-eqmassmtp-bl-sim" title="Link to this equation"></a></span>\[
+\partial_{t} (s_{w})+ \partial_{\alpha}\left[\displaystyle\frac{\left&lt;u\right&gt;_{\alpha}}{\varphi} F(s_w)\right] = 0 ,
+\]</div>
+<p>with the water fraction flow given by,</p>
+<div class="math notranslate nohighlight" id="equation-eqfractionalflow">
+<span class="eqno">(26)<a class="headerlink" href="#equation-eqfractionalflow" title="Link to this equation"></a></span>\[
+F(s_w) = \frac{ s_{w}^{2} }{ s_{w}^{2} + M_{\mu}(1-s_{w})^{2}}.
+\]</div>
+<p>The simulation parameters are chosen so that the average velocity component <span class="math notranslate nohighlight">\(\langle u \rangle_{\alpha} / \varphi\)</span> equals <span class="math notranslate nohighlight">\(1\,\mathrm{m/s}\)</span> and the dynamic viscosity ratio <span class="math notranslate nohighlight">\(M_{\mu}\)</span> equals <span class="math notranslate nohighlight">\(1\)</span>. We consider a one-dimensional porous medium of length <span class="math notranslate nohighlight">\(L_x = 20\,\mathrm{m}\)</span>, initially saturated with oil (see <a class="reference internal" href="#d-displace-bl"><span class="std std-numref">Fig. 4</span></a>). Water is injected at the inlet <span class="math notranslate nohighlight">\((x=0)\)</span> under a Dirichlet boundary condition <span class="math notranslate nohighlight">\(s_{w}(x=0)=1\)</span>. At the outlet <span class="math notranslate nohighlight">\((x=L)\)</span>, a Neumann boundary condition specifying a zero gradient in water saturation is applied.</p>
+<figure class="align-center" id="d-displace-bl">
+<a class="reference internal image-reference" href="../_images/1D-Displace-BL.svg"><img alt="../_images/1D-Displace-BL.svg" src="../_images/1D-Displace-BL.svg" style="width: 686.0px; height: 205.0px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Geometry of the non-linear convective problem: initial and boundary conditions.</span><a class="headerlink" href="#d-displace-bl" title="Link to this image"></a></p>
+</figcaption>
+</figure>
 <section id="transient-analytical-solution">
 <h3>Transient Analytical Solution<a class="headerlink" href="#transient-analytical-solution" title="Link to this heading"></a></h3>
-<p>For the 1D heat equation <span class="math notranslate nohighlight">\(\partial_t T=\nu\,\partial_{xx}T\)</span> on <span class="math notranslate nohighlight">\(0&lt;x&lt;L\)</span> with</p>
+<p>The non-linear convective problem given by the Eq. <a class="reference internal" href="#equation-eqmassmtp-bl-sim">(25)</a> has an analytical solution dependent of the initial condition (Riemann problem). In the present case, the solution for the specific initial condition is given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+s_{w}(x,t)= \left\{  \begin{array}{ccc}
+    t \displaystyle F' &amp; \textrm{for} &amp; x\leq \zeta t \\
+    &amp; &amp; \\
+    0 &amp; \textrm{for} &amp; x &gt;  \zeta t \\ 
+\end{array} \right.
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\zeta=F'(\tilde{s}_{w})=F(\tilde{s}_{w})/\tilde{s}_{w}\)</span> is the shock wave speed, and <span class="math notranslate nohighlight">\(\tilde{s}_{w}\)</span> is the sharp front saturation determined analytically by</p>
 <div class="math notranslate nohighlight">
 \[
-T(0,t)=1,\qquad T(L,t)=0,
+\tilde{s}_{w}=\displaystyle\frac{F(\tilde{s}_{w})}{F'(\tilde{s}_{w})}=\sqrt{\displaystyle\frac{M_{\mu}}{M_{\mu}+1}}, \quad \quad \textrm{where} \quad \quad F^{'}(s_{w})=\frac{dF}{ds_{w}}=\frac{2s_{w}M_{\mu}(1-s_{w})}{(s_{w}^{2}+M_{\mu}(1-s_{w})^{2})^{2}}.
 \]</div>
-<p>the steady state is <span class="math notranslate nohighlight">\(T_{\text{ss}}(x)=1-\tfrac{x}{L}\)</span>. With <span class="math notranslate nohighlight">\(u=T-T_{\text{ss}}\)</span> (so <span class="math notranslate nohighlight">\(u(0,t)=u(L,t)=0\)</span>), the solution is</p>
-<div class="math notranslate nohighlight">
-\[
-T(x,t)=1-\frac{x}{L}+\sum_{n=1}^{\infty} B_n\,e^{-\nu (n\pi/L)^2 t}\,\sin\!\Big(\frac{n\pi x}{L}\Big),
-\quad
-B_n=\frac{2}{L}\int_0^L\!\Big[T_0(\xi)-\Big(1-\frac{\xi}{L}\Big)\Big]\sin\!\Big(\frac{n\pi \xi}{L}\Big)\,d\xi.
-\]</div>
-<p>Special case <span class="math notranslate nohighlight">\(T_0(x)=0\)</span>: <span class="math notranslate nohighlight">\(B_n=-\dfrac{2}{n\pi}\)</span>, so</p>
-<div class="math notranslate nohighlight">
-\[
-T(x,t)=1-\frac{x}{L}-\frac{2}{\pi}\sum_{n=1}^{\infty}\frac{1}{n}\,e^{-\nu (n\pi/L)^2 t}\,\sin\!\Big(\frac{n\pi x}{L}\Big).
-\]</div>
-<p>Here’s a ready-to-run Python snippet (with a single plot of <span class="math notranslate nohighlight">\(T(x,t)\)</span> vs <span class="math notranslate nohighlight">\(x\)</span> for multiple times):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import numpy as np</span>
-<span class="c1"># import matplotlib.pyplot as plt</span>
-
-<span class="c1"># # ---- Modes and series -------------------------------------------------------</span>
-<span class="c1"># def modes_dirichlet_dirichlet(L, N):</span>
-<span class="c1">#     n = np.arange(1, N+1)        # n = 1,2,...,N</span>
-<span class="c1">#     k = n * np.pi / L            # eigenvalues mu_n</span>
-<span class="c1">#     return n, k</span>
-
-<span class="c1"># def project_coeffs_dirichlet(T0_func, L, N, grid_pts=4000):</span>
-<span class="c1">#     &quot;&quot;&quot;</span>
-<span class="c1">#     B_n = (2/L) ∫( T0(x) - T_ss(x) ) sin(nπx/L) dx, with T_ss = 1 - x/L.</span>
-<span class="c1">#     &quot;&quot;&quot;</span>
-<span class="c1">#     x = np.linspace(0.0, L, grid_pts, endpoint=True)</span>
-<span class="c1">#     Tss = 1.0 - x / L</span>
-<span class="c1">#     u0 = T0_func(x) - Tss</span>
-<span class="c1">#     n, k = modes_dirichlet_dirichlet(L, N)          # (N,), (N,)</span>
-<span class="c1">#     S = np.sin(k[:, None] * x[None, :])             # (N, M)</span>
-<span class="c1">#     B = (2.0 / L) * np.trapz(u0[None, :] * S, x, axis=1)</span>
-<span class="c1">#     return B, n, k</span>
-
-<span class="c1"># def T_series_dirichlet(x, t, L, nu, B, k):</span>
-<span class="c1">#     &quot;&quot;&quot;</span>
-<span class="c1">#     T(x,t) = T_ss(x) + sum_n B_n e^{-nu k_n^2 t} sin(k_n x), T_ss = 1 - x/L.</span>
-<span class="c1">#     &quot;&quot;&quot;</span>
-<span class="c1">#     x = np.asarray(x)</span>
-<span class="c1">#     Tss = 1.0 - x / L</span>
-<span class="c1">#     coeff = B * np.exp(-nu * (k**2) * t)            # (N,)</span>
-<span class="c1">#     add = np.sum(coeff[:, None] * np.sin(k[:, None] * x[None, :]), axis=0)</span>
-<span class="c1">#     return Tss + add</span>
-
-<span class="c1"># # ---- Parameters -------------------------------------------------------------</span>
-<span class="c1"># L   = 1.0</span>
-<span class="c1"># nu  = 0.1</span>
-<span class="c1"># N   = 200</span>
-<span class="c1"># x   = np.linspace(0, L, 600)</span>
-
-<span class="c1"># # ---- Case A: initially cold rod T0(x)=0 (closed-form coefficients) ----------</span>
-<span class="c1"># n, k = modes_dirichlet_dirichlet(L, N)</span>
-<span class="c1"># B_cold = -2.0 / (n * np.pi)   # exact coefficients for T0 ≡ 0</span>
-
-<span class="c1"># times = [0.0, 0.01, 0.05, 0.2]</span>
-
-<span class="c1"># plt.figure()</span>
-<span class="c1"># for t in times:</span>
-<span class="c1">#     T_xt = T_series_dirichlet(x, t, L, nu, B_cold, k)</span>
-<span class="c1">#     plt.plot(x, T_xt, label=f&quot;t = {t:g}&quot;)</span>
-
-<span class="c1"># # steady state</span>
-<span class="c1"># plt.plot(x, 1.0 - x/L, linestyle=&quot;--&quot;, linewidth=1, label=&quot;steady state&quot;)</span>
-
-<span class="c1"># plt.xlabel(&quot;x&quot;)</span>
-<span class="c1"># plt.ylabel(&quot;T(x,t)&quot;)</span>
-<span class="c1"># plt.title(&quot;Heat eq.: T(0,t)=1, T(L,t)=0  (T0(x)=0)&quot;)</span>
-<span class="c1"># plt.legend()</span>
-<span class="c1"># plt.grid(True)</span>
-<span class="c1"># plt.tight_layout()</span>
-<span class="c1"># plt.show()</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
-</section>
-<section id="benchmarks-2-analytical-solution">
-<h2>Benchmarks - 2 (Analytical Solution)<a class="headerlink" href="#benchmarks-2-analytical-solution" title="Link to this heading"></a></h2>
-<p>Assuming the <strong>forward heat equation</strong> in 1D with constant diffusivity <span class="math notranslate nohighlight">\(\nu&gt;0\)</span>,</p>
-<div class="math notranslate nohighlight">
-\[
-\partial_t T=\nu\,\partial_{xx}T,\qquad 0&lt;x&lt;L,\ t&gt;0,
-\]</div>
-<p>and the mixed boundary conditions</p>
-<div class="math notranslate nohighlight">
-\[
-T(0,t)=1,\qquad \partial_x T(L,t)=0,
-\]</div>
-<p>the steady state is <span class="math notranslate nohighlight">\(T_{\mathrm{ss}}(x)=1\)</span>.</p>
-<p>Let <span class="math notranslate nohighlight">\(u(x,t)=T(x,t)-1\)</span>. Then <span class="math notranslate nohighlight">\(u\)</span> solves</p>
-<div class="math notranslate nohighlight">
-\[
-\partial_t u=\nu\,\partial_{xx}u,\quad u(0,t)=0,\quad \partial_x u(L,t)=0,\quad u(x,0)=u_0(x):=T_0(x)-1.
-\]</div>
-<p>Separation of variables with eigenfunctions satisfying <span class="math notranslate nohighlight">\(X(0)=0,\ X'(L)=0\)</span> gives</p>
-<div class="math notranslate nohighlight">
-\[
-X_n(x)=\sin(\mu_n x),\qquad \mu_n=\frac{(n+\tfrac12)\pi}{L},\quad n=0,1,2,\dots
-\]</div>
-<p>Hence the solution is the sine‐series</p>
-<div class="math notranslate nohighlight">
-\[
-\boxed{\
-T(x,t)=1+\sum_{n=0}^{\infty} A_n\,e^{-\nu\,\mu_n^{2}\,t}\,\sin(\mu_n x),\qquad 
-\mu_n=\frac{(n+\tfrac12)\pi}{L},\
-}
-\]</div>
-<p>with coefficients (using <span class="math notranslate nohighlight">\(\int_0^L \sin(\mu_m x)\sin(\mu_n x)\,dx=\tfrac{L}{2}\delta_{mn}\)</span>)</p>
-<div class="math notranslate nohighlight">
-\[
-\boxed{\ A_n=\frac{2}{L}\int_0^L \big[T_0(\xi)-1\big]\sin(\mu_n \xi)\,d\xi.\ }
-\]</div>
-<p><strong>Common special case (initially cold rod):</strong> if <span class="math notranslate nohighlight">\(T_0(x)=0\)</span>, then <span class="math notranslate nohighlight">\(u_0(x)=-1\)</span> and</p>
-<div class="math notranslate nohighlight">
-\[
-A_n=\frac{2}{L}\int_0^L (-1)\sin(\mu_n \xi)\,d\xi=-\frac{2}{L\mu_n},
-\]</div>
-<p>so</p>
-<div class="math notranslate nohighlight">
-\[
-\boxed{\
-T(x,t)=1-\sum_{n=0}^\infty \frac{2}{L\mu_n}\,e^{-\nu\,\mu_n^{2}\,t}\,\sin(\mu_n x),\qquad 
-\mu_n=\frac{(n+\tfrac12)\pi}{L}.\
-}
-\]</div>
-<blockquote>
-<div><p>Note: if you literally use your original sign <span class="math notranslate nohighlight">\(\partial_t T+\nu T_{xx}=0\)</span> (the <strong>backward</strong> heat equation), the time-dependent problem is ill-posed forward in <span class="math notranslate nohighlight">\(t\)</span>. For a physically meaningful diffusion process, use <span class="math notranslate nohighlight">\(\partial_t T=\nu T_{xx}\)</span>.</p>
-</div></blockquote>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import numpy as np</span>
-<span class="c1"># import matplotlib.pyplot as plt</span>
-
-<span class="c1"># def heat_modes(L, N):</span>
-<span class="c1">#     n = np.arange(N)</span>
-<span class="c1">#     mu = (n + 0.5) * np.pi / L</span>
-<span class="c1">#     return mu</span>
-
-<span class="c1"># def project_coeffs(T0_func, L, N, grid_pts=2000):</span>
-<span class="c1">#     x = np.linspace(0.0, L, grid_pts, endpoint=True)</span>
-<span class="c1">#     u0 = T0_func(x) - 1.0</span>
-<span class="c1">#     mu = heat_modes(L, N)                           # (N,)</span>
-<span class="c1">#     S = np.sin(mu[:, None] * x[None, :])            # (N, M)</span>
-<span class="c1">#     A = (2.0 / L) * np.trapz(u0[None, :] * S, x, axis=1)  # (N,)</span>
-<span class="c1">#     return A, mu</span>
-
-<span class="c1"># def T_series(x, t, L, nu, A, mu):</span>
-<span class="c1">#     x = np.asarray(x)</span>
-<span class="c1">#     coeff = A * np.exp(-nu * (mu**2) * t)           # (N,)</span>
-<span class="c1">#     return 1.0 + np.sum(coeff[:, None] * np.sin(mu[:, None] * x[None, :]), axis=0)</span>
-
-<span class="c1"># # ---- Parameters -------------------------------------------------------------</span>
-<span class="c1"># L = 1.0</span>
-<span class="c1"># nu = 0.1</span>
-<span class="c1"># N = 200               # number of modes</span>
-<span class="c1"># x = np.linspace(0, L, 600)</span>
-
-<span class="c1"># # ---- Case 1: initially cold rod T0(x)=0 (closed-form A_n) -------------------</span>
-<span class="c1"># mu = heat_modes(L, N)</span>
-<span class="c1"># A_cold = -2.0 / (L * mu)</span>
-
-<span class="c1"># times = [0.0, 0.01, 0.05, 0.2]</span>
-
-<span class="c1"># plt.figure()</span>
-<span class="c1"># for t in times:</span>
-<span class="c1">#     T_xt = T_series(x, t, L, nu, A_cold, mu)</span>
-<span class="c1">#     plt.plot(x, T_xt, label=f&quot;t = {t:g}&quot;)</span>
-
-<span class="c1"># # Steady-state baseline (T=1)</span>
-<span class="c1"># plt.axhline(1.0, linestyle=&quot;--&quot;, linewidth=1, label=&quot;steady state&quot;)</span>
-
-<span class="c1"># plt.xlabel(&quot;x&quot;)</span>
-<span class="c1"># plt.ylabel(&quot;T(x,t)&quot;)</span>
-<span class="c1"># plt.title(&quot;Heat eq. with T(0,t)=1,  T_x(L,t)=0  (initially cold rod)&quot;)</span>
-<span class="c1"># plt.legend()</span>
-<span class="c1"># plt.grid(True)</span>
-<span class="c1"># plt.tight_layout()</span>
-<span class="c1"># plt.show()</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 </section>
 

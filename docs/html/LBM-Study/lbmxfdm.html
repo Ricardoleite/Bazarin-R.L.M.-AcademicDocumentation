@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LBM Code &mdash; Academic-Live-Documentation 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/sphinx_rtd_size.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sphinx-thebe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/eqno.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script src="../_static/design-tabs.js?v=36754332"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+        <script async="async" src="../_static/sphinx-thebe.js?v=afe5de03"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Academic-Live-Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Porous Media - Multiphase Flow in Porous Continuous Porous Media:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Porous-Media-Study/Intro/Intro-PM-MFinPCPM.html">Introdution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Porous-Media-Study/Intro/Intro-PM-MFinPCPM.html#mass-balance-for-two-fluids-continuous-porous-media">Mass Balance for two-fluids (Continuous Porous Media)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Lattice Boltzmann Method - Application to Different Partial differential Equation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Convective-Equation.html">Convective Equation (Transport Equation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Diffusive-Equation.html">Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Poisson-Equation.html">Poisson Equation (Steady-State Diffusive Equation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ementa.html">Ementa - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Citations.html">Citations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="bcs-D2Q5-poisson-equation.html">Boundary Conditions: Deduction for the Lattice D2Q5 - Poisson Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Porous-Media-Study/Intro/trans-eq/base-trans-eq.html">Introdution for Transport Equations</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Academic-Live-Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">LBM Code</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/LBM-Study/lbmxfdm.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="lbm-code">
+<h1>LBM Code<a class="headerlink" href="#lbm-code" title="Link to this heading"></a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1">#***************************************InputParameters************************************************</span>
+<span class="n">Nx</span><span class="o">=</span><span class="mi">51</span> <span class="c1">#Domain Length</span>
+<span class="c1">#***************************************Lattice-Properties-D2Q5*************************************************</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">2.0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">cx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int16&quot;</span><span class="p">)</span>  
+<span class="c1">#********************************************Set-Parameters*********************************************</span>
+<span class="c1">#------------Dimensionless-Data----------------</span>
+<span class="n">nuo</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span><span class="n">Lo</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span>
+<span class="c1">#------------LBM-Data----------------</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="n">Lo</span><span class="o">/</span><span class="p">(</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">rel</span> <span class="o">=</span> <span class="mf">2.0</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">dx</span> <span class="o">/</span> <span class="n">rel</span><span class="p">;</span>
+<span class="n">nu</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">nuo</span> <span class="o">/</span> <span class="p">(</span><span class="n">dx</span> <span class="o">*</span> <span class="n">dx</span><span class="p">);</span> 
+<span class="n">cs</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="p">;</span>
+<span class="n">tau</span> <span class="o">=</span> <span class="p">(</span><span class="n">nu</span> <span class="o">/</span> <span class="p">(</span><span class="n">cs</span> <span class="o">*</span> <span class="n">cs</span><span class="p">))</span> <span class="o">+</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">);</span> 
+<span class="c1">#--------------Print-Dados---------------------</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;tau=&#39;</span><span class="p">,</span><span class="n">tau</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1"> nu=&#39;</span><span class="p">,</span><span class="n">nu</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;rel=&#39;</span><span class="p">,</span><span class="n">rel</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;dx=&#39;</span><span class="p">,</span><span class="n">dx</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1"> dt=&#39;</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tau= 6.75 	 nu= 6.25
+rel= 8.0
+dx= 0.02 	 dt= 0.0025
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/ricardolmb/.local/lib/python3.10/site-packages/matplotlib/projections/__init__.py:63: UserWarning: Unable to import Axes3D. This may be due to multiple versions of Matplotlib being installed (e.g. as a system package and as a pip package). As a result, the 3D projection is not available.
+  warnings.warn(&quot;Unable to import Axes3D. This may be due to multiple versions of &quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#********************************Initializing-Pressure-Boundaries***********************************************************</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">Lo</span><span class="p">,</span><span class="n">Nx</span><span class="p">)</span> <span class="c1">#x-array Length</span>
+<span class="n">T</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span> <span class="c1">#Allocating Temperatire Field</span>
+<span class="c1">#********************************Initialize-Distribution-Function***********************************************************</span>
+<span class="n">f</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span> <span class="c1">#Allocating Distribution Function</span>
+<span class="n">fp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span> <span class="c1">#Allocating Post-Colisional Distribution Function</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span><span class="o">=</span><span class="n">w</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">T</span><span class="p">[:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mstep</span><span class="o">=</span><span class="mi">100</span>
+<span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">mstep</span><span class="p">):</span>
+    <span class="c1">#*******Collision********</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">fp</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span><span class="o">=</span><span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span><span class="o">-</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span><span class="o">-</span><span class="n">w</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">T</span><span class="p">[:])</span><span class="o">/</span><span class="n">tau</span> <span class="c1"># Collision Lattice Index 1-2</span>
+    <span class="c1">#*******Streaming********</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">fp</span><span class="p">[</span><span class="n">k</span><span class="p">,:],</span> <span class="n">cx</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1">#***********BC********</span>
+    <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mf">0.0</span> <span class="o">-</span> <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1">#***********Macro********</span>
+    <span class="n">T</span><span class="o">=</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span><span class="o">+</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Tana</span><span class="o">=-</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">Tana</span><span class="p">,</span><span class="s1">&#39;k-&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7289cf2da4a0&gt;]
+</pre></div>
+</div>
+<img alt="../_images/0ccda0a0e9d01037a4fe369d508910d2995c76973e5601fabc10884540e483d9.png" src="../_images/0ccda0a0e9d01037a4fe369d508910d2995c76973e5601fabc10884540e483d9.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="fvm-code">
+<h1>FVM Code<a class="headerlink" href="#fvm-code" title="Link to this heading"></a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1">#***************************************InputParameters************************************************</span>
+<span class="n">Nx</span><span class="o">=</span><span class="mi">51</span> <span class="c1">#Domain Length</span>
+<span class="c1">#********************************************Set-Parameters*********************************************</span>
+<span class="c1">#------------Dimensionless-Data----------------</span>
+<span class="n">nuo</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span><span class="n">Lo</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span>
+<span class="c1">#------------LBM-Data----------------</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="n">Lo</span><span class="o">/</span><span class="p">(</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">rel</span> <span class="o">=</span> <span class="mf">2.0</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">dx</span> <span class="o">/</span> <span class="n">rel</span><span class="p">;</span> 
+<span class="c1">#--------------Print-Dados---------------------</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;nu=&#39;</span><span class="p">,</span><span class="n">nuo</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;rel=&#39;</span><span class="p">,</span><span class="n">rel</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;dx=&#39;</span><span class="p">,</span><span class="n">dx</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1"> dt=&#39;</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nu= 1.0
+rel= 8.0
+dx= 0.02 	 dt= 0.0025
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#********************************Initializing-Pressure-Boundaries***********************************************************</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">Lo</span><span class="p">,</span><span class="n">Nx</span><span class="p">)</span> <span class="c1">#x-array Length</span>
+<span class="n">Tp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span> <span class="c1">#Allocating Temperatire Field</span>
+<span class="n">To</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span> <span class="c1">#Allocating Temperatire Field</span>
+<span class="n">Tw</span><span class="o">=</span><span class="mf">1.0</span>
+<span class="n">Te</span><span class="o">=</span><span class="mf">1.0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mstep</span><span class="o">=</span><span class="mi">100000</span>
+<span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">mstep</span><span class="p">):</span>
+    <span class="n">Tp</span><span class="o">=</span> <span class="n">To</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">nuo</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">To</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">To</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">To</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+    <span class="n">To</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mf">1.0</span>
+    <span class="n">To</span><span class="p">[</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mf">0.0</span>
+    <span class="n">To</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">Tp</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Tana</span><span class="o">=-</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">To</span><span class="p">,</span><span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">Tana</span><span class="p">,</span><span class="s1">&#39;k-&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7289cd15d390&gt;]
+</pre></div>
+</div>
+<img alt="../_images/a4119462fe01cddcb008547c1b386cd6bbe1e630f8f01e4aa71a46d264904fd7.png" src="../_images/a4119462fe01cddcb008547c1b386cd6bbe1e630f8f01e4aa71a46d264904fd7.png" />
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./LBM-Study"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Ricardo LMB.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
