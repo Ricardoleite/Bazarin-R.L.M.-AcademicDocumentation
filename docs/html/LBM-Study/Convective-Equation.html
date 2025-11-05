@@ -51,8 +51,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Diffusive Equation" href="Diffusive-Equation.html" />
-    <link rel="prev" title="Introdution" href="../Porous-Media-Study/Intro/Intro-PM-MFinPCPM.html" /> 
+    <link rel="next" title="Ementa - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas" href="Ementa.html" />
+    <link rel="prev" title="Poisson Equation (Steady-State Diffusive Equation)" href="Poisson-Equation.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -81,12 +81,15 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Lattice Boltzmann Method - Application to Different Partial differential Equation:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Diffusive-Equation.html">Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Poisson-Equation.html">Poisson Equation (Steady-State Diffusive Equation)</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Convective Equation (Transport Equation)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#numerical-discretization">Numerical Discretization</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#fdm-discretization">FDM Discretization</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#lattice-boltzmann-equation">Lattice Boltzmann Equation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#lattice-direction-moments">Lattice Direction Moments</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#chapmann-enskog-analysis">Chapmann-Enskog Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chapmann-enskog-analysis-considering-equilibrium-state-consequently-disregarding-inherited-diffusive-effects">Chapmann-Enskog Analysis (Considering Equilibrium State - Consequently Disregarding Inherited Diffusive Effects)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chapmann-enskog-analysis-full">Chapmann-Enskog Analysis (Full)</a></li>
 </ul>
 </li>
 </ul>
@@ -101,8 +104,6 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Diffusive-Equation.html">Diffusive Equation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Poisson-Equation.html">Poisson Equation (Steady-State Diffusive Equation)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Ementa.html">Ementa - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References:</span></p>
@@ -143,7 +144,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Convective Equation (Transport Equation)<a class="headerlink" href="#convective-equation-transport-equation" title="Link to this heading"></a></h1>
 <p>The convective equation also known as transport equation is a partial diferential equation (PDE) usually described by</p>
 <div class="math notranslate nohighlight" id="equation-cv-eq-lb">
-<span class="eqno">(18)<a class="headerlink" href="#equation-cv-eq-lb" title="Link to this equation"></a></span>\[
+<span class="eqno">(32)<a class="headerlink" href="#equation-cv-eq-lb" title="Link to this equation"></a></span>\[
 \partial_t u + \partial_{\alpha}B_{\alpha}  = 0
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(u(\alpha,t)\)</span> is a time and space dependent parameter that is being transporte and <span class="math notranslate nohighlight">\(B_{\alpha}(\alpha,t)\)</span> is a second time and space dependent parameter that can also be depende of <span class="math notranslate nohighlight">\(u(\alpha,t)\)</span> in non-linear convective diffusive equations.</p>
@@ -154,12 +155,12 @@ const thebe_selector_output = ".output, .cell_output"
 <a class="reference internal image-reference" href="../_images/mesh-1-convective.svg"><img alt="../_images/mesh-1-convective.svg" src="../_images/mesh-1-convective.svg" style="width: 382.5px; height: 172.5px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">1D regular grid.</span><a class="headerlink" href="#mesh-1-convective" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">1D regular grid.</span><a class="headerlink" href="#mesh-1-convective" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <section id="fdm-discretization">
 <h3>FDM Discretization<a class="headerlink" href="#fdm-discretization" title="Link to this heading"></a></h3>
-<p>Discretizing the Eq. <a class="reference internal" href="#equation-cv-eq-lb">(18)</a> through finite diference method, we have for forward time and forward space (FTFS) discretizations:</p>
+<p>Discretizing the Eq. <a class="reference internal" href="#equation-cv-eq-lb">(32)</a> through finite diference method, we have for forward time and forward space (FTFS) discretizations:</p>
 <div class="math notranslate nohighlight">
 \[
 \partial_t u + \partial_{x}B_{\alpha}  = \frac{u(x,t + \Delta_{t}) - u(x,t) }{\Delta_{t}} + \frac{B_{\alpha}(x,t) - B_{\alpha}(x + \Delta_{x},t) }{\Delta_{x}} =0,
@@ -174,7 +175,7 @@ u(x,t + \Delta_{t})   = u(x,t) - \frac{\Delta_{t}}{\Delta_{x}} \left( B_{\alpha}
 <h3>Lattice Boltzmann Equation<a class="headerlink" href="#lattice-boltzmann-equation" title="Link to this heading"></a></h3>
 <p>Describing the problem through the BGK lattice Boltzmann equation, we assume a equilibrium state for the present problem, where <span class="math notranslate nohighlight">\( f_{i}= f_{i}^{eq}\)</span> and the BGK lattice Boltzmann equation reduces to:</p>
 <div class="math notranslate nohighlight" id="equation-lb-cv-eq">
-<span class="eqno">(19)<a class="headerlink" href="#equation-lb-cv-eq" title="Link to this equation"></a></span>\[
+<span class="eqno">(33)<a class="headerlink" href="#equation-lb-cv-eq" title="Link to this equation"></a></span>\[
 f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\boldsymbol{x}, t)= -\left( \frac{ f_{i} - f_{i}^{eq} }{ \tau } \right) \quad \quad \rightarrow \quad \quad f_i( x_{\alpha} + e_{i,\alpha} \delta t, t+\delta t) = f_{i}^{eq} , 
 \]</div>
 <p>where the equilibrium distribution function is defined by</p>
@@ -271,21 +272,22 @@ $$ --><section id="lattice-direction-moments">
 </div>
 </div>
 </section>
-<section id="chapmann-enskog-analysis">
-<h4>Chapmann-Enskog Analysis<a class="headerlink" href="#chapmann-enskog-analysis" title="Link to this heading"></a></h4>
+<section id="chapmann-enskog-analysis-considering-equilibrium-state-consequently-disregarding-inherited-diffusive-effects">
+<h4>Chapmann-Enskog Analysis (Considering Equilibrium State - Consequently Disregarding Inherited Diffusive Effects)<a class="headerlink" href="#chapmann-enskog-analysis-considering-equilibrium-state-consequently-disregarding-inherited-diffusive-effects" title="Link to this heading"></a></h4>
+<div class="toggle docutils container">
 <p>Applying the Chapmann-Enskog procedure to LB equation, we expand the term <span class="math notranslate nohighlight">\(f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)\)</span> in a Taylor series to recover the derivative form of the equation, i.e.,</p>
 <div class="math notranslate nohighlight" id="equation-eqexp-cv-eq">
-<span class="eqno">(20)<a class="headerlink" href="#equation-eqexp-cv-eq" title="Link to this equation"></a></span>\[
+<span class="eqno">(34)<a class="headerlink" href="#equation-eqexp-cv-eq" title="Link to this equation"></a></span>\[
 f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\boldsymbol{x}, t)=\displaystyle\sum_{j=1}^{\infty}\frac{\Delta t^{j}}{j!}D_{t}^{j}f_{i}= -\left( \frac{ f_{i} - f_{i}^{eq} }{ \tau } \right) \quad \quad \overbrace{\rightarrow}^{\textrm{Equilibrium State}} \quad \quad f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)=\displaystyle\sum_{j=0}^{\infty}\frac{\Delta t^{j}}{j!}D_{t}^{j}f_{i}= f_{i}^{eq}(\boldsymbol{x}, t).
 \]</div>
-<p>Rescaling the dimensionless form of the Eq. <a class="reference internal" href="#equation-eqexp-cv-eq">(20)</a> in terms of the Knudsen number (<span class="math notranslate nohighlight">\(Kn\)</span>), we have</p>
+<p>Rescaling the dimensionless form of the Eq. <a class="reference internal" href="#equation-eqexp-cv-eq">(34)</a> in terms of the Knudsen number (<span class="math notranslate nohighlight">\(Kn\)</span>), we have</p>
 <div class="math notranslate nohighlight">
 \[
 \displaystyle \sum^{\infty}_{j=0}  \frac{Kn^{(j-1)}}{j!} D_{t}^{j} f_{i} = f_{i}^{eq}(\boldsymbol{x}, t),
 \]</div>
 <p>applying the asymptotic expansion in both the distribution function (<span class="math notranslate nohighlight">\(f_{i}=f_{i}^{(0)}+Kn f_{i}^{(1)} + Kn^{2} f_{i}^{(2)}+\cdots\)</span>) and time partial derivative (<span class="math notranslate nohighlight">\(\partial_{t}=\partial_{t}^{(0)}+ Kn \partial_{t}^{(1)}+Kn^{2} \partial_{t}^{(2)}+\cdots\)</span>), and separating the equation in orders up to the order <span class="math notranslate nohighlight">\(Kn^{2}\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-chap-kn-cv-eq">
-<span class="eqno">(21)<a class="headerlink" href="#equation-chap-kn-cv-eq" title="Link to this equation"></a></span>\[\begin{split}
+<span class="eqno">(35)<a class="headerlink" href="#equation-chap-kn-cv-eq" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{ll}
     (Kn^{(0)}):&amp; f_{i}^{(0)}= f_{i}^{eq},\\
     (Kn^{(1)}):&amp; \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)}= 0, \\
@@ -297,32 +299,100 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
     (Kn^{(3)}):&amp; \partial_{t}^{(2)} f_{i}^{(0)} +\partial_{t}^{(1)} f_{i}^{(1)} + \left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right)f_{i}^{(2)} =  0.  \\
  \end{array}
 \end{split}\]</div>
-<section id="zero-order-moment-balance">
-<h5>Zero-Order Moment Balance<a class="headerlink" href="#zero-order-moment-balance" title="Link to this heading"></a></h5>
-<p>To retrieve the balance equation, we sum the Eq. <a class="reference internal" href="#equation-chap-kn-cv-eq">(21)</a> for <span class="math notranslate nohighlight">\(Kn^{(1)}\)</span> and <span class="math notranslate nohighlight">\(Kn^{(2)}\)</span> over <span class="math notranslate nohighlight">\(\sum_{i=0} \)</span>:</p>
-<div class="math notranslate nohighlight" id="equation-cv-kn1-0-b0">
-<span class="eqno">(22)<a class="headerlink" href="#equation-cv-kn1-0-b0" title="Link to this equation"></a></span>\[\begin{split}
+<p class="rubric">Zero-Order Moment Balance</p>
+<p>To retrieve the balance equation, we sum the Eq. <a class="reference internal" href="#equation-chap-kn-cv-eq">(35)</a> for <span class="math notranslate nohighlight">\(Kn^{(1)}\)</span> and <span class="math notranslate nohighlight">\(Kn^{(2)}\)</span> over <span class="math notranslate nohighlight">\(\sum_{i=0} \)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-cv-kn1-b0">
+<span class="eqno">(36)<a class="headerlink" href="#equation-cv-kn1-b0" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{l}
 (Kn^{(1)}): \displaystyle\sum_{i}\left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)}= 0,\\
 (Kn^{(1)}): \partial_{t}^{(0)}  u + \partial_{\alpha} B_{\alpha} =0,
 \end{array}
 \end{split}\]</div>
-<div class="math notranslate nohighlight" id="equation-cv-kn2-0-b0">
-<span class="eqno">(23)<a class="headerlink" href="#equation-cv-kn2-0-b0" title="Link to this equation"></a></span>\[\begin{split}
+<div class="math notranslate nohighlight" id="equation-cv-kn2-b0">
+<span class="eqno">(37)<a class="headerlink" href="#equation-cv-kn2-b0" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{l}
 (Kn^{(2)}):&amp; \displaystyle\sum_{i}\left[ \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right) f_{i}^{(1)}   \right]=  0, \nonumber \\
 (Kn^{(2)}):&amp; \partial_{t}^{(1)} u + \partial_{\alpha} m^{(1)}_{\alpha} = 0,
 \end{array}
 \end{split}\]</div>
 <p>and</p>
-<div class="math notranslate nohighlight" id="equation-cv-kn3-0-b0">
-<span class="eqno">(24)<a class="headerlink" href="#equation-cv-kn3-0-b0" title="Link to this equation"></a></span>\[\begin{split}
+<div class="math notranslate nohighlight" id="equation-cv-kn3-b0">
+<span class="eqno">(38)<a class="headerlink" href="#equation-cv-kn3-b0" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{l}
 (Kn^{(3)}):&amp; \displaystyle\sum_{i}\left[ \partial_{t}^{(2)} f_{i}^{(0)} +\partial_{t}^{(1)} f_{i}^{(1)} + \left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right)f_{i}^{(2)}   \right]=  0, \nonumber \\
 (Kn^{(3)}):&amp; \partial_{t}^{(2)} u + \partial_{\alpha} m^{(2)}_{\alpha} = 0.
 \end{array}
 \end{split}\]</div>
-<p>By summing the Eqs. <code class="xref eq docutils literal notranslate"><span class="pre">cv-Kn1-B0</span></code>, <code class="xref eq docutils literal notranslate"><span class="pre">cv-Kn1-B0</span></code>, and <code class="xref eq docutils literal notranslate"><span class="pre">cv-Kn1-B0</span></code>, and also extending to higher orders of Knudsen, we have</p>
+<p>By summing the Eqs. <a class="reference internal" href="#equation-cv-kn1-b0">(36)</a>, <a class="reference internal" href="#equation-cv-kn2-b0">(37)</a>, and <a class="reference internal" href="#equation-cv-kn3-b0">(38)</a>, and also extending to higher orders of Knudsen, we have</p>
+<div class="math notranslate nohighlight">
+\[
+\partial_{t}  u + \partial_{\alpha} B_{\alpha} + \underbrace{\partial_{\alpha} \left( m^{(1)}_{\alpha} + m^{(2)}_{\alpha} + ...\right) }_{\textrm{Numerical Errors}} =0,
+\]</div>
+<p>where these numerical error can be related to the numerical error from the approximation of a derivative term by an expansion in Taylor series.</p>
+</div>
+</section>
+<section id="chapmann-enskog-analysis-full">
+<h4>Chapmann-Enskog Analysis (Full)<a class="headerlink" href="#chapmann-enskog-analysis-full" title="Link to this heading"></a></h4>
+<p>Applying the Chapmann-Enskog procedure to LB equation, we expand the term <span class="math notranslate nohighlight">\(f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)\)</span> in a Taylor series to recover the derivative form of the equation, i.e.,</p>
+<div class="math notranslate nohighlight" id="equation-eqexp-cv-noteq">
+<span class="eqno">(39)<a class="headerlink" href="#equation-eqexp-cv-noteq" title="Link to this equation"></a></span>\[
+f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\boldsymbol{x}, t)=\displaystyle\sum_{j=1}^{\infty}\frac{\Delta t^{j}}{j!}D_{t}^{j}f_{i}= -\left( \frac{ f_{i} - f_{i}^{eq} }{ \tau } \right) .
+\]</div>
+<p>Rescaling the dimensionless form of the Eq. <a class="reference internal" href="#equation-eqexp-cv-eq">(34)</a> in terms of the Knudsen number (<span class="math notranslate nohighlight">\(Kn\)</span>), we have</p>
+<div class="math notranslate nohighlight">
+\[
+\displaystyle \sum^{\infty}_{j=1}  \frac{Kn^{(j-1)}}{j!} D_{t}^{j} f_{i} = - \frac{1}{Kn}\left( \frac{ f_{i} - f_{eq,i} }{ \tau } \right) \quad \quad \rightarrow \quad \quad \displaystyle \sum^{\infty}_{j=1}  \frac{Kn^{(j)}}{j!} D_{t}^{j} f_{i} = -  \frac{ f_{i} - f_{i}^{eq} }{ \tau },
+\]</div>
+<p>applying the asymptotic expansion in both the distribution function (<span class="math notranslate nohighlight">\(f_{i}=f_{i}^{(0)}+Kn f_{i}^{(1)} + Kn^{2} f_{i}^{(2)}+\cdots\)</span>) and time partial derivative (<span class="math notranslate nohighlight">\(\partial_{t}=\partial_{t}^{(0)}+ Kn \partial_{t}^{(1)}+Kn^{2} \partial_{t}^{(2)}+\cdots\)</span>), and separating the equation in orders up to the order <span class="math notranslate nohighlight">\(Kn^{2}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-chap-kn-cv-noteq">
+<span class="eqno">(40)<a class="headerlink" href="#equation-chap-kn-cv-noteq" title="Link to this equation"></a></span>\[\begin{split}
+\begin{array}{ll}
+    (Kn^{(0)}):&amp; f_{i}^{(0)}= f_{i}^{eq},\\
+    (Kn^{(1)}):&amp; \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)}= - \displaystyle\frac{ f_{i}^{(1)} }{ \tau } , \\
+    (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(1)} + \displaystyle\frac{\left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)^{2} f_{i}^{(0)}}{2}= - \displaystyle\frac{ f_{i}^{(2)} }{ \tau },\\
+    \textrm{ou}\\
+    (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)\displaystyle\left(1 - \frac{1}{2\tau}\right) f_{i}^{(1)} =  - \displaystyle\frac{ f_{i}^{(2)} }{ \tau } \quad\quad \rightarrow \quad\quad  f_{i}^{(1)}\textrm{ Formulation} \\
+    \textrm{ou}\\
+    (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)^{2} \displaystyle\left(\frac{1}{2} - \tau\right) f_{i}^{(0)} =  - \displaystyle\frac{ f_{i}^{(2)} }{ \tau } \quad\quad \rightarrow  \quad\quad f_{i}^{(0)}\textrm{ Formulation} \\
+    (Kn^{(3)}):&amp; \partial_{t}^{(2)} f_{i}^{(0)} +\partial_{t}^{(1)} f_{i}^{(1)} + \partial_{t}^{(1)}\left( \left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right)f_{i}^{(0)} \right) + \left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right)f_{i}^{(2)} + \displaystyle\frac{\left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right)^{2} f_{i}^{(1)}}{2} +  \displaystyle\frac{\left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right)^{3} f_{i}^{(0)}}{6} = - \displaystyle\frac{ f_{i}^{(3)} }{ \tau },  \\
+    \textrm{ou}\\
+    (Kn^{(3)}):&amp; \partial_{t}^{(2)} f_{i}^{(0)} + \left(1-\displaystyle\frac{1}{\tau}\right)\partial_{t}^{(1)} f_{i}^{(1)} + \displaystyle\left(\frac{1}{2} - \frac{1}{6\tau}\right) \left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right)^{2} f_{i}^{(1)} + \left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right)f_{i}^{(2)} =  - \displaystyle\frac{f_{i}^{(3)}}{\tau},
+ \end{array}
+\end{split}\]</div>
+<section id="zero-order-moment-balance">
+<h5>Zero-Order Moment Balance<a class="headerlink" href="#zero-order-moment-balance" title="Link to this heading"></a></h5>
+<p>To retrieve the balance equation, we sum the Eq. <a class="reference internal" href="#equation-chap-kn-cv-eq">(35)</a> for <span class="math notranslate nohighlight">\(Kn^{(1)}\)</span> and <span class="math notranslate nohighlight">\(Kn^{(2)}\)</span> over <span class="math notranslate nohighlight">\(\sum_{i=0} \)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-cv-kn1-b0-all">
+<span class="eqno">(41)<a class="headerlink" href="#equation-cv-kn1-b0-all" title="Link to this equation"></a></span>\[\begin{split}
+\begin{array}{l}
+(Kn^{(1)}): \displaystyle\sum_{i}\left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)}= - \displaystyle\sum_{i}\left(\displaystyle\frac{ f_{i}^{(1)} }{ \tau } \right),\\
+(Kn^{(1)}): \partial_{t}^{(0)}  u + \partial_{\alpha} B_{\alpha} =0,
+\end{array}
+\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-cv-kn2-b0-all">
+<span class="eqno">(42)<a class="headerlink" href="#equation-cv-kn2-b0-all" title="Link to this equation"></a></span>\[\begin{split}
+\begin{array}{l}
+(Kn^{(2)}):&amp; \displaystyle\sum_{i}\left[ \partial_{t}^{(1)} f_{i}^{(0)} + \displaystyle\left(1 - \frac{1}{2\tau}\right)\left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right) f_{i}^{(1)}   \right]=  - \displaystyle\sum_{i}\left(\displaystyle\frac{ f_{i}^{(2)} }{ \tau } \right), \nonumber \\
+(Kn^{(2)}):&amp; \partial_{t}^{(1)} u + \displaystyle\left(1 - \frac{1}{2\tau}\right)\partial_{\alpha} m^{(1)}_{\alpha} = 0,
+\end{array}
+\end{split}\]</div>
+<p>To determine the unknow term <span class="math notranslate nohighlight">\(m^{(1)}_{\alpha}\)</span>, we sum the Eq. <a class="reference internal" href="#equation-chap-kn-cv-eq">(35)</a> for <span class="math notranslate nohighlight">\(Kn^{(1)}\)</span> over the first-order moment:</p>
+<div class="math notranslate nohighlight" id="equation-cv-kn1-b1-all">
+<span class="eqno">(43)<a class="headerlink" href="#equation-cv-kn1-b1-all" title="Link to this equation"></a></span>\[\begin{split}
+\begin{array}{l}
+(Kn^{(1)}): \displaystyle\sum_{i}\left( \partial_{t}^{(0)} + e_{i,\beta}\partial_{\beta} \right)f_{i}^{(0)}e_{i,\alpha}= - \displaystyle\sum_{i}\left(\displaystyle\frac{ f_{i}^{(1)} }{ \tau } e_{i,\alpha} \right),\\
+(Kn^{(1)}): \partial_{t}^{(0)}  B_{\alpha} + \partial_{\beta} \left(uc_{s}^{2}\right)\delta_{\alpha\beta} = - \displaystyle\frac{m^{(1)}_{\alpha}}{\tau} \quad \quad \rightarrow \quad \quad   m^{(1)}_{\alpha} =-\tau\left( \partial_{t}^{(0)}  B_{\alpha} + \partial_{\beta} \left(uc_{s}^{2}\right)\delta_{\alpha\beta} \right).
+\end{array}
+\end{split}\]</div>
+<p>Extending the analysis up to <span class="math notranslate nohighlight">\(Kn^{(3)}\)</span></p>
+<div class="math notranslate nohighlight" id="equation-cv-kn3-b0-all">
+<span class="eqno">(44)<a class="headerlink" href="#equation-cv-kn3-b0-all" title="Link to this equation"></a></span>\[\begin{split}
+\begin{array}{l}
+(Kn^{(3)}):&amp; \displaystyle\sum_{i}\left[ \partial_{t}^{(2)} f_{i}^{(0)} + \left(1-\displaystyle\frac{1}{\tau}\right)\partial_{t}^{(1)} f_{i}^{(1)} + \displaystyle\left(\frac{1}{2} - \frac{1}{6\tau}\right) \left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right)^{2} f_{i}^{(1)} + \left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right)f_{i}^{(2)} \right] =  - \displaystyle\sum_{i}\left[\displaystyle\frac{f_{i}^{(3)}}{\tau} \right], \\
+(Kn^{(3)}):&amp; \partial_{t}^{(2)} u + \partial_{t}\left(\partial_{\alpha} m^{(1)}_{\alpha} + \partial_{\beta} m^{(1)}_{\beta}\right) + \partial_{\alpha}\partial_{\beta} m^{(1)}_{\alpha\beta} + \partial_{\alpha} m^{(2)}_{\alpha} = 0.
+\end{array}
+\end{split}\]</div>
+<p>By summing the Eqs. <a class="reference internal" href="#equation-cv-kn1-b0">(36)</a>, <a class="reference internal" href="#equation-cv-kn2-b0">(37)</a>, and <a class="reference internal" href="#equation-cv-kn3-b0">(38)</a>, and also extending to higher orders of Knudsen, we have</p>
 <div class="math notranslate nohighlight">
 \[
 \partial_{t}  u + \partial_{\alpha} B_{\alpha} + \underbrace{\partial_{\alpha} \left( m^{(1)}_{\alpha} + m^{(2)}_{\alpha} + ...\right) }_{\textrm{Numerical Errors}} =0,
@@ -374,25 +444,25 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
 <h2>Benchmark - 1D Non-Linear Convective formulation of the Buckley-Leverett Equation<a class="headerlink" href="#benchmark-1d-non-linear-convective-formulation-of-the-buckley-leverett-equation" title="Link to this heading"></a></h2>
 <p>Considering a pure convective formulation of the Buckley-Leverett equation, where gravitational effects and capillary pressure are neglected, we have:</p>
 <div class="math notranslate nohighlight" id="equation-eqmassmtp-bl-sim">
-<span class="eqno">(25)<a class="headerlink" href="#equation-eqmassmtp-bl-sim" title="Link to this equation"></a></span>\[
+<span class="eqno">(45)<a class="headerlink" href="#equation-eqmassmtp-bl-sim" title="Link to this equation"></a></span>\[
 \partial_{t} (s_{w})+ \partial_{\alpha}\left[\displaystyle\frac{\left&lt;u\right&gt;_{\alpha}}{\varphi} F(s_w)\right] = 0 ,
 \]</div>
 <p>with the water fraction flow given by,</p>
 <div class="math notranslate nohighlight" id="equation-eqfractionalflow">
-<span class="eqno">(26)<a class="headerlink" href="#equation-eqfractionalflow" title="Link to this equation"></a></span>\[
+<span class="eqno">(46)<a class="headerlink" href="#equation-eqfractionalflow" title="Link to this equation"></a></span>\[
 F(s_w) = \frac{ s_{w}^{2} }{ s_{w}^{2} + M_{\mu}(1-s_{w})^{2}}.
 \]</div>
-<p>The simulation parameters are chosen so that the average velocity component <span class="math notranslate nohighlight">\(\langle u \rangle_{\alpha} / \varphi\)</span> equals <span class="math notranslate nohighlight">\(1\,\mathrm{m/s}\)</span> and the dynamic viscosity ratio <span class="math notranslate nohighlight">\(M_{\mu}\)</span> equals <span class="math notranslate nohighlight">\(1\)</span>. We consider a one-dimensional porous medium of length <span class="math notranslate nohighlight">\(L_x = 20\,\mathrm{m}\)</span>, initially saturated with oil (see <a class="reference internal" href="#d-displace-bl"><span class="std std-numref">Fig. 4</span></a>). Water is injected at the inlet <span class="math notranslate nohighlight">\((x=0)\)</span> under a Dirichlet boundary condition <span class="math notranslate nohighlight">\(s_{w}(x=0)=1\)</span>. At the outlet <span class="math notranslate nohighlight">\((x=L)\)</span>, a Neumann boundary condition specifying a zero gradient in water saturation is applied.</p>
+<p>The simulation parameters are chosen so that the average velocity component <span class="math notranslate nohighlight">\(\langle u \rangle_{\alpha} / \varphi\)</span> equals <span class="math notranslate nohighlight">\(1\,\mathrm{m/s}\)</span> and the dynamic viscosity ratio <span class="math notranslate nohighlight">\(M_{\mu}\)</span> equals <span class="math notranslate nohighlight">\(1\)</span>. We consider a one-dimensional porous medium of length <span class="math notranslate nohighlight">\(L_x = 20\,\mathrm{m}\)</span>, initially saturated with oil (see <a class="reference internal" href="#d-displace-bl"><span class="std std-numref">Fig. 6</span></a>). Water is injected at the inlet <span class="math notranslate nohighlight">\((x=0)\)</span> under a Dirichlet boundary condition <span class="math notranslate nohighlight">\(s_{w}(x=0)=1\)</span>. At the outlet <span class="math notranslate nohighlight">\((x=L)\)</span>, a Neumann boundary condition specifying a zero gradient in water saturation is applied.</p>
 <figure class="align-center" id="d-displace-bl">
 <a class="reference internal image-reference" href="../_images/1D-Displace-BL.svg"><img alt="../_images/1D-Displace-BL.svg" src="../_images/1D-Displace-BL.svg" style="width: 686.0px; height: 205.0px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Geometry of the non-linear convective problem: initial and boundary conditions.</span><a class="headerlink" href="#d-displace-bl" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Geometry of the non-linear convective problem: initial and boundary conditions.</span><a class="headerlink" href="#d-displace-bl" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <section id="transient-analytical-solution">
 <h3>Transient Analytical Solution<a class="headerlink" href="#transient-analytical-solution" title="Link to this heading"></a></h3>
-<p>The non-linear convective problem given by the Eq. <a class="reference internal" href="#equation-eqmassmtp-bl-sim">(25)</a> has an analytical solution dependent of the initial condition (Riemann problem). In the present case, the solution for the specific initial condition is given by</p>
+<p>The non-linear convective problem given by the Eq. <a class="reference internal" href="#equation-eqmassmtp-bl-sim">(45)</a> has an analytical solution dependent of the initial condition (Riemann problem). In the present case, the solution for the specific initial condition is given by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 s_{w}(x,t)= \left\{  \begin{array}{ccc}
@@ -491,7 +561,7 @@ s_{w}(x,t)= \left\{  \begin{array}{ccc}
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="c1">#***************************************InputParameters************************************************</span>
 <span class="n">Nx</span><span class="o">=</span><span class="mi">500</span> <span class="c1">#Square Domain Length</span>
-<span class="c1">#***************************************Lattice-Properties-D2Q5*************************************************</span>
+<span class="c1">#***************************************Lattice-Properties-D1Q5*************************************************</span>
 <span class="n">cs</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">3.0</span><span class="p">);</span>
 <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
 <span class="n">cx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int8&quot;</span><span class="p">)</span>  
@@ -592,8 +662,8 @@ s_{w}(x,t)= \left\{  \begin{array}{ccc}
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../Porous-Media-Study/Intro/Intro-PM-MFinPCPM.html" class="btn btn-neutral float-left" title="Introdution" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="Diffusive-Equation.html" class="btn btn-neutral float-right" title="Diffusive Equation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Poisson-Equation.html" class="btn btn-neutral float-left" title="Poisson Equation (Steady-State Diffusive Equation)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Ementa.html" class="btn btn-neutral float-right" title="Ementa - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -19,7 +19,7 @@ numerical modeling applied to Thermal Sciences and Fluid Mechanics, with emphasi
 Boltzmann Method. Currently, he is a researcher at the Federal University of Santa Catarina (UFSC), specializing in digital 
 rock simulation using the Lattice Boltzmann Method on High-Performance Computing (HPC) systems.
 
-- |:link:| `Curriculum Latets (Brazilian Academic Curriculum): http://lattes.cnpq.br/4208039384284520 <http://lattes.cnpq.br/420803984284520>`_
+- |:link:| `Curriculum Latets (Brazilian Academic Curriculum): http://lattes.cnpq.br/4208039384284520 <https://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K8733837Z4&tokenCaptchar=03AGdBq27j2Zqp1BOy-xPB_xTUS8XuFh4dDt2_rOGHU4vTKMJs3P_DU8t-SjqxUZEALavhQBmseGKLO4MwyLQ9LNlEAEIk5n8RcyRonLkFh3q8THSGSUafkTPiFisB2i5UNX3tfGZbf-iV4001Q9FccN6pMEzw303VRjCjge2BIBCfSCDXbuBwfKiEKaqIbYGIRMLMOxRMjRtSvgAAv0pRhP9IKXPdZElrbV3Td-CNpbWhThUHw6XVnZ0mpCf3uWTFrtKRsmRdzSzpGHf5jC9e67TKc4_xPOC9MWNnugYFtrbIdGkZjEtsOHj7IuA39oPK9gTBAmE2JCmL2SNQKaYqApXKqISELnakTzaNFtkVfZ3ieM-6Mv_9hLHwo3Abn8Rz6Pr3cdJI96ZQUGWEWIYmlb8lxkpsh_RC09_Jm6-HIWFCKp0Yths68syBPU_DKbRXCKjr9xcPDTzpX_dQuW-RPoAWG-hyJOMQeg>`_
 
 - |:computer:| `GitHub Page: https://github.com/Ricardoleite <https://github.com/Ricardoleite>`_
 
@@ -71,9 +71,9 @@ Academic Material:
    :maxdepth: 1
    :caption: Lattice Boltzmann Method - Application to Different Partial differential Equation:
 
-   /LBM-Study/Convective-Equation
    /LBM-Study/Diffusive-Equation
    /LBM-Study/Poisson-Equation
+   /LBM-Study/Convective-Equation
    /LBM-Study/Ementa
 
 .. toctree::
