@@ -85,21 +85,32 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Poisson-Equation.html">Poisson Equation (Steady-State Diffusive Equation)</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Convective Equation (Transport Equation)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#numerical-discretization">Numerical Discretization</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#fdm-discretization">FDM Discretization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fdm-discretization">FDM Discretization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#forward-time-and-forward-space-ftfs">Forward-Time and Forward-Space (FTFS)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#forward-time-and-central-space-with-small-diffusivity-ftcs-sd">Forward-Time and Central-Space with Small Diffusivity (FTCS-SD)</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#lattice-boltzmann-equation">Lattice Boltzmann Equation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#lattice-direction-moments">Lattice Direction Moments</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#chapmann-enskog-analysis-considering-equilibrium-state-consequently-disregarding-inherited-diffusive-effects">Chapmann-Enskog Analysis (Considering Equilibrium State - Consequently Disregarding Inherited Diffusive Effects)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#chapmann-enskog-analysis-full">Chapmann-Enskog Analysis (Full)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#boundary-conditions">Boundary Conditions</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#benchmark-1d-non-linear-convective-formulation-of-the-buckley-leverett-equation">Benchmark - 1D Non-Linear Convective formulation of the Buckley-Leverett Equation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#transient-analytical-solution">Transient Analytical Solution</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fdm-solution-forward-time-and-forward-space-ftfs">FDM Solution (Forward Time and Forward Space - FTFS)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#lattice-boltzmann-framework-of-ftfs">Lattice Boltzmann Framework of FTFS</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#lattice-boltzmann-method-d1q3">Lattice Boltzmann Method (D1Q3)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fdm-approach-of-lbm-framework-d1q3">FDM approach of LBM Framework D1Q3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transient-analytical-solution">Transient Analytical Solution</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Forward Time and Forward Space - FTFS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fdm-solution">FDM Solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lattice-boltzmann-framework-of-ftfs">Lattice Boltzmann Framework of FTFS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Forward-Time and Central-Space with Small Diffusivity (FTCS-SD)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lattice-boltzmann-method-d1q3">Lattice Boltzmann Method (D1Q3):</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fdm-approach-of-lbm-framework-d1q3">FDM approach of LBM Framework D1Q3:</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -155,12 +166,15 @@ const thebe_selector_output = ".output, .cell_output"
 <a class="reference internal image-reference" href="../_images/mesh-1-convective.svg"><img alt="../_images/mesh-1-convective.svg" src="../_images/mesh-1-convective.svg" style="width: 382.5px; height: 172.5px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text">1D regular grid.</span><a class="headerlink" href="#mesh-1-convective" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">1D regular grid.</span><a class="headerlink" href="#mesh-1-convective" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <section id="fdm-discretization">
 <h3>FDM Discretization<a class="headerlink" href="#fdm-discretization" title="Link to this heading"></a></h3>
-<p>Discretizing the Eq. <a class="reference internal" href="#equation-cv-eq-lb">(32)</a> through finite diference method, we have for forward time and forward space (FTFS) discretizations:</p>
+<p>The Discretization through finite difference method can assume distinct forms that describe the problem with different accuracy, rate convergence and stability. In the sequence of this section, we will explore different variation that can work with the convective formulation.</p>
+<section id="forward-time-and-forward-space-ftfs">
+<h4>Forward-Time and Forward-Space (FTFS)<a class="headerlink" href="#forward-time-and-forward-space-ftfs" title="Link to this heading"></a></h4>
+<p>Discretizing the Eq. <a class="reference internal" href="#equation-cv-eq-lb">(32)</a> through finite diference method, we have for forward-time and forward-space (FTFS) discretizations:</p>
 <div class="math notranslate nohighlight">
 \[
 \partial_t u + \partial_{x}B_{\alpha}  = \frac{u(x,t + \Delta_{t}) - u(x,t) }{\Delta_{t}} + \frac{B_{\alpha}(x,t) - B_{\alpha}(x + \Delta_{x},t) }{\Delta_{x}} =0,
@@ -170,6 +184,20 @@ const thebe_selector_output = ".output, .cell_output"
 \[
 u(x,t + \Delta_{t})   = u(x,t) - \frac{\Delta_{t}}{\Delta_{x}} \left( B_{\alpha}(x,t) - B_{\alpha}(x + \Delta_{x},t) \right) .
 \]</div>
+</section>
+<section id="forward-time-and-central-space-with-small-diffusivity-ftcs-sd">
+<h4>Forward-Time and Central-Space with Small Diffusivity (FTCS-SD)<a class="headerlink" href="#forward-time-and-central-space-with-small-diffusivity-ftcs-sd" title="Link to this heading"></a></h4>
+<p>Give that discretize convective equation with pure forwar-time and central-space (FTCS) can be unstable for several cases, employ a forwar-time and central-space with small diffusivity (FTCS-SD) is a alternative to improve stability and ensure a propertie conservation.</p>
+<div class="math notranslate nohighlight">
+\[
+\partial_t u + \partial_{x}B_{\alpha} + \partial_{\alpha}\left( \nu \partial_{\alpha}u \right) = \frac{u(x,t + \Delta_{t}) - u(x,t) }{\Delta_{t}} + \frac{B_{\alpha}(x,t) - B_{\alpha}(x + \Delta_{x},t) }{\Delta_{x}} + \nu\frac{ u(x - \Delta_{x},t) -2u(x,t) + u(x + \Delta_{x},t) }{\Delta_{x}^{2}} =0,
+\]</div>
+<p>isolating the term <span class="math notranslate nohighlight">\(u(x,t + \Delta_{t})\)</span>, we can describe the <span class="math notranslate nohighlight">\(u\)</span> time evolution:</p>
+<div class="math notranslate nohighlight">
+\[
+u(x,t + \Delta_{t})   = u(x,t) - \frac{\Delta_{t}}{\Delta_{x}} \left( B_{\alpha}(x,t) - B_{\alpha}(x + \Delta_{x},t) \right) - \frac{\nu\Delta_{t}}{\Delta_{x}^{2}} \left( u(x - \Delta_{x},t) -2u(x,t) + u(x + \Delta_{x},t) \right) .
+\]</div>
+</section>
 </section>
 <section id="lattice-boltzmann-equation">
 <h3>Lattice Boltzmann Equation<a class="headerlink" href="#lattice-boltzmann-equation" title="Link to this heading"></a></h3>
@@ -333,6 +361,7 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
 </section>
 <section id="chapmann-enskog-analysis-full">
 <h4>Chapmann-Enskog Analysis (Full)<a class="headerlink" href="#chapmann-enskog-analysis-full" title="Link to this heading"></a></h4>
+<div class="toggle docutils container">
 <p>Applying the Chapmann-Enskog procedure to LB equation, we expand the term <span class="math notranslate nohighlight">\(f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)\)</span> in a Taylor series to recover the derivative form of the equation, i.e.,</p>
 <div class="math notranslate nohighlight" id="equation-eqexp-cv-noteq">
 <span class="eqno">(39)<a class="headerlink" href="#equation-eqexp-cv-noteq" title="Link to this equation"></a></span>\[
@@ -359,8 +388,7 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
     (Kn^{(3)}):&amp; \partial_{t}^{(2)} f_{i}^{(0)} + \left(1-\displaystyle\frac{1}{\tau}\right)\partial_{t}^{(1)} f_{i}^{(1)} + \displaystyle\left(\frac{1}{2} - \frac{1}{6\tau}\right) \left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right)^{2} f_{i}^{(1)} + \left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right)f_{i}^{(2)} =  - \displaystyle\frac{f_{i}^{(3)}}{\tau},
  \end{array}
 \end{split}\]</div>
-<section id="zero-order-moment-balance">
-<h5>Zero-Order Moment Balance<a class="headerlink" href="#zero-order-moment-balance" title="Link to this heading"></a></h5>
+<p class="rubric">Zero-Order Moment Balance</p>
 <p>To retrieve the balance equation, we sum the Eq. <a class="reference internal" href="#equation-chap-kn-cv-eq">(35)</a> for <span class="math notranslate nohighlight">\(Kn^{(1)}\)</span> and <span class="math notranslate nohighlight">\(Kn^{(2)}\)</span> over <span class="math notranslate nohighlight">\(\sum_{i=0} \)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-cv-kn1-b0-all">
 <span class="eqno">(41)<a class="headerlink" href="#equation-cv-kn1-b0-all" title="Link to this equation"></a></span>\[\begin{split}
@@ -389,18 +417,19 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
 <span class="eqno">(44)<a class="headerlink" href="#equation-cv-kn3-b0-all" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{l}
 (Kn^{(3)}):&amp; \displaystyle\sum_{i}\left[ \partial_{t}^{(2)} f_{i}^{(0)} + \left(1-\displaystyle\frac{1}{\tau}\right)\partial_{t}^{(1)} f_{i}^{(1)} + \displaystyle\left(\frac{1}{2} - \frac{1}{6\tau}\right) \left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right)^{2} f_{i}^{(1)} + \left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right)f_{i}^{(2)} \right] =  - \displaystyle\sum_{i}\left[\displaystyle\frac{f_{i}^{(3)}}{\tau} \right], \\
-(Kn^{(3)}):&amp; \partial_{t}^{(2)} u + \partial_{t}\left(\partial_{\alpha} m^{(1)}_{\alpha} + \partial_{\beta} m^{(1)}_{\beta}\right) + \partial_{\alpha}\partial_{\beta} m^{(1)}_{\alpha\beta} + \partial_{\alpha} m^{(2)}_{\alpha} = 0.
+(Kn^{(3)}):&amp; \partial_{t}^{(2)} u + \partial_{t}^{(1)}\left(\partial_{\alpha} m^{(1)}_{\alpha} + \partial_{\beta} m^{(1)}_{\beta}\right) + \partial_{\alpha}\partial_{\beta} m^{(1)}_{\alpha\beta} + \partial_{\alpha} m^{(2)}_{\alpha} = 0.
 \end{array}
 \end{split}\]</div>
 <p>By summing the Eqs. <a class="reference internal" href="#equation-cv-kn1-b0">(36)</a>, <a class="reference internal" href="#equation-cv-kn2-b0">(37)</a>, and <a class="reference internal" href="#equation-cv-kn3-b0">(38)</a>, and also extending to higher orders of Knudsen, we have</p>
 <div class="math notranslate nohighlight">
 \[
-\partial_{t}  u + \partial_{\alpha} B_{\alpha} + \underbrace{\partial_{\alpha} \left( m^{(1)}_{\alpha} + m^{(2)}_{\alpha} + ...\right) }_{\textrm{Numerical Errors}} =0,
+\partial_{t}  u + \partial_{\alpha} B_{\alpha} + \partial_{\alpha}\left(\nu \partial_{\alpha} u \right) + \underbrace{\partial_{\alpha} m^{(2)}_{\alpha} + \partial_{\alpha}\partial_{\beta} m^{(1)}_{\alpha\beta} + \partial_{t}^{(1)}\left(\partial_{\alpha} m^{(1)}_{\alpha} + \partial_{\beta} m^{(1)}_{\beta}\right) - \tau \partial_{t}^{(0)}  B_{\alpha} + ...  }_{\textrm{Numerical Errors}} =0,
 \]</div>
-<p>where these numerical error can be related to the numerical error from the approximation of a derivative term by an expansion in Taylor series.</p>
+<p>where <span class="math notranslate nohighlight">\(\nu=c_{s}^{2}(\tau-1/2)\)</span>. The numerical errors can be corrected using extra moments in the equilibrium distribution function and some ones can neglected due to its relevance decay exponentially with the decrease of <span class="math notranslate nohighlight">\(\Delta x\)</span> and <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p>
+</div>
 </section>
 <section id="boundary-conditions">
-<h5>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Link to this heading"></a></h5>
+<h4>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Link to this heading"></a></h4>
 <p>The boundary conditions for the lattices can be derived by solving a linear system of known moments.</p>
 <table class="docutils align-default">
 <thead>
@@ -439,7 +468,6 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
 </section>
 </section>
 </section>
-</section>
 <section id="benchmark-1d-non-linear-convective-formulation-of-the-buckley-leverett-equation">
 <h2>Benchmark - 1D Non-Linear Convective formulation of the Buckley-Leverett Equation<a class="headerlink" href="#benchmark-1d-non-linear-convective-formulation-of-the-buckley-leverett-equation" title="Link to this heading"></a></h2>
 <p>Considering a pure convective formulation of the Buckley-Leverett equation, where gravitational effects and capillary pressure are neglected, we have:</p>
@@ -452,12 +480,12 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
 <span class="eqno">(46)<a class="headerlink" href="#equation-eqfractionalflow" title="Link to this equation"></a></span>\[
 F(s_w) = \frac{ s_{w}^{2} }{ s_{w}^{2} + M_{\mu}(1-s_{w})^{2}}.
 \]</div>
-<p>The simulation parameters are chosen so that the average velocity component <span class="math notranslate nohighlight">\(\langle u \rangle_{\alpha} / \varphi\)</span> equals <span class="math notranslate nohighlight">\(1\,\mathrm{m/s}\)</span> and the dynamic viscosity ratio <span class="math notranslate nohighlight">\(M_{\mu}\)</span> equals <span class="math notranslate nohighlight">\(1\)</span>. We consider a one-dimensional porous medium of length <span class="math notranslate nohighlight">\(L_x = 20\,\mathrm{m}\)</span>, initially saturated with oil (see <a class="reference internal" href="#d-displace-bl"><span class="std std-numref">Fig. 6</span></a>). Water is injected at the inlet <span class="math notranslate nohighlight">\((x=0)\)</span> under a Dirichlet boundary condition <span class="math notranslate nohighlight">\(s_{w}(x=0)=1\)</span>. At the outlet <span class="math notranslate nohighlight">\((x=L)\)</span>, a Neumann boundary condition specifying a zero gradient in water saturation is applied.</p>
+<p>The simulation parameters are chosen so that the average velocity component <span class="math notranslate nohighlight">\(\langle u \rangle_{\alpha} / \varphi\)</span> equals <span class="math notranslate nohighlight">\(1\,\mathrm{m/s}\)</span> and the dynamic viscosity ratio <span class="math notranslate nohighlight">\(M_{\mu}\)</span> equals <span class="math notranslate nohighlight">\(1\)</span>. We consider a one-dimensional porous medium of length <span class="math notranslate nohighlight">\(L_x = 20\,\mathrm{m}\)</span>, initially saturated with oil (see <a class="reference internal" href="#d-displace-bl"><span class="std std-numref">Fig. 8</span></a>). Water is injected at the inlet <span class="math notranslate nohighlight">\((x=0)\)</span> under a Dirichlet boundary condition <span class="math notranslate nohighlight">\(s_{w}(x=0)=1\)</span>. At the outlet <span class="math notranslate nohighlight">\((x=L)\)</span>, a Neumann boundary condition specifying a zero gradient in water saturation is applied.</p>
 <figure class="align-center" id="d-displace-bl">
 <a class="reference internal image-reference" href="../_images/1D-Displace-BL.svg"><img alt="../_images/1D-Displace-BL.svg" src="../_images/1D-Displace-BL.svg" style="width: 686.0px; height: 205.0px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Geometry of the non-linear convective problem: initial and boundary conditions.</span><a class="headerlink" href="#d-displace-bl" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Geometry of the non-linear convective problem: initial and boundary conditions.</span><a class="headerlink" href="#d-displace-bl" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <section id="transient-analytical-solution">
@@ -476,9 +504,12 @@ s_{w}(x,t)= \left\{  \begin{array}{ccc}
 \[
 \tilde{s}_{w}=\displaystyle\frac{F(\tilde{s}_{w})}{F'(\tilde{s}_{w})}=\sqrt{\displaystyle\frac{M_{\mu}}{M_{\mu}+1}}, \quad \quad \textrm{where} \quad \quad F^{'}(s_{w})=\frac{dF}{ds_{w}}=\frac{2s_{w}M_{\mu}(1-s_{w})}{(s_{w}^{2}+M_{\mu}(1-s_{w})^{2})^{2}}.
 \]</div>
+<section id="id1">
+<h4>Forward Time and Forward Space - FTFS<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
 </section>
-<section id="fdm-solution-forward-time-and-forward-space-ftfs">
-<h3>FDM Solution (Forward Time and Forward Space - FTFS)<a class="headerlink" href="#fdm-solution-forward-time-and-forward-space-ftfs" title="Link to this heading"></a></h3>
+<section id="fdm-solution">
+<h4>FDM Solution<a class="headerlink" href="#fdm-solution" title="Link to this heading"></a></h4>
+<div class="toggle docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="c1">#----------------------------Simulation-Set--------------------------------------------------------</span>
@@ -509,9 +540,11 @@ s_{w}(x,t)= \left\{  \begin{array}{ccc}
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sf</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Water Saturation&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
 </section>
 <section id="lattice-boltzmann-framework-of-ftfs">
-<h3>Lattice Boltzmann Framework of FTFS<a class="headerlink" href="#lattice-boltzmann-framework-of-ftfs" title="Link to this heading"></a></h3>
+<h4>Lattice Boltzmann Framework of FTFS<a class="headerlink" href="#lattice-boltzmann-framework-of-ftfs" title="Link to this heading"></a></h4>
+<div class="toggle docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="c1">#***************************************InputParameters************************************************</span>
@@ -554,9 +587,14 @@ s_{w}(x,t)= \left\{  \begin{array}{ccc}
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sk</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Water Saturation&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
 </section>
+</section>
+<section id="id2">
+<h3>Forward-Time and Central-Space with Small Diffusivity (FTCS-SD)<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
 <section id="lattice-boltzmann-method-d1q3">
-<h3>Lattice Boltzmann Method (D1Q3)<a class="headerlink" href="#lattice-boltzmann-method-d1q3" title="Link to this heading"></a></h3>
+<h4>Lattice Boltzmann Method (D1Q3):<a class="headerlink" href="#lattice-boltzmann-method-d1q3" title="Link to this heading"></a></h4>
+<div class="toggle docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="c1">#***************************************InputParameters************************************************</span>
@@ -601,9 +639,11 @@ s_{w}(x,t)= \left\{  \begin{array}{ccc}
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sk</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Water Saturation&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
 </section>
 <section id="fdm-approach-of-lbm-framework-d1q3">
-<h3>FDM approach of LBM Framework D1Q3<a class="headerlink" href="#fdm-approach-of-lbm-framework-d1q3" title="Link to this heading"></a></h3>
+<h4>FDM approach of LBM Framework D1Q3:<a class="headerlink" href="#fdm-approach-of-lbm-framework-d1q3" title="Link to this heading"></a></h4>
+<div class="toggle docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="c1">#----------------------------Simulation-Set--------------------------------------------------------</span>
@@ -635,6 +675,8 @@ s_{w}(x,t)= \left\{  \begin{array}{ccc}
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sf</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Water Saturation&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+</section>
 </section>
 </section>
 </section>

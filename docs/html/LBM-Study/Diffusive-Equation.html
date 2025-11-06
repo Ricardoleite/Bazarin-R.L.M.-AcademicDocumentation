@@ -91,15 +91,17 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#boundary-conditions">Boundary Conditions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#benchmark-case-0-single-sine-mode-on-a-finite-rod-dirichlet">Benchmark Case 0: Single sine mode on a finite rod (Dirichlet)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#lbm-d1q3-solution">LBM D1Q3 Solution</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fdm-solution">FDM Solution</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#numerical-and-analytical-comparisson">Numerical and Analytical Comparisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#boundary-conditions">Boundary Conditions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#benchmark-case-0-single-sine-mode-on-a-finite-rod-dirichlet">Benchmark Case 0: Single sine mode on a finite rod (Dirichlet)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lbm-d1q3-solution">LBM D1Q3 Solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fdm-solution">FDM Solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#numerical-and-analytical-comparisson">Numerical and Analytical Comparisson</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#benchmark-case-1-temperature-ramp">Benchmark Case 1: Temperature ramp</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#benchmark-case-2-temperature-ramp-with-adiabatic-boundary">Benchmark Case 2: Temperature Ramp with Adiabatic Boundary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#benchmark-case-1-temperature-ramp">Benchmark Case 1: Temperature ramp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#benchmark-case-2-temperature-ramp-with-adiabatic-boundary">Benchmark Case 2: Temperature Ramp with Adiabatic Boundary</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Poisson-Equation.html">Poisson Equation (Steady-State Diffusive Equation)</a></li>
@@ -267,6 +269,7 @@ m^{neq}_{\alpha} = \displaystyle\sum_{i} e_{i,\alpha}\left( f_i-f_i^{eq}\right) 
 </section>
 <section id="chapmann-enskog-analysis">
 <h4>Chapmann-Enskog Analysis<a class="headerlink" href="#chapmann-enskog-analysis" title="Link to this heading"></a></h4>
+<div class="toggle docutils container">
 <p>Applying the Chapmann-Enskog procedure to LB equation, we expand the term <span class="math notranslate nohighlight">\(f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)\)</span> in a Taylor series to recover the derivative form of the equation, i.e.,</p>
 <div class="math notranslate nohighlight" id="equation-eqexp-df-eq">
 <span class="eqno">(21)<a class="headerlink" href="#equation-eqexp-df-eq" title="Link to this equation"></a></span>\[
@@ -290,8 +293,7 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
     (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)^{2} \displaystyle\left(\frac{1}{2} - \tau\right) f_{i}^{(0)} =  - \displaystyle\frac{ f_{i}^{(2)} }{ \tau } \quad\quad \rightarrow  \quad\quad f_{i}^{(0)}\textrm{ Formulation}.
  \end{array}
 \end{split}\]</div>
-<section id="zero-order-moment-balance">
-<h5>Zero-Order Moment Balance<a class="headerlink" href="#zero-order-moment-balance" title="Link to this heading"></a></h5>
+<p class="rubric">Zero-Order Moment Balance</p>
 <p>To retrieve the balance equation, we sum the Eq. <a class="reference internal" href="#equation-chap-kn-df-eq">(22)</a> for <span class="math notranslate nohighlight">\(Kn^{(1)}\)</span> and <span class="math notranslate nohighlight">\(Kn^{(2)}\)</span> over <span class="math notranslate nohighlight">\(\sum_{i=0} \)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -325,7 +327,7 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
 \end{array}
 \end{split}\]</div>
 <p>By substituting Eq. <a class="reference internal" href="#equation-df-kn0-b1">(24)</a> into Eq. <a class="reference internal" href="#equation-df-kn1-0-b0">(23)</a>, we recover the Eq. <a class="reference internal" href="#equation-df-eq-lb">(18)</a>, where <span class="math notranslate nohighlight">\(\nu=c_{s}^{2}(\tau-1/2)\)</span>. In the regularized formulation of the lattice Boltzmann equation, the first-order correction is approximated as <span class="math notranslate nohighlight">\(f_{i}^{(1)}\approx (f_{i}-f_{i}^{(0)})=f_{i}^{neq}\)</span>, where higher-order Knudsen moments are filtered out and the collision term is reformulated in terms of <span class="math notranslate nohighlight">\(f_{i}^{neq}\)</span>.</p>
-</section>
+</div>
 </section>
 </section>
 </section>
@@ -398,9 +400,8 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
 |      |                 |   | North                                                                           |   | South                                                                           |
 |      | Unknown $f_{i}$ |   | $f_2=\phi_{n} - (f_0+f_1+f_3+f_4)$                                              |   | $f_4=\phi_{s} - (f_0+f_1+f_2+f_3)$                                              |
 |      |                 |   | East                                                                            |   | East                                                                            |
-|      |                 |   | $f_3=\phi_{e} - (f_0+f_1+f_2+f_4)$                                              |   | $f_1=\phi_{w} - (f_0+f_2+f_3+f_4)$                                              | --></section>
-<section id="benchmark-case-0-single-sine-mode-on-a-finite-rod-dirichlet">
-<h2>Benchmark Case 0: Single sine mode on a finite rod (Dirichlet)<a class="headerlink" href="#benchmark-case-0-single-sine-mode-on-a-finite-rod-dirichlet" title="Link to this heading"></a></h2>
+|      |                 |   | $f_3=\phi_{e} - (f_0+f_1+f_2+f_4)$                                              |   | $f_1=\phi_{w} - (f_0+f_2+f_3+f_4)$                                              | --><section id="benchmark-case-0-single-sine-mode-on-a-finite-rod-dirichlet">
+<h3>Benchmark Case 0: Single sine mode on a finite rod (Dirichlet)<a class="headerlink" href="#benchmark-case-0-single-sine-mode-on-a-finite-rod-dirichlet" title="Link to this heading"></a></h3>
 <p>PDE: <span class="math notranslate nohighlight">\((\phi_t = \partial_{x}(\nu\partial_{x}\phi), (0&lt;x&lt;L,\ t&gt;0)\)</span></p>
 <p>BC: <span class="math notranslate nohighlight">\((\phi(0,t)=\phi(L,t)=0)\)</span></p>
 <p>IC: <span class="math notranslate nohighlight">\(\phi(x,0)=\sin \left(\frac{\pi x}{L}\right)\)</span></p>
@@ -410,7 +411,7 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
 \phi(x,t)=\sin\left(\frac{\pi x}{L}\right) \exp \left(-\nu \frac{\pi^2}{L^2} t\right).
 \]</div>
 <section id="lbm-d1q3-solution">
-<h3>LBM D1Q3 Solution<a class="headerlink" href="#lbm-d1q3-solution" title="Link to this heading"></a></h3>
+<h4>LBM D1Q3 Solution<a class="headerlink" href="#lbm-d1q3-solution" title="Link to this heading"></a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="c1">#***************************************InputParameters************************************************</span>
@@ -463,7 +464,7 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
 </div>
 </section>
 <section id="fdm-solution">
-<h3>FDM Solution<a class="headerlink" href="#fdm-solution" title="Link to this heading"></a></h3>
+<h4>FDM Solution<a class="headerlink" href="#fdm-solution" title="Link to this heading"></a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="c1">#***************************************InputParameters************************************************</span>
@@ -500,7 +501,7 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
 </div>
 </section>
 <section id="numerical-and-analytical-comparisson">
-<h3>Numerical and Analytical Comparisson<a class="headerlink" href="#numerical-and-analytical-comparisson" title="Link to this heading"></a></h3>
+<h4>Numerical and Analytical Comparisson<a class="headerlink" href="#numerical-and-analytical-comparisson" title="Link to this heading"></a></h4>
 <div class="toggle docutils container">
 <p>Here are the python plots over time of above solution</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pylab</span> <span class="kn">import</span> <span class="o">*</span>
@@ -544,7 +545,7 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
 </section>
 </section>
 <section id="benchmark-case-1-temperature-ramp">
-<h2>Benchmark Case 1: Temperature ramp<a class="headerlink" href="#benchmark-case-1-temperature-ramp" title="Link to this heading"></a></h2>
+<h3>Benchmark Case 1: Temperature ramp<a class="headerlink" href="#benchmark-case-1-temperature-ramp" title="Link to this heading"></a></h3>
 <div class="toggle docutils container">
 <p>Analyzing the accuracy of diffusive equation solver, we apply it to a one-dimensional analytical case. The geometry is described by a domain of length <span class="math notranslate nohighlight">\(L\)</span> initialized with a constant temperatura <span class="math notranslate nohighlight">\(T(x,t=0)=0\)</span>. The boundary conditions are given <span class="math notranslate nohighlight">\(T(x=0,t)=1\)</span> and <span class="math notranslate nohighlight">\(T(x=L,t)=0\)</span>.</p>
 <p class="rubric">Steady-State Analytical Solution</p>
@@ -635,7 +636,7 @@ T(x,t)=1-\frac{x}{L}-\frac{2}{\pi}\sum_{n=1}^{\infty}\frac{1}{n}\,e^{-\nu (n\pi/
 </div>
 </section>
 <section id="benchmark-case-2-temperature-ramp-with-adiabatic-boundary">
-<h2>Benchmark Case 2: Temperature Ramp with Adiabatic Boundary<a class="headerlink" href="#benchmark-case-2-temperature-ramp-with-adiabatic-boundary" title="Link to this heading"></a></h2>
+<h3>Benchmark Case 2: Temperature Ramp with Adiabatic Boundary<a class="headerlink" href="#benchmark-case-2-temperature-ramp-with-adiabatic-boundary" title="Link to this heading"></a></h3>
 <div class="toggle docutils container">
 <p>Assuming the <strong>forward heat equation</strong> in 1D with constant diffusivity <span class="math notranslate nohighlight">\(\nu&gt;0\)</span>,</p>
 <div class="math notranslate nohighlight">
@@ -738,6 +739,7 @@ T(x,t)=1-\sum_{n=0}^\infty \frac{2}{L\mu_n}\,e^{-\nu\,\mu_n^{2}\,t}\,\sin(\mu_n 
 </pre></div>
 </div>
 </div>
+</section>
 </section>
 </section>
 
