@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ementa - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas &mdash; Academic-Live-Documentation 1.0.0 documentation</title>
+  <title>Conteúdo - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas &mdash; Academic-Live-Documentation 1.0.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/sphinx_rtd_size.css" type="text/css" />
@@ -46,11 +46,13 @@ const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Citations" href="../Citations.html" />
-    <link rel="prev" title="Convective Equation (Transport Equation)" href="Convective-Equation.html" /> 
+    <link rel="prev" title="Extra::Avoiding Diffusive effect in Convective Equation (Unfinished) - Variable Lattice Sound Sped" href="Extra-Avoiding-Diffusive-Effect-in-CE%28Unfinished%29.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -82,7 +84,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Diffusive-Equation.html">Diffusive Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Poisson-Equation.html">Poisson Equation (Steady-State Diffusive Equation)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Convective-Equation.html">Convective Equation (Transport Equation)</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Ementa - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Convective-Diffusive-Equation.html">Convective-Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FDM-LBM-Diffusive.html">Difference Finite Scheme of Diffusive Equation derived from Lattice Boltzmann</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FDM-LBM-Convective-Diffusive.html">Difference Finite Scheme derived from MRT Lattice Boltzmann for Convective-Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Extra-Avoiding-Diffusive-Effect-in-CE%28Unfinished%29.html">Extra::Avoiding Diffusive effect in Convective Equation (Unfinished) - Variable Lattice Sound Sped</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Conteúdo - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References:</span></p>
 <ul>
@@ -90,7 +96,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Appendix:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="bcs-D2Q5-poisson-equation.html">Boundary Conditions: Deduction for the Lattice D2Q5 - Poisson Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/bcs-D2Q5-poisson-equation.html">Boundary Conditions: Deduction for the Lattice D2Q5 - Poisson Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/sympy-code-fdm-diffusive-expansion.html">Sympy code for FDM expansion of LBM diffusive equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/sympy-code-mrt-fdm-diffusive-expansion-4th.html">Sympy code for FDM expansion of LBM diffusive equation up to Fourth-order</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/sympy-code-mrt-fdm-diffusive-expansion-6th.html">Sympy code for FDM expansion of LBM diffusive equation up to Sixth-order</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Porous-Media-Study/Intro/trans-eq/base-trans-eq.html">Introdution for Transport Equations</a></li>
 </ul>
 
@@ -108,7 +117,7 @@ const thebe_selector_output = ".output, .cell_output"
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Ementa - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</li>
+      <li class="breadcrumb-item active">Conteúdo - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/LBM-Study/Ementa.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -118,8 +127,8 @@ const thebe_selector_output = ".output, .cell_output"
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section class="tex2jax_ignore mathjax_ignore" id="ementa-introducao-aos-metodos-de-lattice-boltzmann-e-differencas-finitas">
-<h1>Ementa - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas<a class="headerlink" href="#ementa-introducao-aos-metodos-de-lattice-boltzmann-e-differencas-finitas" title="Link to this heading"></a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="conteudo-introducao-aos-metodos-de-lattice-boltzmann-e-differencas-finitas">
+<h1>Conteúdo - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas<a class="headerlink" href="#conteudo-introducao-aos-metodos-de-lattice-boltzmann-e-differencas-finitas" title="Link to this heading"></a></h1>
 <ul class="simple">
 <li><p>Aulas 0 (2 horas): Introdução ao LBM (Seguir o Livro do Kruger é bom pra isso)</p>
 <ul>
@@ -131,7 +140,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <ul class="simple">
-<li><p>Aula 1 (4 horas): Equação Difusiva</p>
+<li><p>Aula 1 (4 horas): Diffusive Equation (DE)</p>
 <ul>
 <li><p>Transient Equation: <a class="reference internal" href="Diffusive-Equation.html"><span class="doc">Diffusive Equation</span></a></p>
 <ul>
@@ -161,7 +170,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <ul class="simple">
-<li><p>Aulas 2 (2 horas): Equação Convectiva</p>
+<li><p>Aulas 2 (2 horas): Convective Equation (CE)</p>
 <ul>
 <li><p>🟢 Presentation of the convective equation.</p></li>
 <li><p>🟢 Description in finite difference method framework.</p></li>
@@ -175,17 +184,36 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <ul class="simple">
-<li><p>Aula 3 (2 horas): Convectiva-Diffusão de Calor</p>
+<li><p>Aula 3 (2 horas): Convective-Diffusive Equation (CDE)</p>
 <ul>
-<li><p>Apresentação da equação difusiva e suas aplicações</p></li>
-<li><p>Apresentação dela na estrutura LBM</p></li>
-<li><p>Comparação com código de FVM</p></li>
-<li><p>Talvez uma breve análise de Chapman-Enskog do problema.</p></li>
+<li><p>🟢 Presentation of convective-diffusive equation and its applications.</p></li>
+<li><p>🟢 Description in finite difference method framework.</p></li>
+<li><p>🟢 Description in LBM framework:</p>
+<ul>
+<li><p>🟢 Chapman-Enskog analysis.</p></li>
+</ul>
+</li>
+<li><p>🟢 Analytical case implementation (LBM x FDM Comparisson).</p></li>
 </ul>
 </li>
 </ul>
 <ul class="simple">
-<li><p>Aula 4 (2 horas): Navier-Stokes</p>
+<li><p>Aula 4 (2 horas): FDM Description of Lattice Boltzmann method for Diffusive Equations</p>
+<ul>
+<li><p>🟢 LBM <span class="math notranslate nohighlight">\(\times\)</span> FDM.</p>
+<ul>
+<li><p>🟢 Analytical case implementation (LBM x FDM Comparisson).</p></li>
+</ul>
+</li>
+<li><p>🟢 Error analysis - Fourth-Order Convergence Rate</p></li>
+<li><p>🟢 MRT-LBM <span class="math notranslate nohighlight">\(\times\)</span> FDM.</p></li>
+<li><p>🟢 Error analysis - Fourth-Order Convergence Rate</p></li>
+<li><p>🟢 Error analysis - Sixth-Order Convergence Rate</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Aula 5 (2 horas): Navier-Stokes</p>
 <ul>
 <li><p>Apresentação da equação</p></li>
 <li><p>Apresentação dela na estrutura LBM</p></li>
@@ -194,7 +222,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <ul class="simple">
-<li><p>Aula 5 (2 horas): Condições de Contorno</p>
+<li><p>Aula 6 (2 horas): Condições de Contorno</p>
 <ul>
 <li><p>Apresentação do conceito das condições de contorno para o LBM</p></li>
 <li><p>Bounce-Back e suas variações.</p></li>
@@ -204,7 +232,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <ul class="simple">
-<li><p>Aula 6 (2 horas): Termo de Força</p>
+<li><p>Aula 7 (2 horas): Termo de Força</p>
 <ul>
 <li><p>Conceito do termo de força e suas implicações</p></li>
 <li><p>Necessidade de aumento da discretização espaço-tempo para segunda-ordem.</p></li>
@@ -213,7 +241,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <ul class="simple">
-<li><p>Aula 7 (2 horas): Navier-Stokes com Temperatura</p>
+<li><p>Aula 8 (2 horas): Navier-Stokes com Temperatura</p>
 <ul>
 <li><p>Apresentação da equação como uma combinação do desenvolvido nas aulas 3 e 4.</p></li>
 <li><p>Apresentação da estrutura LBM</p></li>
@@ -222,7 +250,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <ul class="simple">
-<li><p>Aula 8 (2 horas): Estabilidade numérica</p>
+<li><p>Aula 9 (2 horas): Estabilidade numérica</p>
 <ul>
 <li><p>Breve discussão sobre a influência do operador de colisão na estabilidade numérica para baixas viscosidade.</p></li>
 <li><p>Discussão da limitação do LBM para alta velocidade (u próximo de 1)</p></li>
@@ -231,7 +259,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <ul class="simple">
-<li><p>Aula 8 (2 horas): Introdução a escoamento multicomponente – aula 1</p>
+<li><p>Aula 10 (2 horas): Introdução a escoamento multicomponente – aula 1</p>
 <ul>
 <li><p>Breve introdução ao problema e as equações que descrevem este tipo de problema.</p></li>
 <li><p>Apresentação das equações de balanço de massa e os modelos de segregação.</p></li>
@@ -240,7 +268,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <ul class="simple">
-<li><p>Aula 9 (2 horas): Introdução a escoamento multicomponente – aula 2</p>
+<li><p>Aula 11 (2 horas): Introdução a escoamento multicomponente – aula 2</p>
 <ul>
 <li><p>Incorporação da equação da quantidade de movimento.</p></li>
 <li><p>Breve discussão da tensão interfacial.</p></li>
@@ -249,7 +277,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <ul class="simple">
-<li><p>Aula 10 (2 horas): Tópicos de paralelização.</p></li>
+<li><p>Aula 12 (2 horas): Tópicos de paralelização.</p></li>
 </ul>
 </section>
 
@@ -276,7 +304,7 @@ const thebe_selector_output = ".output, .cell_output"
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="Convective-Equation.html" class="btn btn-neutral float-left" title="Convective Equation (Transport Equation)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Extra-Avoiding-Diffusive-Effect-in-CE%28Unfinished%29.html" class="btn btn-neutral float-left" title="Extra::Avoiding Diffusive effect in Convective Equation (Unfinished) - Variable Lattice Sound Sped" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../Citations.html" class="btn btn-neutral float-right" title="Citations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

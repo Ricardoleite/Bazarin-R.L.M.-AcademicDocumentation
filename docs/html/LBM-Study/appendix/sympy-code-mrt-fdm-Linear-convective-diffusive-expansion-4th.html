@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sympy code for FDM expansion of LBM diffusive equation up to Fourth-order &mdash; Academic-Live-Documentation 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/sphinx_rtd_size.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sphinx-thebe.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/eqno.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script src="../../_static/design-tabs.js?v=36754332"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+        <script async="async" src="../../_static/sphinx-thebe.js?v=afe5de03"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Academic-Live-Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Porous Media - Multiphase Flow in Porous Continuous Porous Media:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Porous-Media-Study/Intro/Intro-PM-MFinPCPM.html">Introdution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Porous-Media-Study/Intro/Intro-PM-MFinPCPM.html#mass-balance-for-two-fluids-continuous-porous-media">Mass Balance for two-fluids (Continuous Porous Media)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Lattice Boltzmann Method - Application to Different Partial differential Equation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Diffusive-Equation.html">Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Poisson-Equation.html">Poisson Equation (Steady-State Diffusive Equation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Convective-Equation.html">Convective Equation (Transport Equation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Convective-Diffusive-Equation.html">Convective-Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FDM-LBM-Diffusive.html">Difference Finite Scheme of Diffusive Equation derived from Lattice Boltzmann</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FDM-LBM-Convective-Diffusive.html">Difference Finite Scheme derived from MRT Lattice Boltzmann for Convective-Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Extra-Avoiding-Diffusive-Effect-in-CE%28Unfinished%29.html">Extra::Avoiding Diffusive effect in Convective Equation (Unfinished) - Variable Lattice Sound Sped</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Ementa.html">Conteúdo - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Citations.html">Citations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="bcs-D2Q5-poisson-equation.html">Boundary Conditions: Deduction for the Lattice D2Q5 - Poisson Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sympy-code-fdm-diffusive-expansion.html">Sympy code for FDM expansion of LBM diffusive equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sympy-code-mrt-fdm-diffusive-expansion-4th.html">Sympy code for FDM expansion of LBM diffusive equation up to Fourth-order</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sympy-code-mrt-fdm-diffusive-expansion-6th.html">Sympy code for FDM expansion of LBM diffusive equation up to Sixth-order</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Porous-Media-Study/Intro/trans-eq/base-trans-eq.html">Introdution for Transport Equations</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Academic-Live-Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Sympy code for FDM expansion of LBM diffusive equation up to Fourth-order</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/LBM-Study/appendix/sympy-code-mrt-fdm-Linear-convective-diffusive-expansion-4th.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="sympy-code-for-fdm-expansion-of-lbm-diffusive-equation-up-to-fourth-order">
+<h1>Sympy code for FDM expansion of LBM diffusive equation up to Fourth-order<a class="headerlink" href="#sympy-code-for-fdm-expansion-of-lbm-diffusive-equation-up-to-fourth-order" title="Link to this heading"></a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># 1) Symbols (parameters and step sizes)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="n">dx</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;Delta_x Delta_t&#39;</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">rt3s</span><span class="p">,</span> <span class="n">rt4s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;TR_</span><span class="si">{3}</span><span class="s1"> TR_</span><span class="si">{4}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">cb</span><span class="p">,</span> <span class="n">nu</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;s_</span><span class="si">{1}</span><span class="s1"> s_</span><span class="si">{2}</span><span class="s1"> c_{</span><span class="se">\\</span><span class="s1">alpha} \overline</span><span class="si">{c}</span><span class="s1">_{</span><span class="se">\\</span><span class="s1">alpha} </span><span class="se">\\</span><span class="s1">nu&#39;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">dut</span><span class="p">,</span> <span class="n">dux</span><span class="p">,</span> <span class="n">dux2</span><span class="p">,</span> <span class="n">duxt</span><span class="p">,</span> <span class="n">dut2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac{\partial</span><span class="si">{u}</span><span class="s1">}{\partial</span><span class="si">{t}</span><span class="s1">} </span><span class="se">\\</span><span class="s1">frac{\partial</span><span class="si">{u}</span><span class="s1">}{\partial</span><span class="si">{x}</span><span class="s1">} </span><span class="se">\\</span><span class="s1">frac{\partial^</span><span class="si">{2}{u}</span><span class="s1">}{\partial{x^</span><span class="si">{2}</span><span class="s1">}} </span><span class="se">\\</span><span class="s1">frac{\partial^</span><span class="si">{2}{u}</span><span class="s1">}{\partial</span><span class="si">{x}</span><span class="s1">\partial</span><span class="si">{t}</span><span class="s1">} </span><span class="se">\\</span><span class="s1">frac{\partial^</span><span class="si">{2}{u}</span><span class="s1">}{\partial{t^</span><span class="si">{2}</span><span class="s1">}}&#39;</span><span class="p">)</span>
+<span class="n">dux3</span><span class="p">,</span> <span class="n">dux2t</span><span class="p">,</span> <span class="n">duxt2</span><span class="p">,</span> <span class="n">dut3</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac{\partial^</span><span class="si">{3}{u}</span><span class="s1">}{\partial{x^</span><span class="si">{3}</span><span class="s1">}} </span><span class="se">\\</span><span class="s1">frac{\partial^</span><span class="si">{3}{u}</span><span class="s1">}{\partial{x^</span><span class="si">{2}</span><span class="s1">}\partial</span><span class="si">{t}</span><span class="s1">} </span><span class="se">\\</span><span class="s1">frac{\partial^</span><span class="si">{3}{u}</span><span class="s1">}{\partial</span><span class="si">{x}</span><span class="s1">\partial{t^</span><span class="si">{2}</span><span class="s1">}} </span><span class="se">\\</span><span class="s1">frac{\partial^</span><span class="si">{3}{u}</span><span class="s1">}{\partial{t^</span><span class="si">{3}</span><span class="s1">}}&#39;</span><span class="p">)</span>
+<span class="n">dux3t</span><span class="p">,</span> <span class="n">dux2t2</span><span class="p">,</span> <span class="n">duxt3</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac{\partial^</span><span class="si">{4}{u}</span><span class="s1">}{\partial{x^</span><span class="si">{3}</span><span class="s1">}\partial</span><span class="si">{t}</span><span class="s1">} </span><span class="se">\\</span><span class="s1">frac{\partial^</span><span class="si">{4}{u}</span><span class="s1">}{\partial{x^</span><span class="si">{2}</span><span class="s1">}\partial{t^</span><span class="si">{2}</span><span class="s1">}} </span><span class="se">\\</span><span class="s1">frac{\partial^</span><span class="si">{4}{u}</span><span class="s1">}{\partial</span><span class="si">{x}</span><span class="s1">\partial{t^</span><span class="si">{3}</span><span class="s1">}}&#39;</span><span class="p">)</span>
+<span class="n">dux4</span><span class="p">,</span> <span class="n">dut4</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac{\partial^</span><span class="si">{4}{u}</span><span class="s1">}{\partial{x^</span><span class="si">{4}</span><span class="s1">}} </span><span class="se">\\</span><span class="s1">frac{\partial^</span><span class="si">{4}{u}</span><span class="s1">}{\partial{t^</span><span class="si">{4}</span><span class="s1">}}&#39;</span><span class="p">)</span>
+
+<span class="n">alpha1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">s2</span><span class="o">/</span><span class="mi">3</span> <span class="o">-</span> <span class="n">s2</span><span class="o">*</span><span class="n">cb</span><span class="o">*</span><span class="n">cb</span><span class="p">)</span>
+<span class="n">alpha2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">s1</span><span class="o">*</span><span class="p">(</span><span class="n">cb</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">s2</span><span class="o">*</span><span class="p">(</span><span class="n">cb</span><span class="o">*</span><span class="n">cb</span> <span class="o">-</span> <span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">alpha3</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">s1</span><span class="o">*</span><span class="p">(</span><span class="n">cb</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">s2</span><span class="o">*</span><span class="p">(</span><span class="n">cb</span><span class="o">*</span><span class="n">cb</span> <span class="o">-</span> <span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">beta1</span>  <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="o">/</span><span class="mi">3</span> <span class="o">+</span> <span class="n">s1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">s2</span><span class="o">/</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">s2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">s1</span><span class="p">)</span><span class="o">*</span><span class="n">cb</span><span class="o">*</span><span class="n">cb</span> <span class="p">)</span>
+<span class="n">beta2</span>  <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span> <span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">cb</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">s2</span><span class="p">)</span> <span class="o">+</span> <span class="n">s2</span><span class="o">*</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="n">cb</span><span class="o">*</span><span class="n">cb</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">beta3</span>  <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span> <span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">cb</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">s2</span><span class="p">)</span> <span class="o">+</span> <span class="n">s2</span><span class="o">*</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="n">cb</span><span class="o">*</span><span class="n">cb</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">gamma</span>  <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">((</span><span class="n">s1</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">s2</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># 2) Continuous variables and field</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x t&#39;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Function</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
+<span class="c1"># Shorthand for the base (continuous) field value at (x,t)</span>
+<span class="n">UF</span> <span class="o">=</span> <span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">taylor_u</span><span class="p">(</span><span class="n">sx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">st</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">order_x</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">order_t</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">expr</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">S</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># Keep all mixed terms up to the specified individual orders.</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">order_x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">order_t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="c1"># skip the (0,0) term? no, keep it.</span>
+            <span class="n">term</span> <span class="o">=</span> <span class="p">(</span> <span class="p">(</span><span class="n">sx</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span><span class="o">**</span><span class="n">m</span> <span class="o">*</span> <span class="p">(</span><span class="n">st</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">**</span><span class="n">n</span>
+                    <span class="o">/</span> <span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+                    <span class="o">*</span> <span class="n">sp</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">UF</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="p">)</span>
+            <span class="n">expr</span> <span class="o">+=</span> <span class="n">term</span>
+    <span class="k">return</span> <span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># 4) Discrete stencil terms (expanded)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># u_x^{t+1}, u_x^{t}, u_x^{t-1}, u_x^{t-2}</span>
+<span class="n">u_t_p1</span> <span class="o">=</span> <span class="n">taylor_u</span><span class="p">(</span><span class="n">sx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="n">st</span><span class="o">=+</span><span class="mi">1</span><span class="p">,</span> <span class="n">order_x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">order_t</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">u_t_p1</span><span class="p">)</span>
+<span class="n">u_t_0</span>  <span class="o">=</span> <span class="n">taylor_u</span><span class="p">(</span><span class="n">sx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="n">st</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="n">order_x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">order_t</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># exactly u(x,t)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">u_t_0</span><span class="p">)</span>
+<span class="n">u_t_m1</span> <span class="o">=</span> <span class="n">taylor_u</span><span class="p">(</span><span class="n">sx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="n">st</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">order_x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">order_t</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">u_t_m1</span><span class="p">)</span>
+<span class="n">u_t_m2</span> <span class="o">=</span> <span class="n">taylor_u</span><span class="p">(</span><span class="n">sx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="n">st</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">order_x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">order_t</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">u_t_m2</span><span class="p">)</span>
+
+<span class="c1"># u_{x±1}^{t}</span>
+<span class="n">u_xm1_t0</span> <span class="o">=</span> <span class="n">taylor_u</span><span class="p">(</span><span class="n">sx</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">st</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="n">order_x</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">order_t</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">u_xm1_t0</span><span class="p">)</span>
+<span class="n">u_xp1_t0</span> <span class="o">=</span> <span class="n">taylor_u</span><span class="p">(</span><span class="n">sx</span><span class="o">=+</span><span class="mi">1</span><span class="p">,</span> <span class="n">st</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="n">order_x</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">order_t</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">u_xp1_t0</span><span class="p">)</span>
+
+<span class="c1"># u_{x±1}^{t-1}</span>
+<span class="n">u_xm1_tm1</span> <span class="o">=</span> <span class="n">taylor_u</span><span class="p">(</span><span class="n">sx</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">st</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">order_x</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">order_t</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">u_xp1_tm1</span> <span class="o">=</span> <span class="n">taylor_u</span><span class="p">(</span><span class="n">sx</span><span class="o">=+</span><span class="mi">1</span><span class="p">,</span> <span class="n">st</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">order_x</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">order_t</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{\Delta_{t}^{4} \frac{\partial^{4}}{\partial t^{4}} u{\left(x,t \right)}}{24} + \frac{\Delta_{t}^{3} \frac{\partial^{3}}{\partial t^{3}} u{\left(x,t \right)}}{6} + \frac{\Delta_{t}^{2} \frac{\partial^{2}}{\partial t^{2}} u{\left(x,t \right)}}{2} + \Delta_{t} \frac{\partial}{\partial t} u{\left(x,t \right)} + u{\left(x,t \right)}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle u{\left(x,t \right)}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{\Delta_{t}^{4} \frac{\partial^{4}}{\partial t^{4}} u{\left(x,t \right)}}{24} - \frac{\Delta_{t}^{3} \frac{\partial^{3}}{\partial t^{3}} u{\left(x,t \right)}}{6} + \frac{\Delta_{t}^{2} \frac{\partial^{2}}{\partial t^{2}} u{\left(x,t \right)}}{2} - \Delta_{t} \frac{\partial}{\partial t} u{\left(x,t \right)} + u{\left(x,t \right)}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{2 \Delta_{t}^{4} \frac{\partial^{4}}{\partial t^{4}} u{\left(x,t \right)}}{3} - \frac{4 \Delta_{t}^{3} \frac{\partial^{3}}{\partial t^{3}} u{\left(x,t \right)}}{3} + 2 \Delta_{t}^{2} \frac{\partial^{2}}{\partial t^{2}} u{\left(x,t \right)} - 2 \Delta_{t} \frac{\partial}{\partial t} u{\left(x,t \right)} + u{\left(x,t \right)}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{\Delta_{x}^{4} \frac{\partial^{4}}{\partial x^{4}} u{\left(x,t \right)}}{24} - \frac{\Delta_{x}^{3} \frac{\partial^{3}}{\partial x^{3}} u{\left(x,t \right)}}{6} + \frac{\Delta_{x}^{2} \frac{\partial^{2}}{\partial x^{2}} u{\left(x,t \right)}}{2} - \Delta_{x} \frac{\partial}{\partial x} u{\left(x,t \right)} + u{\left(x,t \right)}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{\Delta_{x}^{4} \frac{\partial^{4}}{\partial x^{4}} u{\left(x,t \right)}}{24} + \frac{\Delta_{x}^{3} \frac{\partial^{3}}{\partial x^{3}} u{\left(x,t \right)}}{6} + \frac{\Delta_{x}^{2} \frac{\partial^{2}}{\partial x^{2}} u{\left(x,t \right)}}{2} + \Delta_{x} \frac{\partial}{\partial x} u{\left(x,t \right)} + u{\left(x,t \right)}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># 5) Build the discrete equation (expanded) and move everything to one side</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="n">lhs</span> <span class="o">=</span> <span class="n">u_t_p1</span>
+
+<span class="n">rhs</span> <span class="o">=</span> <span class="p">(</span><span class="n">alpha1</span><span class="o">*</span><span class="n">u_t_0</span> <span class="o">+</span> <span class="n">alpha2</span><span class="o">*</span><span class="n">u_xm1_t0</span> <span class="o">+</span> <span class="n">alpha3</span><span class="o">*</span><span class="n">u_xp1_t0</span>
+       <span class="o">+</span> <span class="n">beta1</span><span class="o">*</span><span class="n">u_t_m1</span> <span class="o">+</span> <span class="n">beta2</span><span class="o">*</span><span class="n">u_xm1_tm1</span> <span class="o">+</span> <span class="n">beta3</span><span class="o">*</span><span class="n">u_xp1_tm1</span>
+       <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">u_t_m2</span><span class="p">)</span>
+
+<span class="n">residual</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">lhs</span> <span class="o">-</span> <span class="n">rhs</span><span class="p">))</span>  <span class="c1"># = 0 is the modified equation</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_dx</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">max_dt</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">max_total</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">residual</span><span class="p">)</span>
+<span class="n">poly</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Poly</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="s1">&#39;EX&#39;</span><span class="p">)</span>  <span class="c1"># keep symbolic coeffs</span>
+<span class="n">kept</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">S</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="n">px</span><span class="p">,</span> <span class="n">pt</span><span class="p">),</span> <span class="n">coeff</span> <span class="ow">in</span> <span class="n">poly</span><span class="o">.</span><span class="n">terms</span><span class="p">():</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">px</span> <span class="o">&lt;=</span> <span class="n">max_dx</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">pt</span> <span class="o">&lt;=</span> <span class="n">max_dt</span><span class="p">)</span> <span class="ow">and</span> <span class="p">((</span><span class="n">px</span> <span class="o">+</span> <span class="n">pt</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">max_total</span><span class="p">):</span>
+        <span class="n">kept</span> <span class="o">+=</span> <span class="n">coeff</span> <span class="o">*</span> <span class="n">dx</span><span class="o">**</span><span class="n">px</span> <span class="o">*</span> <span class="n">dt</span><span class="o">**</span><span class="n">pt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">term1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">kept</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">cb</span><span class="p">,</span><span class="n">c</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">UF</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span><span class="n">dut4</span><span class="p">,</span><span class="n">UF</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span><span class="n">duxt3</span><span class="p">,</span><span class="n">UF</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span><span class="n">dut3</span><span class="p">,</span><span class="n">UF</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span><span class="n">dux2t2</span><span class="p">,</span><span class="n">UF</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span><span class="n">duxt2</span><span class="p">,</span>
+                                <span class="n">UF</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span><span class="n">dut2</span><span class="p">,</span><span class="n">UF</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">t</span><span class="p">):</span><span class="n">dux3t</span><span class="p">,</span><span class="n">UF</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">t</span><span class="p">):</span><span class="n">dux2t</span><span class="p">,</span><span class="n">UF</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">):</span><span class="n">duxt</span><span class="p">,</span>
+                                <span class="n">UF</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">t</span><span class="p">):</span><span class="n">dut</span><span class="p">,</span><span class="n">UF</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">4</span><span class="p">):</span><span class="n">dux4</span><span class="p">,</span><span class="n">UF</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span><span class="n">dux3</span><span class="p">,</span><span class="n">UF</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span><span class="n">dux2</span><span class="p">,</span><span class="n">UF</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">):</span><span class="n">dux</span><span class="p">})</span>
+<span class="n">display</span><span class="p">(</span><span class="n">term1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{\Delta_{t}^{4} \frac{\partial^{4}{u}}{\partial{t^{4}}} \left(- 15 s_{1} s_{2} + 14 s_{1} + 14 s_{2} - 12\right)}{24} - \frac{\Delta_{t}^{4} \frac{\partial^{4}{u}}{\partial{x}\partial{t^{3}}} c_{\alpha} s_{1} \left(s_{2} - 1\right)}{6} + \frac{\Delta_{t}^{3} \frac{\partial^{3}{u}}{\partial{t^{3}}} \left(7 s_{1} s_{2} - 6 s_{1} - 6 s_{2} + 6\right)}{6} + \frac{\Delta_{t}^{3} \frac{\partial^{3}{u}}{\partial{x}\partial{t^{2}}} c_{\alpha} s_{1} \left(s_{2} - 1\right)}{2} + \frac{\Delta_{t}^{2} \Delta_{x}^{2} \frac{\partial^{4}{u}}{\partial{x^{2}}\partial{t^{2}}} \left(\frac{3 \Delta_{t}^{2} c_{\alpha}^{2} s_{1} s_{2}}{\Delta_{x}^{2}} - \frac{3 \Delta_{t}^{2} c_{\alpha}^{2} s_{2}}{\Delta_{x}^{2}} + s_{1} s_{2} - 3 s_{1} - 4 s_{2} + 6\right)}{12} - \frac{\Delta_{t}^{2} \Delta_{x}^{2} \frac{\partial^{4}{u}}{\partial{x^{3}}\partial{t}} c_{\alpha} s_{1} \left(s_{2} - 1\right)}{6} + \frac{\Delta_{t}^{2} \frac{\partial^{2}{u}}{\partial{t^{2}}} \left(- 3 s_{1} s_{2} + 2 s_{1} + 2 s_{2}\right)}{2} - \Delta_{t}^{2} \frac{\partial^{2}{u}}{\partial{x}\partial{t}} c_{\alpha} s_{1} \left(s_{2} - 1\right) - \frac{\Delta_{t} \Delta_{x}^{2} \frac{\partial^{3}{u}}{\partial{x^{2}}\partial{t}} \left(\frac{3 \Delta_{t}^{2} c_{\alpha}^{2} s_{1} s_{2}}{\Delta_{x}^{2}} - \frac{3 \Delta_{t}^{2} c_{\alpha}^{2} s_{2}}{\Delta_{x}^{2}} + s_{1} s_{2} - 3 s_{1} - 4 s_{2} + 6\right)}{6} + \frac{\Delta_{t} \Delta_{x}^{2} \frac{\partial^{3}{u}}{\partial{x^{3}}} c_{\alpha} s_{1} s_{2}}{6} + \Delta_{t} \frac{\partial{u}}{\partial{t}} s_{1} s_{2} + \Delta_{t} \frac{\partial{u}}{\partial{x}} c_{\alpha} s_{1} s_{2} + \frac{\Delta_{x}^{4} \frac{\partial^{4}{u}}{\partial{x^{4}}} s_{2} \left(\frac{3 \Delta_{t}^{2} c_{\alpha}^{2} s_{1}}{\Delta_{x}^{2}} - \frac{6 \Delta_{t}^{2} c_{\alpha}^{2}}{\Delta_{x}^{2}} + s_{1} - 2\right)}{72} + \frac{\Delta_{x}^{2} \frac{\partial^{2}{u}}{\partial{x^{2}}} s_{2} \left(\frac{3 \Delta_{t}^{2} c_{\alpha}^{2} s_{1}}{\Delta_{x}^{2}} - \frac{6 \Delta_{t}^{2} c_{\alpha}^{2}}{\Delta_{x}^{2}} + s_{1} - 2\right)}{6}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">term2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">collect</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="o">-</span><span class="n">term1</span><span class="o">/</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="p">))</span> <span class="o">+</span> <span class="n">dut</span><span class="p">,</span> <span class="p">{</span><span class="n">dut4</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span><span class="n">dux4</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="n">dt</span><span class="p">,</span><span class="n">dux3t</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="p">,</span><span class="n">duxt3</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">c</span><span class="p">,</span>
+                    <span class="n">dux2t2</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span><span class="n">dux3</span><span class="p">,</span><span class="n">dux2t</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
+                    <span class="n">duxt2</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="p">,</span><span class="n">dut3</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="n">dux2</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">dt</span><span class="p">,</span><span class="n">duxt</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">c</span><span class="p">,</span><span class="n">dut2</span><span class="o">*</span><span class="n">dt</span><span class="p">})</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">dt</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span><span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)),</span><span class="n">nu</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">term2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \Delta_{t}^{3} \frac{\partial^{4}{u}}{\partial{t^{4}}} \left(\frac{5}{8} - \frac{7}{12 s_{2}} - \frac{7}{12 s_{1}} + \frac{1}{2 s_{1} s_{2}}\right) - \frac{\Delta_{t}^{3} \frac{\partial^{4}{u}}{\partial{x^{2}}\partial{t^{2}}} c_{\alpha}^{2}}{4} + \frac{\Delta_{t}^{3} \frac{\partial^{4}{u}}{\partial{x^{2}}\partial{t^{2}}} c_{\alpha}^{2}}{4 s_{1}} + \Delta_{t}^{3} \frac{\partial^{4}{u}}{\partial{x}\partial{t^{3}}} c_{\alpha} \left(\frac{1}{6} - \frac{1}{6 s_{2}}\right) + \Delta_{t}^{2} \frac{\partial^{3}{u}}{\partial{t^{3}}} \left(- \frac{7}{6} + \frac{1}{s_{2}} + \frac{1}{s_{1}} - \frac{1}{s_{1} s_{2}}\right) + \frac{\Delta_{t}^{2} \frac{\partial^{3}{u}}{\partial{x^{2}}\partial{t}} c_{\alpha}^{2}}{2} - \frac{\Delta_{t}^{2} \frac{\partial^{3}{u}}{\partial{x^{2}}\partial{t}} c_{\alpha}^{2}}{2 s_{1}} + \Delta_{t}^{2} \frac{\partial^{3}{u}}{\partial{x}\partial{t^{2}}} c_{\alpha} \left(- \frac{1}{2} + \frac{1}{2 s_{2}}\right) + \Delta_{t} \Delta_{x}^{2} \frac{\partial^{4}{u}}{\partial{x^{2}}\partial{t^{2}}} \left(- \frac{1}{12} + \frac{1}{4 s_{2}} + \frac{1}{3 s_{1}} - \frac{1}{2 s_{1} s_{2}}\right) + \Delta_{t} \Delta_{x}^{2} \frac{\partial^{4}{u}}{\partial{x^{3}}\partial{t}} c_{\alpha} \left(\frac{1}{6} - \frac{1}{6 s_{2}}\right) - \frac{\Delta_{t} \Delta_{x}^{2} \frac{\partial^{4}{u}}{\partial{x^{4}}} c_{\alpha}^{2}}{24} + \frac{\Delta_{t} \Delta_{x}^{2} \frac{\partial^{4}{u}}{\partial{x^{4}}} c_{\alpha}^{2}}{12 s_{1}} + \Delta_{t} \frac{\partial^{2}{u}}{\partial{t^{2}}} \left(\frac{3}{2} - \frac{1}{s_{2}} - \frac{1}{s_{1}}\right) - \frac{\Delta_{t} \frac{\partial^{2}{u}}{\partial{x^{2}}} c_{\alpha}^{2}}{2} + \frac{\Delta_{t} \frac{\partial^{2}{u}}{\partial{x^{2}}} c_{\alpha}^{2}}{s_{1}} + \Delta_{t} \frac{\partial^{2}{u}}{\partial{x}\partial{t}} c_{\alpha} \left(1 - \frac{1}{s_{2}}\right) + \Delta_{x}^{2} \frac{\partial^{3}{u}}{\partial{x^{2}}\partial{t}} \left(\frac{1}{6} - \frac{1}{2 s_{2}} - \frac{2}{3 s_{1}} + \frac{1}{s_{1} s_{2}}\right) - \frac{\Delta_{x}^{2} \frac{\partial^{3}{u}}{\partial{x^{3}}} c_{\alpha}}{6} + \frac{\partial^{2}{u}}{\partial{x^{2}}} \nu - \frac{\partial{u}}{\partial{x}} c_{\alpha} + \frac{\Delta_{x}^{4} \frac{\partial^{4}{u}}{\partial{x^{4}}} \left(- \frac{1}{72} + \frac{1}{36 s_{1}}\right)}{\Delta_{t}}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">term3</span><span class="o">=</span> <span class="n">term2</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">duxt</span><span class="p">:</span><span class="n">nu</span><span class="o">*</span><span class="n">dux3</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">dux2</span><span class="p">,</span><span class="n">dut2</span><span class="p">:</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">dt</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">6</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span><span class="o">*</span><span class="n">nu</span><span class="o">*</span><span class="n">dux4</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">nu</span><span class="o">*</span><span class="n">c</span><span class="o">*</span><span class="n">dux3</span><span class="o">+</span><span class="n">c</span><span class="o">*</span><span class="n">c</span><span class="o">*</span><span class="n">dux2</span><span class="p">,</span>
+                  <span class="n">duxt2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">nu</span><span class="o">*</span><span class="n">c</span><span class="o">*</span><span class="n">dux4</span><span class="o">+</span><span class="n">c</span><span class="o">*</span><span class="n">c</span><span class="o">*</span><span class="n">dux3</span><span class="p">,</span><span class="n">dux2t</span><span class="p">:</span><span class="n">nu</span><span class="o">*</span><span class="n">dux4</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">dux3</span><span class="p">,</span><span class="n">dut3</span><span class="p">:</span><span class="mi">3</span><span class="o">*</span><span class="n">nu</span><span class="o">*</span><span class="n">c</span><span class="o">*</span><span class="n">c</span><span class="o">*</span><span class="n">dux4</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">c</span><span class="o">*</span><span class="n">c</span><span class="o">*</span><span class="n">dux3</span><span class="p">,</span>
+                  <span class="n">duxt3</span><span class="p">:</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">c</span><span class="o">*</span><span class="n">c</span><span class="o">*</span><span class="n">dux4</span><span class="p">,</span><span class="n">dux3t</span><span class="p">:</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">dux4</span><span class="p">,</span><span class="n">dux2t2</span><span class="p">:</span><span class="n">c</span><span class="o">*</span><span class="n">c</span><span class="o">*</span><span class="n">dux4</span><span class="p">,</span><span class="n">dut4</span><span class="p">:</span><span class="n">c</span><span class="o">*</span><span class="n">c</span><span class="o">*</span><span class="n">c</span><span class="o">*</span><span class="n">c</span><span class="o">*</span><span class="n">dux4</span><span class="p">})</span>
+<span class="n">display</span><span class="p">(</span><span class="n">term3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle - \Delta_{t}^{3} \frac{\partial^{4}{u}}{\partial{x^{4}}} c_{\alpha}^{4} \left(\frac{1}{6} - \frac{1}{6 s_{2}}\right) + \Delta_{t}^{3} \frac{\partial^{4}{u}}{\partial{x^{4}}} c_{\alpha}^{4} \left(\frac{5}{8} - \frac{7}{12 s_{2}} - \frac{7}{12 s_{1}} + \frac{1}{2 s_{1} s_{2}}\right) - \frac{\Delta_{t}^{3} \frac{\partial^{4}{u}}{\partial{x^{4}}} c_{\alpha}^{4}}{4} + \frac{\Delta_{t}^{3} \frac{\partial^{4}{u}}{\partial{x^{4}}} c_{\alpha}^{4}}{4 s_{1}} + \frac{\Delta_{t}^{2} c_{\alpha}^{2} \left(- \frac{\partial^{3}{u}}{\partial{x^{3}}} c_{\alpha} + \frac{\partial^{4}{u}}{\partial{x^{4}}} \nu\right)}{2} - \frac{\Delta_{t}^{2} c_{\alpha}^{2} \left(- \frac{\partial^{3}{u}}{\partial{x^{3}}} c_{\alpha} + \frac{\partial^{4}{u}}{\partial{x^{4}}} \nu\right)}{2 s_{1}} + \Delta_{t}^{2} c_{\alpha} \left(- \frac{1}{2} + \frac{1}{2 s_{2}}\right) \left(\frac{\partial^{3}{u}}{\partial{x^{3}}} c_{\alpha}^{2} - 2 \frac{\partial^{4}{u}}{\partial{x^{4}}} \nu c_{\alpha}\right) + \Delta_{t}^{2} \left(- \frac{\partial^{3}{u}}{\partial{x^{3}}} c_{\alpha}^{3} + 3 \frac{\partial^{4}{u}}{\partial{x^{4}}} \nu c_{\alpha}^{2}\right) \left(- \frac{7}{6} + \frac{1}{s_{2}} + \frac{1}{s_{1}} - \frac{1}{s_{1} s_{2}}\right) - \Delta_{t} \Delta_{x}^{2} \frac{\partial^{4}{u}}{\partial{x^{4}}} c_{\alpha}^{2} \left(\frac{1}{6} - \frac{1}{6 s_{2}}\right) + \Delta_{t} \Delta_{x}^{2} \frac{\partial^{4}{u}}{\partial{x^{4}}} c_{\alpha}^{2} \left(- \frac{1}{12} + \frac{1}{4 s_{2}} + \frac{1}{3 s_{1}} - \frac{1}{2 s_{1} s_{2}}\right) - \frac{\Delta_{t} \Delta_{x}^{2} \frac{\partial^{4}{u}}{\partial{x^{4}}} c_{\alpha}^{2}}{24} + \frac{\Delta_{t} \Delta_{x}^{2} \frac{\partial^{4}{u}}{\partial{x^{4}}} c_{\alpha}^{2}}{12 s_{1}} - \frac{\Delta_{t} \frac{\partial^{2}{u}}{\partial{x^{2}}} c_{\alpha}^{2}}{2} + \frac{\Delta_{t} \frac{\partial^{2}{u}}{\partial{x^{2}}} c_{\alpha}^{2}}{s_{1}} + \Delta_{t} c_{\alpha} \left(1 - \frac{1}{s_{2}}\right) \left(- \frac{\partial^{2}{u}}{\partial{x^{2}}} c_{\alpha} + \frac{\partial^{3}{u}}{\partial{x^{3}}} \nu\right) + \Delta_{t} \left(\frac{3}{2} - \frac{1}{s_{2}} - \frac{1}{s_{1}}\right) \left(\frac{\partial^{2}{u}}{\partial{x^{2}}} c_{\alpha}^{2} - 2 \frac{\partial^{3}{u}}{\partial{x^{3}}} \nu c_{\alpha} + \frac{\Delta_{x}^{2} \frac{\partial^{4}{u}}{\partial{x^{4}}} \nu \left(2 - s_{1}\right)}{6 \Delta_{t} s_{1}}\right) - \frac{\Delta_{x}^{2} \frac{\partial^{3}{u}}{\partial{x^{3}}} c_{\alpha}}{6} + \Delta_{x}^{2} \left(- \frac{\partial^{3}{u}}{\partial{x^{3}}} c_{\alpha} + \frac{\partial^{4}{u}}{\partial{x^{4}}} \nu\right) \left(\frac{1}{6} - \frac{1}{2 s_{2}} - \frac{2}{3 s_{1}} + \frac{1}{s_{1} s_{2}}\right) + \frac{\partial^{2}{u}}{\partial{x^{2}}} \nu - \frac{\partial{u}}{\partial{x}} c_{\alpha} + \frac{\Delta_{x}^{4} \frac{\partial^{4}{u}}{\partial{x^{4}}} \left(- \frac{1}{72} + \frac{1}{36 s_{1}}\right)}{\Delta_{t}}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">term4</span><span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">collect</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">term3</span><span class="p">),[</span><span class="n">dux4</span><span class="p">,</span><span class="n">dux3</span><span class="p">,</span><span class="n">dux2</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">term4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{\partial^{2}{u}}{\partial{x^{2}}} \nu + \frac{\partial^{3}{u}}{\partial{x^{3}}} \left(\frac{\Delta_{t}^{2} c_{\alpha}^{3}}{6} - \frac{\Delta_{t}^{2} c_{\alpha}^{3}}{2 s_{2}} - \frac{\Delta_{t}^{2} c_{\alpha}^{3}}{2 s_{1}} + \frac{\Delta_{t}^{2} c_{\alpha}^{3}}{s_{1} s_{2}} - 2 \Delta_{t} \nu c_{\alpha} + \frac{\Delta_{t} \nu c_{\alpha}}{s_{2}} + \frac{2 \Delta_{t} \nu c_{\alpha}}{s_{1}} - \frac{\Delta_{x}^{2} c_{\alpha}}{3} + \frac{\Delta_{x}^{2} c_{\alpha}}{2 s_{2}} + \frac{2 \Delta_{x}^{2} c_{\alpha}}{3 s_{1}} - \frac{\Delta_{x}^{2} c_{\alpha}}{s_{1} s_{2}}\right) + \frac{\partial^{4}{u}}{\partial{x^{4}}} \left(\frac{5 \Delta_{t}^{3} c_{\alpha}^{4}}{24} - \frac{5 \Delta_{t}^{3} c_{\alpha}^{4}}{12 s_{2}} - \frac{\Delta_{t}^{3} c_{\alpha}^{4}}{3 s_{1}} + \frac{\Delta_{t}^{3} c_{\alpha}^{4}}{2 s_{1} s_{2}} - 2 \Delta_{t}^{2} \nu c_{\alpha}^{2} + \frac{2 \Delta_{t}^{2} \nu c_{\alpha}^{2}}{s_{2}} + \frac{5 \Delta_{t}^{2} \nu c_{\alpha}^{2}}{2 s_{1}} - \frac{3 \Delta_{t}^{2} \nu c_{\alpha}^{2}}{s_{1} s_{2}} - \frac{7 \Delta_{t} \Delta_{x}^{2} c_{\alpha}^{2}}{24} + \frac{5 \Delta_{t} \Delta_{x}^{2} c_{\alpha}^{2}}{12 s_{2}} + \frac{5 \Delta_{t} \Delta_{x}^{2} c_{\alpha}^{2}}{12 s_{1}} - \frac{\Delta_{t} \Delta_{x}^{2} c_{\alpha}^{2}}{2 s_{1} s_{2}} - \frac{\Delta_{x}^{2} \nu}{12} - \frac{\Delta_{x}^{2} \nu}{3 s_{2}} + \frac{2 \Delta_{x}^{2} \nu}{3 s_{1} s_{2}} - \frac{\Delta_{x}^{2} \nu}{3 s_{1}^{2}} - \frac{\Delta_{x}^{4}}{72 \Delta_{t}} + \frac{\Delta_{x}^{4}}{36 \Delta_{t} s_{1}}\right) - \frac{\partial{u}}{\partial{x}} c_{\alpha}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rt3</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">((</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mi">6</span> <span class="o">-</span> <span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span> <span class="o">-</span> <span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span> <span class="o">+</span> <span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">nu</span><span class="o">*</span><span class="n">c</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">nu</span><span class="o">*</span><span class="n">c</span><span class="o">/</span><span class="n">s2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">nu</span><span class="o">*</span><span class="n">c</span><span class="o">/</span><span class="n">s1</span> <span class="o">-</span> <span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">c</span><span class="o">/</span><span class="mi">3</span> 
+      <span class="o">+</span> <span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">c</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">c</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span> <span class="o">-</span> <span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">c</span><span class="o">/</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="p">))</span> <span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">rt3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{c_{\alpha} \left(\Delta_{t}^{2} c_{\alpha}^{2} s_{1} s_{2} - 3 \Delta_{t}^{2} c_{\alpha}^{2} s_{1} - 3 \Delta_{t}^{2} c_{\alpha}^{2} s_{2} + 6 \Delta_{t}^{2} c_{\alpha}^{2} - 12 \Delta_{t} \nu s_{1} s_{2} + 6 \Delta_{t} \nu s_{1} + 12 \Delta_{t} \nu s_{2} - 2 \Delta_{x}^{2} s_{1} s_{2} + 3 \Delta_{x}^{2} s_{1} + 4 \Delta_{x}^{2} s_{2} - 6 \Delta_{x}^{2}\right)}{6 s_{1} s_{2}}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rt4</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="mi">24</span> <span class="o">-</span> <span class="mi">5</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="mi">12</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span> <span class="o">-</span> <span class="n">dt</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span> <span class="o">+</span> <span class="n">dt</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">nu</span><span class="o">*</span><span class="n">c</span><span class="o">*</span><span class="n">c</span>
+      <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">nu</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">s2</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">nu</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">nu</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">s2</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">7</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">12</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">12</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span>
+      <span class="o">-</span> <span class="n">dt</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span> <span class="o">-</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">nu</span><span class="o">/</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="o">-</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">nu</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">nu</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span> <span class="o">-</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">nu</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">dx</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="mi">72</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span> <span class="o">+</span> <span class="n">dx</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="mi">36</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">rt4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{5 \Delta_{t}^{3} c_{\alpha}^{4}}{24} - \frac{5 \Delta_{t}^{3} c_{\alpha}^{4}}{12 s_{2}} - \frac{\Delta_{t}^{3} c_{\alpha}^{4}}{3 s_{1}} + \frac{\Delta_{t}^{3} c_{\alpha}^{4}}{2 s_{1} s_{2}} - 2 \Delta_{t}^{2} \nu c_{\alpha}^{2} + \frac{2 \Delta_{t}^{2} \nu c_{\alpha}^{2}}{s_{2}} + \frac{5 \Delta_{t}^{2} \nu c_{\alpha}^{2}}{2 s_{1}} - \frac{3 \Delta_{t}^{2} \nu c_{\alpha}^{2}}{s_{1} s_{2}} - \frac{7 \Delta_{t} \Delta_{x}^{2} c_{\alpha}^{2}}{24} + \frac{5 \Delta_{t} \Delta_{x}^{2} c_{\alpha}^{2}}{12 s_{2}} + \frac{5 \Delta_{t} \Delta_{x}^{2} c_{\alpha}^{2}}{12 s_{1}} - \frac{\Delta_{t} \Delta_{x}^{2} c_{\alpha}^{2}}{2 s_{1} s_{2}} - \frac{\Delta_{x}^{2} \nu}{12} - \frac{\Delta_{x}^{2} \nu}{3 s_{2}} + \frac{2 \Delta_{x}^{2} \nu}{3 s_{1} s_{2}} - \frac{\Delta_{x}^{2} \nu}{3 s_{1}^{2}} - \frac{\Delta_{x}^{4}}{72 \Delta_{t}} + \frac{\Delta_{x}^{4}}{36 \Delta_{t} s_{1}}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">term5</span><span class="o">=</span> <span class="n">term4</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">rt3</span><span class="p">),</span><span class="n">rt3s</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">rt4</span><span class="p">),</span><span class="n">rt4s</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">term5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle TR_{3} \frac{\partial^{3}{u}}{\partial{x^{3}}} + TR_{4} \frac{\partial^{4}{u}}{\partial{x^{4}}} + \frac{\partial^{2}{u}}{\partial{x^{2}}} \nu - \frac{\partial{u}}{\partial{x}} c_{\alpha}\]</div>
+</div>
+</div>
+<section id="solution-for-third-order-acuracy">
+<h2>Solution for Third-order acuracy<a class="headerlink" href="#solution-for-third-order-acuracy" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rt3r</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">((</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mi">6</span> <span class="o">-</span> <span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span> <span class="o">-</span> <span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span> <span class="o">+</span> <span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">nu</span><span class="o">*</span><span class="n">c</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">nu</span><span class="o">*</span><span class="n">c</span><span class="o">/</span><span class="n">s2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">nu</span><span class="o">*</span><span class="n">c</span><span class="o">/</span><span class="n">s1</span> <span class="o">-</span> <span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">c</span><span class="o">/</span><span class="mi">3</span> 
+      <span class="o">+</span> <span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">c</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">c</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span> <span class="o">-</span> <span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">c</span><span class="o">/</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="p">))</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">nu</span><span class="p">,</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">dt</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span><span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)))</span> <span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">rt3r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{c_{\alpha} \left(\Delta_{t}^{2} c_{\alpha}^{2} s_{1}^{2} s_{2} - 3 \Delta_{t}^{2} c_{\alpha}^{2} s_{1}^{2} - 3 \Delta_{t}^{2} c_{\alpha}^{2} s_{1} s_{2} + 6 \Delta_{t}^{2} c_{\alpha}^{2} s_{1} + 2 \Delta_{x}^{2} s_{1}^{2} - 2 \Delta_{x}^{2} s_{1} s_{2} - 4 \Delta_{x}^{2} s_{1} + 4 \Delta_{x}^{2} s_{2}\right)}{6 s_{1}^{2} s_{2}}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rt3r2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">((</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s2</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span> <span class="o">+</span> <span class="mi">6</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s1</span> 
+      <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">s1</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">s2</span> <span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">cb</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="n">dt</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">rt3r2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \Delta_{x}^{2} \left(\overline{c}_{\alpha}^{2} s_{1}^{2} s_{2} - 3 \overline{c}_{\alpha}^{2} s_{1}^{2} - 3 \overline{c}_{\alpha}^{2} s_{1} s_{2} + 6 \overline{c}_{\alpha}^{2} s_{1} + 2 s_{1}^{2} - 2 s_{1} s_{2} - 4 s_{1} + 4 s_{2}\right)\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rt3r3</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">collect</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">rt3r2</span><span class="o">/</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span><span class="n">cb</span><span class="o">*</span><span class="n">cb</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">rt3r3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \overline{c}_{\alpha}^{2} \left(s_{1}^{2} s_{2} - 3 s_{1}^{2} - 3 s_{1} s_{2} + 6 s_{1}\right) + 2 s_{1}^{2} - 2 s_{1} s_{2} - 4 s_{1} + 4 s_{2}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tf1</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s1</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">s1</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span>
+<span class="n">tf2</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span> <span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s1</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span> <span class="o">+</span> <span class="mi">6</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span>
+<span class="n">rt3r4</span> <span class="o">=</span> <span class="n">rt3r3</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">tf1</span><span class="p">),</span><span class="n">tf1</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">tf2</span><span class="p">),</span><span class="n">tf2</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">rt3r4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \overline{c}_{\alpha}^{2} s_{1} \left(s_{1} s_{2} - 3 s_{1} - 3 s_{2} + 6\right) + 2 \left(s_{1} - 2\right) \left(s_{1} - s_{2}\right)\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w0</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;w_0&#39;</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">chentr3</span><span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">w0</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">s1</span> <span class="o">-</span> <span class="n">s1</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">s2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">s2</span><span class="o">*</span><span class="p">(</span><span class="mi">6</span> <span class="o">+</span> <span class="n">s1</span><span class="o">*</span><span class="n">s1</span> <span class="o">-</span> <span class="mi">6</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span> <span class="o">-</span> <span class="n">cb</span><span class="o">*</span><span class="n">cb</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">s2</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">s1</span> <span class="o">-</span> <span class="n">s1</span><span class="o">*</span><span class="n">s2</span> <span class="o">-</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">chentr32</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">chentr3</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)))</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">collect</span><span class="p">(</span><span class="n">chentr32</span><span class="p">,</span><span class="n">s2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle - 3 \overline{c}_{\alpha}^{2} s_{1}^{2} + 6 \overline{c}_{\alpha}^{2} s_{1} + 2 s_{1}^{2} - 4 s_{1} + s_{2} \left(\overline{c}_{\alpha}^{2} s_{1}^{2} - 3 \overline{c}_{\alpha}^{2} s_{1} - 2 s_{1} + 4\right)\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">cbar</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;s1 s2 cbar&#39;</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">cbar</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">eq</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">s1</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">s2</span> <span class="o">+</span> <span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span><span class="o">-</span><span class="n">s2</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">sp</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">eq</span><span class="p">,</span> <span class="n">s2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>   <span class="c1"># solve for s2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{s_{1} \left(3 \bar{c}^{2} s_{1} - 6 \bar{c}^{2} - 2 s_{1} + 4\right)}{\bar{c}^{2} s_{1}^{2} - 3 \bar{c}^{2} s_{1} - 2 s_{1} + 4}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
+<span class="c1"># ---------------- s2(s1) from first equation ----------------</span>
+<span class="n">s2_expr</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">s1</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">s2</span> <span class="o">+</span> <span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span><span class="o">-</span><span class="n">s2</span><span class="p">),</span> <span class="n">s2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Convert to numerical function</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="n">s1</span><span class="p">,</span> <span class="n">cbar</span><span class="p">),</span> <span class="n">s2_expr</span><span class="p">,</span> <span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+
+<span class="c1"># ---------------- Plot ----------------</span>
+<span class="n">s1_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mi">800</span><span class="p">)</span>
+<span class="n">cbar_vals</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">cb</span> <span class="ow">in</span> <span class="n">cbar_vals</span><span class="p">:</span>
+    <span class="n">s2_vals</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">s1_vals</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+    <span class="c1"># mask poles / blow-ups</span>
+    <span class="n">s2_vals</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">s2_vals</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s1_vals</span><span class="p">,</span> <span class="n">s2_vals</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s2">&quot;$\bar c_\alpha=</span><span class="si">{</span><span class="n">cb</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$s_1$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$s_2$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a27c274329773308c3696b564c385a00cd5bb5b2b3755ced934ff00623f8f892.png" src="../../_images/a27c274329773308c3696b564c385a00cd5bb5b2b3755ced934ff00623f8f892.png" />
+</div>
+</div>
+</section>
+<section id="solution-for-fouth-order-acuracy">
+<h2>Solution for Fouth-order acuracy<a class="headerlink" href="#solution-for-fouth-order-acuracy" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rt4r</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">rt4</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">nu</span><span class="p">,</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">dt</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span><span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)))</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">cb</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span> <span class="p">)</span> <span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">rt4r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{\Delta_{x}^{4} \left(15 \overline{c}_{\alpha}^{4} s_{1}^{3} s_{2} - 30 \overline{c}_{\alpha}^{4} s_{1}^{3} - 24 \overline{c}_{\alpha}^{4} s_{1}^{2} s_{2} + 36 \overline{c}_{\alpha}^{4} s_{1}^{2} + 3 \overline{c}_{\alpha}^{2} s_{1}^{3} s_{2} + 6 \overline{c}_{\alpha}^{2} s_{1}^{3} - 48 \overline{c}_{\alpha}^{2} s_{1}^{2} s_{2} + 48 \overline{c}_{\alpha}^{2} s_{1}^{2} + 60 \overline{c}_{\alpha}^{2} s_{1} s_{2} - 72 \overline{c}_{\alpha}^{2} s_{1} + 4 s_{1}^{3} - 16 s_{1}^{2} + 4 s_{1} s_{2} + 16 s_{1} - 8 s_{2}\right)}{72 \Delta_{t} s_{1}^{3} s_{2}}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tf3</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="mi">15</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">s2</span> <span class="o">-</span> <span class="mi">30</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">24</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s2</span> <span class="o">+</span> <span class="mi">36</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">tf4</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">s2</span> <span class="o">+</span> <span class="mi">6</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">48</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s2</span> <span class="o">+</span> <span class="mi">48</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">60</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span> <span class="o">-</span> <span class="mi">72</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span>
+<span class="n">tf5</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">16</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span> <span class="o">+</span> <span class="mi">16</span><span class="o">*</span><span class="n">s1</span> <span class="o">-</span> <span class="mi">8</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span>
+<span class="n">rt4r2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">collect</span><span class="p">(</span><span class="n">rt4r</span><span class="o">/</span><span class="n">dx</span><span class="o">**</span><span class="mi">4</span><span class="o">*</span><span class="mi">72</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">s2</span> <span class="p">,</span> <span class="n">cb</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">tf3</span><span class="p">),</span><span class="n">tf3</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">tf4</span><span class="p">),</span><span class="n">tf4</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">tf5</span><span class="p">),</span><span class="n">tf5</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">rt4r2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 3 \overline{c}_{\alpha}^{4} s_{1}^{2} \left(5 s_{1} s_{2} - 10 s_{1} - 8 s_{2} + 12\right) + 3 \overline{c}_{\alpha}^{2} s_{1} \left(s_{1}^{2} s_{2} + 2 s_{1}^{2} - 16 s_{1} s_{2} + 16 s_{1} + 20 s_{2} - 24\right) + 4 \left(s_{1} - 2\right) \left(s_{1}^{2} - 2 s_{1} + s_{2}\right)\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+
+<span class="c1"># --- symbols ---</span>
+<span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">cbar</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;s1 s2 cbar&#39;</span><span class="p">)</span>
+<span class="c1"># (cbar = \overline{c}_\alpha)</span>
+
+<span class="c1"># --- equation (your second one) ---</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="mi">3</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">4</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span> <span class="o">-</span> <span class="mi">10</span><span class="o">*</span><span class="n">s1</span> <span class="o">-</span> <span class="mi">8</span><span class="o">*</span><span class="n">s2</span> <span class="o">+</span> <span class="mi">12</span><span class="p">)</span>
+    <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">16</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span> <span class="o">+</span> <span class="mi">16</span><span class="o">*</span><span class="n">s1</span> <span class="o">+</span> <span class="mi">20</span><span class="o">*</span><span class="n">s2</span> <span class="o">-</span> <span class="mi">24</span><span class="p">)</span>
+    <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">s1</span> <span class="o">+</span> <span class="n">s2</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">eq</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># --- solve for s2 ---</span>
+<span class="n">sol_s2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">eq</span><span class="p">,</span> <span class="n">s2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;s2(s1, cbar) =&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">sol_s2</span><span class="p">)</span>
+
+<span class="c1"># --- optional: numerator/denominator (factored) ---</span>
+<span class="n">num</span><span class="p">,</span> <span class="n">den</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">fraction</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">together</span><span class="p">(</span><span class="n">sol_s2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Factored numerator:&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">num</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Factored denominator:&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">den</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>s2(s1, cbar) =
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{2 s_{1} \left(15 \bar{c}^{4} s_{1}^{2} - 18 \bar{c}^{4} s_{1} - 3 \bar{c}^{2} s_{1}^{2} - 24 \bar{c}^{2} s_{1} + 36 \bar{c}^{2} - 2 s_{1}^{2} + 8 s_{1} - 8\right)}{15 \bar{c}^{4} s_{1}^{3} - 24 \bar{c}^{4} s_{1}^{2} + 3 \bar{c}^{2} s_{1}^{3} - 48 \bar{c}^{2} s_{1}^{2} + 60 \bar{c}^{2} s_{1} + 4 s_{1} - 8}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Factored numerator:
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 2 s_{1} \left(15 \bar{c}^{4} s_{1}^{2} - 18 \bar{c}^{4} s_{1} - 3 \bar{c}^{2} s_{1}^{2} - 24 \bar{c}^{2} s_{1} + 36 \bar{c}^{2} - 2 s_{1}^{2} + 8 s_{1} - 8\right)\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Factored denominator:
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 15 \bar{c}^{4} s_{1}^{3} - 24 \bar{c}^{4} s_{1}^{2} + 3 \bar{c}^{2} s_{1}^{3} - 48 \bar{c}^{2} s_{1}^{2} + 60 \bar{c}^{2} s_{1} + 4 s_{1} - 8\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">latex</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">eq</span><span class="p">,</span> <span class="n">s2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\frac{2 s_{1} \left(15 \bar{c}^{4} s_{1}^{2} - 18 \bar{c}^{4} s_{1} - 3 \bar{c}^{2} s_{1}^{2} - 24 \bar{c}^{2} s_{1} + 36 \bar{c}^{2} - 2 s_{1}^{2} + 8 s_{1} - 8\right)}{15 \bar{c}^{4} s_{1}^{3} - 24 \bar{c}^{4} s_{1}^{2} + 3 \bar{c}^{2} s_{1}^{3} - 48 \bar{c}^{2} s_{1}^{2} + 60 \bar{c}^{2} s_{1} + 4 s_{1} - 8}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
+<span class="c1"># ---------------- s2(s1) expression ----------------</span>
+<span class="n">s2_expr</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="p">(</span><span class="mi">15</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">4</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">18</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">4</span><span class="o">*</span><span class="n">s1</span>
+          <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">24</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span>
+          <span class="o">+</span> <span class="mi">36</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">8</span><span class="o">*</span><span class="n">s1</span> <span class="o">-</span> <span class="mi">8</span><span class="p">)</span>
+<span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">15</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">4</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">24</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">4</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span>
+    <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">48</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span>
+    <span class="o">+</span> <span class="mi">60</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">s1</span> <span class="o">-</span> <span class="mi">8</span><span class="p">)</span>
+
+<span class="c1"># Convert to numerical function</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="n">s1</span><span class="p">,</span> <span class="n">cbar</span><span class="p">),</span> <span class="n">s2_expr</span><span class="p">,</span> <span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+<span class="c1"># ---------------- Plot ----------------</span>
+<span class="n">s1_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mi">800</span><span class="p">)</span>
+<span class="n">cbar_vals</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">cb</span> <span class="ow">in</span> <span class="n">cbar_vals</span><span class="p">:</span>
+    <span class="n">s2_vals</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">s1_vals</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s1_vals</span><span class="p">,</span> <span class="n">s2_vals</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s2">&quot;$\bar c_\alpha=</span><span class="si">{</span><span class="n">cb</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$s_1$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$s_2$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/73d830e404f712e201697aa02566bb812b896ac20350ec96f7233e25e7c4b536.png" src="../../_images/73d830e404f712e201697aa02566bb812b896ac20350ec96f7233e25e7c4b536.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
+<span class="c1"># ---------------- Symbols ----------------</span>
+<span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">cbar</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;s1 s2 cbar&#39;</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">cbar</span><span class="o">**</span><span class="mi">2</span>
+<span class="c1"># ---------------- Solution 1 (simpler equation) ----------------</span>
+<span class="n">s2_expr_1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">s1</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">s2</span> <span class="o">+</span> <span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span><span class="o">-</span><span class="n">s2</span><span class="p">),</span> <span class="mi">0</span><span class="p">),</span> <span class="n">s2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># ---------------- Solution 2 (bigger equation) ----------------</span>
+<span class="n">s2_expr_2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="p">(</span><span class="mi">15</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">4</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">18</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">4</span><span class="o">*</span><span class="n">s1</span>
+          <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">24</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span>
+          <span class="o">+</span> <span class="mi">36</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">8</span><span class="o">*</span><span class="n">s1</span> <span class="o">-</span> <span class="mi">8</span><span class="p">)</span>
+<span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">15</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">4</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">24</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">4</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span>
+    <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">48</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span>
+    <span class="o">+</span> <span class="mi">60</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">s1</span> <span class="o">-</span> <span class="mi">8</span><span class="p">)</span>
+
+<span class="c1"># Lambdify (fast numeric evaluation)</span>
+<span class="n">f1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="n">s1</span><span class="p">,</span> <span class="n">cbar</span><span class="p">),</span> <span class="n">s2_expr_1</span><span class="p">,</span> <span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+<span class="n">f2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="n">s1</span><span class="p">,</span> <span class="n">cbar</span><span class="p">),</span> <span class="n">s2_expr_2</span><span class="p">,</span> <span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+
+<span class="c1"># ---------------- Plot settings ----------------</span>
+<span class="n">s1_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mi">1200</span><span class="p">)</span>
+<span class="n">cbar_vals</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">cb</span> <span class="ow">in</span> <span class="n">cbar_vals</span><span class="p">:</span>
+    <span class="n">y1</span> <span class="o">=</span> <span class="n">f1</span><span class="p">(</span><span class="n">s1_vals</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+    <span class="n">y2</span> <span class="o">=</span> <span class="n">f2</span><span class="p">(</span><span class="n">s1_vals</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+
+    <span class="c1"># mask poles/blow-ups to avoid ugly vertical spikes</span>
+    <span class="n">y1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">y1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">),</span> <span class="n">y1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">y2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">),</span> <span class="n">y2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+
+    <span class="c1"># same label color per cbar, different linestyle per equation</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s1_vals</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span>  <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s2">&quot;Eq1, $\bar c_\alpha=</span><span class="si">{</span><span class="n">cb</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s1_vals</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s2">&quot;Eq2, $\bar c_\alpha=</span><span class="si">{</span><span class="n">cb</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$s_1$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$s_2$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cdcc18ed0d6b576d51a7178e4966b50a353c7df89a818168852fb961562f53bf.png" src="../../_images/cdcc18ed0d6b576d51a7178e4966b50a353c7df89a818168852fb961562f53bf.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
+<span class="c1"># ---------------- Symbols ----------------</span>
+<span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">cbar</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;s1 s2 cbar&#39;</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">cbar</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1"># ---------------- Eq 1: solve for s2 ----------------</span>
+<span class="n">s2_expr_1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">s1</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">s2</span> <span class="o">+</span> <span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span><span class="o">-</span><span class="n">s2</span><span class="p">),</span> <span class="mi">0</span><span class="p">),</span> <span class="n">s2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># ---------------- Eq 2: s2(s1) (your big equation) ----------------</span>
+<span class="n">s2_expr_2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="p">(</span><span class="mi">15</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">4</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">18</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">4</span><span class="o">*</span><span class="n">s1</span>
+          <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">24</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span>
+          <span class="o">+</span> <span class="mi">36</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">8</span><span class="o">*</span><span class="n">s1</span> <span class="o">-</span> <span class="mi">8</span><span class="p">)</span>
+<span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">15</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">4</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">24</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">4</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span>
+    <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">48</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span>
+    <span class="o">+</span> <span class="mi">60</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">s1</span> <span class="o">-</span> <span class="mi">8</span><span class="p">)</span>
+
+<span class="c1"># difference g(s1) = f1 - f2  (roots =&gt; intersections)</span>
+<span class="n">g_expr</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">s2_expr_1</span> <span class="o">-</span> <span class="n">s2_expr_2</span><span class="p">)</span>
+
+<span class="c1"># lambdify for fast evaluation</span>
+<span class="n">f1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="n">s1</span><span class="p">,</span> <span class="n">cbar</span><span class="p">),</span> <span class="n">s2_expr_1</span><span class="p">,</span> <span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+<span class="n">f2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="n">s1</span><span class="p">,</span> <span class="n">cbar</span><span class="p">),</span> <span class="n">s2_expr_2</span><span class="p">,</span> <span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+<span class="n">g</span>  <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="n">s1</span><span class="p">,</span> <span class="n">cbar</span><span class="p">),</span> <span class="n">g_expr</span><span class="p">,</span>  <span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+
+<span class="c1"># numeric root refinement (mpmath via sympy)</span>
+<span class="k">def</span> <span class="nf">refine_root</span><span class="p">(</span><span class="n">cb</span><span class="p">,</span> <span class="n">x0</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">nsolve</span><span class="p">(</span><span class="n">g_expr</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">cbar</span><span class="p">,</span> <span class="n">cb</span><span class="p">),</span> <span class="n">s1</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">unique_sorted</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">):</span>
+    <span class="n">xs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">out</span> <span class="ow">or</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">out</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">&gt;</span> <span class="n">tol</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+<span class="c1"># ---------------- Parameters ----------------</span>
+<span class="n">cbar_vals</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+<span class="n">s1_min</span><span class="p">,</span> <span class="n">s1_max</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">3.0</span>
+<span class="n">Nscan</span> <span class="o">=</span> <span class="mi">4000</span>
+<span class="n">s1_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">s1_min</span><span class="p">,</span> <span class="n">s1_max</span><span class="p">,</span> <span class="n">Nscan</span><span class="p">)</span>
+
+<span class="c1"># ---------------- Plot ----------------</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">cb</span> <span class="ow">in</span> <span class="n">cbar_vals</span><span class="p">:</span>
+    <span class="n">y1</span> <span class="o">=</span> <span class="n">f1</span><span class="p">(</span><span class="n">s1_grid</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+    <span class="n">y2</span> <span class="o">=</span> <span class="n">f2</span><span class="p">(</span><span class="n">s1_grid</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+    <span class="n">yg</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="n">s1_grid</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+
+    <span class="c1"># mask blow-ups / poles</span>
+    <span class="n">y1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">y1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">),</span> <span class="n">y1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">y2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">),</span> <span class="n">y2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">yg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">yg</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yg</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e6</span><span class="p">),</span> <span class="n">yg</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+
+    <span class="c1"># draw both curves</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s1_grid</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span>  <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s2">&quot;$TR_</span><span class="si">{</span><span class="mi">3</span><span class="si">}</span><span class="s2">$, $\bar c_\alpha=</span><span class="si">{</span><span class="n">cb</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s1_grid</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s2">&quot;$TR_</span><span class="si">{</span><span class="mi">4</span><span class="si">}</span><span class="s2">$, $\bar c_\alpha=</span><span class="si">{</span><span class="n">cb</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+
+    <span class="c1"># --- find sign changes of g on the scan grid ---</span>
+    <span class="n">roots_guess</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s1_grid</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">yg</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">yg</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
+            <span class="n">roots_guess</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s1_grid</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># sign change</span>
+            <span class="n">roots_guess</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">s1_grid</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">s1_grid</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="c1"># refine guesses with nsolve</span>
+    <span class="n">roots</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">x0</span> <span class="ow">in</span> <span class="n">roots_guess</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">xr</span> <span class="o">=</span> <span class="n">refine_root</span><span class="p">(</span><span class="n">cb</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">s1_min</span> <span class="o">&lt;=</span> <span class="n">xr</span> <span class="o">&lt;=</span> <span class="n">s1_max</span><span class="p">:</span>
+                <span class="n">roots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xr</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+    <span class="n">roots</span> <span class="o">=</span> <span class="n">unique_sorted</span><span class="p">(</span><span class="n">roots</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">)</span>
+
+    <span class="c1"># compute s2 at intersection points and plot markers</span>
+    <span class="k">for</span> <span class="n">xr</span> <span class="ow">in</span> <span class="n">roots</span><span class="p">:</span>
+        <span class="n">yr</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">N</span><span class="p">(</span><span class="n">s2_expr_1</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">cbar</span><span class="p">:</span> <span class="n">cb</span><span class="p">,</span> <span class="n">s1</span><span class="p">:</span> <span class="n">xr</span><span class="p">})))</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">yr</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">abs</span><span class="p">(</span><span class="n">yr</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">xr</span><span class="p">],</span> <span class="p">[</span><span class="n">yr</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">roots</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;cbar=</span><span class="si">{</span><span class="n">cb</span><span class="si">}</span><span class="s2">: intersections at s1 =&quot;</span><span class="p">,</span> <span class="n">roots</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$s_1$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$s_2$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cbar=0.005: intersections at s1 = [0.9999937477340344]
+cbar=0.01: intersections at s1 = [0.9999749637281587]
+cbar=0.05: intersections at s1 = [0.9993519974731944]
+cbar=0.1: intersections at s1 = [0.9971142700951519]
+</pre></div>
+</div>
+<img alt="../../_images/7b0ef77e410d7d4f9745c07ba5e77279a29da159f9ab584f0bfa36adbbe54c35.png" src="../../_images/7b0ef77e410d7d4f9745c07ba5e77279a29da159f9ab584f0bfa36adbbe54c35.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+
+<span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">cbar</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;s1 s2 cbar&#39;</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">cbar</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">E1</span> <span class="o">=</span> <span class="n">A</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">s1</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">s2</span> <span class="o">+</span> <span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span><span class="o">-</span><span class="n">s2</span><span class="p">)</span>
+
+<span class="n">E2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">4</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span> <span class="o">-</span> <span class="mi">10</span><span class="o">*</span><span class="n">s1</span> <span class="o">-</span> <span class="mi">8</span><span class="o">*</span><span class="n">s2</span> <span class="o">+</span> <span class="mi">12</span><span class="p">)</span>
+      <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">cbar</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">16</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span> <span class="o">+</span> <span class="mi">16</span><span class="o">*</span><span class="n">s1</span> <span class="o">+</span> <span class="mi">20</span><span class="o">*</span><span class="n">s2</span> <span class="o">-</span> <span class="mi">24</span><span class="p">)</span>
+      <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">s1</span> <span class="o">+</span> <span class="n">s2</span><span class="p">))</span>
+
+<span class="c1"># eliminate s2 -&gt; equation in s1 and cbar only</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">resultant</span><span class="p">(</span><span class="n">E1</span><span class="p">,</span> <span class="n">E2</span><span class="p">,</span> <span class="n">s2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Resultant (intersection condition):&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+
+<span class="c1"># Optional: show it using A = cbar^2</span>
+<span class="n">R_A</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">R</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">cbar</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">cbar</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span> <span class="n">A</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">cbar</span><span class="o">**</span><span class="mi">6</span><span class="p">,</span> <span class="n">A</span><span class="o">**</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">In terms of A=cbar^2:&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">R_A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resultant (intersection condition):
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle s_{1} \left(15 \bar{c}^{6} s_{1}^{4} - 36 \bar{c}^{6} s_{1}^{3} + 36 \bar{c}^{6} s_{1}^{2} - 15 \bar{c}^{4} s_{1}^{4} + 36 \bar{c}^{4} s_{1}^{3} - 36 \bar{c}^{4} s_{1}^{2} - 2 \bar{c}^{2} s_{1}^{4} + 68 \bar{c}^{2} s_{1}^{3} - 308 \bar{c}^{2} s_{1}^{2} + 480 \bar{c}^{2} s_{1} - 240 \bar{c}^{2} - 8 s_{1}^{3} + 40 s_{1}^{2} - 64 s_{1} + 32\right)\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>In terms of A=cbar^2:
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle s_{1} \left(15 \bar{c}^{6} s_{1}^{4} - 36 \bar{c}^{6} s_{1}^{3} + 36 \bar{c}^{6} s_{1}^{2} - 15 \bar{c}^{4} s_{1}^{4} + 36 \bar{c}^{4} s_{1}^{3} - 36 \bar{c}^{4} s_{1}^{2} - 2 \bar{c}^{2} s_{1}^{4} + 68 \bar{c}^{2} s_{1}^{3} - 308 \bar{c}^{2} s_{1}^{2} + 480 \bar{c}^{2} s_{1} - 240 \bar{c}^{2} - 8 s_{1}^{3} + 40 s_{1}^{2} - 64 s_{1} + 32\right)\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
+<span class="c1"># ---------------- Combined validity polynomial P(s1,A) ----------------</span>
+<span class="n">P</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="mi">15</span><span class="o">*</span><span class="n">A</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">36</span><span class="o">*</span><span class="n">A</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">36</span><span class="o">*</span><span class="n">A</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span>
+  <span class="o">-</span> <span class="mi">15</span><span class="o">*</span><span class="n">A</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">36</span><span class="o">*</span><span class="n">A</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">36</span><span class="o">*</span><span class="n">A</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span>
+  <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">68</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">308</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">480</span><span class="o">*</span><span class="n">A</span> <span class="o">-</span> <span class="mi">240</span><span class="o">*</span><span class="n">A</span>
+  <span class="o">-</span> <span class="mi">8</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">40</span><span class="o">*</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">64</span><span class="o">*</span><span class="n">s1</span> <span class="o">+</span> <span class="mi">32</span><span class="p">)</span>
+
+<span class="c1"># Numeric function</span>
+<span class="n">P_fun</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="n">s1</span><span class="p">,</span> <span class="n">cbar</span><span class="p">),</span> <span class="n">P</span><span class="p">,</span> <span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+
+<span class="c1"># ---------------- Plot ----------------</span>
+<span class="n">s1_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">800</span><span class="p">)</span>
+<span class="n">cbar_vals</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">cb</span> <span class="ow">in</span> <span class="n">cbar_vals</span><span class="p">:</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">P_fun</span><span class="p">(</span><span class="n">s1_vals</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s1_vals</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s2">&quot;$\bar c_\alpha=</span><span class="si">{</span><span class="n">cb</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$s_1$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$P(s_1)$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Intersection condition:  P(s1, c̄α)=0&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/663e08993a12382f01f6dfad130e0c8801042e670a42394236a18075a149b70f.png" src="../../_images/663e08993a12382f01f6dfad130e0c8801042e670a42394236a18075a149b70f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from sympy import latex</span>
+<span class="c1"># print(latex(rt4r2))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./LBM-Study/appendix"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Ricardo LMB.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -52,7 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Diffusive Equation" href="../../LBM-Study/Diffusive-Equation.html" />
-    <link rel="prev" title="Ricardo Leite Martins Bazarin: Academic Documentation (05/September/2025 - 07/November/2025)" href="../../index.html" /> 
+    <link rel="prev" title="Ricardo Leite Martins Bazarin: Academic Documentation (05/September/2025 - 23/January/2026)" href="../../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -92,7 +92,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../LBM-Study/Diffusive-Equation.html">Diffusive Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../LBM-Study/Poisson-Equation.html">Poisson Equation (Steady-State Diffusive Equation)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../LBM-Study/Convective-Equation.html">Convective Equation (Transport Equation)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../LBM-Study/Ementa.html">Ementa - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LBM-Study/Convective-Diffusive-Equation.html">Convective-Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LBM-Study/FDM-LBM-Diffusive.html">Difference Finite Scheme of Diffusive Equation derived from Lattice Boltzmann</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LBM-Study/FDM-LBM-Convective-Diffusive.html">Difference Finite Scheme derived from MRT Lattice Boltzmann for Convective-Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LBM-Study/Extra-Avoiding-Diffusive-Effect-in-CE%28Unfinished%29.html">Extra::Avoiding Diffusive effect in Convective Equation (Unfinished) - Variable Lattice Sound Sped</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LBM-Study/Ementa.html">Conteúdo - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References:</span></p>
 <ul>
@@ -100,7 +104,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Appendix:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../LBM-Study/bcs-D2Q5-poisson-equation.html">Boundary Conditions: Deduction for the Lattice D2Q5 - Poisson Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LBM-Study/appendix/bcs-D2Q5-poisson-equation.html">Boundary Conditions: Deduction for the Lattice D2Q5 - Poisson Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LBM-Study/appendix/sympy-code-fdm-diffusive-expansion.html">Sympy code for FDM expansion of LBM diffusive equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LBM-Study/appendix/sympy-code-mrt-fdm-diffusive-expansion-4th.html">Sympy code for FDM expansion of LBM diffusive equation up to Fourth-order</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LBM-Study/appendix/sympy-code-mrt-fdm-diffusive-expansion-6th.html">Sympy code for FDM expansion of LBM diffusive equation up to Sixth-order</a></li>
 <li class="toctree-l1"><a class="reference internal" href="trans-eq/base-trans-eq.html">Introdution for Transport Equations</a></li>
 </ul>
 
@@ -296,7 +303,7 @@ f^{(nw)}  = F^{(nw)} +\displaystyle\frac{F^{(nw)}\lambda^{(w)}}{\langle u_{\alph
 </section>
 <section id="buckley-leverett-equation-and-alternative-differential-formulations">
 <h2>Buckley-Leverett Equation and Alternative Differential Formulations<a class="headerlink" href="#buckley-leverett-equation-and-alternative-differential-formulations" title="Link to this heading"></a></h2>
-<p><span style="color:red">Considering the fluid flow as Newtonian, the Darcy-law can be employed in the partial differential equation of mass balance. This approach represents a two-component form of the black-oil model, as described by <span id="id2">Wu [<a class="reference internal" href="../../Citations.html#id62" title="Yu-Shu Wu. Multiphase fluid flow in porous and fractured reservoirs. Gulf professional publishing, 2015.">2</a>]</span>. The Darcy-law for multiphase flow is given by:</span></p>
+<p><span style="color:red">Considering the fluid flow as Newtonian, the Darcy-law can be employed in the partial differential equation of mass balance. This approach represents a two-component form of the black-oil model, as described by <span id="id2">Wu [<a class="reference internal" href="../../Citations.html#id3" title="Yu-Shu Wu. Multiphase fluid flow in porous and fractured reservoirs. Gulf professional publishing, 2015.">2</a>]</span>. The Darcy-law for multiphase flow is given by:</span></p>
 <p>This is <span style="color:red">red text</span> and
 this is <span style="color:#1E90FF">dodger-blue <span class="math notranslate nohighlight">\(\phi\)</span> text</span>.</p>
 <!-- --- Subsection(PCM) --- --></section>
@@ -325,7 +332,7 @@ this is <span style="color:#1E90FF">dodger-blue <span class="math notranslate no
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../../index.html" class="btn btn-neutral float-left" title="Ricardo Leite Martins Bazarin: Academic Documentation (05/September/2025 - 07/November/2025)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../index.html" class="btn btn-neutral float-left" title="Ricardo Leite Martins Bazarin: Academic Documentation (05/September/2025 - 23/January/2026)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../../LBM-Study/Diffusive-Equation.html" class="btn btn-neutral float-right" title="Diffusive Equation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

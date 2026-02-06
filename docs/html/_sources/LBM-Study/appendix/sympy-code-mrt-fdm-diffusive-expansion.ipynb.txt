@@ -1,0 +1,423 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "editable": true,
+    "slideshow": {
+     "slide_type": ""
+    },
+    "tags": []
+   },
+   "source": [
+    "#### Sympy code for FDM expansion of LBM diffusive equation"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {
+    "editable": true,
+    "slideshow": {
+     "slide_type": ""
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "import sympy as sp\n",
+    "# -----------------------------------------------------------------------------\n",
+    "# 1) Symbols (parameters and step sizes)\n",
+    "# -----------------------------------------------------------------------------\n",
+    "dx, dt = sp.symbols('Delta_x Delta_t', positive=True, real=True)\n",
+    "s1, s2, w0, nu = sp.symbols('s_{1} s_{2} w_{0} \\\\nu', real=True)\n",
+    "\n",
+    "alpha1 = sp.simplify(1 - s1/2 - w0*s2/2)\n",
+    "alpha2 = sp.simplify((w0-1)*s2 + 1)\n",
+    "beta1  = sp.simplify(w0*s1*s2/2 - s1*s2/2 - w0*s2/2 + s1/2 +s2 -1)\n",
+    "beta2  = sp.simplify(-w0*s1*s2 + w0*s2 + s1 - 1)\n",
+    "gamma  = sp.simplify((s1-1)*(s2-1))\n",
+    "# -----------------------------------------------------------------------------\n",
+    "# 2) Continuous variables and field\n",
+    "# -----------------------------------------------------------------------------\n",
+    "x, t = sp.symbols('x t', real=True)\n",
+    "phi = sp.Function('phi')\n",
+    "# Shorthand for the base (continuous) field value at (x,t)\n",
+    "PHI = phi(x, t)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def taylor_phi(sx=0, st=0, order_x=4, order_t=4):\n",
+    "    expr = sp.S(0)\n",
+    "    # Keep all mixed terms up to the specified individual orders.\n",
+    "    for m in range(order_x + 1):\n",
+    "        for n in range(order_t + 1):\n",
+    "            # skip the (0,0) term? no, keep it.\n",
+    "            term = ( (sx*dx)**m * (st*dt)**n\n",
+    "                    / (sp.factorial(m)*sp.factorial(n))\n",
+    "                    * sp.diff(PHI, x, m, t, n) )\n",
+    "            expr += term\n",
+    "    return sp.expand(expr)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\Delta_{t}^{4} \\frac{\\partial^{4}}{\\partial t^{4}} \\phi{\\left(x,t \\right)}}{24} + \\frac{\\Delta_{t}^{3} \\frac{\\partial^{3}}{\\partial t^{3}} \\phi{\\left(x,t \\right)}}{6} + \\frac{\\Delta_{t}^{2} \\frac{\\partial^{2}}{\\partial t^{2}} \\phi{\\left(x,t \\right)}}{2} + \\Delta_{t} \\frac{\\partial}{\\partial t} \\phi{\\left(x,t \\right)} + \\phi{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "Delta_t**4*Derivative(phi(x, t), (t, 4))/24 + Delta_t**3*Derivative(phi(x, t), (t, 3))/6 + Delta_t**2*Derivative(phi(x, t), (t, 2))/2 + Delta_t*Derivative(phi(x, t), t) + phi(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\phi{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "phi(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\Delta_{t}^{4} \\frac{\\partial^{4}}{\\partial t^{4}} \\phi{\\left(x,t \\right)}}{24} - \\frac{\\Delta_{t}^{3} \\frac{\\partial^{3}}{\\partial t^{3}} \\phi{\\left(x,t \\right)}}{6} + \\frac{\\Delta_{t}^{2} \\frac{\\partial^{2}}{\\partial t^{2}} \\phi{\\left(x,t \\right)}}{2} - \\Delta_{t} \\frac{\\partial}{\\partial t} \\phi{\\left(x,t \\right)} + \\phi{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "Delta_t**4*Derivative(phi(x, t), (t, 4))/24 - Delta_t**3*Derivative(phi(x, t), (t, 3))/6 + Delta_t**2*Derivative(phi(x, t), (t, 2))/2 - Delta_t*Derivative(phi(x, t), t) + phi(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{2 \\Delta_{t}^{4} \\frac{\\partial^{4}}{\\partial t^{4}} \\phi{\\left(x,t \\right)}}{3} - \\frac{4 \\Delta_{t}^{3} \\frac{\\partial^{3}}{\\partial t^{3}} \\phi{\\left(x,t \\right)}}{3} + 2 \\Delta_{t}^{2} \\frac{\\partial^{2}}{\\partial t^{2}} \\phi{\\left(x,t \\right)} - 2 \\Delta_{t} \\frac{\\partial}{\\partial t} \\phi{\\left(x,t \\right)} + \\phi{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "2*Delta_t**4*Derivative(phi(x, t), (t, 4))/3 - 4*Delta_t**3*Derivative(phi(x, t), (t, 3))/3 + 2*Delta_t**2*Derivative(phi(x, t), (t, 2)) - 2*Delta_t*Derivative(phi(x, t), t) + phi(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\Delta_{x}^{4} \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)}}{24} - \\frac{\\Delta_{x}^{3} \\frac{\\partial^{3}}{\\partial x^{3}} \\phi{\\left(x,t \\right)}}{6} + \\frac{\\Delta_{x}^{2} \\frac{\\partial^{2}}{\\partial x^{2}} \\phi{\\left(x,t \\right)}}{2} - \\Delta_{x} \\frac{\\partial}{\\partial x} \\phi{\\left(x,t \\right)} + \\phi{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "Delta_x**4*Derivative(phi(x, t), (x, 4))/24 - Delta_x**3*Derivative(phi(x, t), (x, 3))/6 + Delta_x**2*Derivative(phi(x, t), (x, 2))/2 - Delta_x*Derivative(phi(x, t), x) + phi(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\Delta_{x}^{4} \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)}}{24} + \\frac{\\Delta_{x}^{3} \\frac{\\partial^{3}}{\\partial x^{3}} \\phi{\\left(x,t \\right)}}{6} + \\frac{\\Delta_{x}^{2} \\frac{\\partial^{2}}{\\partial x^{2}} \\phi{\\left(x,t \\right)}}{2} + \\Delta_{x} \\frac{\\partial}{\\partial x} \\phi{\\left(x,t \\right)} + \\phi{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "Delta_x**4*Derivative(phi(x, t), (x, 4))/24 + Delta_x**3*Derivative(phi(x, t), (x, 3))/6 + Delta_x**2*Derivative(phi(x, t), (x, 2))/2 + Delta_x*Derivative(phi(x, t), x) + phi(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "# -----------------------------------------------------------------------------\n",
+    "# 4) Discrete stencil terms (expanded)\n",
+    "# -----------------------------------------------------------------------------\n",
+    "# phi_x^{t+1}, phi_x^{t}, phi_x^{t-1}, phi_x^{t-2}\n",
+    "phi_t_p1 = taylor_phi(sx=0,  st=+1, order_x=0, order_t=4)\n",
+    "display(phi_t_p1)\n",
+    "phi_t_0  = taylor_phi(sx=0,  st=0,  order_x=0, order_t=0)  # exactly phi(x,t)\n",
+    "display(phi_t_0)\n",
+    "phi_t_m1 = taylor_phi(sx=0,  st=-1, order_x=0, order_t=4)\n",
+    "display(phi_t_m1)\n",
+    "phi_t_m2 = taylor_phi(sx=0,  st=-2, order_x=0, order_t=4)\n",
+    "display(phi_t_m2)\n",
+    "\n",
+    "# phi_{x±1}^{t}\n",
+    "phi_xm1_t0 = taylor_phi(sx=-1, st=0,  order_x=4, order_t=0)\n",
+    "display(phi_xm1_t0)\n",
+    "phi_xp1_t0 = taylor_phi(sx=+1, st=0,  order_x=4, order_t=0)\n",
+    "display(phi_xp1_t0)\n",
+    "\n",
+    "# phi_{x±1}^{t-1}\n",
+    "phi_xm1_tm1 = taylor_phi(sx=-1, st=-1, order_x=4, order_t=4)\n",
+    "phi_xp1_tm1 = taylor_phi(sx=+1, st=-1, order_x=4, order_t=4)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# -----------------------------------------------------------------------------\n",
+    "# 5) Build the discrete equation (expanded) and move everything to one side\n",
+    "# -----------------------------------------------------------------------------\n",
+    "lhs = phi_t_p1\n",
+    "\n",
+    "rhs = (alpha1*phi_xm1_t0 + alpha2*phi_t_0 + alpha1*phi_xp1_t0\n",
+    "       + beta1*phi_xm1_tm1 + beta2*phi_t_m1 + beta1*phi_xp1_tm1\n",
+    "       + gamma * phi_t_m2)\n",
+    "\n",
+    "residual = sp.simplify(sp.expand(lhs - rhs))  # = 0 is the modified equation"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "max_dx=4\n",
+    "max_dt=2\n",
+    "max_total=4\n",
+    "expr = sp.expand(residual)\n",
+    "poly = sp.Poly(expr, dx, dt, domain='EX')  # keep symbolic coeffs\n",
+    "kept = sp.S(0)\n",
+    "\n",
+    "for (px, pt), coeff in poly.terms():\n",
+    "    if (px <= max_dx) and (pt <= max_dt) and ((px + pt) <= max_total):\n",
+    "        kept += coeff * dx**px * dt**pt"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# display(sp.simplify(residual))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\Delta_{t}^{2} \\left(- 3 s_{1} s_{2} + 2 s_{1} + 2 s_{2}\\right) \\frac{\\partial^{2}}{\\partial t^{2}} \\phi{\\left(x,t \\right)}}{2} + \\frac{\\Delta_{t} \\Delta_{x}^{2} \\left(s_{1} s_{2} w_{0} - s_{1} s_{2} + s_{1} - s_{2} w_{0} + 2 s_{2} - 2\\right) \\frac{\\partial^{3}}{\\partial x^{2}\\partial t} \\phi{\\left(x,t \\right)}}{2} + \\Delta_{t} s_{1} s_{2} \\frac{\\partial}{\\partial t} \\phi{\\left(x,t \\right)} + \\frac{\\Delta_{x}^{4} s_{2} \\left(- s_{1} w_{0} + s_{1} + 2 w_{0} - 2\\right) \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)}}{24} + \\frac{\\Delta_{x}^{2} s_{2} \\left(- s_{1} w_{0} + s_{1} + 2 w_{0} - 2\\right) \\frac{\\partial^{2}}{\\partial x^{2}} \\phi{\\left(x,t \\right)}}{2}$"
+      ],
+      "text/plain": [
+       "Delta_t**2*(-3*s_{1}*s_{2} + 2*s_{1} + 2*s_{2})*Derivative(phi(x, t), (t, 2))/2 + Delta_t*Delta_x**2*(s_{1}*s_{2}*w_{0} - s_{1}*s_{2} + s_{1} - s_{2}*w_{0} + 2*s_{2} - 2)*Derivative(phi(x, t), t, (x, 2))/2 + Delta_t*s_{1}*s_{2}*Derivative(phi(x, t), t) + Delta_x**4*s_{2}*(-s_{1}*w_{0} + s_{1} + 2*w_{0} - 2)*Derivative(phi(x, t), (x, 4))/24 + Delta_x**2*s_{2}*(-s_{1}*w_{0} + s_{1} + 2*w_{0} - 2)*Derivative(phi(x, t), (x, 2))/2"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "display(sp.simplify(kept.subs(dt**2*dx**2,0)))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{6 \\Delta_{t} \\Delta_{x}^{2} \\nu s_{1} \\left(2 - 3 s_{2}\\right) \\left(s_{1} - 2\\right) \\left(w_{0} - 1\\right) \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)} + 12 \\Delta_{t} \\Delta_{x}^{2} \\nu s_{2} \\left(s_{1} - 2\\right) \\left(w_{0} - 1\\right) \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)} + s_{1} \\left(12 \\Delta_{t} \\Delta_{x}^{2} \\nu \\left(s_{1} s_{2} w_{0} - s_{1} s_{2} + s_{1} - s_{2} w_{0} + 2 s_{2} - 2\\right) \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)} + 24 \\Delta_{t} s_{1} s_{2} \\frac{\\partial}{\\partial t} \\phi{\\left(x,t \\right)} + \\Delta_{x}^{4} s_{2} \\left(- s_{1} w_{0} + s_{1} + 2 w_{0} - 2\\right) \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)} + 12 \\Delta_{x}^{2} s_{2} \\left(- s_{1} w_{0} + s_{1} + 2 w_{0} - 2\\right) \\frac{\\partial^{2}}{\\partial x^{2}} \\phi{\\left(x,t \\right)}\\right)}{24 s_{1}}$"
+      ],
+      "text/plain": [
+       "(6*Delta_t*Delta_x**2*\\nu*s_{1}*(2 - 3*s_{2})*(s_{1} - 2)*(w_{0} - 1)*Derivative(phi(x, t), (x, 4)) + 12*Delta_t*Delta_x**2*\\nu*s_{2}*(s_{1} - 2)*(w_{0} - 1)*Derivative(phi(x, t), (x, 4)) + s_{1}*(12*Delta_t*Delta_x**2*\\nu*(s_{1}*s_{2}*w_{0} - s_{1}*s_{2} + s_{1} - s_{2}*w_{0} + 2*s_{2} - 2)*Derivative(phi(x, t), (x, 4)) + 24*Delta_t*s_{1}*s_{2}*Derivative(phi(x, t), t) + Delta_x**4*s_{2}*(-s_{1}*w_{0} + s_{1} + 2*w_{0} - 2)*Derivative(phi(x, t), (x, 4)) + 12*Delta_x**2*s_{2}*(-s_{1}*w_{0} + s_{1} + 2*w_{0} - 2)*Derivative(phi(x, t), (x, 2))))/(24*s_{1})"
+      ]
+     },
+     "execution_count": 12,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rel1=sp.simplify(kept.subs(dt**2*dx**2, 0).subs(PHI.diff(t, 2), (1-w0)*((2-s1)/(2*s1))*dx*dx/dt*nu*PHI.diff(x, 4)).subs(PHI.diff(t, x, 2), nu*PHI.diff(x, 4)))\n",
+    "rel1"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 43,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle - \\frac{\\Delta_{x}^{2} \\nu \\left(3 s_{1}^{2} s_{2} w_{0} - 2 s_{1}^{2} s_{2} - 6 s_{1}^{2} w_{0} - 18 s_{1} s_{2} w_{0} + 12 s_{1} s_{2} + 12 s_{1} w_{0} + 12 s_{2} w_{0} - 12 s_{2}\\right) \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)}}{12 s_{1}^{2} s_{2}} - \\nu \\frac{\\partial^{2}}{\\partial x^{2}} \\phi{\\left(x,t \\right)} + \\frac{\\partial}{\\partial t} \\phi{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "-Delta_x**2*\\nu*(3*s_{1}**2*s_{2}*w_{0} - 2*s_{1}**2*s_{2} - 6*s_{1}**2*w_{0} - 18*s_{1}*s_{2}*w_{0} + 12*s_{1}*s_{2} + 12*s_{1}*w_{0} + 12*s_{2}*w_{0} - 12*s_{2})*Derivative(phi(x, t), (x, 4))/(12*s_{1}**2*s_{2}) - \\nu*Derivative(phi(x, t), (x, 2)) + Derivative(phi(x, t), t)"
+      ]
+     },
+     "execution_count": 43,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rel2=(sp.collect(sp.simplify(sp.expand(rel1)/(dt*s1*s2)),[PHI.diff(x, 4),PHI.diff(x, 2)])\n",
+    "      .subs(sp.expand(dx*dx*(-w0/2+sp.Rational(1,2)+w0/s1-1/s1)/dt),sp.factor(dx*dx*(-w0/2+sp.Rational(1,2)+w0/s1-1/s1)/dt))\n",
+    "     .subs(sp.factor(-dx*dx*(-w0/2+sp.Rational(1,2)+w0/s1-1/s1)/dt), nu)\n",
+    "     .subs(sp.expand(dx*dx*dx*dx*(-w0/2+sp.Rational(1,2)+w0/s1-1/s1)/(12*dt)), -dx*dx*nu/12)\n",
+    "     .subs(sp.expand(dx*dx*nu*(-w0/4 + sp.Rational(1,6) + w0/(2*s2) + 3*w0/(2*s1) - 1/s1 - w0/(s1*s2) - w0/s1**2 + 1/s1**2 ) ), sp.factor(sp.expand(dx*dx*nu*(-w0/4 + sp.Rational(1,6) + w0/(2*s2) + 3*w0/(2*s1) - 1/s1 - w0/(s1*s2) - w0/s1**2 + 1/s1**2 ) ))) )\n",
+    "rel2"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 41,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle - \\frac{\\Delta_{x}^{2} \\nu w_{0}}{4} + \\frac{\\Delta_{x}^{2} \\nu}{6} + \\frac{\\Delta_{x}^{2} \\nu w_{0}}{2 s_{2}} + \\frac{3 \\Delta_{x}^{2} \\nu w_{0}}{2 s_{1}} - \\frac{\\Delta_{x}^{2} \\nu}{s_{1}} - \\frac{\\Delta_{x}^{2} \\nu w_{0}}{s_{1} s_{2}} - \\frac{\\Delta_{x}^{2} \\nu w_{0}}{s_{1}^{2}} + \\frac{\\Delta_{x}^{2} \\nu}{s_{1}^{2}}$"
+      ],
+      "text/plain": [
+       "-Delta_x**2*\\nu*w_{0}/4 + Delta_x**2*\\nu/6 + Delta_x**2*\\nu*w_{0}/(2*s_{2}) + 3*Delta_x**2*\\nu*w_{0}/(2*s_{1}) - Delta_x**2*\\nu/s_{1} - Delta_x**2*\\nu*w_{0}/(s_{1}*s_{2}) - Delta_x**2*\\nu*w_{0}/s_{1}**2 + Delta_x**2*\\nu/s_{1}**2"
+      ]
+     },
+     "execution_count": 41,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sp.expand(dx*dx*nu*(-w0/4 + sp.Rational(1,6) + w0/(2*s2) + 3*w0/(2*s1) - 1/s1 - w0/(s1*s2) - w0/s1**2 + 1/s1**2 ) )"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 46,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle - \\frac{\\Delta_{x}^{2} \\nu \\left(3 s_{1}^{2} s_{2} w_{0} - 2 s_{1}^{2} s_{2} - 6 s_{1}^{2} w_{0} - 18 s_{1} s_{2} w_{0} + 12 s_{1} s_{2} + 12 s_{1} w_{0} + 12 s_{2} w_{0} - 12 s_{2}\\right)}{12 s_{1}^{2} s_{2}}$"
+      ],
+      "text/plain": [
+       "-Delta_x**2*\\nu*(3*s_{1}**2*s_{2}*w_{0} - 2*s_{1}**2*s_{2} - 6*s_{1}**2*w_{0} - 18*s_{1}*s_{2}*w_{0} + 12*s_{1}*s_{2} + 12*s_{1}*w_{0} + 12*s_{2}*w_{0} - 12*s_{2})/(12*s_{1}**2*s_{2})"
+      ]
+     },
+     "execution_count": 46,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "termx=sp.factor(sp.expand(dx*dx*nu*(-w0/4 + sp.Rational(1,6) + w0/(2*s2) + 3*w0/(2*s1) - 1/s1 - w0/(s1*s2) - w0/s1**2 + 1/s1**2 ) ))\n",
+    "termx"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 51,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle 4 s_{1}^{2} - 8 s_{1} + 4 s_{2}$"
+      ],
+      "text/plain": [
+       "4*s_{1}**2 - 8*s_{1} + 4*s_{2}"
+      ]
+     },
+     "execution_count": 51,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "termx2=sp.factor(sp.expand(dx*dx*nu*(-w0/4 + sp.Rational(1,6) + w0/(2*s2) + 3*w0/(2*s1) - 1/s1 - w0/(s1*s2) - w0/s1**2 + 1/s1**2 ) ))/(dx*dx*nu)*12*s1*s1*s2\n",
+    "termx2.subs(w0,sp.Rational(2,3))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 53,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle 4 \\left(s_{1}^{2} - 2 s_{1} + s_{2}\\right)$"
+      ],
+      "text/plain": [
+       "4*(s_{1}**2 - 2*s_{1} + s_{2})"
+      ]
+     },
+     "execution_count": 53,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sp.factor(4*s1*s1-8*s1+4*s2)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 44,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# from sympy import latex\n",
+    "# print(latex(sp.simplify(kept.subs(dt**2*dx**2,0))))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.12"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}

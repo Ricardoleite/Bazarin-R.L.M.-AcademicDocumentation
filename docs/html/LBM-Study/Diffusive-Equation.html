@@ -87,26 +87,32 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="#lattice-boltzmann-equation">Lattice Boltzmann Equation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#lattice-direction-moments">Lattice Direction Moments</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#chapmann-enskog-analysis">Chapmann-Enskog Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#boundary-conditions">Boundary Conditions</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#boundary-conditions">Boundary Conditions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#benchmark-case-0-single-sine-mode-on-a-finite-rod-dirichlet">Benchmark Case 0: Single sine mode on a finite rod (Dirichlet)</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#lbm-d1q3-solution">LBM D1Q3 Solution</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#fdm-solution">FDM Solution</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#numerical-and-analytical-comparisson">Numerical and Analytical Comparisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#st-benchmark-single-sine-mode-on-a-finite-rod-dirichlet">1st Benchmark: Single sine mode on a finite rod (Dirichlet)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lbm-d1q3-solution-tau-1">LBM D1Q3 Solution (<span class="math notranslate nohighlight">\(\tau=1\)</span>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fdm-solution">FDM Solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#numerical-and-analytical-comparisson">Numerical and Analytical Comparisson</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#benchmark-case-1-temperature-ramp">Benchmark Case 1: Temperature ramp</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#benchmark-case-2-temperature-ramp-with-adiabatic-boundary">Benchmark Case 2: Temperature Ramp with Adiabatic Boundary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nd-benchmark-temperature-ramp">2nd Benchmark: Temperature ramp</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#steady-state-analytical-solution">Steady-State Analytical Solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transient-analytical-solution">Transient Analytical Solution</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#rd-benchmark-temperature-ramp-with-adiabatic-boundary">3rd Benchmark: Temperature Ramp with Adiabatic Boundary</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Poisson-Equation.html">Poisson Equation (Steady-State Diffusive Equation)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Convective-Equation.html">Convective Equation (Transport Equation)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Ementa.html">Ementa - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Convective-Diffusive-Equation.html">Convective-Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FDM-LBM-Diffusive.html">Difference Finite Scheme of Diffusive Equation derived from Lattice Boltzmann</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FDM-LBM-Convective-Diffusive.html">Difference Finite Scheme derived from MRT Lattice Boltzmann for Convective-Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Extra-Avoiding-Diffusive-Effect-in-CE%28Unfinished%29.html">Extra::Avoiding Diffusive effect in Convective Equation (Unfinished) - Variable Lattice Sound Sped</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ementa.html">Conteúdo - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References:</span></p>
 <ul>
@@ -114,7 +120,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Appendix:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="bcs-D2Q5-poisson-equation.html">Boundary Conditions: Deduction for the Lattice D2Q5 - Poisson Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/bcs-D2Q5-poisson-equation.html">Boundary Conditions: Deduction for the Lattice D2Q5 - Poisson Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/sympy-code-fdm-diffusive-expansion.html">Sympy code for FDM expansion of LBM diffusive equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/sympy-code-mrt-fdm-diffusive-expansion-4th.html">Sympy code for FDM expansion of LBM diffusive equation up to Fourth-order</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/sympy-code-mrt-fdm-diffusive-expansion-6th.html">Sympy code for FDM expansion of LBM diffusive equation up to Sixth-order</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Porous-Media-Study/Intro/trans-eq/base-trans-eq.html">Introdution for Transport Equations</a></li>
 </ul>
 
@@ -147,7 +156,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>The diffusive equation is described by</p>
 <div class="math notranslate nohighlight" id="equation-df-eq-lb">
 <span class="eqno">(18)<a class="headerlink" href="#equation-df-eq-lb" title="Link to this equation"></a></span>\[
-\partial_t \phi + \partial_{\alpha}\left( \nu \partial_{\alpha}\phi \right) = 0
+\partial_t \phi - \partial_{\alpha}\left( \nu \partial_{\alpha}\phi \right) = 0
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\phi(\alpha,t)\)</span> is a time and space dependent parameter and <span class="math notranslate nohighlight">\(\nu\)</span> is diffusive coeficient.</p>
 <section id="numerical-discretization">
@@ -164,12 +173,12 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Discretizing the Eq. <a class="reference internal" href="#equation-df-eq-lb">(18)</a> through finite diference method, we have for forward time and central space (FTCS) discretizations:</p>
 <div class="math notranslate nohighlight">
 \[
-\partial_t \phi + \partial_{\alpha}\left( \nu \partial_{\alpha}\phi \right) = \frac{\phi(x,t + \Delta_{t}) - \phi(x,t) }{\Delta_{t}} + \nu\frac{ \phi(x - \Delta_{x},t) -2\phi(x,t) + \phi(x + \Delta_{x},t) }{\Delta_{x}^{2}} =0,
+\partial_t \phi - \partial_{\alpha}\left( \nu \partial_{\alpha}\phi \right) = \frac{\phi(x,t + \Delta_{t}) - \phi(x,t) }{\Delta_{t}} - \nu\frac{ \phi(x - \Delta_{x},t) -2\phi(x,t) + \phi(x + \Delta_{x},t) }{\Delta_{x}^{2}} =0,
 \]</div>
 <p>for <span class="math notranslate nohighlight">\(\nu\)</span> constant and isolating the term <span class="math notranslate nohighlight">\(u(x,t + \Delta_{t})\)</span>, we can describe the <span class="math notranslate nohighlight">\(\phi\)</span> time evolution:</p>
 <div class="math notranslate nohighlight">
 \[
-\phi(x,t + \Delta_{t})   = \phi(x,t) - \frac{\nu\Delta_{t}}{\Delta_{x}^{2}} \left( \phi(x - \Delta_{x},t) -2\phi(x,t) + \phi(x + \Delta_{x},t) \right) .
+\phi(x,t + \Delta_{t})   = \phi(x,t) + \frac{\nu\Delta_{t}}{\Delta_{x}^{2}} \left( \phi(x - \Delta_{x},t) -2\phi(x,t) + \phi(x + \Delta_{x},t) \right) .
 \]</div>
 </section>
 <section id="lattice-boltzmann-equation">
@@ -177,7 +186,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Describing the problem through the BGK lattice Boltzmann equation (BGK-LB):</p>
 <div class="math notranslate nohighlight" id="equation-lb-df-eq">
 <span class="eqno">(19)<a class="headerlink" href="#equation-lb-df-eq" title="Link to this equation"></a></span>\[
-f_i( x_{\alpha} + e_{i,\alpha} \delta t, t+\delta t) = f_i(x_{\alpha}, t)  -\left( \frac{ f_{i} - f_{i}^{eq} }{ \tau } \right), 
+f_i( x_{\alpha} + c_{i,\alpha} \delta t, t+\delta t) = f_i(x_{\alpha}, t)  -\left( \frac{ f_{i} - f_{i}^{eq} }{ \tau } \right), 
 \]</div>
 <p>where the equilibrium distribution function is defined by</p>
 <div class="math notranslate nohighlight">
@@ -187,12 +196,12 @@ f^{eq}_{i} = w_{i}\phi(x_{\alpha}, t),
 <p>and the equilibrium moments are given by</p>
 <div class="math notranslate nohighlight" id="equation-moments-fi-df">
 <span class="eqno">(20)<a class="headerlink" href="#equation-moments-fi-df" title="Link to this equation"></a></span>\[
-\displaystyle\sum_{i=0} f_{i}^{eq}=\phi, \quad \quad  \displaystyle\sum_{i}f_{i}^{eq} e_{i,\alpha} =0 \quad \quad \textrm{and} \quad \quad  \displaystyle\sum_{i}f_{i}^{eq} e_{i,\alpha} e_{i,\beta} =c_{s}^{2} \phi \delta_{\alpha\beta}.
+\displaystyle\sum_{i=0} f_{i}^{eq}=\phi, \quad \quad  \displaystyle\sum_{i}f_{i}^{eq} c_{i,\alpha} =0 \quad \quad \textrm{and} \quad \quad  \displaystyle\sum_{i}f_{i}^{eq} c_{i,\alpha} c_{i,\beta} =c_{s}^{2} \phi \delta_{\alpha\beta}.
 \]</div>
 <p>Through Chapman–Enskog analysis, it is demonstrated that the first-order non-equilibrium moment describes the pressure gradient and, consequently, the average velocity:</p>
 <div class="math notranslate nohighlight">
 \[
-m^{neq}_{\alpha} = \displaystyle\sum_{i} e_{i,\alpha}\left( f_i-f_i^{eq}\right)  = -(c_{s}^{2} \tau \delta_{t})\partial_{\alpha}\phi  \quad \quad \textrm{and} \quad\quad \tau = \displaystyle\frac{\nu}{c_{s}^{2} \delta_{t}} +\frac{1}{2}.
+m^{neq}_{\alpha} = \displaystyle\sum_{i} c_{i,\alpha}\left( f_i-f_i^{eq}\right)  = -(c_{s}^{2} \tau \delta_{t})\partial_{\alpha}\phi  \quad \quad \textrm{and} \quad\quad \tau = \displaystyle\frac{\nu}{c_{s}^{2} \delta_{t}} +\frac{1}{2}.
 \]</div>
 <section id="lattice-direction-moments">
 <h4>Lattice Direction Moments<a class="headerlink" href="#lattice-direction-moments" title="Link to this heading"></a></h4>
@@ -252,18 +261,18 @@ m^{neq}_{\alpha} = \displaystyle\sum_{i} e_{i,\alpha}\left( f_i-f_i^{eq}\right) 
 <span class="n">axy</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cx</span><span class="o">*</span><span class="n">cy</span><span class="p">))</span>
 <span class="n">ayy</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cy</span><span class="o">*</span><span class="n">cy</span><span class="p">))</span>
 <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> =\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2"> }_{\textrm{Zero-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span> 
-            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">e_{i,x} }_{\textrm{x-First-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
-            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">e_{i,y} }_{\textrm{y-First-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">ay</span><span class="p">)</span>
-            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,</span><span class="se">\\</span><span class="s2"> \quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">e_{i,x}e_{i,x} }_{\textrm{xx-Second-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">axx</span><span class="p">)</span>
-            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">e_{i,x}e_{i,y} }_{\textrm{xy-Second-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">axy</span><span class="p">)</span>
-            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot; \quad \quad and \quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">e_{i,y}e_{i,y} }_{\textrm{yy-Second-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">ayy</span><span class="p">)))</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">c_{i,x} }_{\textrm{x-First-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">c_{i,y} }_{\textrm{y-First-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">ay</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,</span><span class="se">\\</span><span class="s2"> \quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">c_{i,x}c_{i,x} }_{\textrm{xx-Second-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">axx</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">c_{i,x}c_{i,y} }_{\textrm{xy-Second-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">axy</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot; \quad \quad and \quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">c_{i,y}c_{i,y} }_{\textrm{yy-Second-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">ayy</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\displaystyle \underbrace{\sum_{i=0} f_{i}^{eq} =\sum_{i=0} f_{i} }_{\textrm{Zero-Order Moment}} =\phi,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}e_{i,x} }_{\textrm{x-First-Order Moment}} =0,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}e_{i,y} }_{\textrm{y-First-Order Moment}} =0,\\ \quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}e_{i,x}e_{i,x} }_{\textrm{xx-Second-Order Moment}} =\frac{\phi}{3},\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}e_{i,x}e_{i,y} }_{\textrm{xy-Second-Order Moment}} =0 \quad \quad and \quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}e_{i,y}e_{i,y} }_{\textrm{yy-Second-Order Moment}} =\frac{\phi}{3}\end{split}\]</div>
+\[\begin{split}\displaystyle \underbrace{\sum_{i=0} f_{i}^{eq} =\sum_{i=0} f_{i} }_{\textrm{Zero-Order Moment}} =\phi,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}c_{i,x} }_{\textrm{x-First-Order Moment}} =0,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}c_{i,y} }_{\textrm{y-First-Order Moment}} =0,\\ \quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}c_{i,x}c_{i,x} }_{\textrm{xx-Second-Order Moment}} =\frac{\phi}{3},\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}c_{i,x}c_{i,y} }_{\textrm{xy-Second-Order Moment}} =0 \quad \quad and \quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}c_{i,y}c_{i,y} }_{\textrm{yy-Second-Order Moment}} =\frac{\phi}{3}\end{split}\]</div>
 </div>
 </div>
 </section>
@@ -273,7 +282,7 @@ m^{neq}_{\alpha} = \displaystyle\sum_{i} e_{i,\alpha}\left( f_i-f_i^{eq}\right) 
 <p>Applying the Chapmann-Enskog procedure to LB equation, we expand the term <span class="math notranslate nohighlight">\(f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)\)</span> in a Taylor series to recover the derivative form of the equation, i.e.,</p>
 <div class="math notranslate nohighlight" id="equation-eqexp-df-eq">
 <span class="eqno">(21)<a class="headerlink" href="#equation-eqexp-df-eq" title="Link to this equation"></a></span>\[
-f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\boldsymbol{x}, t)=\displaystyle\sum_{j=1}^{\infty}\frac{\Delta t^{j}}{j!}D_{t}^{j}f_{i}= -\left( \frac{ f_{i} - f_{i}^{eq} }{ \tau } \right).
+f_{i}\left( x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}( x_{\alpha}, t)=\displaystyle\sum_{j=1}^{\infty}\frac{\Delta t^{j}}{j!}D_{t}^{j}f_{i}= -\left( \frac{ f_{i} - f_{i}^{eq} }{ \tau } \right).
 \]</div>
 <p>Rescaling the dimensionless form of the Eq. <a class="reference internal" href="#equation-eqexp-df-eq">(21)</a> in terms of the Knudsen number (<span class="math notranslate nohighlight">\(Kn\)</span>), we have</p>
 <div class="math notranslate nohighlight">
@@ -285,12 +294,12 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
 <span class="eqno">(22)<a class="headerlink" href="#equation-chap-kn-df-eq" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{ll}
     (Kn^{(0)}):&amp; f_{i}^{(0)}= f_{i}^{eq},\\
-    (Kn^{(1)}):&amp; \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)}= - \displaystyle\frac{ f_{i}^{(1)} }{ \tau } , \\
-    (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(1)} + \displaystyle\frac{\left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)^{2} f_{i}^{(0)}}{2}= - \displaystyle\frac{ f_{i}^{(2)} }{ \tau },\\
+    (Kn^{(1)}):&amp; \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)}= - \displaystyle\frac{ f_{i}^{(1)} }{ \tau } , \\
+    (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(1)} + \displaystyle\frac{\left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)^{2} f_{i}^{(0)}}{2}= - \displaystyle\frac{ f_{i}^{(2)} }{ \tau },\\
     \textrm{ou}\\
-    (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)\displaystyle\left(1 - \frac{1}{2\tau}\right) f_{i}^{(1)} =  - \displaystyle\frac{ f_{i}^{(2)} }{ \tau } \quad\quad \rightarrow \quad\quad  f_{i}^{(1)}\textrm{ Formulation} \\
+    (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)\displaystyle\left(1 - \frac{1}{2\tau}\right) f_{i}^{(1)} =  - \displaystyle\frac{ f_{i}^{(2)} }{ \tau } \quad\quad \rightarrow \quad\quad  f_{i}^{(1)}\textrm{ Formulation} \\
     \textrm{ou}\\
-    (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)^{2} \displaystyle\left(\frac{1}{2} - \tau\right) f_{i}^{(0)} =  - \displaystyle\frac{ f_{i}^{(2)} }{ \tau } \quad\quad \rightarrow  \quad\quad f_{i}^{(0)}\textrm{ Formulation}.
+    (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)^{2} \displaystyle\left(\frac{1}{2} - \tau\right) f_{i}^{(0)} =  - \displaystyle\frac{ f_{i}^{(2)} }{ \tau } \quad\quad \rightarrow  \quad\quad f_{i}^{(0)}\textrm{ Formulation}.
  \end{array}
 \end{split}\]</div>
 <p class="rubric">Zero-Order Moment Balance</p>
@@ -298,7 +307,7 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{l}
-(Kn^{(1)}): \displaystyle\sum_{i}\left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)}= \displaystyle\sum_{i} \left(- \displaystyle\frac{ f_{i}^{(1)} }{ \tau } \right),\\
+(Kn^{(1)}): \displaystyle\sum_{i}\left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)}= \displaystyle\sum_{i} \left(- \displaystyle\frac{ f_{i}^{(1)} }{ \tau } \right),\\
 (Kn^{(1)}): \partial_{t}^{(0)}  \phi =0,
 \end{array}
 \end{split}\]</div>
@@ -306,7 +315,7 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{l}
-(Kn^{(2)}): \displaystyle\sum_{i}\left( \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + e_{i,\alpha}\partial_{\alpha} \right)^{2} \displaystyle\left( \frac{1}{2}-\tau\right) f_{i}^{(0)} \right) =  \displaystyle\sum_{i}\left( - \displaystyle\frac{ f_{i}^{(2)} }{ \tau } \right), \\
+(Kn^{(2)}): \displaystyle\sum_{i}\left( \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)^{2} \displaystyle\left( \frac{1}{2}-\tau\right) f_{i}^{(0)} \right) =  \displaystyle\sum_{i}\left( - \displaystyle\frac{ f_{i}^{(2)} }{ \tau } \right), \\
 (Kn^{(2)}): \partial_{t}^{(1)}\phi + \left( \displaystyle\frac{1}{2}-\tau\right) \partial_{\alpha}\partial_{\beta} \left(c_{s}^{2} \phi \delta_{\alpha\beta} \right) =0. 
 \end{array}
 \end{split}\]</div>
@@ -314,25 +323,23 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
 <div class="math notranslate nohighlight" id="equation-df-kn1-0-b0">
 <span class="eqno">(23)<a class="headerlink" href="#equation-df-kn1-0-b0" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{l}
-(Kn^{(2)}):&amp; \displaystyle\sum_{i}\left[ \partial_{t}^{(1)} f_{i}^{(0)} - \left(1-\displaystyle\frac{1}{2\tau}\right)\left( \partial_{t}^{(0)} + e_{\alpha,i}\partial_{\alpha} \right) f_{i}^{(1)}   \right]=  \displaystyle\sum_{i}\left( - \displaystyle\frac{f_{i}^{(2)}}{\tau} \right), \nonumber \\
-(Kn^{(2)}):&amp; \partial_{t}^{(1)}\phi - \left(1-\displaystyle\frac{1}{2\tau}\right) m^{(1)}_{\alpha} = 0.
+(Kn^{(2)}):&amp; \displaystyle\sum_{i}\left[ \partial_{t}^{(1)} f_{i}^{(0)} + \left(1-\displaystyle\frac{1}{2\tau}\right)\left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right) f_{i}^{(1)}   \right]=  \displaystyle\sum_{i}\left( - \displaystyle\frac{f_{i}^{(2)}}{\tau} \right), \nonumber \\
+(Kn^{(2)}):&amp; \partial_{t}^{(1)}\phi + \left(1-\displaystyle\frac{1}{2\tau}\right) m^{(1)}_{\alpha} = 0.
 \end{array}
 \end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(m^{(1)}_{\alpha}\)</span> is the first-order moment of <span class="math notranslate nohighlight">\(f_{i}^{(1)}\)</span> and <span class="math notranslate nohighlight">\(\sum_{i=1}f_{i}^{(j)}=0\)</span> for <span class="math notranslate nohighlight">\(j\geq 1\)</span> due to imposition of <span class="math notranslate nohighlight">\(\phi\)</span> conservation. To compute the moment <span class="math notranslate nohighlight">\(m^{(1)}_{\alpha}\)</span>, we multiply Eq. <a class="reference internal" href="#equation-chap-kn-df-eq">(22)</a> by <span class="math notranslate nohighlight">\(e_{i,\alpha}\)</span> and sum over all lattice directions:</p>
+<p>where <span class="math notranslate nohighlight">\(m^{(1)}_{\alpha}\)</span> is the first-order moment of <span class="math notranslate nohighlight">\(f_{i}^{(1)}\)</span> and <span class="math notranslate nohighlight">\(\sum_{i=1}f_{i}^{(j)}=0\)</span> for <span class="math notranslate nohighlight">\(j\geq 1\)</span> due to imposition of <span class="math notranslate nohighlight">\(\phi\)</span> conservation. To compute the moment <span class="math notranslate nohighlight">\(m^{(1)}_{\alpha}\)</span>, we multiply Eq. <a class="reference internal" href="#equation-chap-kn-df-eq">(22)</a> by <span class="math notranslate nohighlight">\(c_{i,\alpha}\)</span> and sum over all lattice directions:</p>
 <div class="math notranslate nohighlight" id="equation-df-kn0-b1">
 <span class="eqno">(24)<a class="headerlink" href="#equation-df-kn0-b1" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{l}
-(Kn^{(1)}): \displaystyle\sum_{i}e_{\alpha,i}\left( \partial_{t}^{(0)} + e_{\beta,i}\partial_{\beta} \right)f_{i}^{(0)}= \displaystyle\sum_{i} e_{\alpha,i} \left( -\frac{f_{i}^{(1)}}{\tau}  \right),\\
+(Kn^{(1)}): \displaystyle\sum_{i}c_{i,\alpha}\left( \partial_{t}^{(0)} + e_{\beta,i}\partial_{\beta} \right)f_{i}^{(0)}= \displaystyle\sum_{i} c_{i,\alpha} \left( -\frac{f_{i}^{(1)}}{\tau}  \right),\\
 (Kn^{(1)}): m^{(1)}_{\alpha} =-\tau \partial_{\beta}\left( c_{s}^{2} \phi \delta_{\alpha\beta}  \right).
 \end{array}
 \end{split}\]</div>
 <p>By substituting Eq. <a class="reference internal" href="#equation-df-kn0-b1">(24)</a> into Eq. <a class="reference internal" href="#equation-df-kn1-0-b0">(23)</a>, we recover the Eq. <a class="reference internal" href="#equation-df-eq-lb">(18)</a>, where <span class="math notranslate nohighlight">\(\nu=c_{s}^{2}(\tau-1/2)\)</span>. In the regularized formulation of the lattice Boltzmann equation, the first-order correction is approximated as <span class="math notranslate nohighlight">\(f_{i}^{(1)}\approx (f_{i}-f_{i}^{(0)})=f_{i}^{neq}\)</span>, where higher-order Knudsen moments are filtered out and the collision term is reformulated in terms of <span class="math notranslate nohighlight">\(f_{i}^{neq}\)</span>.</p>
 </div>
 </section>
-</section>
-</section>
 <section id="boundary-conditions">
-<h2>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Link to this heading"></a></h2>
+<h4>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Link to this heading"></a></h4>
 <p>The boundary conditions for the lattices can be derived by solving a linear system of known moments.</p>
 <table class="docutils align-default">
 <thead>
@@ -400,8 +407,11 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
 |      |                 |   | North                                                                           |   | South                                                                           |
 |      | Unknown $f_{i}$ |   | $f_2=\phi_{n} - (f_0+f_1+f_3+f_4)$                                              |   | $f_4=\phi_{s} - (f_0+f_1+f_2+f_3)$                                              |
 |      |                 |   | East                                                                            |   | East                                                                            |
-|      |                 |   | $f_3=\phi_{e} - (f_0+f_1+f_2+f_4)$                                              |   | $f_1=\phi_{w} - (f_0+f_2+f_3+f_4)$                                              | --><section id="benchmark-case-0-single-sine-mode-on-a-finite-rod-dirichlet">
-<h3>Benchmark Case 0: Single sine mode on a finite rod (Dirichlet)<a class="headerlink" href="#benchmark-case-0-single-sine-mode-on-a-finite-rod-dirichlet" title="Link to this heading"></a></h3>
+|      |                 |   | $f_3=\phi_{e} - (f_0+f_1+f_2+f_4)$                                              |   | $f_1=\phi_{w} - (f_0+f_2+f_3+f_4)$                                              | --></section>
+</section>
+</section>
+<section id="st-benchmark-single-sine-mode-on-a-finite-rod-dirichlet">
+<h2>1st Benchmark: Single sine mode on a finite rod (Dirichlet)<a class="headerlink" href="#st-benchmark-single-sine-mode-on-a-finite-rod-dirichlet" title="Link to this heading"></a></h2>
 <p>PDE: <span class="math notranslate nohighlight">\((\phi_t = \partial_{x}(\nu\partial_{x}\phi), (0&lt;x&lt;L,\ t&gt;0)\)</span></p>
 <p>BC: <span class="math notranslate nohighlight">\((\phi(0,t)=\phi(L,t)=0)\)</span></p>
 <p>IC: <span class="math notranslate nohighlight">\(\phi(x,0)=\sin \left(\frac{\pi x}{L}\right)\)</span></p>
@@ -410,39 +420,57 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
 \[
 \phi(x,t)=\sin\left(\frac{\pi x}{L}\right) \exp \left(-\nu \frac{\pi^2}{L^2} t\right).
 \]</div>
-<section id="lbm-d1q3-solution">
-<h4>LBM D1Q3 Solution<a class="headerlink" href="#lbm-d1q3-solution" title="Link to this heading"></a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<section id="lbm-d1q3-solution-tau-1">
+<h3>LBM D1Q3 Solution (<span class="math notranslate nohighlight">\(\tau=1\)</span>)<a class="headerlink" href="#lbm-d1q3-solution-tau-1" title="Link to this heading"></a></h3>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="c1">#***************************************InputParameters************************************************</span>
-<span class="n">Nx</span><span class="o">=</span><span class="mi">21</span> <span class="c1">#Square Domain Length</span>
-<span class="c1">#***************************************Lattice-Properties-D1Q3*************************************************</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
+<span class="c1">#--------------------------------------- Parameters (physical units) ------------------------------------------</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mf">1.0</span>             <span class="c1"># Length of the domain</span>
+<span class="n">nu</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">/</span><span class="mf">3.0</span>        <span class="c1"># Diffusion coefficient</span>
+<span class="n">t_end</span> <span class="o">=</span> <span class="mf">2.0</span>             <span class="c1"># Total simulation time</span>
+<span class="c1">#--------------------------------------- Lattice-Properties-D1Q3 ----------------------------------------------</span>
 <span class="n">cs</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">3.0</span><span class="p">);</span>
 <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
 <span class="n">cx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int8&quot;</span><span class="p">)</span>  
-<span class="n">L</span> <span class="o">=</span> <span class="mf">1.0</span>            <span class="c1"># Length of the domain</span>
-<span class="n">nu</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">/</span><span class="mf">3.0</span>           <span class="c1"># Diffusion coefficient</span>
-<span class="n">t</span> <span class="o">=</span> <span class="mf">2.0</span>             <span class="c1"># Total simulation time</span>
-<span class="n">dx</span> <span class="o">=</span> <span class="n">L</span> <span class="o">/</span> <span class="p">(</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>       <span class="c1"># Spatial step size</span>
-<span class="n">c</span><span class="o">=</span><span class="mf">1.0</span><span class="o">*</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>            <span class="c1"># c=dx/dt</span>
-<span class="n">dt</span><span class="o">=</span><span class="n">dx</span><span class="o">/</span><span class="n">c</span>             <span class="c1"># Time step size</span>
-<span class="n">nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="n">dt</span><span class="p">)</span>    <span class="c1"># Time step number</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;dx=&#39;</span><span class="p">,</span><span class="n">dx</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1"> dt=&#39;</span><span class="p">,</span><span class="n">dt</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1"> nt=&#39;</span><span class="p">,</span><span class="n">nt</span><span class="p">)</span>
-<span class="c1">#***************************************LBM-Scale************************************************</span>
+<span class="c1">#------------------------------------- Parameters (numerical units) -------------------------------------------</span>
+<span class="n">Nx</span><span class="o">=</span><span class="mi">21</span>               <span class="c1"># Domain Length</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="n">L</span> <span class="o">/</span> <span class="p">(</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>     <span class="c1"># Spatial step size</span>
+<span class="n">c</span><span class="o">=</span><span class="mf">1.0</span><span class="o">*</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>        <span class="c1"># c=dx/dt</span>
+<span class="n">dt</span><span class="o">=</span><span class="n">dx</span><span class="o">/</span><span class="n">c</span>             <span class="c1"># Time step value</span>
+<span class="n">nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">t_end</span> <span class="o">/</span> <span class="n">dt</span><span class="p">)</span>    <span class="c1"># Time step number</span>
 <span class="n">nue</span><span class="o">=</span><span class="n">nu</span><span class="o">/</span><span class="p">(</span><span class="n">c</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span>       <span class="c1"># Diffusion coefficient</span>
 <span class="n">tau</span><span class="o">=</span><span class="n">nue</span><span class="o">/</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mf">0.5</span>   <span class="c1"># Relaxation Time</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;nue=&#39;</span><span class="p">,</span><span class="n">nue</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1"> tau=&#39;</span><span class="p">,</span><span class="n">tau</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dx=</span><span class="si">{</span><span class="n">dx</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> dt=</span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> nt=</span><span class="si">{</span><span class="n">nt</span><span class="si">:</span><span class="s2">d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># Print values for check</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;nue=</span><span class="si">{</span><span class="n">nue</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\t</span><span class="s2"> tau=</span><span class="si">{</span><span class="n">tau</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1">#--------------------------------- Initialization - Numerical Arrays -----------------------------------------</span>
 <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">Nx</span><span class="p">)</span>
 <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="p">(</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
 <span class="n">fp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
-    <span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span><span class="o">=</span><span class="n">w</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">T</span><span class="p">[:]</span>
+    <span class="n">fp</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span><span class="o">=</span><span class="n">w</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">T</span><span class="p">[:]</span>
+<span class="c1">#--------------------------------- Initialization - Save Data Arrays -----------------------------------------</span>
+<span class="n">snaps</span><span class="o">=</span><span class="mi">5</span> <span class="c1"># number of states saved over time including 0 and t_end</span>
+<span class="n">T_snaps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">snaps</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span> <span class="c1"># array field used to same data over time</span>
+<span class="n">snaps_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nt</span><span class="p">,</span> <span class="n">snaps</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int16&quot;</span><span class="p">)</span> <span class="c1"># timesteps to take the field</span>
+<span class="n">snap_index</span> <span class="o">=</span> <span class="p">{</span><span class="n">sid</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">snaps_id</span><span class="p">)}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">snaps</span><span class="p">):</span>
+    <span class="n">T_snaps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">T_snaps</span><span class="p">[</span><span class="mi">0</span><span class="p">][:]</span><span class="o">=</span><span class="n">T</span><span class="p">[:]</span>
+<span class="c1">#----------------------------------------- Maind Loop --------------------------------------------------------</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nt</span><span class="p">):</span>
-    <span class="c1">#--------------------Collision----------------</span>
-    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
-        <span class="n">fp</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span><span class="o">=</span><span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span> <span class="o">-</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">T</span><span class="p">[:])</span><span class="o">/</span><span class="n">tau</span>
     <span class="c1">#-----------------streaming-------------------</span>
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
         <span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">fp</span><span class="p">[</span><span class="n">k</span><span class="p">,:],</span> <span class="n">cx</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -451,79 +479,133 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
     <span class="n">f</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span> <span class="mf">0.0</span> <span class="o">-</span> <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="c1">#----------------------Macro------------------</span>
     <span class="n">T</span><span class="p">[:]</span><span class="o">=</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span><span class="o">+</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span><span class="o">+</span><span class="n">f</span><span class="p">[</span><span class="mi">2</span><span class="p">,:]</span>
-<span class="n">xl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">Nx</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="s1">&#39;ko--&#39;</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Temperature&#39;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$x$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\phi(x,t)$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.01</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="c1">#---------------------save-snaps--------------</span>
+    <span class="k">if</span> <span class="n">t</span><span class="o">+</span><span class="mi">1</span> <span class="ow">in</span> <span class="n">snaps_id</span><span class="p">:</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">snap_index</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">T_snaps</span><span class="p">[</span><span class="n">i</span><span class="p">][:]</span><span class="o">=</span><span class="n">T</span><span class="p">[:]</span>
+    <span class="c1">#--------------------Collision----------------</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">fp</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span><span class="o">=</span><span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span> <span class="o">-</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">T</span><span class="p">[:])</span><span class="o">/</span><span class="n">tau</span>
 </pre></div>
+</div>
+</div>
+</details>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dx=5.0000e-02	 dt=1.2500e-02	 nt=160
+nue=0.1667	 tau=1.0000
+</pre></div>
+</div>
+</div>
+</details>
 </div>
 </section>
 <section id="fdm-solution">
-<h4>FDM Solution<a class="headerlink" href="#fdm-solution" title="Link to this heading"></a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<h3>FDM Solution<a class="headerlink" href="#fdm-solution" title="Link to this heading"></a></h3>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="c1">#***************************************InputParameters************************************************</span>
-<span class="n">Nx</span><span class="o">=</span><span class="mi">21</span> <span class="c1">#Square Domain Length</span>
-<span class="c1">#***************************************Lattice-Properties-D1Q3*************************************************</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
+<span class="c1">#--------------------------------------- Parameters (physical units) ------------------------------------------</span>
 <span class="n">L</span> <span class="o">=</span> <span class="mf">1.0</span>            <span class="c1"># Length of the domain</span>
 <span class="n">nu</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">/</span><span class="mf">3.0</span>           <span class="c1"># Diffusion coefficient</span>
-<span class="n">t</span> <span class="o">=</span> <span class="mf">2.0</span>             <span class="c1"># Total simulation time</span>
+<span class="n">t_end</span> <span class="o">=</span> <span class="mf">2.0</span>             <span class="c1"># Total simulation time</span>
+<span class="c1">#------------------------------------- Parameters (numerical units) -------------------------------------------</span>
+<span class="n">Nx</span><span class="o">=</span><span class="mi">21</span> <span class="c1">#Square Domain Length</span>
 <span class="n">dx</span> <span class="o">=</span> <span class="n">L</span> <span class="o">/</span> <span class="p">(</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>       <span class="c1"># Spatial step size</span>
 <span class="n">c</span><span class="o">=</span><span class="mf">1.0</span><span class="o">*</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>            <span class="c1"># c=dx/dt</span>
 <span class="n">dt</span><span class="o">=</span><span class="n">dx</span><span class="o">/</span><span class="n">c</span>             <span class="c1"># Time step size</span>
-<span class="n">nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="n">dt</span><span class="p">)</span>    <span class="c1"># Time step number</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;dx=&#39;</span><span class="p">,</span><span class="n">dx</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1"> dt=&#39;</span><span class="p">,</span><span class="n">dt</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1"> nt=&#39;</span><span class="p">,</span><span class="n">nt</span><span class="p">)</span>
-<span class="c1">#***************************************LBM-Scale************************************************</span>
+<span class="n">nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">t_end</span> <span class="o">/</span> <span class="n">dt</span><span class="p">)</span>    <span class="c1"># Time step number</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dx=</span><span class="si">{</span><span class="n">dx</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> dt=</span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> nt=</span><span class="si">{</span><span class="n">nt</span><span class="si">:</span><span class="s2">d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># Print values for check</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;nue=</span><span class="si">{</span><span class="n">nue</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\t</span><span class="s2"> tau=</span><span class="si">{</span><span class="n">tau</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1">#--------------------------------- Initialization - Numerical Arrays -----------------------------------------</span>
 <span class="n">Tf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">Nx</span><span class="p">)</span>
 <span class="n">Tf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="p">(</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">Tfp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="c1">#--------------------------------- Initialization - Save Data Arrays -----------------------------------------</span>
+<span class="n">snaps</span><span class="o">=</span><span class="mi">5</span> <span class="c1"># number of states saved over time including 0 and t_end</span>
+<span class="n">Tf_snaps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">snaps</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span> <span class="c1"># array field used to same data over time</span>
+<span class="n">snaps_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nt</span><span class="p">,</span> <span class="n">snaps</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int16&quot;</span><span class="p">)</span> <span class="c1"># timesteps to take the field</span>
+<span class="n">snap_index</span> <span class="o">=</span> <span class="p">{</span><span class="n">sid</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">snaps_id</span><span class="p">)}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">snaps</span><span class="p">):</span>
+    <span class="n">Tf_snaps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">Tf_snaps</span><span class="p">[</span><span class="mi">0</span><span class="p">][:]</span><span class="o">=</span><span class="n">Tf</span><span class="p">[:]</span>
+<span class="c1">#----------------------------------------- Maind Loop --------------------------------------------------------</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nt</span><span class="p">):</span>
+    <span class="c1">#--------------------Time iteration-----------</span>
     <span class="n">Tfp</span><span class="p">[:]</span><span class="o">=</span><span class="n">Tf</span><span class="p">[:]</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">nu</span> <span class="o">*</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">Tf</span><span class="p">[:],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span><span class="mf">2.0</span><span class="o">*</span><span class="n">Tf</span><span class="p">[:]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">Tf</span><span class="p">[:],</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="p">)</span> <span class="o">/</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
     <span class="n">Tf</span><span class="p">[:]</span><span class="o">=</span><span class="n">Tfp</span><span class="p">[:]</span>
     <span class="n">Tf</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span> <span class="mf">0.0</span> 
     <span class="n">Tf</span><span class="p">[</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span> <span class="mf">0.0</span>
-<span class="n">xl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">Nx</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span> <span class="n">Tf</span><span class="p">,</span> <span class="s1">&#39;ks--&#39;</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Temperature&#39;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$x$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\phi(x,t)$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.01</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="c1">#---------------------save-snaps--------------</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="ow">in</span> <span class="n">snaps_id</span><span class="p">:</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">snap_index</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">Tf_snaps</span><span class="p">[</span><span class="n">i</span><span class="p">][:]</span><span class="o">=</span><span class="n">Tf</span><span class="p">[:]</span>
 </pre></div>
+</div>
+</div>
+</details>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dx=5.0000e-02	 dt=1.2500e-02	 nt=160
+nue=0.1667	 tau=1.0000
+</pre></div>
+</div>
+</div>
+</details>
 </div>
 </section>
 <section id="numerical-and-analytical-comparisson">
-<h4>Numerical and Analytical Comparisson<a class="headerlink" href="#numerical-and-analytical-comparisson" title="Link to this heading"></a></h4>
-<div class="toggle docutils container">
-<p>Here are the python plots over time of above solution</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pylab</span> <span class="kn">import</span> <span class="o">*</span>
+<h3>Numerical and Analytical Comparisson<a class="headerlink" href="#numerical-and-analytical-comparisson" title="Link to this heading"></a></h3>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
-<span class="c1"># --- Parameters ---</span>
-<span class="n">L</span> <span class="o">=</span> <span class="mf">1.0</span>        <span class="c1"># Domain length</span>
-<span class="n">nu</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">/</span><span class="mf">3.0</span>       <span class="c1"># Diffusion coefficient</span>
-<span class="n">nx</span> <span class="o">=</span> <span class="mi">51</span>       <span class="c1"># Number of spatial points</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
-<span class="c1"># --- Analytical solution function ---</span>
-<span class="k">def</span> <span class="nf">phi</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">nu</span><span class="p">):</span>
+<span class="c1">#--------------------------------------- Parameters (physical units) ------------------------------------------</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mf">1.0</span>             <span class="c1"># Domain length</span>
+<span class="n">nu</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">/</span><span class="mf">3.0</span>        <span class="c1"># Diffusion coefficient</span>
+<span class="n">t_end</span> <span class="o">=</span> <span class="mf">2.0</span>             <span class="c1"># Total simulation time</span>
+<span class="n">snaps</span><span class="o">=</span><span class="mi">5</span> <span class="c1"># number of states saved over time including 0 and t_end</span>
+<span class="c1">#------------------------------------- Parameters (numerical units) -------------------------------------------</span>
+<span class="n">Nx</span> <span class="o">=</span> <span class="mi">21</span>       <span class="c1"># Number of spatial points</span>
+<span class="c1">#--------------------------------------- Plot Results -------------------------------------------------------</span>
+<span class="k">def</span> <span class="nf">T_exact</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">nu</span><span class="p">):</span> <span class="c1"># ---------------- exact solution ----------------</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">nu</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
-<span class="c1"># --- Time snapshots to plot ---</span>
-<span class="n">times</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]</span>
-<span class="c1"># --- Plot ---</span>
+<span class="n">xl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">Nx</span><span class="p">)</span>
+<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t_end</span><span class="p">,</span> <span class="n">snaps</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span> <span class="c1"># timesteps to take the field</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">times</span><span class="p">:</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">phi</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">nu</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$t = </span><span class="si">{</span><span class="n">t</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;$t=2.00$ - $LBM$&#39;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span> <span class="n">Tf</span><span class="p">,</span> <span class="s1">&#39;bs&#39;</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;$t=2.00$ - $FDM$&#39;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">snaps</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">snaps</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span> <span class="n">T_exact</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span> <span class="n">times</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">L</span><span class="p">,</span> <span class="n">nu</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Exact $t = </span><span class="si">{</span><span class="n">times</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span> <span class="n">T_snaps</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;LBM  $t=</span><span class="si">{</span><span class="p">(</span><span class="n">snaps_id</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">nt</span><span class="p">)</span><span class="o">*</span><span class="n">t_end</span><span class="w"> </span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span> <span class="n">Tf_snaps</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;FDM  $t=</span><span class="si">{</span><span class="p">(</span><span class="n">snaps_id</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">nt</span><span class="p">)</span><span class="o">*</span><span class="n">t_end</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$x$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\phi(x,t)$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -535,26 +617,26 @@ f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)- f_{i}(\b
 </pre></div>
 </div>
 </div>
-<figure class="align-center" id="plot-bench-case-0">
-<a class="reference internal image-reference" href="../_images/plot-Bench-case-0.png"><img alt="../_images/plot-Bench-case-0.png" src="../_images/plot-Bench-case-0.png" style="width: 675.0px; height: 477.0px;" />
-</a>
-<figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">1D Diffusion: <span class="math notranslate nohighlight">\(\phi_t = \nu\,\phi_{xx}\)</span> with <span class="math notranslate nohighlight">\(\phi(0,t)=\phi(L,t)=0\)</span>.</span><a class="headerlink" href="#plot-bench-case-0" title="Link to this image"></a></p>
-</figcaption>
-</figure>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/c5cc3526c8732aaa0be616770d2b1d08fd4eeb1a34ff574ad7def2c43353ee55.png" src="../_images/c5cc3526c8732aaa0be616770d2b1d08fd4eeb1a34ff574ad7def2c43353ee55.png" />
+</div>
+</div>
 </section>
 </section>
-<section id="benchmark-case-1-temperature-ramp">
-<h3>Benchmark Case 1: Temperature ramp<a class="headerlink" href="#benchmark-case-1-temperature-ramp" title="Link to this heading"></a></h3>
-<div class="toggle docutils container">
+<section id="nd-benchmark-temperature-ramp">
+<h2>2nd Benchmark: Temperature ramp<a class="headerlink" href="#nd-benchmark-temperature-ramp" title="Link to this heading"></a></h2>
 <p>Analyzing the accuracy of diffusive equation solver, we apply it to a one-dimensional analytical case. The geometry is described by a domain of length <span class="math notranslate nohighlight">\(L\)</span> initialized with a constant temperatura <span class="math notranslate nohighlight">\(T(x,t=0)=0\)</span>. The boundary conditions are given <span class="math notranslate nohighlight">\(T(x=0,t)=1\)</span> and <span class="math notranslate nohighlight">\(T(x=L,t)=0\)</span>.</p>
-<p class="rubric">Steady-State Analytical Solution</p>
+<section id="steady-state-analytical-solution">
+<h3>Steady-State Analytical Solution<a class="headerlink" href="#steady-state-analytical-solution" title="Link to this heading"></a></h3>
 <p>The analytical solution of this problem is given by:</p>
 <div class="math notranslate nohighlight">
 \[
 T(x,t\rightarrow \infty)= -\frac{x}{L} + 1.
 \]</div>
-<p class="rubric">Transient Analytical Solution</p>
+</section>
+<section id="transient-analytical-solution">
+<h3>Transient Analytical Solution<a class="headerlink" href="#transient-analytical-solution" title="Link to this heading"></a></h3>
 <p>For the 1D heat equation <span class="math notranslate nohighlight">\(\partial_t T=\nu\,\partial_{xx}T\)</span> on <span class="math notranslate nohighlight">\(0&lt;x&lt;L\)</span> with</p>
 <div class="math notranslate nohighlight">
 \[
@@ -573,8 +655,19 @@ B_n=\frac{2}{L}\int_0^L\!\Big[T_0(\xi)-\Big(1-\frac{\xi}{L}\Big)\Big]\sin\!\Big(
 T(x,t)=1-\frac{x}{L}-\frac{2}{\pi}\sum_{n=1}^{\infty}\frac{1}{n}\,e^{-\nu (n\pi/L)^2 t}\,\sin\!\Big(\frac{n\pi x}{L}\Big).
 \]</div>
 <p>Here’s a ready-to-run Python snippet (with a single plot of <span class="math notranslate nohighlight">\(T(x,t)\)</span> vs <span class="math notranslate nohighlight">\(x\)</span> for multiple times):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
 
 <span class="c1"># ---- Modes and series -------------------------------------------------------</span>
 <span class="k">def</span> <span class="nf">modes_dirichlet_dirichlet</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
@@ -619,14 +712,14 @@ T(x,t)=1-\frac{x}{L}-\frac{2}{\pi}\sum_{n=1}^{\infty}\frac{1}{n}\,e^{-\nu (n\pi/
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">times</span><span class="p">:</span>
     <span class="n">T_xt</span> <span class="o">=</span> <span class="n">T_series_dirichlet</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">nu</span><span class="p">,</span> <span class="n">B_cold</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">T_xt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;t = </span><span class="si">{</span><span class="n">t</span><span class="si">:</span><span class="s2">g</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">T_xt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$t = </span><span class="si">{</span><span class="n">t</span><span class="si">:</span><span class="s2">g</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
 
 <span class="c1"># steady state</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;steady state&quot;</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;T(x,t)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Heat eq.: T(0,t)=1, T(L,t)=0  (T0(x)=0)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$x$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$T(x,t)$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Heat eq.: $T(0,t)=1$, $T(L,t)=0$  ($T0(x)=0$)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
@@ -634,10 +727,15 @@ T(x,t)=1-\frac{x}{L}-\frac{2}{\pi}\sum_{n=1}^{\infty}\frac{1}{n}\,e^{-\nu (n\pi/
 </pre></div>
 </div>
 </div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/2403470fec7d4e060ad997d120a119634f7db0e84ddd220de8334dace53cc433.png" src="../_images/2403470fec7d4e060ad997d120a119634f7db0e84ddd220de8334dace53cc433.png" />
+</div>
+</div>
 </section>
-<section id="benchmark-case-2-temperature-ramp-with-adiabatic-boundary">
-<h3>Benchmark Case 2: Temperature Ramp with Adiabatic Boundary<a class="headerlink" href="#benchmark-case-2-temperature-ramp-with-adiabatic-boundary" title="Link to this heading"></a></h3>
-<div class="toggle docutils container">
+</section>
+<section id="rd-benchmark-temperature-ramp-with-adiabatic-boundary">
+<h2>3rd Benchmark: Temperature Ramp with Adiabatic Boundary<a class="headerlink" href="#rd-benchmark-temperature-ramp-with-adiabatic-boundary" title="Link to this heading"></a></h2>
 <p>Assuming the <strong>forward heat equation</strong> in 1D with constant diffusivity <span class="math notranslate nohighlight">\(\nu&gt;0\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[
@@ -688,8 +786,19 @@ T(x,t)=1-\sum_{n=0}^\infty \frac{2}{L\mu_n}\,e^{-\nu\,\mu_n^{2}\,t}\,\sin(\mu_n 
 <blockquote>
 <div><p>Note: if you literally use your original sign <span class="math notranslate nohighlight">\(\partial_t T+\nu T_{xx}=0\)</span> (the <strong>backward</strong> heat equation), the time-dependent problem is ill-posed forward in <span class="math notranslate nohighlight">\(t\)</span>. For a physically meaningful diffusion process, use <span class="math notranslate nohighlight">\(\partial_t T=\nu T_{xx}\)</span>.</p>
 </div></blockquote>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">heat_modes</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
     <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
@@ -724,14 +833,14 @@ T(x,t)=1-\sum_{n=0}^\infty \frac{2}{L\mu_n}\,e^{-\nu\,\mu_n^{2}\,t}\,\sin(\mu_n 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">times</span><span class="p">:</span>
     <span class="n">T_xt</span> <span class="o">=</span> <span class="n">T_series</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">nu</span><span class="p">,</span> <span class="n">A_cold</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">T_xt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;t = </span><span class="si">{</span><span class="n">t</span><span class="si">:</span><span class="s2">g</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">T_xt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$t = </span><span class="si">{</span><span class="n">t</span><span class="si">:</span><span class="s2">g</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
 
 <span class="c1"># Steady-state baseline (T=1)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;steady state&quot;</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;T(x,t)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Heat eq. with T(0,t)=1,  T_x(L,t)=0  (initially cold rod)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$x$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$T(x,t)$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Heat eq. with $T(0,t)=1$,  $T_x(L,t)=0$  (initially cold rod)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
@@ -739,7 +848,11 @@ T(x,t)=1-\sum_{n=0}^\infty \frac{2}{L\mu_n}\,e^{-\nu\,\mu_n^{2}\,t}\,\sin(\mu_n 
 </pre></div>
 </div>
 </div>
-</section>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/9d36f688a2acd06f0e0f919f38d1395b30db333af6d6dda4984df3da6b6439aa.png" src="../_images/9d36f688a2acd06f0e0f919f38d1395b30db333af6d6dda4984df3da6b6439aa.png" />
+</div>
+</div>
 </section>
 </section>
 

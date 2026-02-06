@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Difference Finite Scheme derived from Lattice Boltzmann &mdash; Academic-Live-Documentation 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/sphinx_rtd_size.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sphinx-thebe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/eqno.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script src="../_static/design-tabs.js?v=36754332"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+        <script async="async" src="../_static/sphinx-thebe.js?v=afe5de03"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Extra::Avoiding Diffusive effect in Convective Equation (Unfinished) - Variable Lattice Sound Sped" href="Extra-Avoiding-Diffusive-Effect-in-CE%28Unfinished%29.html" />
+    <link rel="prev" title="Convective Equation (Transport Equation)" href="Convective-Equation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Academic-Live-Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Porous Media - Multiphase Flow in Porous Continuous Porous Media:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Porous-Media-Study/Intro/Intro-PM-MFinPCPM.html">Introdution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Porous-Media-Study/Intro/Intro-PM-MFinPCPM.html#mass-balance-for-two-fluids-continuous-porous-media">Mass Balance for two-fluids (Continuous Porous Media)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Lattice Boltzmann Method - Application to Different Partial differential Equation:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Diffusive-Equation.html">Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Poisson-Equation.html">Poisson Equation (Steady-State Diffusive Equation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Convective-Equation.html">Convective Equation (Transport Equation)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Difference Finite Scheme derived from Lattice Boltzmann</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#diffusive-equation-description">Diffusive Equation Description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fdm-deduction">FDM deduction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#st-benchmark-decay-of-sinoidal-wave">1st Benchmark: Decay of Sinoidal Wave</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lbm-d1q3-code-fdm-code-only-diffusive-case-c-0">LBM D1Q3 Code - FDM Code (Only Diffusive Case <span class="math notranslate nohighlight">\(c=0\)</span>)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#nd-benchmark-temperature-ramp">2nd Benchmark: Temperature ramp</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#steady-state-analytical-solution">Steady-State Analytical Solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transient-analytical-solution">Transient Analytical Solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lbm-d1q3-code-fdm-code">LBM D1Q3 Code - FDM Code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Extra-Avoiding-Diffusive-Effect-in-CE%28Unfinished%29.html">Extra::Avoiding Diffusive effect in Convective Equation (Unfinished) - Variable Lattice Sound Sped</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Convective-Diffusive-Equation.html">Convective-Diffusive Equation (Transport Equation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ementa.html">Conteúdo - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Citations.html">Citations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="appendix/bcs-D2Q5-poisson-equation.html">Boundary Conditions: Deduction for the Lattice D2Q5 - Poisson Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Porous-Media-Study/Intro/trans-eq/base-trans-eq.html">Introdution for Transport Equations</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Academic-Live-Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Difference Finite Scheme derived from Lattice Boltzmann</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/LBM-Study/Extra-topics-tau-not-1.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="difference-finite-scheme-derived-from-lattice-boltzmann">
+<h1>Difference Finite Scheme derived from Lattice Boltzmann<a class="headerlink" href="#difference-finite-scheme-derived-from-lattice-boltzmann" title="Link to this heading"></a></h1>
+<p>Due to the similaties of the grid scheme between Lattice Boltzmann and Finite Difference, over the years several studies were conducted to understand how they can be directly interpreted <span id="id1">[<a class="reference internal" href="../Citations.html#id71" title="MG Ancona. Fully-lagrangian and lattice-boltzmann methods for solving systems of conservation equations. Journal of Computational Physics, 115(1):107–120, 1994.">3</a>, <a class="reference internal" href="../Citations.html#id72" title="Michael Junk. A finite difference interpretation of the lattice boltzmann method. Numerical Methods for Partial Differential Equations: An International Journal, 17(4):383–402, 2001.">4</a>, <a class="reference internal" href="../Citations.html#id70" title="Shinsuke Suga. An accurate multi-level finite difference scheme for 1d diffusion equations derived from the lattice boltzmann method. Journal of Statistical Physics, 140(3):494–503, 2010.">5</a>]</span>.</p>
+<section id="diffusive-equation-description">
+<h2>Diffusive Equation Description<a class="headerlink" href="#diffusive-equation-description" title="Link to this heading"></a></h2>
+<p>In the sequence of this section we develop a FDM interpretation of LBM as demonstrated by <span id="id2">Suga [<a class="reference internal" href="../Citations.html#id70" title="Shinsuke Suga. An accurate multi-level finite difference scheme for 1d diffusion equations derived from the lattice boltzmann method. Journal of Statistical Physics, 140(3):494–503, 2010.">5</a>]</span>.</p>
+<p>Given the LBM formulation for the diffusive equation:</p>
+<div class="math notranslate nohighlight" id="equation-lb-df-eq">
+<span class="eqno">(47)<a class="headerlink" href="#equation-lb-df-eq" title="Link to this equation"></a></span>\[
+f_i( x_{\alpha} + e_{i,\alpha} \delta t, t+\delta t) = f_i(x_{\alpha}, t)  -\left( \frac{ f_{i} - f_{i}^{eq} }{ \tau } \right) \qquad \rightarrow \qquad f_i( x_{\alpha} + e_{i,\alpha} \delta t, t+\delta t) = f_i(x_{\alpha}, t)  - \omega\left( f_{i} - f_{i}^{eq} \right), 
+\]</div>
+<p>where the equilibrium distribution function is defined by</p>
+<div class="math notranslate nohighlight" id="equation-df-feq-eq">
+<span class="eqno">(48)<a class="headerlink" href="#equation-df-feq-eq" title="Link to this equation"></a></span>\[
+f^{eq}_{i} = w_{i}\phi(x_{\alpha}, t),
+\]</div>
+<p>and the equilibrium moments are given by</p>
+<div class="math notranslate nohighlight" id="equation-moments-fi-df">
+<span class="eqno">(49)<a class="headerlink" href="#equation-moments-fi-df" title="Link to this equation"></a></span>\[
+\displaystyle\sum_{i=0} f_{i}^{eq}=\phi, \quad \quad  \displaystyle\sum_{i}f_{i}^{eq} e_{i,\alpha} =0 \quad \quad \textrm{and} \quad \quad  \displaystyle\sum_{i}f_{i}^{eq} e_{i,\alpha} e_{i,\beta} =c_{s}^{2} \phi \delta_{\alpha\beta}.
+\]</div>
+<p>Through Chapman–Enskog analysis, it is demonstrated that the first-order non-equilibrium moment describes the pressure gradient and, consequently, the average velocity:</p>
+<div class="math notranslate nohighlight">
+\[
+m^{neq}_{\alpha} = \displaystyle\sum_{i} e_{i,\alpha}\left( f_i-f_i^{eq}\right)  = -(c_{s}^{2} \tau \delta_{t})\partial_{\alpha}\phi  \quad \quad \textrm{and} \quad\quad \tau = \displaystyle\frac{\nu}{c_{s}^{2} \delta_{t}} +\frac{1}{2}.
+\]</div>
+<section id="fdm-deduction">
+<h3>FDM deduction<a class="headerlink" href="#fdm-deduction" title="Link to this heading"></a></h3>
+<p>For simplification we redefine the notation for <span class="math notranslate nohighlight">\(f_i( x_{\alpha} + e_{i,\alpha} \delta t, t+\delta t)=f_{i,x+c_{i}}^{t+1}\)</span>. Reinterpreting the Eq. <a class="reference internal" href="#equation-lb-df-eq">(47)</a> in pre-streaming moment:</p>
+<div class="math notranslate nohighlight" id="equation-pre-lb-df-eq">
+<span class="eqno">(50)<a class="headerlink" href="#equation-pre-lb-df-eq" title="Link to this equation"></a></span>\[
+f_{i,x}^{t+1}  = f_{i,x-c_{i}}^{t}  - \omega \left( f_{i,x-c_{i}}^{t} - f_{i,x-c_{i}}^{eq,t} \right).
+\]</div>
+<p>Summing the Eq. <a class="reference internal" href="#equation-pre-lb-df-eq">(50)</a> over all lattice direction and replacing <span class="math notranslate nohighlight">\(f_{i}^{eq}\)</span> by Eq. <a class="reference internal" href="#equation-df-feq-eq">(48)</a>, we have:</p>
+<div class="math notranslate nohighlight">
+\[
+\displaystyle\sum_{i}\Big( f_{i,x}^{t+1} \Big) = \displaystyle\sum_{i}\Big( f_{i,x-c_{i}}^{t}  - \omega \left( f_{i,x-c_{i}}^{t} - f_{i,x-c_{i}}^{eq,t} \right) \Big) \qquad \rightarrow  \qquad \phi_{x}^{t+1} = \displaystyle\sum_{i}\Big( (1-\omega) f_{i,x-c_{i}}^{t}  + \omega w_{i}\phi_{x-c_{i}}^{t} \Big),
+\]</div>
+<p>using the Eq. <a class="reference internal" href="#equation-moments-fi-df">(49)</a> to replace <span class="math notranslate nohighlight">\(f_{i,x-c_{i}}^{t}\)</span> in the above equation:</p>
+<div class="math notranslate nohighlight">
+\[
+\phi_{x}^{t+1} = \displaystyle\sum_{i}\Big( (1-\omega) f_{i,x-c_{i}}^{t}  + \omega w_{i}\phi_{x-c_{i}}^{t} \Big) \qquad \rightarrow  \qquad \phi_{x}^{t+1} = \displaystyle\sum_{i}\Big( (1-\omega + \omega w_{i}) \phi_{x-c_{i}}^{t} - (1-\omega) \displaystyle\sum_{k\neq i} f_{k,x-c_{i}}^{t} \Big).
+\]</div>
+<p>Spliting the terms in the above equation and using Eq. <a class="reference internal" href="#equation-pre-lb-df-eq">(50)</a> for <span class="math notranslate nohighlight">\(f_{i,x-c_{i}}^{t}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\phi_{x}^{t+1} = \displaystyle\sum_{i}\Big( (1-\omega + \omega w_{i}) \phi_{x-c_{i}}^{t}\Big) - (1-\omega)\displaystyle\sum_{i}\left( \displaystyle\sum_{k\neq i} f_{k,x-c_{i}}^{t} \right) \qquad \rightarrow  \qquad \phi_{x}^{t+1} = \displaystyle\sum_{i}\Big( (1-\omega + \omega w_{i}) \phi_{x-c_{i}}^{t}\Big) - (1-\omega)\displaystyle\sum_{i}\Bigg( \displaystyle\sum_{k\neq i} \left( f_{k,x-c_{i}-c_{k}}^{t-1}  - \omega \left( f_{k,x-c_{i}-c_{k}}^{t-1} - f_{k,x-c_{i}-c_{k}}^{eq,t-1} \right) \right) \Bigg),
+\]</div>
+<p>doing the same initial procedure to the terms <span class="math notranslate nohighlight">\(f_{k,x-c_{i}}^{t-1}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\phi_{x}^{t+1} = \displaystyle\sum_{i}\Big( (1-\omega + \omega w_{i}) \phi_{x-c_{i}}^{t}\Big) -(1-\omega)\displaystyle\sum_{i}\Bigg( \displaystyle\sum_{k\neq i} \left( f_{k,x-c_{i}-c_{k}}^{t-1}  - \omega \left( f_{k,x-c_{i}-c_{k}}^{t-1} - f_{k,x-c_{i}-c_{k}}^{eq,t-1} \right) \right) \Bigg)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\phi_{x}^{t+1} = \displaystyle\sum_{i}\Big( (1-\omega + \omega w_{i}) \phi_{x-c_{i}}^{t}\Big) - (1-\omega) \displaystyle\sum_{i}\Bigg( \displaystyle\sum_{k\neq i} \left( \omega w_{k} \phi_{x-c_{i}-c_{k}}^{t-1} + (1-\omega) f_{k,x-c_{i}-c_{j}}^{t-1} \right) \Bigg),
+\]</div>
+<p>notice that <span class="math notranslate nohighlight">\(\displaystyle\sum_{i}\Bigg( \displaystyle\sum_{k\neq i} \left( \omega w_{k} \phi_{x-c_{i}-c_{k}}^{t-1} \right) \Bigg)=\displaystyle\sum_{i}\Bigg( \displaystyle\sum_{k\neq i} \left(w_{k}\right) \omega \phi_{x+c_{i}}^{t-1}  \Bigg)\)</span> and using Eq. <a class="reference internal" href="#equation-moments-fi-df">(49)</a> we have <span class="math notranslate nohighlight">\(\displaystyle\sum_{i}\Bigg( \displaystyle\sum_{k\neq i} \left( f_{k,x-c_{i}-c_{j}}^{t-1} \right) \Bigg)= \displaystyle\sum_{i}\left(\phi_{x+c_{i}}^{t-1} - f_{i,x+c_{i}}^{t-1}\right) \)</span>. So rewriting the above equation base in the observations:</p>
+<div class="math notranslate nohighlight" id="equation-last-fdm-form">
+<span class="eqno">(51)<a class="headerlink" href="#equation-last-fdm-form" title="Link to this equation"></a></span>\[
+\phi_{x}^{t+1} = \displaystyle\sum_{i}\Big( (1-\omega + \omega w_{i}) \phi_{x-c_{i}}^{t}\Big) - (1-\omega)\displaystyle\sum_{i}\Bigg( \left(1-\omega + \omega \displaystyle\sum_{k\neq i} \left(w_{k}\right) \right) \phi_{x+c_{i}}^{t-1} \Bigg) + (1-\omega)^{2}\displaystyle\sum_{i}\Bigg( f_{i,x+c_{i}}^{t-1} \Bigg).
+\]</div>
+<p>Interpretation <span class="math notranslate nohighlight">\(f_{i,x+c_{i}}^{t-1}\)</span> with Eq. <a class="reference internal" href="#equation-pre-lb-df-eq">(50)</a>:</p>
+<div class="math notranslate nohighlight">
+\[
+f_{i,x+c_{i}}^{t-1}  = f_{i,x}^{t-2}  - \omega \left( f_{i,x}^{t-2} - f_{i,x}^{eq,t-2} \right) ,
+\]</div>
+<p>and replaing it in Eq. <a class="reference internal" href="#equation-last-fdm-form">(51)</a>:</p>
+<div class="math notranslate nohighlight">
+\[
+\phi_{x}^{t+1} = \displaystyle\sum_{i}\Big( (1-\omega + \omega w_{i}) \phi_{x-c_{i}}^{t}\Big) - (1-\omega)\displaystyle\sum_{i}\Bigg( \left(1-\omega + \omega \displaystyle\sum_{k\neq i} \left(w_{k}\right) \right) \phi_{x+c_{i}}^{t-1} \Bigg) + (1-\omega)^{2}\displaystyle\sum_{i}\Bigg(f_{i,x}^{t-2}  - \omega \left( f_{i,x}^{t-2} - f_{i,x}^{eq,t-2} \right)  \Bigg),
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\phi_{x}^{t+1} = \displaystyle\sum_{i}\Big( (1-\omega + \omega w_{i}) \phi_{x-c_{i}}^{t}\Big) - (1-\omega)\displaystyle\sum_{i}\Bigg( \left(1-\omega + \omega \displaystyle\sum_{k\neq i} \left(w_{k}\right) \right) \phi_{x+c_{i}}^{t-1} \Bigg) + (1-\omega)^{2} \phi_{x}^{t-2}
+\]</div>
+<p>Expanding the sums:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{c}
+\phi_{x}^{t+1} = (1-\omega + \omega w_{0}) \phi_{x}^{t} + (1-\omega + \omega w_{1}) \phi_{x-1}^{t} + (1-\omega + \omega w_{2}) \phi_{x+1}^{t} - (1-\omega)^{2} \Big( \phi_{x}^{t-1} + \phi_{x-1}^{t-1} + \phi_{x+1}^{t-1}  \Big) \\
+-(1-\omega)\omega \Big( (w_{1}+w_{2})\phi_{x}^{t-1} + (w_{0}+w_{1})\phi_{x-1}^{t-1} + (w_{0}+w_{2})\phi_{x+1}^{t-1}  \Big) + (1-\omega)^{2} \phi_{x}^{t-2}
+\end{array}
+\end{split}\]</div>
+</section>
+</section>
+<section id="st-benchmark-decay-of-sinoidal-wave">
+<h2>1st Benchmark: Decay of Sinoidal Wave<a class="headerlink" href="#st-benchmark-decay-of-sinoidal-wave" title="Link to this heading"></a></h2>
+<p>Considering a 1D <strong>convection–diffusion equation</strong> with constant coefficients
+$<span class="math notranslate nohighlight">\(
+\frac{\partial u}{\partial t}+c\frac{\partial u}{\partial x} = \nu\frac{\partial^2 u}{\partial x^2} \qquad x\in\mathbb{R},\ t\ge 0,
+\)</span>$</p>
+<p>with <strong>sinusoidal initial condition</strong></p>
+<div class="math notranslate nohighlight">
+\[
+u(x,0)=A\sin(kx+\phi),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(A\)</span> is the initial amplitude, <span class="math notranslate nohighlight">\(k\)</span> the wavenumber, <span class="math notranslate nohighlight">\(\phi\)</span> a phase shift.</p>
+<p>Then the analytical solution is
+$<span class="math notranslate nohighlight">\(
+\boxed{u(x,t)=Ae^{-\nu k^{2}t}\sin\big(k(x-ct)+\phi\big) }
+\)</span>$</p>
+<p>So:</p>
+<ul class="simple">
+<li><p><strong>Convection</strong> shifts the wave: <span class="math notranslate nohighlight">\(x \mapsto x-ct\)</span> (wave travels at speed <span class="math notranslate nohighlight">\(c\)</span>).</p></li>
+<li><p><strong>Diffusion</strong> damps the amplitude exponentially: <span class="math notranslate nohighlight">\(A(t)=Ae^{-\nu k^{2}t}\)</span>.</p></li>
+</ul>
+<p>If you use a cosine initial condition <span class="math notranslate nohighlight">\(u(x,0)=A\cos(kx+\phi)\)</span>, the solution is the same form:
+$<span class="math notranslate nohighlight">\(
+u(x,t)=Ae^{-\nu k^{2}t}\cos\big(k(x-ct)+\phi\big).
+\)</span>$</p>
+<section id="lbm-d1q3-code-fdm-code-only-diffusive-case-c-0">
+<h3>LBM D1Q3 Code - FDM Code (Only Diffusive Case <span class="math notranslate nohighlight">\(c=0\)</span>)<a class="headerlink" href="#lbm-d1q3-code-fdm-code-only-diffusive-case-c-0" title="Link to this heading"></a></h3>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
+<span class="c1">#--------------------------------------- Parameters (physical units) ------------------------------------------</span>
+<span class="n">A</span>   <span class="o">=</span> <span class="mf">1.0</span>                         <span class="c1"># Amplitude</span>
+<span class="n">phi</span> <span class="o">=</span> <span class="mf">0.0</span>                         <span class="c1"># Wave initial shift</span>
+<span class="n">k_w</span>   <span class="o">=</span> <span class="mf">1.0</span>                       <span class="c1"># Wave number</span>
+<span class="n">c</span>   <span class="o">=</span> <span class="mf">0.0</span>                         <span class="c1"># wave speed</span>
+<span class="n">nu</span>  <span class="o">=</span> <span class="mf">0.0066666666666666666</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="c1"># Diffusive coefficient</span>
+<span class="n">m_waves</span> <span class="o">=</span> <span class="mi">1</span>                       <span class="c1"># Wave Period</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">m_waves</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">k_w</span><span class="p">)</span>   <span class="c1"># Domain Lentgh</span>
+<span class="n">t_end</span> <span class="o">=</span> <span class="mf">48.0</span>                       <span class="c1"># Final time</span>
+<span class="c1">#--------------------------------------- Lattice-Properties-D1Q3 ----------------------------------------------</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">cx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int16&quot;</span><span class="p">)</span>  
+<span class="n">cs</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">3.0</span><span class="p">);</span>
+<span class="c1">#------------------------------------- Parameters (numerical units) -------------------------------------------</span>
+<span class="n">Nx</span> <span class="o">=</span> <span class="mi">25</span> <span class="c1"># Numerical Length</span>
+<span class="n">x</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">Nx</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span> <span class="c1"># Numerical Domain</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="n">L</span> <span class="o">/</span> <span class="n">Nx</span> <span class="c1"># Grid size</span>
+<span class="n">r</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># dx/dt relation</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">dx</span><span class="o">/</span><span class="n">r</span>
+<span class="n">ce</span> <span class="o">=</span> <span class="n">c</span><span class="o">/</span><span class="n">r</span>
+<span class="n">nue</span> <span class="o">=</span> <span class="n">nu</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">/</span> <span class="p">(</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span>
+<span class="n">tau</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">+</span> <span class="n">nue</span> <span class="o">/</span> <span class="n">cs</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">omg</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="n">tau</span>
+<span class="n">nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">t_end</span> <span class="o">/</span> <span class="n">dt</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dx=</span><span class="si">{</span><span class="n">dx</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> dt=</span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> nt=</span><span class="si">{</span><span class="n">nt</span><span class="si">:</span><span class="s2">d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># Print values for check</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;c_lbm=</span><span class="si">{</span><span class="n">ce</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, tau=</span><span class="si">{</span><span class="n">tau</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\t</span><span class="s2"> omega=</span><span class="si">{</span><span class="n">omg</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;nt=</span><span class="si">{</span><span class="n">nt</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, nue=</span><span class="si">{</span><span class="n">nue</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1">#--------------------------------- Initialization - LBM - Numerical Arrays -----------------------------------------</span>
+<span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">k_w</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">phi</span><span class="p">)</span>
+<span class="n">f</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">fp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span><span class="o">=</span><span class="n">w</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="p">[:]</span><span class="o">+</span><span class="n">cx</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">ce</span><span class="o">*</span><span class="n">u</span><span class="p">[:]</span><span class="o">/</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">fp</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span><span class="o">=</span><span class="n">w</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="p">[:]</span><span class="o">+</span><span class="n">cx</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">ce</span><span class="o">*</span><span class="n">u</span><span class="p">[:]</span><span class="o">/</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1">#--------------------------------- Initialization - FDM - Numerical Arrays -----------------------------------------</span>
+<span class="n">ufm2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>    <span class="c1"># u field at the step t-2</span>
+<span class="n">ufm</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>    <span class="c1"># u field at the step t-1</span>
+<span class="n">uf</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>     <span class="c1"># u field at the step t</span>
+<span class="n">ufp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>    <span class="c1"># u field at the step t+1</span>
+<span class="n">ufm2</span> <span class="o">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">k_w</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">phi</span><span class="p">)</span>
+<span class="n">ufm</span> <span class="o">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">k_w</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">phi</span><span class="p">)</span>
+<span class="n">uf</span> <span class="o">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">k_w</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">phi</span><span class="p">)</span>
+<span class="n">ufp</span> <span class="o">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">k_w</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">phi</span><span class="p">)</span>
+<span class="c1">#--------------------------------- Initialization - Save Data Arrays -----------------------------------------------</span>
+<span class="n">snaps</span><span class="o">=</span><span class="mi">5</span> <span class="c1"># number of states saved over time including 0 and t_end</span>
+<span class="n">u_snaps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">snaps</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span> <span class="c1"># array field used to same data over time</span>
+<span class="n">uf_snaps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">snaps</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span> <span class="c1"># array field used to same data over time</span>
+<span class="n">snaps_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nt</span><span class="p">,</span> <span class="n">snaps</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int16&quot;</span><span class="p">)</span> <span class="c1"># timesteps to take the field</span>
+<span class="n">snap_index</span> <span class="o">=</span> <span class="p">{</span><span class="n">sid</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">snaps_id</span><span class="p">)}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">snaps</span><span class="p">):</span>
+    <span class="n">u_snaps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+    <span class="n">uf_snaps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">u_snaps</span><span class="p">[</span><span class="mi">0</span><span class="p">][:]</span><span class="o">=</span><span class="n">u</span><span class="p">[:]</span>
+<span class="n">uf_snaps</span><span class="p">[</span><span class="mi">0</span><span class="p">][:]</span><span class="o">=</span><span class="n">uf</span><span class="p">[:]</span>
+<span class="c1">#----------------------------------------- Maind Loop --------------------------------------------------------</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nt</span><span class="p">):</span>
+    <span class="c1">#========================================= LBM - Solution =============================================</span>
+    <span class="c1">#--------------------Collision----------------</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">fp</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span><span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span> <span class="o">-</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="p">[:]</span><span class="o">+</span><span class="n">cx</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">ce</span><span class="o">*</span><span class="n">u</span><span class="p">[:])</span><span class="o">/</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="n">tau</span>
+    <span class="c1">#-----------------streaming-------------------</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">fp</span><span class="p">[</span><span class="n">k</span><span class="p">,:],</span> <span class="n">cx</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1">#----------------------Macro------------------</span>
+    <span class="n">u</span><span class="p">[:]</span><span class="o">=</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span><span class="o">+</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span><span class="o">+</span><span class="n">f</span><span class="p">[</span><span class="mi">2</span><span class="p">,:]</span>
+    <span class="c1">#---------------------save-snaps--------------</span>
+    <span class="k">if</span> <span class="n">t</span><span class="o">+</span><span class="mi">1</span> <span class="ow">in</span> <span class="n">snaps_id</span><span class="p">:</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">snap_index</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">u_snaps</span><span class="p">[</span><span class="n">i</span><span class="p">][:]</span><span class="o">=</span><span class="n">u</span><span class="p">[:]</span>
+    <span class="c1">#========================================= FDM - Solution =============================================</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">t</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">)</span> <span class="p">:</span>
+        <span class="n">ufm2</span><span class="p">[:]</span><span class="o">=</span><span class="n">ufm</span><span class="p">[:]</span>     <span class="c1"># Swap for update t-1 to t-2</span>
+        <span class="n">ufm</span><span class="p">[:]</span><span class="o">=</span><span class="n">uf</span><span class="p">[:]</span>       <span class="c1"># Swap for update t to t-1</span>
+        <span class="n">uf</span><span class="p">[:]</span><span class="o">=</span><span class="n">u</span><span class="p">[:]</span>         <span class="c1"># Swap for update t to t-1</span>
+    <span class="k">else</span> <span class="p">:</span>
+        <span class="n">ufp</span><span class="p">[:]</span><span class="o">=</span><span class="p">(</span> <span class="p">(</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">omg</span><span class="o">+</span><span class="n">omg</span><span class="o">*</span><span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">uf</span><span class="p">[:],</span><span class="mi">1</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">omg</span><span class="o">+</span><span class="n">omg</span><span class="o">*</span><span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">uf</span><span class="p">[:]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">omg</span><span class="o">+</span><span class="n">omg</span><span class="o">*</span><span class="n">w</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">uf</span><span class="p">[:],</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="p">)</span>
+                 <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">omg</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">ufm</span><span class="p">[:],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">ufm</span><span class="p">[:]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">ufm</span><span class="p">[:],</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="p">)</span>
+                 <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">omg</span><span class="p">)</span><span class="o">*</span><span class="n">omg</span><span class="o">*</span><span class="p">(</span> <span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">ufm</span><span class="p">[:],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="n">ufm</span><span class="p">[:]</span> <span class="o">+</span> <span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">ufm</span><span class="p">[:],</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="p">)</span>
+                 <span class="o">+</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">omg</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">ufm2</span><span class="p">[:]</span>  <span class="p">)</span>
+        <span class="n">ufm2</span><span class="p">[:]</span><span class="o">=</span><span class="n">ufm</span><span class="p">[:]</span>     <span class="c1"># Swap for update t-1 to t-2</span>
+        <span class="n">ufm</span><span class="p">[:]</span><span class="o">=</span><span class="n">uf</span><span class="p">[:]</span>       <span class="c1"># Swap for update t to t-1</span>
+        <span class="n">uf</span><span class="p">[:]</span><span class="o">=</span><span class="n">ufp</span><span class="p">[:]</span>       <span class="c1"># Swap for update t+1 to t</span>
+    <span class="k">if</span> <span class="n">t</span><span class="o">+</span><span class="mi">1</span> <span class="ow">in</span> <span class="n">snaps_id</span><span class="p">:</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">snap_index</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">uf_snaps</span><span class="p">[</span><span class="n">i</span><span class="p">][:]</span><span class="o">=</span><span class="n">ufp</span><span class="p">[:]</span>
+</pre></div>
+</div>
+</div>
+</details>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dx=2.5133e-01	 dt=1.2566e-01	 nt=382
+c_lbm=0.000, tau=0.6250	 omega=1.6000
+nt=382.000, nue=0.0417
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#****************************************Data-Analysis*********************************************</span>
+<span class="c1"># ---------------- exact solution ----------------</span>
+<span class="k">def</span> <span class="nf">u_exact</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">k_w</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">nu</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">nu</span> <span class="o">*</span> <span class="n">k_w</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">k_w</span> <span class="o">*</span> <span class="p">((</span><span class="n">x</span><span class="o">+</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">c</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">phi</span><span class="p">)</span>
+<span class="n">u_ana</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">snaps</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span> <span class="c1"># array field used to same data over time</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">snaps</span><span class="p">):</span>
+    <span class="n">u_ana</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="c1"># -----------------Plot Results --------------------</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">snaps</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">snaps</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u_snaps</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;LBM  t=</span><span class="si">{</span><span class="p">(</span><span class="n">snaps_id</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">nt</span><span class="p">)</span><span class="o">*</span><span class="n">t_end</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">uf_snaps</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;FDM  t=</span><span class="si">{</span><span class="p">(</span><span class="n">snaps_id</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">nt</span><span class="p">)</span><span class="o">*</span><span class="n">t_end</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+    <span class="n">u_ana</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_exact</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">snaps_id</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">nt</span><span class="p">)</span><span class="o">*</span><span class="n">t_end</span> <span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">k_w</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">nu</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u_ana</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Exact t=</span><span class="si">{</span><span class="p">(</span><span class="n">snaps_id</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">nt</span><span class="p">)</span><span class="o">*</span><span class="n">t_end</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$x$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$u(x,t)$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;1D Convection-Diffusion: LBM vs Analytical Solution&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">ncol</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;center left&quot;</span><span class="p">,</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/cfebaa2c874f367e958242232ecc0de1e981727e6d2fa6ea6a30d0a1dfe32f64.png" src="../_images/cfebaa2c874f367e958242232ecc0de1e981727e6d2fa6ea6a30d0a1dfe32f64.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="nd-benchmark-temperature-ramp">
+<h2>2nd Benchmark: Temperature ramp<a class="headerlink" href="#nd-benchmark-temperature-ramp" title="Link to this heading"></a></h2>
+<p>Analyzing the accuracy of diffusive equation solver, we apply it to a one-dimensional analytical case. The geometry is described by a domain of length <span class="math notranslate nohighlight">\(L\)</span> initialized with a constant temperatura <span class="math notranslate nohighlight">\(T(x,t=0)=0\)</span>. The boundary conditions are given <span class="math notranslate nohighlight">\(T(x=0,t)=1\)</span> and <span class="math notranslate nohighlight">\(T(x=L,t)=0\)</span>.</p>
+<section id="steady-state-analytical-solution">
+<h3>Steady-State Analytical Solution<a class="headerlink" href="#steady-state-analytical-solution" title="Link to this heading"></a></h3>
+<p>The analytical solution of this problem is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+T(x,t\rightarrow \infty)= -\frac{x}{L} + 1.
+\]</div>
+</section>
+<section id="transient-analytical-solution">
+<h3>Transient Analytical Solution<a class="headerlink" href="#transient-analytical-solution" title="Link to this heading"></a></h3>
+<p>For the 1D heat equation <span class="math notranslate nohighlight">\(\partial_t T=\nu\,\partial_{xx}T\)</span> on <span class="math notranslate nohighlight">\(0&lt;x&lt;L\)</span> with</p>
+<div class="math notranslate nohighlight">
+\[
+T(0,t)=1,\qquad T(L,t)=0,
+\]</div>
+<p>the steady state is <span class="math notranslate nohighlight">\(T_{\text{ss}}(x)=1-\tfrac{x}{L}\)</span>. With <span class="math notranslate nohighlight">\(u=T-T_{\text{ss}}\)</span> (so <span class="math notranslate nohighlight">\(u(0,t)=u(L,t)=0\)</span>), the solution is</p>
+<div class="math notranslate nohighlight">
+\[
+T(x,t)=1-\frac{x}{L}+\sum_{n=1}^{\infty} B_n\,e^{-\nu (n\pi/L)^2 t}\,\sin\!\Big(\frac{n\pi x}{L}\Big),
+\quad
+B_n=\frac{2}{L}\int_0^L\!\Big[T_0(\xi)-\Big(1-\frac{\xi}{L}\Big)\Big]\sin\!\Big(\frac{n\pi \xi}{L}\Big)\,d\xi.
+\]</div>
+<p>Special case <span class="math notranslate nohighlight">\(T_0(x)=0\)</span>: <span class="math notranslate nohighlight">\(B_n=-\dfrac{2}{n\pi}\)</span>, so</p>
+<div class="math notranslate nohighlight">
+\[
+T(x,t)=1-\frac{x}{L}-\frac{2}{\pi}\sum_{n=1}^{\infty}\frac{1}{n}\,e^{-\nu (n\pi/L)^2 t}\,\sin\!\Big(\frac{n\pi x}{L}\Big).
+\]</div>
+<p>Here’s a ready-to-run Python snippet (with a single plot of <span class="math notranslate nohighlight">\(T(x,t)\)</span> vs <span class="math notranslate nohighlight">\(x\)</span> for multiple times):</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># ---- Modes and series -------------------------------------------------------</span>
+<span class="k">def</span> <span class="nf">modes_dirichlet_dirichlet</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>        <span class="c1"># n = 1,2,...,N</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">L</span>            <span class="c1"># eigenvalues mu_n</span>
+    <span class="k">return</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span>
+
+<span class="k">def</span> <span class="nf">project_coeffs_dirichlet</span><span class="p">(</span><span class="n">T0_func</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">grid_pts</span><span class="o">=</span><span class="mi">4000</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    B_n = (2/L) ∫( T0(x) - T_ss(x) ) sin(nπx/L) dx, with T_ss = 1 - x/L.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">grid_pts</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">Tss</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">x</span> <span class="o">/</span> <span class="n">L</span>
+    <span class="n">u0</span> <span class="o">=</span> <span class="n">T0_func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">Tss</span>
+    <span class="n">n</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">modes_dirichlet_dirichlet</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>          <span class="c1"># (N,), (N,)</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">k</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:])</span>             <span class="c1"># (N, M)</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">u0</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="n">S</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">B</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span>
+
+<span class="k">def</span> <span class="nf">T_series_dirichlet</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">nu</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    T(x,t) = T_ss(x) + sum_n B_n e^{-nu k_n^2 t} sin(k_n x), T_ss = 1 - x/L.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">Tss</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">x</span> <span class="o">/</span> <span class="n">L</span>
+    <span class="n">coeff</span> <span class="o">=</span> <span class="n">B</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">nu</span> <span class="o">*</span> <span class="p">(</span><span class="n">k</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>            <span class="c1"># (N,)</span>
+    <span class="n">add</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">coeff</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">k</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Tss</span> <span class="o">+</span> <span class="n">add</span>
+
+<span class="c1"># ---- Parameters -------------------------------------------------------------</span>
+<span class="n">L</span>   <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">nu</span>  <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">N</span>   <span class="o">=</span> <span class="mi">200</span>
+<span class="n">x</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span>
+
+<span class="c1"># ---- Case A: initially cold rod T0(x)=0 (closed-form coefficients) ----------</span>
+<span class="n">n</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">modes_dirichlet_dirichlet</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">B_cold</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>   <span class="c1"># exact coefficients for T0 ≡ 0</span>
+
+<span class="n">times</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">times</span><span class="p">:</span>
+    <span class="n">T_xt</span> <span class="o">=</span> <span class="n">T_series_dirichlet</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">nu</span><span class="p">,</span> <span class="n">B_cold</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">T_xt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;t = </span><span class="si">{</span><span class="n">t</span><span class="si">:</span><span class="s2">g</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># steady state</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;steady state&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;T(x,t)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Heat eq.: T(0,t)=1, T(L,t)=0  (T0(x)=0)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/27360f9b2802939aafc422bc05955c1e0543b00db26f7bbc54dc720eb1403e01.png" src="../_images/27360f9b2802939aafc422bc05955c1e0543b00db26f7bbc54dc720eb1403e01.png" />
+</div>
+</div>
+</section>
+<section id="lbm-d1q3-code-fdm-code">
+<h3>LBM D1Q3 Code - FDM Code<a class="headerlink" href="#lbm-d1q3-code-fdm-code" title="Link to this heading"></a></h3>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
+<span class="c1">#--------------------------------------- Parameters (physical units) ------------------------------------------</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mf">1.0</span>             <span class="c1"># Length of the domain</span>
+<span class="n">nu</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">/</span><span class="mf">2.0</span>        <span class="c1"># Diffusion coefficient</span>
+<span class="n">t_end</span> <span class="o">=</span> <span class="mf">8.0</span>             <span class="c1"># Total simulation time</span>
+<span class="c1">#--------------------------------------- Lattice-Properties-D1Q3 ----------------------------------------------</span>
+<span class="n">cs</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">3.0</span><span class="p">);</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">cx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int8&quot;</span><span class="p">)</span>  
+<span class="c1">#------------------------------------- Parameters (numerical units) -------------------------------------------</span>
+<span class="n">Nx</span><span class="o">=</span><span class="mi">21</span>               <span class="c1"># Domain Length</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="n">L</span> <span class="o">/</span> <span class="p">(</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>     <span class="c1"># Spatial step size</span>
+<span class="n">c</span><span class="o">=</span><span class="mf">1.0</span><span class="o">*</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>        <span class="c1"># c=dx/dt</span>
+<span class="n">dt</span><span class="o">=</span><span class="n">dx</span><span class="o">/</span><span class="n">c</span>             <span class="c1"># Time step value</span>
+<span class="n">nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">t_end</span> <span class="o">/</span> <span class="n">dt</span><span class="p">)</span>    <span class="c1"># Time step number</span>
+<span class="n">nue</span><span class="o">=</span><span class="n">nu</span><span class="o">/</span><span class="p">(</span><span class="n">c</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span>       <span class="c1"># Diffusion coefficient</span>
+<span class="n">tau</span><span class="o">=</span><span class="n">nue</span><span class="o">/</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mf">0.5</span>   <span class="c1"># Relaxation Time</span>
+<span class="n">omg</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="n">tau</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dx=</span><span class="si">{</span><span class="n">dx</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> dt=</span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> nt=</span><span class="si">{</span><span class="n">nt</span><span class="si">:</span><span class="s2">d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># Print values for check</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;nue=</span><span class="si">{</span><span class="n">nue</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\t</span><span class="s2"> tau=</span><span class="si">{</span><span class="n">tau</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\t</span><span class="s2"> omega=</span><span class="si">{</span><span class="n">omg</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1">#--------------------------------- Initialization - LBM - Numerical Arrays -----------------------------------------</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mf">1.0</span> <span class="c1"># Initital Temperature Field</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">fp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span><span class="o">=</span><span class="n">w</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">T</span><span class="p">[:]</span>
+    <span class="n">fp</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span><span class="o">=</span><span class="n">w</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">T</span><span class="p">[:]</span>
+<span class="c1">#--------------------------------- Initialization - FDM - Numerical Arrays -----------------------------------------</span>
+<span class="n">Tfm2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>    <span class="c1"># Temperature field at the step t-2</span>
+<span class="n">Tfm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>    <span class="c1"># Temperature field at the step t-1</span>
+<span class="n">Tf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>     <span class="c1"># Temperature field at the step t</span>
+<span class="n">Tfp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>    <span class="c1"># Temperature field at the step t+1</span>
+<span class="n">Tfm2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mf">1.0</span>                              <span class="c1"># Initital Temperature Field</span>
+<span class="n">Tfm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mf">1.0</span>                              <span class="c1"># Initital Temperature Field</span>
+<span class="n">Tf</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mf">1.0</span>                               <span class="c1"># Initital Temperature Field</span>
+<span class="n">Tfp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mf">1.0</span>                              <span class="c1"># Initital Temperature Field</span>
+<span class="c1">#--------------------------------- Initialization - Save Data Arrays -----------------------------------------</span>
+<span class="n">snaps</span><span class="o">=</span><span class="mi">5</span> <span class="c1"># number of states saved over time including 0 and t_end</span>
+<span class="n">T_snaps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">snaps</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span> <span class="c1"># array field used to same data over time</span>
+<span class="n">Tf_snaps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">snaps</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span> <span class="c1"># array field used to same data over time</span>
+<span class="n">snaps_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nt</span><span class="p">,</span> <span class="n">snaps</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int16&quot;</span><span class="p">)</span> <span class="c1"># timesteps to take the field</span>
+<span class="n">snap_index</span> <span class="o">=</span> <span class="p">{</span><span class="n">sid</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">snaps_id</span><span class="p">)}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">snaps</span><span class="p">):</span>
+    <span class="n">T_snaps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+    <span class="n">Tf_snaps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">T_snaps</span><span class="p">[</span><span class="mi">0</span><span class="p">][:]</span><span class="o">=</span><span class="n">T</span><span class="p">[:]</span>
+<span class="n">Tf_snaps</span><span class="p">[</span><span class="mi">0</span><span class="p">][:]</span><span class="o">=</span><span class="n">Tf</span><span class="p">[:]</span>    
+<span class="c1">#----------------------------------------- Maind Loop --------------------------------------------------------</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nt</span><span class="p">):</span>
+    <span class="c1">#========================================= LBM - Solution =============================================</span>
+    <span class="c1">#--------------------Collision----------------</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">fp</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span><span class="o">=</span><span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span> <span class="o">-</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">T</span><span class="p">[:])</span><span class="o">/</span><span class="n">tau</span>
+    <span class="c1">#-----------------streaming-------------------</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">fp</span><span class="p">[</span><span class="n">k</span><span class="p">,:],</span> <span class="n">cx</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1">#-----------------Boundaries-----------------------</span>
+    <span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">f</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">f</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span> <span class="mf">0.0</span> <span class="o">-</span> <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1">#----------------------Macro------------------</span>
+    <span class="n">T</span><span class="p">[:]</span><span class="o">=</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span><span class="o">+</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span><span class="o">+</span><span class="n">f</span><span class="p">[</span><span class="mi">2</span><span class="p">,:]</span>
+    <span class="c1">#---------------------save-snaps--------------</span>
+    <span class="k">if</span> <span class="n">t</span><span class="o">+</span><span class="mi">1</span> <span class="ow">in</span> <span class="n">snaps_id</span><span class="p">:</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">snap_index</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">T_snaps</span><span class="p">[</span><span class="n">i</span><span class="p">][:]</span><span class="o">=</span><span class="n">T</span><span class="p">[:]</span>
+    <span class="c1">#========================================= FDM - Solution =============================================</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">t</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">)</span> <span class="p">:</span>
+        <span class="n">Tfm2</span><span class="p">[:]</span><span class="o">=</span><span class="n">Tfm</span><span class="p">[:]</span>     <span class="c1"># Swap for update t-1 to t-2</span>
+        <span class="n">Tfm</span><span class="p">[:]</span><span class="o">=</span><span class="n">Tf</span><span class="p">[:]</span>     <span class="c1"># Swap for update t to t-1</span>
+        <span class="n">Tf</span><span class="p">[:]</span><span class="o">=</span><span class="n">T</span><span class="p">[:]</span>     <span class="c1"># Swap for update t to t-1</span>
+    <span class="k">else</span> <span class="p">:</span>
+        <span class="n">Tfp</span><span class="p">[:]</span><span class="o">=</span><span class="p">(</span> <span class="p">(</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">omg</span><span class="o">+</span><span class="n">omg</span><span class="o">*</span><span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">Tf</span><span class="p">[:],</span><span class="mi">1</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">omg</span><span class="o">+</span><span class="n">omg</span><span class="o">*</span><span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">Tf</span><span class="p">[:]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">omg</span><span class="o">+</span><span class="n">omg</span><span class="o">*</span><span class="n">w</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">Tf</span><span class="p">[:],</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="p">)</span>
+                 <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">omg</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">Tfm</span><span class="p">[:],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">Tfm</span><span class="p">[:]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">Tfm</span><span class="p">[:],</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="p">)</span>
+                 <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">omg</span><span class="p">)</span><span class="o">*</span><span class="n">omg</span><span class="o">*</span><span class="p">(</span> <span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">Tfm</span><span class="p">[:],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="n">Tfm</span><span class="p">[:]</span> <span class="o">+</span> <span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">Tfm</span><span class="p">[:],</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="p">)</span>
+                 <span class="o">+</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">omg</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">Tfm2</span><span class="p">[:]</span>  <span class="p">)</span>
+        <span class="n">Tfp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mf">1.0</span>
+        <span class="n">Tfp</span><span class="p">[</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mf">0.0</span>
+        <span class="n">Tfm2</span><span class="p">[:]</span><span class="o">=</span><span class="n">Tfm</span><span class="p">[:]</span>     <span class="c1"># Swap for update t-1 to t-2</span>
+        <span class="n">Tfm</span><span class="p">[:]</span><span class="o">=</span><span class="n">Tf</span><span class="p">[:]</span>     <span class="c1"># Swap for update t to t-1</span>
+        <span class="n">Tf</span><span class="p">[:]</span><span class="o">=</span><span class="n">Tfp</span><span class="p">[:]</span>     <span class="c1"># Swap for update t+1 to t</span>
+    <span class="c1">#---------------------save-snaps------------</span>
+    <span class="k">if</span> <span class="n">t</span><span class="o">+</span><span class="mi">1</span> <span class="ow">in</span> <span class="n">snaps_id</span><span class="p">:</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">snap_index</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">Tf_snaps</span><span class="p">[</span><span class="n">i</span><span class="p">][:]</span><span class="o">=</span><span class="n">Tfp</span><span class="p">[:]</span>
+</pre></div>
+</div>
+</div>
+</details>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dx=5.0000e-02	 dt=1.2500e-02	 nt=640
+nue=0.2500	 tau=1.2500	 omega=0.8000
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#--------------------------------------- Plot Results -------------------------------------------------------</span>
+<span class="n">xl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">Nx</span><span class="p">)</span>
+<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t_end</span><span class="p">,</span> <span class="n">snaps</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span> <span class="c1"># timesteps to take the field</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">snaps</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">snaps</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span> <span class="n">T_snaps</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s2">&quot;s--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;LBM  $t=</span><span class="si">{</span><span class="p">(</span><span class="n">snaps_id</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">nt</span><span class="p">)</span><span class="o">*</span><span class="n">t_end</span><span class="w"> </span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span> <span class="n">Tf_snaps</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s2">&quot;o:&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;FDM  $t=</span><span class="si">{</span><span class="p">(</span><span class="n">snaps_id</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">nt</span><span class="p">)</span><span class="o">*</span><span class="n">t_end</span><span class="w"> </span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$x$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\phi(x,t)$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.01</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/4c2f4d131511ced7fdefa411ab89961ee9fb39e2ac922364b3ef8e75ac97f9ef.png" src="../_images/4c2f4d131511ced7fdefa411ab89961ee9fb39e2ac922364b3ef8e75ac97f9ef.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./LBM-Study"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Convective-Equation.html" class="btn btn-neutral float-left" title="Convective Equation (Transport Equation)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Extra-Avoiding-Diffusive-Effect-in-CE%28Unfinished%29.html" class="btn btn-neutral float-right" title="Extra::Avoiding Diffusive effect in Convective Equation (Unfinished) - Variable Lattice Sound Sped" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Ricardo LMB.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sympy code for FDM expansion of LBM diffusive equation &mdash; Academic-Live-Documentation 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/sphinx_rtd_size.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sphinx-thebe.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/eqno.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script src="../../_static/design-tabs.js?v=36754332"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+        <script async="async" src="../../_static/sphinx-thebe.js?v=afe5de03"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Academic-Live-Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Porous Media - Multiphase Flow in Porous Continuous Porous Media:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Porous-Media-Study/Intro/Intro-PM-MFinPCPM.html">Introdution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Porous-Media-Study/Intro/Intro-PM-MFinPCPM.html#mass-balance-for-two-fluids-continuous-porous-media">Mass Balance for two-fluids (Continuous Porous Media)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Lattice Boltzmann Method - Application to Different Partial differential Equation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Diffusive-Equation.html">Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Poisson-Equation.html">Poisson Equation (Steady-State Diffusive Equation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Convective-Equation.html">Convective Equation (Transport Equation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Convective-Diffusive-Equation.html">Convective-Diffusive Equation (Transport Equation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FDM-LBM-Diffusive.html">Difference Finite Scheme of Diffusive Equation derived from Lattice Boltzmann</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Extra-Avoiding-Diffusive-Effect-in-CE%28Unfinished%29.html">Extra::Avoiding Diffusive effect in Convective Equation (Unfinished) - Variable Lattice Sound Sped</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Ementa.html">Conteúdo - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Citations.html">Citations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="bcs-D2Q5-poisson-equation.html">Boundary Conditions: Deduction for the Lattice D2Q5 - Poisson Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sympy-code-fdm-diffusive-expansion.html">Sympy code for FDM expansion of LBM diffusive equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Porous-Media-Study/Intro/trans-eq/base-trans-eq.html">Introdution for Transport Equations</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Academic-Live-Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Sympy code for FDM expansion of LBM diffusive equation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/LBM-Study/appendix/sympy-code-mrt-fdm-diffusive-expansion.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sympy-code-for-fdm-expansion-of-lbm-diffusive-equation">
+<h1>Sympy code for FDM expansion of LBM diffusive equation<a class="headerlink" href="#sympy-code-for-fdm-expansion-of-lbm-diffusive-equation" title="Link to this heading"></a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># 1) Symbols (parameters and step sizes)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="n">dx</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;Delta_x Delta_t&#39;</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">w0</span><span class="p">,</span> <span class="n">nu</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;s_</span><span class="si">{1}</span><span class="s1"> s_</span><span class="si">{2}</span><span class="s1"> w_</span><span class="si">{0}</span><span class="s1"> </span><span class="se">\\</span><span class="s1">nu&#39;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">alpha1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">s1</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">w0</span><span class="o">*</span><span class="n">s2</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">alpha2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">((</span><span class="n">w0</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">s2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">beta1</span>  <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">w0</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">w0</span><span class="o">*</span><span class="n">s2</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">s1</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span><span class="n">s2</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">beta2</span>  <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="o">-</span><span class="n">w0</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span> <span class="o">+</span> <span class="n">w0</span><span class="o">*</span><span class="n">s2</span> <span class="o">+</span> <span class="n">s1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">gamma</span>  <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">((</span><span class="n">s1</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">s2</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># 2) Continuous variables and field</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x t&#39;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">phi</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Function</span><span class="p">(</span><span class="s1">&#39;phi&#39;</span><span class="p">)</span>
+<span class="c1"># Shorthand for the base (continuous) field value at (x,t)</span>
+<span class="n">PHI</span> <span class="o">=</span> <span class="n">phi</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">taylor_phi</span><span class="p">(</span><span class="n">sx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">st</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">order_x</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">order_t</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">expr</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">S</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># Keep all mixed terms up to the specified individual orders.</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">order_x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">order_t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="c1"># skip the (0,0) term? no, keep it.</span>
+            <span class="n">term</span> <span class="o">=</span> <span class="p">(</span> <span class="p">(</span><span class="n">sx</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span><span class="o">**</span><span class="n">m</span> <span class="o">*</span> <span class="p">(</span><span class="n">st</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">**</span><span class="n">n</span>
+                    <span class="o">/</span> <span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+                    <span class="o">*</span> <span class="n">sp</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">PHI</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="p">)</span>
+            <span class="n">expr</span> <span class="o">+=</span> <span class="n">term</span>
+    <span class="k">return</span> <span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># 4) Discrete stencil terms (expanded)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># phi_x^{t+1}, phi_x^{t}, phi_x^{t-1}, phi_x^{t-2}</span>
+<span class="n">phi_t_p1</span> <span class="o">=</span> <span class="n">taylor_phi</span><span class="p">(</span><span class="n">sx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="n">st</span><span class="o">=+</span><span class="mi">1</span><span class="p">,</span> <span class="n">order_x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">order_t</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">phi_t_p1</span><span class="p">)</span>
+<span class="n">phi_t_0</span>  <span class="o">=</span> <span class="n">taylor_phi</span><span class="p">(</span><span class="n">sx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="n">st</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="n">order_x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">order_t</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># exactly phi(x,t)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">phi_t_0</span><span class="p">)</span>
+<span class="n">phi_t_m1</span> <span class="o">=</span> <span class="n">taylor_phi</span><span class="p">(</span><span class="n">sx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="n">st</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">order_x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">order_t</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">phi_t_m1</span><span class="p">)</span>
+<span class="n">phi_t_m2</span> <span class="o">=</span> <span class="n">taylor_phi</span><span class="p">(</span><span class="n">sx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="n">st</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">order_x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">order_t</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">phi_t_m2</span><span class="p">)</span>
+
+<span class="c1"># phi_{x±1}^{t}</span>
+<span class="n">phi_xm1_t0</span> <span class="o">=</span> <span class="n">taylor_phi</span><span class="p">(</span><span class="n">sx</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">st</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="n">order_x</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">order_t</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">phi_xm1_t0</span><span class="p">)</span>
+<span class="n">phi_xp1_t0</span> <span class="o">=</span> <span class="n">taylor_phi</span><span class="p">(</span><span class="n">sx</span><span class="o">=+</span><span class="mi">1</span><span class="p">,</span> <span class="n">st</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="n">order_x</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">order_t</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">phi_xp1_t0</span><span class="p">)</span>
+
+<span class="c1"># phi_{x±1}^{t-1}</span>
+<span class="n">phi_xm1_tm1</span> <span class="o">=</span> <span class="n">taylor_phi</span><span class="p">(</span><span class="n">sx</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">st</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">order_x</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">order_t</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">phi_xp1_tm1</span> <span class="o">=</span> <span class="n">taylor_phi</span><span class="p">(</span><span class="n">sx</span><span class="o">=+</span><span class="mi">1</span><span class="p">,</span> <span class="n">st</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">order_x</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">order_t</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{\Delta_{t}^{4} \frac{\partial^{4}}{\partial t^{4}} \phi{\left(x,t \right)}}{24} + \frac{\Delta_{t}^{3} \frac{\partial^{3}}{\partial t^{3}} \phi{\left(x,t \right)}}{6} + \frac{\Delta_{t}^{2} \frac{\partial^{2}}{\partial t^{2}} \phi{\left(x,t \right)}}{2} + \Delta_{t} \frac{\partial}{\partial t} \phi{\left(x,t \right)} + \phi{\left(x,t \right)}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \phi{\left(x,t \right)}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{\Delta_{t}^{4} \frac{\partial^{4}}{\partial t^{4}} \phi{\left(x,t \right)}}{24} - \frac{\Delta_{t}^{3} \frac{\partial^{3}}{\partial t^{3}} \phi{\left(x,t \right)}}{6} + \frac{\Delta_{t}^{2} \frac{\partial^{2}}{\partial t^{2}} \phi{\left(x,t \right)}}{2} - \Delta_{t} \frac{\partial}{\partial t} \phi{\left(x,t \right)} + \phi{\left(x,t \right)}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{2 \Delta_{t}^{4} \frac{\partial^{4}}{\partial t^{4}} \phi{\left(x,t \right)}}{3} - \frac{4 \Delta_{t}^{3} \frac{\partial^{3}}{\partial t^{3}} \phi{\left(x,t \right)}}{3} + 2 \Delta_{t}^{2} \frac{\partial^{2}}{\partial t^{2}} \phi{\left(x,t \right)} - 2 \Delta_{t} \frac{\partial}{\partial t} \phi{\left(x,t \right)} + \phi{\left(x,t \right)}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{\Delta_{x}^{4} \frac{\partial^{4}}{\partial x^{4}} \phi{\left(x,t \right)}}{24} - \frac{\Delta_{x}^{3} \frac{\partial^{3}}{\partial x^{3}} \phi{\left(x,t \right)}}{6} + \frac{\Delta_{x}^{2} \frac{\partial^{2}}{\partial x^{2}} \phi{\left(x,t \right)}}{2} - \Delta_{x} \frac{\partial}{\partial x} \phi{\left(x,t \right)} + \phi{\left(x,t \right)}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{\Delta_{x}^{4} \frac{\partial^{4}}{\partial x^{4}} \phi{\left(x,t \right)}}{24} + \frac{\Delta_{x}^{3} \frac{\partial^{3}}{\partial x^{3}} \phi{\left(x,t \right)}}{6} + \frac{\Delta_{x}^{2} \frac{\partial^{2}}{\partial x^{2}} \phi{\left(x,t \right)}}{2} + \Delta_{x} \frac{\partial}{\partial x} \phi{\left(x,t \right)} + \phi{\left(x,t \right)}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># 5) Build the discrete equation (expanded) and move everything to one side</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="n">lhs</span> <span class="o">=</span> <span class="n">phi_t_p1</span>
+
+<span class="n">rhs</span> <span class="o">=</span> <span class="p">(</span><span class="n">alpha1</span><span class="o">*</span><span class="n">phi_xm1_t0</span> <span class="o">+</span> <span class="n">alpha2</span><span class="o">*</span><span class="n">phi_t_0</span> <span class="o">+</span> <span class="n">alpha1</span><span class="o">*</span><span class="n">phi_xp1_t0</span>
+       <span class="o">+</span> <span class="n">beta1</span><span class="o">*</span><span class="n">phi_xm1_tm1</span> <span class="o">+</span> <span class="n">beta2</span><span class="o">*</span><span class="n">phi_t_m1</span> <span class="o">+</span> <span class="n">beta1</span><span class="o">*</span><span class="n">phi_xp1_tm1</span>
+       <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">phi_t_m2</span><span class="p">)</span>
+
+<span class="n">residual</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">lhs</span> <span class="o">-</span> <span class="n">rhs</span><span class="p">))</span>  <span class="c1"># = 0 is the modified equation</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_dx</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">max_dt</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">max_total</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">residual</span><span class="p">)</span>
+<span class="n">poly</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Poly</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="s1">&#39;EX&#39;</span><span class="p">)</span>  <span class="c1"># keep symbolic coeffs</span>
+<span class="n">kept</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">S</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="n">px</span><span class="p">,</span> <span class="n">pt</span><span class="p">),</span> <span class="n">coeff</span> <span class="ow">in</span> <span class="n">poly</span><span class="o">.</span><span class="n">terms</span><span class="p">():</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">px</span> <span class="o">&lt;=</span> <span class="n">max_dx</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">pt</span> <span class="o">&lt;=</span> <span class="n">max_dt</span><span class="p">)</span> <span class="ow">and</span> <span class="p">((</span><span class="n">px</span> <span class="o">+</span> <span class="n">pt</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">max_total</span><span class="p">):</span>
+        <span class="n">kept</span> <span class="o">+=</span> <span class="n">coeff</span> <span class="o">*</span> <span class="n">dx</span><span class="o">**</span><span class="n">px</span> <span class="o">*</span> <span class="n">dt</span><span class="o">**</span><span class="n">pt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># display(sp.simplify(residual))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">kept</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{\Delta_{t}^{2} \left(- 3 s_{1} s_{2} + 2 s_{1} + 2 s_{2}\right) \frac{\partial^{2}}{\partial t^{2}} \phi{\left(x,t \right)}}{2} + \frac{\Delta_{t} \Delta_{x}^{2} \left(s_{1} s_{2} w_{0} - s_{1} s_{2} + s_{1} - s_{2} w_{0} + 2 s_{2} - 2\right) \frac{\partial^{3}}{\partial x^{2}\partial t} \phi{\left(x,t \right)}}{2} + \Delta_{t} s_{1} s_{2} \frac{\partial}{\partial t} \phi{\left(x,t \right)} + \frac{\Delta_{x}^{4} s_{2} \left(- s_{1} w_{0} + s_{1} + 2 w_{0} - 2\right) \frac{\partial^{4}}{\partial x^{4}} \phi{\left(x,t \right)}}{24} + \frac{\Delta_{x}^{2} s_{2} \left(- s_{1} w_{0} + s_{1} + 2 w_{0} - 2\right) \frac{\partial^{2}}{\partial x^{2}} \phi{\left(x,t \right)}}{2}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rel1</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">kept</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">PHI</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w0</span><span class="p">)</span><span class="o">*</span><span class="p">((</span><span class="mi">2</span><span class="o">-</span><span class="n">s1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="n">dt</span><span class="o">*</span><span class="n">nu</span><span class="o">*</span><span class="n">PHI</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">PHI</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">nu</span><span class="o">*</span><span class="n">PHI</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">4</span><span class="p">)))</span>
+<span class="n">rel1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{6 \Delta_{t} \Delta_{x}^{2} \nu s_{1} \left(2 - 3 s_{2}\right) \left(s_{1} - 2\right) \left(w_{0} - 1\right) \frac{\partial^{4}}{\partial x^{4}} \phi{\left(x,t \right)} + 12 \Delta_{t} \Delta_{x}^{2} \nu s_{2} \left(s_{1} - 2\right) \left(w_{0} - 1\right) \frac{\partial^{4}}{\partial x^{4}} \phi{\left(x,t \right)} + s_{1} \left(12 \Delta_{t} \Delta_{x}^{2} \nu \left(s_{1} s_{2} w_{0} - s_{1} s_{2} + s_{1} - s_{2} w_{0} + 2 s_{2} - 2\right) \frac{\partial^{4}}{\partial x^{4}} \phi{\left(x,t \right)} + 24 \Delta_{t} s_{1} s_{2} \frac{\partial}{\partial t} \phi{\left(x,t \right)} + \Delta_{x}^{4} s_{2} \left(- s_{1} w_{0} + s_{1} + 2 w_{0} - 2\right) \frac{\partial^{4}}{\partial x^{4}} \phi{\left(x,t \right)} + 12 \Delta_{x}^{2} s_{2} \left(- s_{1} w_{0} + s_{1} + 2 w_{0} - 2\right) \frac{\partial^{2}}{\partial x^{2}} \phi{\left(x,t \right)}\right)}{24 s_{1}}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rel2</span><span class="o">=</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">collect</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">rel1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="p">)),[</span><span class="n">PHI</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span><span class="n">PHI</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)])</span>
+      <span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">w0</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="n">w0</span><span class="o">/</span><span class="n">s1</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">s1</span><span class="p">)</span><span class="o">/</span><span class="n">dt</span><span class="p">),</span><span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">w0</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="n">w0</span><span class="o">/</span><span class="n">s1</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">s1</span><span class="p">)</span><span class="o">/</span><span class="n">dt</span><span class="p">))</span>
+     <span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="o">-</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">w0</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="n">w0</span><span class="o">/</span><span class="n">s1</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">s1</span><span class="p">)</span><span class="o">/</span><span class="n">dt</span><span class="p">),</span> <span class="n">nu</span><span class="p">)</span>
+     <span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">w0</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="n">w0</span><span class="o">/</span><span class="n">s1</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">s1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">12</span><span class="o">*</span><span class="n">dt</span><span class="p">)),</span> <span class="o">-</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">nu</span><span class="o">/</span><span class="mi">12</span><span class="p">)</span>
+     <span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">nu</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">w0</span><span class="o">/</span><span class="mi">4</span> <span class="o">+</span> <span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="n">w0</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">w0</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">s1</span> <span class="o">-</span> <span class="n">w0</span><span class="o">/</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span> <span class="o">-</span> <span class="n">w0</span><span class="o">/</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span> <span class="p">),</span> <span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">nu</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">w0</span><span class="o">/</span><span class="mi">4</span> <span class="o">+</span> <span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="n">w0</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">w0</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">s1</span> <span class="o">-</span> <span class="n">w0</span><span class="o">/</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span> <span class="o">-</span> <span class="n">w0</span><span class="o">/</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span> <span class="p">)))</span> <span class="p">)</span>
+<span class="n">rel2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle - \frac{\Delta_{x}^{2} \nu \left(3 s_{1}^{2} s_{2} w_{0} - 2 s_{1}^{2} s_{2} - 6 s_{1}^{2} w_{0} - 18 s_{1} s_{2} w_{0} + 12 s_{1} s_{2} + 12 s_{1} w_{0} + 12 s_{2} w_{0} - 12 s_{2}\right) \frac{\partial^{4}}{\partial x^{4}} \phi{\left(x,t \right)}}{12 s_{1}^{2} s_{2}} - \nu \frac{\partial^{2}}{\partial x^{2}} \phi{\left(x,t \right)} + \frac{\partial}{\partial t} \phi{\left(x,t \right)}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">nu</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">w0</span><span class="o">/</span><span class="mi">4</span> <span class="o">+</span> <span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="n">w0</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">w0</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">s1</span> <span class="o">-</span> <span class="n">w0</span><span class="o">/</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span> <span class="o">-</span> <span class="n">w0</span><span class="o">/</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle - \frac{\Delta_{x}^{2} \nu w_{0}}{4} + \frac{\Delta_{x}^{2} \nu}{6} + \frac{\Delta_{x}^{2} \nu w_{0}}{2 s_{2}} + \frac{3 \Delta_{x}^{2} \nu w_{0}}{2 s_{1}} - \frac{\Delta_{x}^{2} \nu}{s_{1}} - \frac{\Delta_{x}^{2} \nu w_{0}}{s_{1} s_{2}} - \frac{\Delta_{x}^{2} \nu w_{0}}{s_{1}^{2}} + \frac{\Delta_{x}^{2} \nu}{s_{1}^{2}}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">termx</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">nu</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">w0</span><span class="o">/</span><span class="mi">4</span> <span class="o">+</span> <span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="n">w0</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">w0</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">s1</span> <span class="o">-</span> <span class="n">w0</span><span class="o">/</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span> <span class="o">-</span> <span class="n">w0</span><span class="o">/</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span> <span class="p">))</span>
+<span class="n">termx</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle - \frac{\Delta_{x}^{2} \nu \left(3 s_{1}^{2} s_{2} w_{0} - 2 s_{1}^{2} s_{2} - 6 s_{1}^{2} w_{0} - 18 s_{1} s_{2} w_{0} + 12 s_{1} s_{2} + 12 s_{1} w_{0} + 12 s_{2} w_{0} - 12 s_{2}\right)}{12 s_{1}^{2} s_{2}}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">termx2</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">nu</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">w0</span><span class="o">/</span><span class="mi">4</span> <span class="o">+</span> <span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="n">w0</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">w0</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">s1</span> <span class="o">-</span> <span class="n">w0</span><span class="o">/</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span> <span class="o">-</span> <span class="n">w0</span><span class="o">/</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="n">s1</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span> <span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">nu</span><span class="p">)</span><span class="o">*</span><span class="mi">12</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span>
+<span class="n">termx2</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 4 s_{1}^{2} - 8 s_{1} + 4 s_{2}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s1</span><span class="o">-</span><span class="mi">8</span><span class="o">*</span><span class="n">s1</span><span class="o">+</span><span class="mi">4</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 4 \left(s_{1}^{2} - 2 s_{1} + s_{2}\right)\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from sympy import latex</span>
+<span class="c1"># print(latex(sp.simplify(kept.subs(dt**2*dx**2,0))))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./LBM-Study/appendix"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Ricardo LMB.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

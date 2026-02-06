@@ -74,6 +74,10 @@ Academic Material:
    /LBM-Study/Diffusive-Equation
    /LBM-Study/Poisson-Equation
    /LBM-Study/Convective-Equation
+   /LBM-Study/Convective-Diffusive-Equation
+   /LBM-Study/FDM-LBM-Diffusive.ipynb
+   /LBM-Study/FDM-LBM-Convective-Diffusive.ipynb
+   /LBM-Study/Extra-Avoiding-Diffusive-Effect-in-CE(Unfinished)
    /LBM-Study/Ementa
 
 .. toctree::
@@ -86,7 +90,9 @@ Academic Material:
    :maxdepth: 1
    :caption: Appendix:
 
-   /LBM-Study/bcs-D2Q5-poisson-equation
+   /LBM-Study/appendix/bcs-D2Q5-poisson-equation
+   /LBM-Study/appendix/sympy-code-fdm-diffusive-expansion
+   /LBM-Study/appendix/sympy-code-mrt-fdm-diffusive-expansion-4th
+   /LBM-Study/appendix/sympy-code-mrt-fdm-diffusive-expansion-6th
    /Porous-Media-Study/Intro/trans-eq/base-trans-eq
-
-
+   

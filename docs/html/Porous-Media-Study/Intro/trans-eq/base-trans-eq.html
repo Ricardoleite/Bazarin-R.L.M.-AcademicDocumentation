@@ -51,7 +51,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="prev" title="Boundary Conditions: Deduction for the Lattice D2Q5 - Poisson Equation" href="../../../LBM-Study/bcs-D2Q5-poisson-equation.html" /> 
+    <link rel="prev" title="Sympy code for FDM expansion of LBM diffusive equation up to Sixth-order" href="../../../LBM-Study/appendix/sympy-code-mrt-fdm-diffusive-expansion-6th.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -83,7 +83,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/Diffusive-Equation.html">Diffusive Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/Poisson-Equation.html">Poisson Equation (Steady-State Diffusive Equation)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/Convective-Equation.html">Convective Equation (Transport Equation)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/Ementa.html">Ementa - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/Convective-Diffusive-Equation.html">Convective-Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/FDM-LBM-Diffusive.html">Difference Finite Scheme of Diffusive Equation derived from Lattice Boltzmann</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/FDM-LBM-Convective-Diffusive.html">Difference Finite Scheme derived from MRT Lattice Boltzmann for Convective-Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/Extra-Avoiding-Diffusive-Effect-in-CE%28Unfinished%29.html">Extra::Avoiding Diffusive effect in Convective Equation (Unfinished) - Variable Lattice Sound Sped</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/Ementa.html">Conteúdo - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References:</span></p>
 <ul>
@@ -91,7 +95,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Appendix:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/bcs-D2Q5-poisson-equation.html">Boundary Conditions: Deduction for the Lattice D2Q5 - Poisson Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/appendix/bcs-D2Q5-poisson-equation.html">Boundary Conditions: Deduction for the Lattice D2Q5 - Poisson Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/appendix/sympy-code-fdm-diffusive-expansion.html">Sympy code for FDM expansion of LBM diffusive equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/appendix/sympy-code-mrt-fdm-diffusive-expansion-4th.html">Sympy code for FDM expansion of LBM diffusive equation up to Fourth-order</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/appendix/sympy-code-mrt-fdm-diffusive-expansion-6th.html">Sympy code for FDM expansion of LBM diffusive equation up to Sixth-order</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introdution for Transport Equations</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#solving-transport-equation">Solving Transport Equation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#method-of-characteristics">Method of Characteristics</a><ul>
@@ -130,7 +137,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Introdution for Transport Equations<a class="headerlink" href="#introdution-for-transport-equations" title="Link to this heading"></a></h1>
 <p>The transport equation is given by</p>
 <div class="math notranslate nohighlight" id="equation-tansp-eq-sup">
-<span class="eqno">(47)<a class="headerlink" href="#equation-tansp-eq-sup" title="Link to this equation"></a></span>\[
+<span class="eqno">(67)<a class="headerlink" href="#equation-tansp-eq-sup" title="Link to this equation"></a></span>\[
 \partial_{t}u+c\partial_{x}u=0
 \]</div>
 <p><a class="reference internal" href="../../../_images/corda-naval.gif"><img alt="../../../_images/corda-naval.gif" src="../../../_images/corda-naval.gif" style="width: 18%;" /></a> <a class="reference internal" href="../../../_images/gif-onda-violao.gif"><img alt="../../../_images/gif-onda-violao.gif" src="../../../_images/gif-onda-violao.gif" style="width: 20%;" /></a> <a class="reference internal" href="../../../_images/water.gif"><img alt="../../../_images/water.gif" src="../../../_images/water.gif" style="width: 18%;" /></a> <a class="reference internal" href="../../../_images/BOUNCING.gif"><img alt="../../../_images/BOUNCING.gif" src="../../../_images/BOUNCING.gif" style="width: 21%;" /></a> <a class="reference internal" href="../../../_images/2V4OvG.gif"><img alt="../../../_images/2V4OvG.gif" src="../../../_images/2V4OvG.gif" style="width: 21%;" /></a></p>
@@ -138,7 +145,7 @@ const thebe_selector_output = ".output, .cell_output"
 <a class="reference internal image-reference" href="../../../_images/wave-transport-Illustration.svg"><img alt="../../../_images/wave-transport-Illustration.svg" src="../../../_images/wave-transport-Illustration.svg" style="width: 784.8000000000001px; height: 298.40000000000003px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Wave evolution in space and time: a) 2D plots over time; 3D plot in <span class="math notranslate nohighlight">\(u\times x\times t\)</span>.</span><a class="headerlink" href="#wave-trans-evo" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Wave evolution in space and time: a) 2D plots over time; 3D plot in <span class="math notranslate nohighlight">\(u\times x\times t\)</span>.</span><a class="headerlink" href="#wave-trans-evo" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>As <span class="math notranslate nohighlight">\(u\)</span> is constant through a characteristic line, if we take advective derivative of <span class="math notranslate nohighlight">\(u\)</span> evolving over time through the characteristic line, we have</p>
@@ -183,7 +190,7 @@ const thebe_selector_output = ".output, .cell_output"
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../../../LBM-Study/bcs-D2Q5-poisson-equation.html" class="btn btn-neutral float-left" title="Boundary Conditions: Deduction for the Lattice D2Q5 - Poisson Equation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../../LBM-Study/appendix/sympy-code-mrt-fdm-diffusive-expansion-6th.html" class="btn btn-neutral float-left" title="Sympy code for FDM expansion of LBM diffusive equation up to Sixth-order" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

@@ -47,17 +47,16 @@ p, div, li {
     color: #eee !important;
 }
 
-/* Only override span color if it has no style applied */
-span:not([style]) {
-    color: #4aa3df !important;
-}
 
-
-/* Figures, captions, and code blocks */
-figure, figcaption, .caption, .literal-block, pre, code {
+figure, figcaption, .caption, .literal-block, pre {
     background-color: #222 !important;
-    color: #ddd !important;
 }
+
+/* IMPORTANT: do NOT force code color */
+code {
+    background-color: #222 !important;
+}
+
 
 /* Equations and math blocks */
 .math, .math.display {
@@ -110,5 +109,87 @@ a:hover {
     font-weight: 500;
 }
 
+/* ================================
+   Restore Pygments syntax colors
+   ================================ */
+
+.highlight,
+.highlight pre {
+    background: #222 !important;
+    color: inherit !important;
+}
+
+/* Keywords */
+.highlight .k,
+.highlight .kc,
+.highlight .kd,
+.highlight .kn,
+.highlight .kp,
+.highlight .kr,
+.highlight .kt {
+    color: #ff7b72 !important;
+}
+
+/* Strings */
+.highlight .s,
+.highlight .sa,
+.highlight .sb,
+.highlight .sc,
+.highlight .dl,
+.highlight .sd,
+.highlight .s2,
+.highlight .se,
+.highlight .sh,
+.highlight .si,
+.highlight .sx,
+.highlight .sr,
+.highlight .s1,
+.highlight .ss {
+    color: #a5d6ff !important;
+}
+
+/* Comments */
+.highlight .c,
+.highlight .ch,
+.highlight .cm,
+.highlight .cpf,
+.highlight .c1,
+.highlight .cs {
+    color: #8b949e !important;
+    font-style: italic;
+}
+
+/* Numbers */
+.highlight .m,
+.highlight .mb,
+.highlight .mf,
+.highlight .mh,
+.highlight .mi,
+.highlight .mo {
+    color: #79c0ff !important;
+}
+
+/* Names / variables */
+.highlight .n,
+.highlight .na,
+.highlight .nb,
+.highlight .nc,
+.highlight .no,
+.highlight .nd,
+.highlight .ni,
+.highlight .ne,
+.highlight .nf,
+.highlight .nl,
+.highlight .nn,
+.highlight .nt,
+.highlight .nv {
+    color: #c9d1d9 !important;
+}
+
+/* Operators */
+.highlight .o,
+.highlight .ow {
+    color: #ff7b72 !important;
+}
 
 
