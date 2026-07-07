@@ -77,8 +77,13 @@ Academic Material:
    /LBM-Study/Convective-Diffusive-Equation
    /LBM-Study/FDM-LBM-Diffusive.ipynb
    /LBM-Study/FDM-LBM-Convective-Diffusive.ipynb
-   /LBM-Study/Extra-Avoiding-Diffusive-Effect-in-CE(Unfinished)
    /LBM-Study/Ementa
+
+   .. toctree::
+   :maxdepth: 1
+   :caption: LBM-Analysis:
+
+   /LBM-Study/Extra-Avoiding-Diffusive-Effect-in-CE(Unfinished)
 
 .. toctree::
    :maxdepth: 1

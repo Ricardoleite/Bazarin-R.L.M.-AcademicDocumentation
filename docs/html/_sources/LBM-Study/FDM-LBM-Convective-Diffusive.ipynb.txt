@@ -62,7 +62,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 109,
+   "execution_count": 1,
    "id": "cc5d6c7b-5352-417b-8403-68f65a467721",
    "metadata": {
     "editable": true,
@@ -104,13 +104,9 @@
     "#-------------------------------------------------Calc.Func------------------------------------------------\n",
     "f= fi\n",
     "feq=wi*(u + cx*B/cs2 + ((C*cs2 + Lamb -u*cs2)*(cx*cx-cs2))/(2*cs2**2))\n",
-    "# feq2=wi*(u + cx*B/cs2 + (u*C**2*(cx*cx-cs2))/(2*cs2**2))\n",
-    "# feq3=wi*(u + cx*C*u/cs2 )\n",
-    "# feq4=wi*(u + cx*u*C/cs2 + (u*C**2*(cx*cx-cs2))/(2*cs2**2))\n",
-    "# display( simplify(sum(feq*(3*cx*cx-2))) )\n",
-    "# display(simplify(sum(feq2*(3*cx*cx-2))) )\n",
-    "# display(simplify(sum(feq3*(3*cx*cx-2))) )\n",
-    "# display(simplify(sum(feq4*(3*cx*cx-2))) )"
+    "feq2=wi*(u + cx*B/cs2 + (u*C**2*(cx*cx-cs2))/(2*cs2**2))\n",
+    "feq3=wi*(u + cx*C*u/cs2 )\n",
+    "feq4=wi*(u + cx*u*C/cs2 + (u*C**2*(cx*cx-cs2))/(2*cs2**2))"
    ]
   },
   {
@@ -129,7 +125,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 110,
+   "execution_count": 2,
    "id": "41bb608a-23b9-4311-8535-de44d14a0310",
    "metadata": {
     "editable": true,
@@ -210,7 +206,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 111,
+   "execution_count": 3,
    "id": "f16da87c-1f91-4105-bd46-7f1191587878",
    "metadata": {
     "editable": true,
@@ -263,7 +259,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 112,
+   "execution_count": 4,
    "id": "cc7d06be-17d0-4efd-9398-33cca20fdb1e",
    "metadata": {
     "editable": true,
@@ -1810,12 +1806,143 @@
    ]
   },
   {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "573174c1-08d2-40c9-9d28-d0076f50992f",
+   "cell_type": "markdown",
+   "id": "34c49413-440a-4d3d-b721-8af42ded78b3",
    "metadata": {},
-   "outputs": [],
-   "source": []
+   "source": [
+    "### Non-Linear Convective-Diffusive Equation"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "0587402a-ab61-4a23-bf73-9edcdbbefc67",
+   "metadata": {},
+   "source": [
+    "Expanding in Taylor series the FD form LB equation, we can truncate the equation with errors isolated in third and fourth-order of scale of $\\Delta x$: \n",
+    "\n",
+    "$$\n",
+    "\\begin{array}{c}\n",
+    "0 = \\frac{\\Delta_{t}^{4} \\frac{\\partial^{4}{u}}{\\partial{t^{4}}} \\left(- 15 s_{1} s_{2} + 14 s_{1} + 14 s_{2} - 12\\right)}{24} - \\frac{\\Delta_{t}^{3} \\Delta_{x} \\frac{\\partial^{4}{B}}{\\partial{x}\\partial{t^{3}}} s_{1} \\left(s_{2} - 1\\right)}{6} + \\frac{\\Delta_{t}^{3} \\frac{\\partial^{3}{u}}{\\partial{t^{3}}} \\left(7 s_{1} s_{2} - 6 s_{1} - 6 s_{2} + 6\\right)}{6} \\\\ + \\frac{\\Delta_{t}^{2} \\Delta_{x}^{2} \\left(\\frac{\\partial^{4}{C}}{\\partial{x^{2}}\\partial{t^{2}}} s_{1} s_{2} - \\frac{\\partial^{4}{C}}{\\partial{x^{2}}\\partial{t^{2}}} s_{2} + 3 \\frac{\\partial^{4}{\\Lambda}}{\\partial{x^{2}}\\partial{t^{2}}} s_{1} s_{2} - 3 \\frac{\\partial^{4}{\\Lambda}}{\\partial{x^{2}}\\partial{t^{2}}} s_{2} - 3 \\frac{\\partial^{4}{u}}{\\partial{x^{2}}\\partial{t^{2}}} s_{1} - 3 \\frac{\\partial^{4}{u}}{\\partial{x^{2}}\\partial{t^{2}}} s_{2} + 6 \\frac{\\partial^{4}{u}}{\\partial{x^{2}}\\partial{t^{2}}}\\right)}{12} \\\\+ \\frac{\\Delta_{t}^{2} \\Delta_{x} \\frac{\\partial^{3}{B}}{\\partial{x}\\partial{t^{2}}} s_{1} \\left(s_{2} - 1\\right)}{2} + \\frac{\\Delta_{t}^{2} \\frac{\\partial^{2}{u}}{\\partial{t^{2}}} \\left(- 3 s_{1} s_{2} + 2 s_{1} + 2 s_{2}\\right)}{2} - \\frac{\\Delta_{t} \\Delta_{x}^{3} \\frac{\\partial^{4}{B}}{\\partial{x^{3}}\\partial{t}} s_{1} \\left(s_{2} - 1\\right)}{6} + \\frac{\\Delta_{t} \\Delta_{x}^{2} \\left(- \\frac{\\partial^{3}{C}}{\\partial{x^{2}}\\partial{t}} s_{1} s_{2} + \\frac{\\partial^{3}{C}}{\\partial{x^{2}}\\partial{t}} s_{2} - 3 \\frac{\\partial^{3}{\\Lambda}}{\\partial{x^{2}}\\partial{t}} s_{1} s_{2} + 3 \\frac{\\partial^{3}{\\Lambda}}{\\partial{x^{2}}\\partial{t}} s_{2} + 3 \\frac{\\partial^{3}{u}}{\\partial{x^{2}}\\partial{t}} s_{1} + 3 \\frac{\\partial^{3}{u}}{\\partial{x^{2}}\\partial{t}} s_{2} - 6 \\frac{\\partial^{3}{u}}{\\partial{x^{2}}\\partial{t}}\\right)}{6} - \\Delta_{t} \\Delta_{x} \\frac{\\partial^{2}{B}}{\\partial{x}\\partial{t}} s_{1} \\left(s_{2} - 1\\right) \\\\ + \\Delta_{t} \\frac{\\partial{u}}{\\partial{t}} s_{1} s_{2} + \\frac{\\Delta_{x}^{4} s_{2} \\left(\\frac{\\partial^{4}{C}}{\\partial{x^{4}}} s_{1} - 2 \\frac{\\partial^{4}{C}}{\\partial{x^{4}}} + 3 \\frac{\\partial^{4}{\\Lambda}}{\\partial{x^{4}}} s_{1} - 6 \\frac{\\partial^{4}{\\Lambda}}{\\partial{x^{4}}}\\right)}{72} + \\frac{\\Delta_{x}^{3} \\frac{\\partial^{3}{B}}{\\partial{x^{3}}} s_{1} s_{2}}{6} + \\frac{\\Delta_{x}^{2} s_{2} \\left(\\frac{\\partial^{2}{C}}{\\partial{x^{2}}} s_{1} - 2 \\frac{\\partial^{2}{C}}{\\partial{x^{2}}} + 3 \\frac{\\partial^{2}{\\Lambda}}{\\partial{x^{2}}} s_{1} - 6 \\frac{\\partial^{2}{\\Lambda}}{\\partial{x^{2}}}\\right)}{6} + \\Delta_{x} \\frac{\\partial{B}}{\\partial{x}} s_{1} s_{2}\n",
+    "\\end{array}\n",
+    "$$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c153ce85-db39-46a4-ba92-e7ec3802a513",
+   "metadata": {},
+   "source": [
+    "isolating $\\frac{\\partial u}{\\partial t}$:\n",
+    "\n",
+    "$$\n",
+    "\\begin{array}{c}\n",
+    "\\displaystyle\\frac{\\partial u}{\\partial t} + \\frac{\\Delta_{x}}{\\Delta_{t}}\\frac{\\partial{B}}{\\partial{x}} = \\nu\\frac{\\partial^{2}{C}}{\\partial{x^{2}}} + \\Delta_{t}^{3} \\frac{\\partial^{4}{u}}{\\partial{t^{4}}} \\left(\\frac{5}{8} - \\frac{7}{12 s_{2}} - \\frac{7}{12 s_{1}} + \\frac{1}{2 s_{1} s_{2}}\\right) + \\Delta_{t}^{2} \\Delta_{x} \\frac{\\partial^{4}{B}}{\\partial{x}\\partial{t^{3}}} \\left(\\frac{1}{6} - \\frac{1}{6 s_{2}}\\right) + \\Delta_{t}^{2} \\frac{\\partial^{3}{u}}{\\partial{t^{3}}} \\left(- \\frac{7}{6} + \\frac{1}{s_{2}} + \\frac{1}{s_{1}} - \\frac{1}{s_{1} s_{2}}\\right) + \\Delta_{t} \\Delta_{x}^{2} \\frac{\\partial^{4}{C}}{\\partial{x^{2}}\\partial{t^{2}}} \\left(- \\frac{1}{12} + \\frac{1}{12 s_{1}}\\right)\\\\ + \\Delta_{t} \\Delta_{x}^{2} \\frac{\\partial^{4}{\\Lambda}}{\\partial{x^{2}}\\partial{t^{2}}} \\left(- \\frac{1}{4} + \\frac{1}{4 s_{1}}\\right) + \\Delta_{t} \\Delta_{x}^{2} \\frac{\\partial^{4}{u}}{\\partial{x^{2}}\\partial{t^{2}}} \\left(\\frac{1}{4 s_{2}} + \\frac{1}{4 s_{1}} - \\frac{1}{2 s_{1} s_{2}}\\right) + \\Delta_{t} \\Delta_{x} \\frac{\\partial^{3}{B}}{\\partial{x}\\partial{t^{2}}} \\left(- \\frac{1}{2} + \\frac{1}{2 s_{2}}\\right) + \\Delta_{t} \\frac{\\partial^{2}{u}}{\\partial{t^{2}}} \\left(\\frac{3}{2} - \\frac{1}{s_{2}} - \\frac{1}{s_{1}}\\right) + \\Delta_{x}^{3} \\frac{\\partial^{4}{B}}{\\partial{x^{3}}\\partial{t}} \\left(\\frac{1}{6} - \\frac{1}{6 s_{2}}\\right) \\\\+ \\Delta_{x}^{2} \\frac{\\partial^{3}{C}}{\\partial{x^{2}}\\partial{t}} \\left(\\frac{1}{6} - \\frac{1}{6 s_{1}}\\right) + \\Delta_{x}^{2} \\frac{\\partial^{3}{\\Lambda}}{\\partial{x^{2}}\\partial{t}} \\left(\\frac{1}{2} - \\frac{1}{2 s_{1}}\\right) + \\Delta_{x}^{2} \\frac{\\partial^{3}{u}}{\\partial{x^{2}}\\partial{t}} \\left(- \\frac{1}{2 s_{2}} - \\frac{1}{2 s_{1}} + \\frac{1}{s_{1} s_{2}}\\right) + \\Delta_{x} \\frac{\\partial^{2}{B}}{\\partial{x}\\partial{t}} \\left(1 - \\frac{1}{s_{2}}\\right) + \\frac{\\Delta_{x}^{4} \\frac{\\partial^{4}{C}}{\\partial{x^{4}}} \\left(- \\frac{1}{72} + \\frac{1}{36 s_{1}}\\right)}{\\Delta_{t}} + \\frac{\\Delta_{x}^{4} \\frac{\\partial^{4}{\\Lambda}}{\\partial{x^{4}}} \\left(- \\frac{1}{24} + \\frac{1}{12 s_{1}}\\right)}{\\Delta_{t}} - \\frac{\\Delta_{x}^{3} \\frac{\\partial^{3}{B}}{\\partial{x^{3}}}}{6 \\Delta_{t}} + \\frac{\\Delta_{x}^{2} \\frac{\\partial^{2}{\\Lambda}}{\\partial{x^{2}}} \\left(- \\frac{1}{2} + \\frac{1}{s_{1}}\\right)}{\\Delta_{t}}\n",
+    "\\end{array}\n",
+    "$$(Full-non-linear-fdm-convec-diff)\n",
+    "where $\\nu=c_{s}^{2}\\left(\\displaystyle\\frac{2-s1}{2s1}\\right)\\displaystyle\\frac{\\Delta x^{2}}{\\Delta t}$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "bae98490-7102-445c-9bdc-9d90aa528b90",
+   "metadata": {},
+   "source": [
+    "To correct reduce the above equation and isolate the third and fourth order of spatial derivative terms, we employ the relations:\n",
+    "\n",
+    "$$\n",
+    " \\displaystyle\\frac{\\partial u}{\\partial t} = \\nu \\displaystyle\\frac{\\partial^{2}C}{\\partial x^{2}} - \\frac{\\partial B}{\\partial x} \n",
+    "$$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "4543dfd1-6d71-4395-805c-aa55e49c136f",
+   "metadata": {},
+   "source": [
+    "$$\n",
+    " \\displaystyle\\frac{\\partial^{3}u}{\\partial x^{2}\\partial t} = \\nu \\displaystyle\\frac{\\partial^{4}C}{\\partial x^{4}} - \\frac{\\partial^{3}B}{\\partial x^{3}}\n",
+    "$$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "efa1d8bb-02f4-4ad9-b2a7-b945b7dd0e3a",
+   "metadata": {},
+   "source": [
+    "$$\n",
+    " \\displaystyle\\frac{\\partial^{2}u}{\\partial t^{2}} = \\nu  \\displaystyle\\frac{\\partial^{3}C}{\\partial x^{2}\\partial t} -  \\frac{\\partial^{2}B}{\\partial x\\partial t}  = \\nu  \\displaystyle \\frac{\\partial^{2}}{\\partial x^{2}}\\left(\\frac{\\partial u}{\\partial t}C_{u} \\right) -  \\frac{\\partial }{\\partial x}\\left( \\frac{\\partial u}{\\partial t}B_{u} \\right)  = \\nu  \\displaystyle \\frac{\\partial^{2}}{\\partial x^{2}}\\left[C_{u}\\left( \\nu \\displaystyle\\frac{\\partial^{2}C}{\\partial x^{2}} - \\frac{\\partial B}{\\partial x}  \\right) \\right] -  \\frac{\\partial }{\\partial x}\\left[ B_{u}\\left( \\nu \\displaystyle\\frac{\\partial^{2}C}{\\partial x^{2}} - \\frac{\\partial B}{\\partial x}  \\right) \\right]\n",
+    "$$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "53c88084-02f7-4eaa-8a32-d04d42847d00",
+   "metadata": {},
+   "source": [
+    "$$\n",
+    " \\displaystyle\\frac{\\partial^{2}u}{\\partial t^{2}} = \\nu  \\displaystyle\\frac{\\partial^{3}C}{\\partial x^{2}\\partial t} -  \\frac{\\partial^{2}B}{\\partial x\\partial t}  = \\nu  \\displaystyle \\frac{\\partial^{2}}{\\partial x^{2}}\\left(\\frac{\\partial u}{\\partial t}C_{u} \\right) -  \\frac{\\partial }{\\partial x}\\left( \\frac{\\partial u}{\\partial t}B_{u} \\right)  = \\nu  \\displaystyle \\frac{\\partial^{2}}{\\partial x^{2}}\\left[C_{u}\\left( \\nu \\displaystyle\\frac{\\partial^{2}C}{\\partial x^{2}} - \\frac{\\partial B}{\\partial x}  \\right) \\right] -  \\frac{\\partial }{\\partial x}\\left[ \\nu B_{u} \\displaystyle\\frac{\\partial^{2}C}{\\partial x^{2}} - \\frac{\\partial \\Lambda}{\\partial x} \\right]\n",
+    "$$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c94b8b3f-a6d0-4f0b-af5d-81199db70db3",
+   "metadata": {},
+   "source": [
+    "$$\n",
+    " \\displaystyle\\frac{\\partial^{4}u}{\\partial x^{2}\\partial t^{2}} = \\nu  \\displaystyle\\frac{\\partial^{5}C}{\\partial x^{4}\\partial t} -  \\frac{\\partial^{4}B}{\\partial x^{3}\\partial t} = \\nu  \\displaystyle \\frac{\\partial^{4}}{\\partial x^{4}}\\left(\\left( \\nu \\displaystyle\\frac{\\partial^{2}C}{\\partial x^{2}} - \\frac{\\partial B}{\\partial x}  \\right)C_{u} \\right) -  \\frac{\\partial^{3} }{\\partial x^{3}}\\left( \\left( \\nu \\displaystyle\\frac{\\partial^{2}C}{\\partial x^{2}} - \\frac{\\partial B}{\\partial x}  \\right)B_{u} \\right) \n",
+    "$$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "7b27b0e7-4970-454a-bc19-f30d9bde3eb5",
+   "metadata": {},
+   "source": [
+    "$$\n",
+    " \\displaystyle\\frac{\\partial^{3}u}{\\partial t^{3}}  = \\nu  \\displaystyle\\frac{\\partial^{4}C}{\\partial x^{2}\\partial t^{2}} -  \\frac{\\partial^{3}B}{\\partial x\\partial t^{2}} = \\nu \\frac{\\partial^{2}}{\\partial x^{2}}\\left[ C_{uu} \\left(\\frac{\\partial u}{\\partial t}\\right)^{2} + C_u \\frac{\\partial^{2}u}{\\partial t^{2}} \\right] - \\frac{\\partial}{\\partial x}\\left[B_{uu}\\left(\\frac{\\partial u}{\\partial t}\\right)^{2} + B_u \\frac{\\partial^{2}u}{\\partial t^{2}} \\right]\n",
+    "$$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "37e12865-978c-4825-b6fa-aa793ec10b84",
+   "metadata": {},
+   "source": [
+    "$$\n",
+    " \\displaystyle\\frac{\\partial^{4}u}{\\partial t^{4}}  = \\nu  \\displaystyle\\frac{\\partial^{5}C}{\\partial x^{2}\\partial t^{3}} -  \\frac{\\partial^{4}B}{\\partial x\\partial t^{3}} =  \\nu \\frac{\\partial^{2}}{\\partial x^{2}} \\left[ C_{uuu}\\left(\\frac{\\partial u}{\\partial t}\\right)^{3} + 3C_{uu}\\left(\\frac{\\partial u}{\\partial t}\\right)\\left(\\frac{\\partial^{2}u}{\\partial t^{2}}\\right) + C_u \\frac{\\partial^{3}u}{\\partial t^{3}} \\right] - \\frac{\\partial}{\\partial x} \\left[B_{uuu}\\left(\\frac{\\partial u}{\\partial t}\\right)^{3} + 3B_{uu}\\left(\\frac{\\partial u}{\\partial t}\\right)\\left(\\frac{\\partial^{2}u}{\\partial t^{2}}\\right) + B_u \\frac{\\partial^{3}u}{\\partial t^{3}} \\right]\n",
+    "$$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "4dc700a5-59a4-4267-8d9e-6c3a8fc3bff8",
+   "metadata": {},
+   "source": [
+    "$$\n",
+    " \\displaystyle\\frac{\\partial B}{\\partial t} = B_{u}\\frac{\\partial u}{\\partial t} = B_{u}\\left( \\nu \\displaystyle\\frac{\\partial^{2}C}{\\partial x^{2}} - \\frac{\\partial B}{\\partial x} \\right) = \\nu B_{u} \\displaystyle\\frac{\\partial^{2}C}{\\partial x^{2}} - B_{u}^{2}\\frac{\\partial u}{\\partial x} = \\nu B_{u} \\displaystyle\\frac{\\partial^{2}C}{\\partial x^{2}} - \\frac{\\partial \\Lambda}{\\partial x} \n",
+    "$$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "49a250f4-2cc7-461f-ab24-0a21786e8226",
+   "metadata": {},
+   "source": [
+    "$$\n",
+    " \\displaystyle\\frac{\\partial^{2} B}{\\partial x \\partial t} = \\frac{\\partial }{\\partial x}\\left(B_{u}\\frac{\\partial u}{\\partial t}\\right) = \\frac{\\partial B_{u}}{\\partial x} \\frac{\\partial u}{\\partial t} + B_{u}\\frac{\\partial u}{\\partial x\\partial t} = \\frac{\\partial B_{u}}{\\partial x} \\left( \\nu \\displaystyle\\frac{\\partial^{2}C}{\\partial x^{2}} - \\frac{\\partial B}{\\partial x} \\right) + B_{u}\\left( \\nu \\displaystyle\\frac{\\partial^{3}C}{\\partial x^{3}} - \\frac{\\partial^{2} B}{\\partial x^{2}} \\right) = \\frac{\\partial B_{u}}{\\partial x} \\left( \\nu \\displaystyle\\frac{\\partial^{2}C}{\\partial x^{2}}\\right) + B_{u}\\left( \\nu \\displaystyle\\frac{\\partial^{3}C}{\\partial x^{3}} \\right) -  \\frac{\\partial^{2} \\Lambda}{\\partial x^{2}} \n",
+    "$$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "0a83e5d9-4d1e-4e00-a29e-397cc214a77b",
+   "metadata": {},
+   "source": [
+    "$$\n",
+    " \\displaystyle\\frac{\\partial C}{\\partial t} = C_{u}\\frac{\\partial u}{\\partial t} = C_{u}\\left( \\nu \\displaystyle\\frac{\\partial^{2}C}{\\partial x^{2}} - \\frac{\\partial B}{\\partial x} \\right) = \\nu C_{u} \\displaystyle\\frac{\\partial^{2}C}{\\partial x^{2}} - C_{u}\\frac{\\partial B}{\\partial x}\n",
+    "$$"
+   ]
   }
  ],
  "metadata": {
