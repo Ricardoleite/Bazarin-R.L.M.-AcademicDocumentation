@@ -81,10 +81,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Lattice Boltzmann Method - Application to Different Partial differential Equation:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="Diffusive-Equation.html">Diffusive Equation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Poisson-Equation.html">Poisson Equation (Steady-State Diffusive Equation)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Convective-Equation.html">Convective Equation (Transport Equation)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Convective-Diffusive-Equation.html">Convective-Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro-lbm-conv-diff/Diffusive-Equation.html">Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro-lbm-conv-diff/Poisson-Equation.html">Poisson Equation (Steady-State Diffusive Equation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro-lbm-conv-diff/Convective-Equation.html">Convective Equation (Transport Equation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro-lbm-conv-diff/Convective-Diffusive-Equation.html">Convective-Diffusive Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FDM-LBM-Diffusive.html">Difference Finite Scheme of Diffusive Equation derived from Lattice Boltzmann</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Difference Finite Scheme derived from MRT Lattice Boltzmann for Convective-Diffusive Equation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#mrt-lattice-boltzmann-equation-for-convective-diffusive-equation">MRT Lattice Boltzmann equation for Convective-Diffusive Equation</a></li>
@@ -100,7 +100,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Ementa.html">Conteúdo - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Extra-Avoiding-Diffusive-Effect-in-CE%28Unfinished%29.html">Extra::Avoiding Diffusive effect in Convective Equation (Unfinished) - Variable Lattice Sound Sped</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">LBM-Analysis:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro-lbm-conv-diff/Extra-Avoiding-Diffusive-Effect-in-CE%28Unfinished%29.html">Extra::Avoiding Diffusive effect in Convective Equation (Unfinished) - Variable Lattice Sound Sped</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References:</span></p>
 <ul>
@@ -108,7 +111,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Appendix:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="appendix/bcs-D2Q5-poisson-equation.html">Boundary Conditions: Deduction for the Lattice D2Q5 - Poisson Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro-lbm-conv-diff/appendix/bcs-D2Q5-poisson-equation.html">Boundary Conditions: Deduction for the Lattice D2Q5 - Poisson Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="appendix/sympy-code-fdm-diffusive-expansion.html">Sympy code for FDM expansion of LBM diffusive equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="appendix/sympy-code-mrt-fdm-diffusive-expansion-4th.html">Sympy code for FDM expansion of LBM diffusive equation up to Fourth-order</a></li>
 <li class="toctree-l1"><a class="reference internal" href="appendix/sympy-code-mrt-fdm-diffusive-expansion-6th.html">Sympy code for FDM expansion of LBM diffusive equation up to Sixth-order</a></li>
@@ -387,7 +390,7 @@ f_{i,x}^{t+1}  = f_{i,x-e_{i}}^{t}  - (\textbf{M}^{-1}\textbf{S}\textbf{M})_{ik}
 \[\displaystyle \gamma_{0} =- T_{\Delta_{x}}^{c_{0}} \left(s_{1} - 1\right) \left(s_{2} - 1\right).\]</div>
 </div>
 </div>
-<p>To reach the above coeficient results, were considered: <span class="math notranslate nohighlight">\(T_{\Delta x}^{c_{1}}T_{\Delta x}^{c_{2}}=T_{\Delta x}^{c_{0}}\)</span>; <span class="math notranslate nohighlight">\(T_{\Delta x}^{c_{1}}T_{\Delta x}^{c_{0}}=T_{\Delta x}^{c_{1}}\)</span>; <span class="math notranslate nohighlight">\(T_{\Delta x}^{c_{2}}T_{\Delta x}^{c_{0}}=T_{\Delta x}^{c_{2}}\)</span>.Defined the characteristical polynomial, we multiply both sides of Eq. <a class="reference internal" href="FDM-LBM-Convective-Diffusive-Hermite-Moments.html#equation-prem-rt-lb-conv-df-eq-s2">()</a> by <span class="math notranslate nohighlight">\(\sum_{n=0}^{q}\gamma_{n}\)</span> (where <span class="math notranslate nohighlight">\(q\)</span> is the number of lattice velocities) and perform a time shift by change the time variable <span class="math notranslate nohighlight">\(t\)</span> to <span class="math notranslate nohighlight">\(\tilde{t}+n=t+1\)</span>:</p>
+<p>To reach the above coeficient results, were considered: <span class="math notranslate nohighlight">\(T_{\Delta x}^{c_{1}}T_{\Delta x}^{c_{2}}=T_{\Delta x}^{c_{0}}\)</span>; <span class="math notranslate nohighlight">\(T_{\Delta x}^{c_{1}}T_{\Delta x}^{c_{0}}=T_{\Delta x}^{c_{1}}\)</span>; <span class="math notranslate nohighlight">\(T_{\Delta x}^{c_{2}}T_{\Delta x}^{c_{0}}=T_{\Delta x}^{c_{2}}\)</span>.Defined the characteristical polynomial, we multiply both sides of Eq. <a class="reference internal" href="#equation-prem-rt-lb-conv-df-eq-s2">(64)</a> by <span class="math notranslate nohighlight">\(\sum_{n=0}^{q}\gamma_{n}\)</span> (where <span class="math notranslate nohighlight">\(q\)</span> is the number of lattice velocities) and perform a time shift by change the time variable <span class="math notranslate nohighlight">\(t\)</span> to <span class="math notranslate nohighlight">\(\tilde{t}+n=t+1\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{c}
@@ -569,7 +572,7 @@ m^{t+1}_{0,x} \gamma_{3} = \left[P^{2} Q m^{eq,t-2}_{k,x} \gamma_{3}\right]_{k=0
 \[\displaystyle \left[Q m^{eq,t}_{k,x} \gamma_{3} \right]_{k=0} =\frac{m^{eq,t}_{1,x} s_{1} \left(T_{\Delta_{x}}^{c_{1}} - T_{\Delta_{x}}^{c_{2}}\right)}{2} + \frac{m^{eq,t}_{2,x} s_{2} \left(- 2 T_{\Delta_{x}}^{c_{0}} + T_{\Delta_{x}}^{c_{1}} + T_{\Delta_{x}}^{c_{2}}\right)}{6}.\]</div>
 </div>
 </div>
-<p>Replacing the terms in the Eq. <a class="reference internal" href="FDM-LBM-Convective-Diffusive-Hermite-Moments.html#equation-momentum-exp-term-convec-diff">()</a>:</p>
+<p>Replacing the terms in the Eq. <a class="reference internal" href="#equation-momentum-exp-term-convec-diff">(65)</a>:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -908,7 +911,7 @@ m_{0,x}^{t}=u_{x}^{t}, \qquad m_{0,x}^{eq,t}=u_{x}^{t}, \qquad m_{1,x}^{eq,t}=B_
 \[
  \displaystyle\frac{\partial^{4}u}{\partial t^{4}} =  c_{\alpha}^{4}  \displaystyle\frac{\partial^{4}u}{\partial x^{4}} + \mathcal{O}\!\left(\frac{1}{\Delta t}\right),
 \]</div>
-<p>notice that in the above relations, the derivativer higher or equat to fifth order are neglected. Replacing them in Eq. <a class="reference internal" href="FDM-LBM-Convective-Diffusive-Hermite-Moments.html#equation-full-fdm-convec-diff">()</a>:</p>
+<p>notice that in the above relations, the derivativer higher or equat to fifth order are neglected. Replacing them in Eq. <a class="reference internal" href="#equation-full-fdm-convec-diff">(66)</a>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{c}

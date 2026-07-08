@@ -52,7 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Difference Finite Scheme derived from MRT Lattice Boltzmann for Convective-Diffusive Equation" href="FDM-LBM-Convective-Diffusive.html" />
-    <link rel="prev" title="Convective-Diffusive Equation" href="Convective-Diffusive-Equation.html" /> 
+    <link rel="prev" title="Convective-Diffusive Equation" href="intro-lbm-conv-diff/Convective-Diffusive-Equation.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -81,10 +81,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Lattice Boltzmann Method - Application to Different Partial differential Equation:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="Diffusive-Equation.html">Diffusive Equation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Poisson-Equation.html">Poisson Equation (Steady-State Diffusive Equation)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Convective-Equation.html">Convective Equation (Transport Equation)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Convective-Diffusive-Equation.html">Convective-Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro-lbm-conv-diff/Diffusive-Equation.html">Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro-lbm-conv-diff/Poisson-Equation.html">Poisson Equation (Steady-State Diffusive Equation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro-lbm-conv-diff/Convective-Equation.html">Convective Equation (Transport Equation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro-lbm-conv-diff/Convective-Diffusive-Equation.html">Convective-Diffusive Equation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Difference Finite Scheme of Diffusive Equation derived from Lattice Boltzmann</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#interpretation-for-diffusive-equation">Interpretation for Diffusive Equation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#fdm-interpretation">FDM Interpretation</a></li>
@@ -111,7 +111,10 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="FDM-LBM-Convective-Diffusive.html">Difference Finite Scheme derived from MRT Lattice Boltzmann for Convective-Diffusive Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Ementa.html">Conteúdo - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Extra-Avoiding-Diffusive-Effect-in-CE%28Unfinished%29.html">Extra::Avoiding Diffusive effect in Convective Equation (Unfinished) - Variable Lattice Sound Sped</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">LBM-Analysis:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro-lbm-conv-diff/Extra-Avoiding-Diffusive-Effect-in-CE%28Unfinished%29.html">Extra::Avoiding Diffusive effect in Convective Equation (Unfinished) - Variable Lattice Sound Sped</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References:</span></p>
 <ul>
@@ -119,7 +122,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Appendix:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="appendix/bcs-D2Q5-poisson-equation.html">Boundary Conditions: Deduction for the Lattice D2Q5 - Poisson Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro-lbm-conv-diff/appendix/bcs-D2Q5-poisson-equation.html">Boundary Conditions: Deduction for the Lattice D2Q5 - Poisson Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="appendix/sympy-code-fdm-diffusive-expansion.html">Sympy code for FDM expansion of LBM diffusive equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="appendix/sympy-code-mrt-fdm-diffusive-expansion-4th.html">Sympy code for FDM expansion of LBM diffusive equation up to Fourth-order</a></li>
 <li class="toctree-l1"><a class="reference internal" href="appendix/sympy-code-mrt-fdm-diffusive-expansion-6th.html">Sympy code for FDM expansion of LBM diffusive equation up to Sixth-order</a></li>
@@ -157,18 +160,18 @@ const thebe_selector_output = ".output, .cell_output"
 <h2>Interpretation for Diffusive Equation<a class="headerlink" href="#interpretation-for-diffusive-equation" title="Link to this heading"></a></h2>
 <p>In the remainder of this section, we develop a FDM interpretation of the diffusive LBM, following the approach proposed by <span id="id2">Suga [<a class="reference internal" href="../Citations.html#id4" title="Shinsuke Suga. An accurate multi-level finite difference scheme for 1d diffusion equations derived from the lattice boltzmann method. Journal of Statistical Physics, 140(3):494–503, 2010.">5</a>]</span>.</p>
 <p>Given the LBM formulation for the diffusive equation:</p>
-<div class="math notranslate nohighlight" id="equation-lb-df-eq">
-<span class="eqno">(55)<a class="headerlink" href="#equation-lb-df-eq" title="Link to this equation"></a></span>\[
+<div class="math notranslate nohighlight" id="equation-lb-fdm-df-eq">
+<span class="eqno">(55)<a class="headerlink" href="#equation-lb-fdm-df-eq" title="Link to this equation"></a></span>\[
 f_i( x_{\alpha} + e_{i,\alpha} \delta t, t+\delta t) = f_i(x_{\alpha}, t)  -\left( \frac{ f_{i} - f_{i}^{eq} }{ \tau } \right) \qquad \rightarrow \qquad f_i( x_{\alpha} + e_{i,\alpha} \delta t, t+\delta t) = f_i(x_{\alpha}, t)  - \omega\left( f_{i} - f_{i}^{eq} \right), 
 \]</div>
 <p>where the equilibrium distribution function is defined by</p>
-<div class="math notranslate nohighlight" id="equation-df-feq-eq">
-<span class="eqno">(56)<a class="headerlink" href="#equation-df-feq-eq" title="Link to this equation"></a></span>\[
+<div class="math notranslate nohighlight" id="equation-df-fdm-feq-eq">
+<span class="eqno">(56)<a class="headerlink" href="#equation-df-fdm-feq-eq" title="Link to this equation"></a></span>\[
 f^{eq}_{i} = w_{i}\phi(x_{\alpha}, t),
 \]</div>
 <p>and the equilibrium moments are given by</p>
-<div class="math notranslate nohighlight" id="equation-moments-fi-df">
-<span class="eqno">(57)<a class="headerlink" href="#equation-moments-fi-df" title="Link to this equation"></a></span>\[
+<div class="math notranslate nohighlight" id="equation-moments-fdm-fi-df">
+<span class="eqno">(57)<a class="headerlink" href="#equation-moments-fdm-fi-df" title="Link to this equation"></a></span>\[
 \displaystyle\sum_{i=0} f_{i}^{eq}=\phi, \quad \quad  \displaystyle\sum_{i}f_{i}^{eq} e_{i,\alpha} =0 \quad \quad \textrm{and} \quad \quad  \displaystyle\sum_{i}f_{i}^{eq} e_{i,\alpha} e_{i,\beta} =c_{s}^{2} \phi \delta_{\alpha\beta}.
 \]</div>
 <p>Through Chapman–Enskog analysis, it is demonstrated that the first-order non-equilibrium moment describes the pressure gradient and, consequently, the average velocity:</p>
@@ -178,22 +181,22 @@ m^{neq}_{\alpha} = \displaystyle\sum_{i} e_{i,\alpha}\left( f_i-f_i^{eq}\right) 
 \]</div>
 <section id="fdm-interpretation">
 <h3>FDM Interpretation<a class="headerlink" href="#fdm-interpretation" title="Link to this heading"></a></h3>
-<p>For simplification we redefine the notation for <span class="math notranslate nohighlight">\(f_i( x_{\alpha} + e_{i,\alpha} \delta t, t+\delta t)=f_{i,x+c_{i}}^{t+1}\)</span>. Reinterpreting the Eq. <a class="reference internal" href="#equation-lb-df-eq">(55)</a> in pre-streaming moment:</p>
-<div class="math notranslate nohighlight" id="equation-pre-lb-df-eq">
-<span class="eqno">(58)<a class="headerlink" href="#equation-pre-lb-df-eq" title="Link to this equation"></a></span>\[
+<p>For simplification we redefine the notation for <span class="math notranslate nohighlight">\(f_i( x_{\alpha} + e_{i,\alpha} \delta t, t+\delta t)=f_{i,x+c_{i}}^{t+1}\)</span>. Reinterpreting the Eq. <a class="reference internal" href="#equation-lb-fdm-df-eq">(55)</a> in pre-streaming moment:</p>
+<div class="math notranslate nohighlight" id="equation-pre-fdm-lb-df-eq">
+<span class="eqno">(58)<a class="headerlink" href="#equation-pre-fdm-lb-df-eq" title="Link to this equation"></a></span>\[
 f_{i,x}^{t+1}  = f_{i,x-c_{i}}^{t}  - \omega \left( f_{i,x-c_{i}}^{t} - f_{i,x-c_{i}}^{eq,t} \right).
 \]</div>
-<p>Summing the Eq. <a class="reference internal" href="#equation-pre-lb-df-eq">(58)</a> over all lattice direction and replacing <span class="math notranslate nohighlight">\(f_{i}^{eq}\)</span> by Eq. <a class="reference internal" href="#equation-df-feq-eq">(56)</a>, we have:</p>
+<p>Summing the Eq. <a class="reference internal" href="#equation-pre-fdm-lb-df-eq">(58)</a> over all lattice direction and replacing <span class="math notranslate nohighlight">\(f_{i}^{eq}\)</span> by Eq. <a class="reference internal" href="#equation-df-fdm-feq-eq">(56)</a>, we have:</p>
 <div class="math notranslate nohighlight">
 \[
 \displaystyle\sum_{i}\Big( f_{i,x}^{t+1} \Big) = \displaystyle\sum_{i}\Big( f_{i,x-c_{i}}^{t}  - \omega \left( f_{i,x-c_{i}}^{t} - f_{i,x-c_{i}}^{eq,t} \right) \Big) \qquad \rightarrow  \qquad \phi_{x}^{t+1} = \displaystyle\sum_{i}\Big( (1-\omega) f_{i,x-c_{i}}^{t}  + \omega w_{i}\phi_{x-c_{i}}^{t} \Big),
 \]</div>
-<p>using the Eq. <a class="reference internal" href="#equation-moments-fi-df">(57)</a> to replace <span class="math notranslate nohighlight">\(f_{i,x-c_{i}}^{t}\)</span> in the above equation:</p>
+<p>using the Eq. <a class="reference internal" href="#equation-moments-fdm-fi-df">(57)</a> to replace <span class="math notranslate nohighlight">\(f_{i,x-c_{i}}^{t}\)</span> in the above equation:</p>
 <div class="math notranslate nohighlight">
 \[
 \phi_{x}^{t+1} = \displaystyle\sum_{i}\Big( (1-\omega) f_{i,x-c_{i}}^{t}  + \omega w_{i}\phi_{x-c_{i}}^{t} \Big) \qquad \rightarrow  \qquad \phi_{x}^{t+1} = \displaystyle\sum_{i}\Big( (1-\omega + \omega w_{i}) \phi_{x-c_{i}}^{t} - (1-\omega) \displaystyle\sum_{k\neq i} f_{k,x-c_{i}}^{t} \Big).
 \]</div>
-<p>Spliting the terms in the above equation and using Eq. <a class="reference internal" href="#equation-pre-lb-df-eq">(58)</a> for <span class="math notranslate nohighlight">\(f_{i,x-c_{i}}^{t}\)</span>:</p>
+<p>Spliting the terms in the above equation and using Eq. <a class="reference internal" href="#equation-pre-fdm-lb-df-eq">(58)</a> for <span class="math notranslate nohighlight">\(f_{i,x-c_{i}}^{t}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 \phi_{x}^{t+1} = \displaystyle\sum_{i}\Big( (1-\omega + \omega w_{i}) \phi_{x-c_{i}}^{t}\Big) - (1-\omega)\displaystyle\sum_{i}\left( \displaystyle\sum_{k\neq i} f_{k,x-c_{i}}^{t} \right),
@@ -211,12 +214,12 @@ f_{i,x}^{t+1}  = f_{i,x-c_{i}}^{t}  - \omega \left( f_{i,x-c_{i}}^{t} - f_{i,x-c
 \[
 \phi_{x}^{t+1} = \displaystyle\sum_{i}\Big( (1-\omega + \omega w_{i}) \phi_{x-c_{i}}^{t}\Big) - (1-\omega) \displaystyle\sum_{i}\Bigg( \displaystyle\sum_{k\neq i} \left( \omega w_{k} \phi_{x-c_{i}-c_{k}}^{t-1} + (1-\omega) f_{k,x-c_{i}-c_{j}}^{t-1} \right) \Bigg),
 \]</div>
-<p>notice that <span class="math notranslate nohighlight">\(\displaystyle\sum_{i}\Bigg( \displaystyle\sum_{k\neq i} \left( \omega w_{k} \phi_{x-c_{i}-c_{k}}^{t-1} \right) \Bigg)=\displaystyle\sum_{i}\Bigg( \displaystyle\sum_{k\neq i} \left(w_{k}\right) \omega \phi_{x+c_{i}}^{t-1}  \Bigg)\)</span> and using Eq. <a class="reference internal" href="#equation-moments-fi-df">(57)</a> we have <span class="math notranslate nohighlight">\(\displaystyle\sum_{i}\Bigg( \displaystyle\sum_{k\neq i} \left( f_{k,x-c_{i}-c_{j}}^{t-1} \right) \Bigg)= \displaystyle\sum_{i}\left(\phi_{x+c_{i}}^{t-1} - f_{i,x+c_{i}}^{t-1}\right) \)</span>. So rewriting the above equation base in the observations:</p>
+<p>notice that <span class="math notranslate nohighlight">\(\displaystyle\sum_{i}\Bigg( \displaystyle\sum_{k\neq i} \left( \omega w_{k} \phi_{x-c_{i}-c_{k}}^{t-1} \right) \Bigg)=\displaystyle\sum_{i}\Bigg( \displaystyle\sum_{k\neq i} \left(w_{k}\right) \omega \phi_{x+c_{i}}^{t-1}  \Bigg)\)</span> and using Eq. <a class="reference internal" href="#equation-moments-fdm-fi-df">(57)</a> we have <span class="math notranslate nohighlight">\(\displaystyle\sum_{i}\Bigg( \displaystyle\sum_{k\neq i} \left( f_{k,x-c_{i}-c_{j}}^{t-1} \right) \Bigg)= \displaystyle\sum_{i}\left(\phi_{x+c_{i}}^{t-1} - f_{i,x+c_{i}}^{t-1}\right) \)</span>. So rewriting the above equation base in the observations:</p>
 <div class="math notranslate nohighlight" id="equation-last-fdm-form">
 <span class="eqno">(59)<a class="headerlink" href="#equation-last-fdm-form" title="Link to this equation"></a></span>\[
 \phi_{x}^{t+1} = \displaystyle\sum_{i}\Big( (1-\omega + \omega w_{i}) \phi_{x-c_{i}}^{t}\Big) - (1-\omega)\displaystyle\sum_{i}\Bigg( \left(1-\omega + \omega \displaystyle\sum_{k\neq i} \left(w_{k}\right) \right) \phi_{x+c_{i}}^{t-1} \Bigg) + (1-\omega)^{2}\displaystyle\sum_{i}\Bigg( f_{i,x+c_{i}}^{t-1} \Bigg).
 \]</div>
-<p>Interpreting <span class="math notranslate nohighlight">\(f_{i,x+c_{i}}^{t-1}\)</span> with Eq. <a class="reference internal" href="#equation-pre-lb-df-eq">(58)</a>:</p>
+<p>Interpreting <span class="math notranslate nohighlight">\(f_{i,x+c_{i}}^{t-1}\)</span> with Eq. <a class="reference internal" href="#equation-pre-fdm-lb-df-eq">(58)</a>:</p>
 <div class="math notranslate nohighlight">
 \[
 f_{i,x+c_{i}}^{t-1}  = f_{i,x}^{t-2}  - \omega \left( f_{i,x}^{t-2} - f_{i,x}^{eq,t-2} \right) ,
@@ -1871,7 +1874,7 @@ R^{6th} = \frac{s_{1}^{3}}{3} + \frac{4 s_{1}^{2}}{3} - \frac{16 s_{1}}{3} + s_{
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="Convective-Diffusive-Equation.html" class="btn btn-neutral float-left" title="Convective-Diffusive Equation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="intro-lbm-conv-diff/Convective-Diffusive-Equation.html" class="btn btn-neutral float-left" title="Convective-Diffusive Equation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="FDM-LBM-Convective-Diffusive.html" class="btn btn-neutral float-right" title="Difference Finite Scheme derived from MRT Lattice Boltzmann for Convective-Diffusive Equation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

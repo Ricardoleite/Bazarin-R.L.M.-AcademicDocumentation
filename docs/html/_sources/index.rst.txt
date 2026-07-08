@@ -71,19 +71,19 @@ Academic Material:
    :maxdepth: 1
    :caption: Lattice Boltzmann Method - Application to Different Partial differential Equation:
 
-   /LBM-Study/Diffusive-Equation
-   /LBM-Study/Poisson-Equation
-   /LBM-Study/Convective-Equation
-   /LBM-Study/Convective-Diffusive-Equation
+   /LBM-Study/intro-lbm-conv-diff/Diffusive-Equation
+   /LBM-Study/intro-lbm-conv-diff/Poisson-Equation
+   /LBM-Study/intro-lbm-conv-diff/Convective-Equation
+   /LBM-Study/intro-lbm-conv-diff/Convective-Diffusive-Equation
    /LBM-Study/FDM-LBM-Diffusive.ipynb
    /LBM-Study/FDM-LBM-Convective-Diffusive.ipynb
    /LBM-Study/Ementa
 
-   .. toctree::
+.. toctree::
    :maxdepth: 1
    :caption: LBM-Analysis:
 
-   /LBM-Study/Extra-Avoiding-Diffusive-Effect-in-CE(Unfinished)
+   /LBM-Study/intro-lbm-conv-diff/Extra-Avoiding-Diffusive-Effect-in-CE(Unfinished)
 
 .. toctree::
    :maxdepth: 1
@@ -95,7 +95,7 @@ Academic Material:
    :maxdepth: 1
    :caption: Appendix:
 
-   /LBM-Study/appendix/bcs-D2Q5-poisson-equation
+   /LBM-Study/intro-lbm-conv-diff/appendix/bcs-D2Q5-poisson-equation
    /LBM-Study/appendix/sympy-code-fdm-diffusive-expansion
    /LBM-Study/appendix/sympy-code-mrt-fdm-diffusive-expansion-4th
    /LBM-Study/appendix/sympy-code-mrt-fdm-diffusive-expansion-6th
