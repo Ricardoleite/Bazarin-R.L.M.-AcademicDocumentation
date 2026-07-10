@@ -7,10 +7,10 @@ git add .
 
 git status
 
-if git diff --cached --quiet; then
-    echo "No changes to commit."
-    exit 0
-fi
+#if git diff --cached --quiet; then
+#    echo "No changes to commit."
+#    exit 0
+#fi
 
 DM=$(date +"%Y-%m-%d %H:%M:%S")
 PC=$(hostname)
