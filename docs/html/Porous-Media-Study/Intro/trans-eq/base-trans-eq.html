@@ -16,6 +16,7 @@
       <link rel="stylesheet" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/eqno.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/sidebar.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -48,10 +49,11 @@ const thebe_selector_output = ".output, .cell_output"
 </script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../../_static/css/sidebar.js?v=29393464"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="prev" title="Sympy code for FDM expansion of LBM diffusive equation up to Sixth-order" href="../../../LBM-Study/appendix/sympy-code-mrt-fdm-diffusive-expansion-6th.html" /> 
+    <link rel="prev" title="Sympy code for FDM expansion of LBM diffusive equation up to Sixth-order" href="../../../LBM-Study/FDM-Belloti/appendix/sympy-code-mrt-fdm-diffusive-expansion-6th.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -84,8 +86,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/intro-lbm-conv-diff/Poisson-Equation.html">Poisson Equation (Steady-State Diffusive Equation)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/intro-lbm-conv-diff/Convective-Equation.html">Convective Equation (Transport Equation)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/intro-lbm-conv-diff/Convective-Diffusive-Equation.html">Convective-Diffusive Equation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/FDM-LBM-Diffusive.html">Difference Finite Scheme of Diffusive Equation derived from Lattice Boltzmann</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/FDM-LBM-Convective-Diffusive.html">Difference Finite Scheme derived from MRT Lattice Boltzmann for Convective-Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/FDM-Belloti/FDM-LBM-Diffusive.html">Difference Finite Scheme of Diffusive Equation derived from Lattice Boltzmann</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/FDM-Belloti/FDM-LBM-Convective-Diffusive.html">Difference Finite Scheme derived from MRT Lattice Boltzmann for Convective-Diffusive Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/Ementa.html">Conteúdo - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">LBM-Analysis:</span></p>
@@ -99,9 +101,9 @@ const thebe_selector_output = ".output, .cell_output"
 <p class="caption" role="heading"><span class="caption-text">Appendix:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/intro-lbm-conv-diff/appendix/bcs-D2Q5-poisson-equation.html">Boundary Conditions: Deduction for the Lattice D2Q5 - Poisson Equation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/appendix/sympy-code-fdm-diffusive-expansion.html">Sympy code for FDM expansion of LBM diffusive equation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/appendix/sympy-code-mrt-fdm-diffusive-expansion-4th.html">Sympy code for FDM expansion of LBM diffusive equation up to Fourth-order</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/appendix/sympy-code-mrt-fdm-diffusive-expansion-6th.html">Sympy code for FDM expansion of LBM diffusive equation up to Sixth-order</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/FDM-Belloti/appendix/sympy-code-fdm-diffusive-expansion.html">Sympy code for FDM expansion of LBM diffusive equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/FDM-Belloti/appendix/sympy-code-mrt-fdm-diffusive-expansion-4th.html">Sympy code for FDM expansion of LBM diffusive equation up to Fourth-order</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/FDM-Belloti/appendix/sympy-code-mrt-fdm-diffusive-expansion-6th.html">Sympy code for FDM expansion of LBM diffusive equation up to Sixth-order</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introdution for Transport Equations</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#solving-transport-equation">Solving Transport Equation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#method-of-characteristics">Method of Characteristics</a><ul>
@@ -193,7 +195,7 @@ const thebe_selector_output = ".output, .cell_output"
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../../../LBM-Study/appendix/sympy-code-mrt-fdm-diffusive-expansion-6th.html" class="btn btn-neutral float-left" title="Sympy code for FDM expansion of LBM diffusive equation up to Sixth-order" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../../LBM-Study/FDM-Belloti/appendix/sympy-code-mrt-fdm-diffusive-expansion-6th.html" class="btn btn-neutral float-left" title="Sympy code for FDM expansion of LBM diffusive equation up to Sixth-order" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

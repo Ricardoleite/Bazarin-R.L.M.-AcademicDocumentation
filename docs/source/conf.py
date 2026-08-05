@@ -67,7 +67,7 @@ myst_enable_extensions = [
 
 sphinx_rtd_size_width = "100%"
 templates_path = ['_templates']
-exclude_patterns = ['/source/Note-Cris/Gota-Plana','**.ipynb_checkpoints', '.DS_Store', 'Thumbs.db', '_build']
+exclude_patterns = ["LBM-Study/tests/**",'**.ipynb_checkpoints', '.DS_Store', 'Thumbs.db', '_build']
 myst_url_schemes = ['mailto', 'http', 'https']
 # nb_execution_allow_errors = False
 # nb_execution_cache_path = ''
@@ -90,8 +90,11 @@ html_static_path = ['_static']
 
 html_css_files = [
     'css/eqno.css',
-    'custom.css'
-]
+    'custom.css',
+    'css/sidebar.css',
+    ]
+
+html_js_files = ["css/sidebar.js"]
 
 numfig_format = {'figure': 'Fig. %s', 'table': 'Table %s', 'code-block': 'Listing %s'}
 

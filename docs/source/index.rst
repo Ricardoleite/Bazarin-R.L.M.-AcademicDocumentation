@@ -75,8 +75,8 @@ Academic Material:
    /LBM-Study/intro-lbm-conv-diff/Poisson-Equation
    /LBM-Study/intro-lbm-conv-diff/Convective-Equation
    /LBM-Study/intro-lbm-conv-diff/Convective-Diffusive-Equation
-   /LBM-Study/FDM-LBM-Diffusive.ipynb
-   /LBM-Study/FDM-LBM-Convective-Diffusive.ipynb
+   /LBM-Study/FDM-Belloti/FDM-LBM-Diffusive.ipynb
+   /LBM-Study/FDM-Belloti/FDM-LBM-Convective-Diffusive.ipynb
    /LBM-Study/Ementa
 
 .. toctree::
@@ -96,8 +96,8 @@ Academic Material:
    :caption: Appendix:
 
    /LBM-Study/intro-lbm-conv-diff/appendix/bcs-D2Q5-poisson-equation
-   /LBM-Study/appendix/sympy-code-fdm-diffusive-expansion
-   /LBM-Study/appendix/sympy-code-mrt-fdm-diffusive-expansion-4th
-   /LBM-Study/appendix/sympy-code-mrt-fdm-diffusive-expansion-6th
+   /LBM-Study/FDM-Belloti/appendix/sympy-code-fdm-diffusive-expansion
+   /LBM-Study/FDM-Belloti/appendix/sympy-code-mrt-fdm-diffusive-expansion-4th
+   /LBM-Study/FDM-Belloti/appendix/sympy-code-mrt-fdm-diffusive-expansion-6th
    /Porous-Media-Study/Intro/trans-eq/base-trans-eq
    

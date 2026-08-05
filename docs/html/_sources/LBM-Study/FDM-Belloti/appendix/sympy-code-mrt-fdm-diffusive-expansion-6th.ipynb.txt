@@ -1,0 +1,570 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "editable": true,
+    "slideshow": {
+     "slide_type": ""
+    },
+    "tags": []
+   },
+   "source": [
+    "# Sympy code for FDM expansion of LBM diffusive equation up to Sixth-order"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {
+    "editable": true,
+    "slideshow": {
+     "slide_type": ""
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "import sympy as sp\n",
+    "# -----------------------------------------------------------------------------\n",
+    "# 1) Symbols (parameters and step sizes)\n",
+    "# -----------------------------------------------------------------------------\n",
+    "dx, dt = sp.symbols('Delta_x Delta_t', positive=True, real=True)\n",
+    "s1, s2, w0, nu = sp.symbols('s_{1} s_{2} w_{0} \\\\nu', real=True)\n",
+    "\n",
+    "alpha1 = sp.simplify(1 - s1/2 - w0*s2/2)\n",
+    "alpha2 = sp.simplify((w0-1)*s2 + 1)\n",
+    "beta1  = sp.simplify(w0*s1*s2/2 - s1*s2/2 - w0*s2/2 + s1/2 +s2 -1)\n",
+    "beta2  = sp.simplify(-w0*s1*s2 + w0*s2 + s1 - 1)\n",
+    "gamma  = sp.simplify((s1-1)*(s2-1))\n",
+    "# -----------------------------------------------------------------------------\n",
+    "# 2) Continuous variables and field\n",
+    "# -----------------------------------------------------------------------------\n",
+    "x, t = sp.symbols('x t', real=True)\n",
+    "phi = sp.Function('phi')\n",
+    "# Shorthand for the base (continuous) field value at (x,t)\n",
+    "PHI = phi(x, t)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def taylor_phi(sx=0, st=0, order_x=6, order_t=6):\n",
+    "    expr = sp.S(0)\n",
+    "    # Keep all mixed terms up to the specified individual orders.\n",
+    "    for m in range(order_x + 1):\n",
+    "        for n in range(order_t + 1):\n",
+    "            # skip the (0,0) term? no, keep it.\n",
+    "            term = ( (sx*dx)**m * (st*dt)**n\n",
+    "                    / (sp.factorial(m)*sp.factorial(n))\n",
+    "                    * sp.diff(PHI, x, m, t, n) )\n",
+    "            expr += term\n",
+    "    return sp.expand(expr)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\Delta_{t}^{6} \\frac{\\partial^{6}}{\\partial t^{6}} \\phi{\\left(x,t \\right)}}{720} + \\frac{\\Delta_{t}^{5} \\frac{\\partial^{5}}{\\partial t^{5}} \\phi{\\left(x,t \\right)}}{120} + \\frac{\\Delta_{t}^{4} \\frac{\\partial^{4}}{\\partial t^{4}} \\phi{\\left(x,t \\right)}}{24} + \\frac{\\Delta_{t}^{3} \\frac{\\partial^{3}}{\\partial t^{3}} \\phi{\\left(x,t \\right)}}{6} + \\frac{\\Delta_{t}^{2} \\frac{\\partial^{2}}{\\partial t^{2}} \\phi{\\left(x,t \\right)}}{2} + \\Delta_{t} \\frac{\\partial}{\\partial t} \\phi{\\left(x,t \\right)} + \\phi{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "Delta_t**6*Derivative(phi(x, t), (t, 6))/720 + Delta_t**5*Derivative(phi(x, t), (t, 5))/120 + Delta_t**4*Derivative(phi(x, t), (t, 4))/24 + Delta_t**3*Derivative(phi(x, t), (t, 3))/6 + Delta_t**2*Derivative(phi(x, t), (t, 2))/2 + Delta_t*Derivative(phi(x, t), t) + phi(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\phi{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "phi(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\Delta_{t}^{6} \\frac{\\partial^{6}}{\\partial t^{6}} \\phi{\\left(x,t \\right)}}{720} - \\frac{\\Delta_{t}^{5} \\frac{\\partial^{5}}{\\partial t^{5}} \\phi{\\left(x,t \\right)}}{120} + \\frac{\\Delta_{t}^{4} \\frac{\\partial^{4}}{\\partial t^{4}} \\phi{\\left(x,t \\right)}}{24} - \\frac{\\Delta_{t}^{3} \\frac{\\partial^{3}}{\\partial t^{3}} \\phi{\\left(x,t \\right)}}{6} + \\frac{\\Delta_{t}^{2} \\frac{\\partial^{2}}{\\partial t^{2}} \\phi{\\left(x,t \\right)}}{2} - \\Delta_{t} \\frac{\\partial}{\\partial t} \\phi{\\left(x,t \\right)} + \\phi{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "Delta_t**6*Derivative(phi(x, t), (t, 6))/720 - Delta_t**5*Derivative(phi(x, t), (t, 5))/120 + Delta_t**4*Derivative(phi(x, t), (t, 4))/24 - Delta_t**3*Derivative(phi(x, t), (t, 3))/6 + Delta_t**2*Derivative(phi(x, t), (t, 2))/2 - Delta_t*Derivative(phi(x, t), t) + phi(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{4 \\Delta_{t}^{6} \\frac{\\partial^{6}}{\\partial t^{6}} \\phi{\\left(x,t \\right)}}{45} - \\frac{4 \\Delta_{t}^{5} \\frac{\\partial^{5}}{\\partial t^{5}} \\phi{\\left(x,t \\right)}}{15} + \\frac{2 \\Delta_{t}^{4} \\frac{\\partial^{4}}{\\partial t^{4}} \\phi{\\left(x,t \\right)}}{3} - \\frac{4 \\Delta_{t}^{3} \\frac{\\partial^{3}}{\\partial t^{3}} \\phi{\\left(x,t \\right)}}{3} + 2 \\Delta_{t}^{2} \\frac{\\partial^{2}}{\\partial t^{2}} \\phi{\\left(x,t \\right)} - 2 \\Delta_{t} \\frac{\\partial}{\\partial t} \\phi{\\left(x,t \\right)} + \\phi{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "4*Delta_t**6*Derivative(phi(x, t), (t, 6))/45 - 4*Delta_t**5*Derivative(phi(x, t), (t, 5))/15 + 2*Delta_t**4*Derivative(phi(x, t), (t, 4))/3 - 4*Delta_t**3*Derivative(phi(x, t), (t, 3))/3 + 2*Delta_t**2*Derivative(phi(x, t), (t, 2)) - 2*Delta_t*Derivative(phi(x, t), t) + phi(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\Delta_{x}^{6} \\frac{\\partial^{6}}{\\partial x^{6}} \\phi{\\left(x,t \\right)}}{720} - \\frac{\\Delta_{x}^{5} \\frac{\\partial^{5}}{\\partial x^{5}} \\phi{\\left(x,t \\right)}}{120} + \\frac{\\Delta_{x}^{4} \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)}}{24} - \\frac{\\Delta_{x}^{3} \\frac{\\partial^{3}}{\\partial x^{3}} \\phi{\\left(x,t \\right)}}{6} + \\frac{\\Delta_{x}^{2} \\frac{\\partial^{2}}{\\partial x^{2}} \\phi{\\left(x,t \\right)}}{2} - \\Delta_{x} \\frac{\\partial}{\\partial x} \\phi{\\left(x,t \\right)} + \\phi{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "Delta_x**6*Derivative(phi(x, t), (x, 6))/720 - Delta_x**5*Derivative(phi(x, t), (x, 5))/120 + Delta_x**4*Derivative(phi(x, t), (x, 4))/24 - Delta_x**3*Derivative(phi(x, t), (x, 3))/6 + Delta_x**2*Derivative(phi(x, t), (x, 2))/2 - Delta_x*Derivative(phi(x, t), x) + phi(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\Delta_{x}^{6} \\frac{\\partial^{6}}{\\partial x^{6}} \\phi{\\left(x,t \\right)}}{720} + \\frac{\\Delta_{x}^{5} \\frac{\\partial^{5}}{\\partial x^{5}} \\phi{\\left(x,t \\right)}}{120} + \\frac{\\Delta_{x}^{4} \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)}}{24} + \\frac{\\Delta_{x}^{3} \\frac{\\partial^{3}}{\\partial x^{3}} \\phi{\\left(x,t \\right)}}{6} + \\frac{\\Delta_{x}^{2} \\frac{\\partial^{2}}{\\partial x^{2}} \\phi{\\left(x,t \\right)}}{2} + \\Delta_{x} \\frac{\\partial}{\\partial x} \\phi{\\left(x,t \\right)} + \\phi{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "Delta_x**6*Derivative(phi(x, t), (x, 6))/720 + Delta_x**5*Derivative(phi(x, t), (x, 5))/120 + Delta_x**4*Derivative(phi(x, t), (x, 4))/24 + Delta_x**3*Derivative(phi(x, t), (x, 3))/6 + Delta_x**2*Derivative(phi(x, t), (x, 2))/2 + Delta_x*Derivative(phi(x, t), x) + phi(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "# -----------------------------------------------------------------------------\n",
+    "# 4) Discrete stencil terms (expanded)\n",
+    "# -----------------------------------------------------------------------------\n",
+    "# phi_x^{t+1}, phi_x^{t}, phi_x^{t-1}, phi_x^{t-2}\n",
+    "phi_t_p1 = taylor_phi(sx=0,  st=+1, order_x=0, order_t=6)\n",
+    "display(phi_t_p1)\n",
+    "phi_t_0  = taylor_phi(sx=0,  st=0,  order_x=0, order_t=0)  # exactly phi(x,t)\n",
+    "display(phi_t_0)\n",
+    "phi_t_m1 = taylor_phi(sx=0,  st=-1, order_x=0, order_t=6)\n",
+    "display(phi_t_m1)\n",
+    "phi_t_m2 = taylor_phi(sx=0,  st=-2, order_x=0, order_t=6)\n",
+    "display(phi_t_m2)\n",
+    "\n",
+    "# phi_{x±1}^{t}\n",
+    "phi_xm1_t0 = taylor_phi(sx=-1, st=0,  order_x=6, order_t=0)\n",
+    "display(phi_xm1_t0)\n",
+    "phi_xp1_t0 = taylor_phi(sx=+1, st=0,  order_x=6, order_t=0)\n",
+    "display(phi_xp1_t0)\n",
+    "\n",
+    "# phi_{x±1}^{t-1}\n",
+    "phi_xm1_tm1 = taylor_phi(sx=-1, st=-1, order_x=6, order_t=6)\n",
+    "phi_xp1_tm1 = taylor_phi(sx=+1, st=-1, order_x=6, order_t=6)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# -----------------------------------------------------------------------------\n",
+    "# 5) Build the discrete equation (expanded) and move everything to one side\n",
+    "# -----------------------------------------------------------------------------\n",
+    "lhs = phi_t_p1\n",
+    "\n",
+    "rhs = (alpha1*phi_xm1_t0 + alpha2*phi_t_0 + alpha1*phi_xp1_t0\n",
+    "       + beta1*phi_xm1_tm1 + beta2*phi_t_m1 + beta1*phi_xp1_tm1\n",
+    "       + gamma * phi_t_m2)\n",
+    "\n",
+    "residual = sp.simplify(sp.expand(lhs - rhs))  # = 0 is the modified equation"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "max_dx=6\n",
+    "max_dt=3\n",
+    "max_total=5\n",
+    "expr = sp.expand(residual)\n",
+    "poly = sp.Poly(expr, dx, dt, domain='EX')  # keep symbolic coeffs\n",
+    "kept = sp.S(0)\n",
+    "\n",
+    "for (px, pt), coeff in poly.terms():\n",
+    "    if (px <= max_dx) and (pt <= max_dt) and ((px + pt) <= max_total):\n",
+    "        kept += coeff * dx**px * dt**pt"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\Delta_{t}^{3} \\left(7 s_{1} s_{2} - 6 s_{1} - 6 s_{2} + 6\\right) \\frac{\\partial^{3}}{\\partial t^{3}} \\phi{\\left(x,t \\right)}}{6} + \\frac{\\Delta_{t}^{2} \\left(- 3 s_{1} s_{2} + 2 s_{1} + 2 s_{2}\\right) \\frac{\\partial^{2}}{\\partial t^{2}} \\phi{\\left(x,t \\right)}}{2} + \\frac{\\Delta_{t} \\Delta_{x}^{4} \\left(s_{1} s_{2} w_{0} - s_{1} s_{2} + s_{1} - s_{2} w_{0} + 2 s_{2} - 2\\right) \\frac{\\partial^{5}}{\\partial x^{4}\\partial t} \\phi{\\left(x,t \\right)}}{24} + \\frac{\\Delta_{t} \\Delta_{x}^{2} \\left(s_{1} s_{2} w_{0} - s_{1} s_{2} + s_{1} - s_{2} w_{0} + 2 s_{2} - 2\\right) \\frac{\\partial^{3}}{\\partial x^{2}\\partial t} \\phi{\\left(x,t \\right)}}{2} + \\Delta_{t} s_{1} s_{2} \\frac{\\partial}{\\partial t} \\phi{\\left(x,t \\right)} + \\frac{\\Delta_{x}^{4} s_{2} \\left(- s_{1} w_{0} + s_{1} + 2 w_{0} - 2\\right) \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)}}{24} + \\frac{\\Delta_{x}^{2} s_{2} \\left(- s_{1} w_{0} + s_{1} + 2 w_{0} - 2\\right) \\frac{\\partial^{2}}{\\partial x^{2}} \\phi{\\left(x,t \\right)}}{2}$"
+      ],
+      "text/plain": [
+       "Delta_t**3*(7*s_{1}*s_{2} - 6*s_{1} - 6*s_{2} + 6)*Derivative(phi(x, t), (t, 3))/6 + Delta_t**2*(-3*s_{1}*s_{2} + 2*s_{1} + 2*s_{2})*Derivative(phi(x, t), (t, 2))/2 + Delta_t*Delta_x**4*(s_{1}*s_{2}*w_{0} - s_{1}*s_{2} + s_{1} - s_{2}*w_{0} + 2*s_{2} - 2)*Derivative(phi(x, t), t, (x, 4))/24 + Delta_t*Delta_x**2*(s_{1}*s_{2}*w_{0} - s_{1}*s_{2} + s_{1} - s_{2}*w_{0} + 2*s_{2} - 2)*Derivative(phi(x, t), t, (x, 2))/2 + Delta_t*s_{1}*s_{2}*Derivative(phi(x, t), t) + Delta_x**4*s_{2}*(-s_{1}*w_{0} + s_{1} + 2*w_{0} - 2)*Derivative(phi(x, t), (x, 4))/24 + Delta_x**2*s_{2}*(-s_{1}*w_{0} + s_{1} + 2*w_{0} - 2)*Derivative(phi(x, t), (x, 2))/2"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "display(sp.simplify(kept.subs(dt**2*dx**2,0)))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 48,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\Delta_{t}^{3} \\left(\\frac{7 \\Delta_{x}^{4} \\nu s_{2} \\left(1 - w_{0}\\right)^{2} \\left(2 - s_{1}\\right)^{2} \\frac{\\partial^{6}}{\\partial x^{6}} \\phi{\\left(x,t \\right)}}{24 \\Delta_{t}^{2} s_{1}} - \\frac{\\Delta_{x}^{4} \\nu \\left(1 - w_{0}\\right)^{2} \\left(2 - s_{1}\\right)^{2} \\frac{\\partial^{6}}{\\partial x^{6}} \\phi{\\left(x,t \\right)}}{4 \\Delta_{t}^{2} s_{1}} - \\frac{\\Delta_{x}^{4} \\nu s_{2} \\left(1 - w_{0}\\right)^{2} \\left(2 - s_{1}\\right)^{2} \\frac{\\partial^{6}}{\\partial x^{6}} \\phi{\\left(x,t \\right)}}{4 \\Delta_{t}^{2} s_{1}^{2}} + \\frac{\\Delta_{x}^{4} \\nu \\left(1 - w_{0}\\right)^{2} \\left(2 - s_{1}\\right)^{2} \\frac{\\partial^{6}}{\\partial x^{6}} \\phi{\\left(x,t \\right)}}{4 \\Delta_{t}^{2} s_{1}^{2}}\\right) + \\Delta_{t}^{2} \\left(- \\frac{3 \\Delta_{x}^{2} \\nu s_{2} \\left(1 - w_{0}\\right) \\left(2 - s_{1}\\right) \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)}}{4 \\Delta_{t}} + \\frac{\\Delta_{x}^{2} \\nu \\left(1 - w_{0}\\right) \\left(2 - s_{1}\\right) \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)}}{2 \\Delta_{t}} + \\frac{\\Delta_{x}^{2} \\nu s_{2} \\left(1 - w_{0}\\right) \\left(2 - s_{1}\\right) \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)}}{2 \\Delta_{t} s_{1}}\\right) + \\Delta_{t} \\Delta_{x}^{4} \\left(\\frac{\\nu s_{1} s_{2} w_{0} \\frac{\\partial^{6}}{\\partial x^{6}} \\phi{\\left(x,t \\right)}}{24} - \\frac{\\nu s_{1} s_{2} \\frac{\\partial^{6}}{\\partial x^{6}} \\phi{\\left(x,t \\right)}}{24} + \\frac{\\nu s_{1} \\frac{\\partial^{6}}{\\partial x^{6}} \\phi{\\left(x,t \\right)}}{24} - \\frac{\\nu s_{2} w_{0} \\frac{\\partial^{6}}{\\partial x^{6}} \\phi{\\left(x,t \\right)}}{24} + \\frac{\\nu s_{2} \\frac{\\partial^{6}}{\\partial x^{6}} \\phi{\\left(x,t \\right)}}{12} - \\frac{\\nu \\frac{\\partial^{6}}{\\partial x^{6}} \\phi{\\left(x,t \\right)}}{12}\\right) + \\Delta_{t} \\Delta_{x}^{2} \\left(\\frac{\\nu s_{1} s_{2} w_{0} \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)}}{2} - \\frac{\\nu s_{1} s_{2} \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)}}{2} + \\frac{\\nu s_{1} \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)}}{2} - \\frac{\\nu s_{2} w_{0} \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)}}{2} + \\nu s_{2} \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)} - \\nu \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)}\\right) + \\Delta_{t} s_{1} s_{2} \\frac{\\partial}{\\partial t} \\phi{\\left(x,t \\right)} + \\Delta_{x}^{4} \\left(- \\frac{s_{1} s_{2} w_{0} \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)}}{24} + \\frac{s_{1} s_{2} \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)}}{24} + \\frac{s_{2} w_{0} \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)}}{12} - \\frac{s_{2} \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)}}{12}\\right) + \\Delta_{x}^{2} \\left(- \\frac{s_{1} s_{2} w_{0} \\frac{\\partial^{2}}{\\partial x^{2}} \\phi{\\left(x,t \\right)}}{2} + \\frac{s_{1} s_{2} \\frac{\\partial^{2}}{\\partial x^{2}} \\phi{\\left(x,t \\right)}}{2} + s_{2} w_{0} \\frac{\\partial^{2}}{\\partial x^{2}} \\phi{\\left(x,t \\right)} - s_{2} \\frac{\\partial^{2}}{\\partial x^{2}} \\phi{\\left(x,t \\right)}\\right)$"
+      ],
+      "text/plain": [
+       "Delta_t**3*(7*Delta_x**4*\\nu*s_{2}*(1 - w_{0})**2*(2 - s_{1})**2*Derivative(phi(x, t), (x, 6))/(24*Delta_t**2*s_{1}) - Delta_x**4*\\nu*(1 - w_{0})**2*(2 - s_{1})**2*Derivative(phi(x, t), (x, 6))/(4*Delta_t**2*s_{1}) - Delta_x**4*\\nu*s_{2}*(1 - w_{0})**2*(2 - s_{1})**2*Derivative(phi(x, t), (x, 6))/(4*Delta_t**2*s_{1}**2) + Delta_x**4*\\nu*(1 - w_{0})**2*(2 - s_{1})**2*Derivative(phi(x, t), (x, 6))/(4*Delta_t**2*s_{1}**2)) + Delta_t**2*(-3*Delta_x**2*\\nu*s_{2}*(1 - w_{0})*(2 - s_{1})*Derivative(phi(x, t), (x, 4))/(4*Delta_t) + Delta_x**2*\\nu*(1 - w_{0})*(2 - s_{1})*Derivative(phi(x, t), (x, 4))/(2*Delta_t) + Delta_x**2*\\nu*s_{2}*(1 - w_{0})*(2 - s_{1})*Derivative(phi(x, t), (x, 4))/(2*Delta_t*s_{1})) + Delta_t*Delta_x**4*(\\nu*s_{1}*s_{2}*w_{0}*Derivative(phi(x, t), (x, 6))/24 - \\nu*s_{1}*s_{2}*Derivative(phi(x, t), (x, 6))/24 + \\nu*s_{1}*Derivative(phi(x, t), (x, 6))/24 - \\nu*s_{2}*w_{0}*Derivative(phi(x, t), (x, 6))/24 + \\nu*s_{2}*Derivative(phi(x, t), (x, 6))/12 - \\nu*Derivative(phi(x, t), (x, 6))/12) + Delta_t*Delta_x**2*(\\nu*s_{1}*s_{2}*w_{0}*Derivative(phi(x, t), (x, 4))/2 - \\nu*s_{1}*s_{2}*Derivative(phi(x, t), (x, 4))/2 + \\nu*s_{1}*Derivative(phi(x, t), (x, 4))/2 - \\nu*s_{2}*w_{0}*Derivative(phi(x, t), (x, 4))/2 + \\nu*s_{2}*Derivative(phi(x, t), (x, 4)) - \\nu*Derivative(phi(x, t), (x, 4))) + Delta_t*s_{1}*s_{2}*Derivative(phi(x, t), t) + Delta_x**4*(-s_{1}*s_{2}*w_{0}*Derivative(phi(x, t), (x, 4))/24 + s_{1}*s_{2}*Derivative(phi(x, t), (x, 4))/24 + s_{2}*w_{0}*Derivative(phi(x, t), (x, 4))/12 - s_{2}*Derivative(phi(x, t), (x, 4))/12) + Delta_x**2*(-s_{1}*s_{2}*w_{0}*Derivative(phi(x, t), (x, 2))/2 + s_{1}*s_{2}*Derivative(phi(x, t), (x, 2))/2 + s_{2}*w_{0}*Derivative(phi(x, t), (x, 2)) - s_{2}*Derivative(phi(x, t), (x, 2)))"
+      ]
+     },
+     "execution_count": 48,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rel1=(kept.subs(dt**2*dx**2, 0)\n",
+    "                 .subs(PHI.diff(t, 3), ((1-w0)*((2-s1)/(2*s1)))**2*dx**4/dt**2*nu*PHI.diff(x, 6))\n",
+    "                 .subs(PHI.diff(t, 2), (1-w0)*((2-s1)/(2*s1))*dx*dx/dt*nu*PHI.diff(x, 4))\n",
+    "                 .subs(PHI.diff(x, 4, t), nu*PHI.diff(x, 6))\n",
+    "                 .subs(PHI.diff(t, x, 2), nu*PHI.diff(x, 4)) )\n",
+    "rel1"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 49,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\Delta_{t} s_{1} s_{2} \\frac{\\partial}{\\partial t} \\phi{\\left(x,t \\right)} + \\left(- \\frac{\\Delta_{x}^{2} s_{1} s_{2} w_{0}}{2} + \\frac{\\Delta_{x}^{2} s_{1} s_{2}}{2} + \\Delta_{x}^{2} s_{2} w_{0} - \\Delta_{x}^{2} s_{2}\\right) \\frac{\\partial^{2}}{\\partial x^{2}} \\phi{\\left(x,t \\right)} + \\left(- \\frac{\\Delta_{t} \\Delta_{x}^{2} \\nu s_{1} s_{2} w_{0}}{4} + \\frac{\\Delta_{t} \\Delta_{x}^{2} \\nu s_{1} s_{2}}{4} + \\frac{\\Delta_{t} \\Delta_{x}^{2} \\nu s_{1} w_{0}}{2} + \\frac{3 \\Delta_{t} \\Delta_{x}^{2} \\nu s_{2} w_{0}}{2} - \\Delta_{t} \\Delta_{x}^{2} \\nu s_{2} - \\Delta_{t} \\Delta_{x}^{2} \\nu w_{0} - \\frac{\\Delta_{t} \\Delta_{x}^{2} \\nu s_{2} w_{0}}{s_{1}} + \\frac{\\Delta_{t} \\Delta_{x}^{2} \\nu s_{2}}{s_{1}} - \\frac{\\Delta_{x}^{4} s_{1} s_{2} w_{0}}{24} + \\frac{\\Delta_{x}^{4} s_{1} s_{2}}{24} + \\frac{\\Delta_{x}^{4} s_{2} w_{0}}{12} - \\frac{\\Delta_{x}^{4} s_{2}}{12}\\right) \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)} + \\left(\\frac{7 \\Delta_{t} \\Delta_{x}^{4} \\nu s_{1} s_{2} w_{0}^{2}}{24} - \\frac{13 \\Delta_{t} \\Delta_{x}^{4} \\nu s_{1} s_{2} w_{0}}{24} + \\frac{\\Delta_{t} \\Delta_{x}^{4} \\nu s_{1} s_{2}}{4} - \\frac{\\Delta_{t} \\Delta_{x}^{4} \\nu s_{1} w_{0}^{2}}{4} + \\frac{\\Delta_{t} \\Delta_{x}^{4} \\nu s_{1} w_{0}}{2} - \\frac{5 \\Delta_{t} \\Delta_{x}^{4} \\nu s_{1}}{24} - \\frac{17 \\Delta_{t} \\Delta_{x}^{4} \\nu s_{2} w_{0}^{2}}{12} + \\frac{67 \\Delta_{t} \\Delta_{x}^{4} \\nu s_{2} w_{0}}{24} - \\frac{4 \\Delta_{t} \\Delta_{x}^{4} \\nu s_{2}}{3} + \\frac{5 \\Delta_{t} \\Delta_{x}^{4} \\nu w_{0}^{2}}{4} - \\frac{5 \\Delta_{t} \\Delta_{x}^{4} \\nu w_{0}}{2} + \\frac{7 \\Delta_{t} \\Delta_{x}^{4} \\nu}{6} + \\frac{13 \\Delta_{t} \\Delta_{x}^{4} \\nu s_{2} w_{0}^{2}}{6 s_{1}} - \\frac{13 \\Delta_{t} \\Delta_{x}^{4} \\nu s_{2} w_{0}}{3 s_{1}} + \\frac{13 \\Delta_{t} \\Delta_{x}^{4} \\nu s_{2}}{6 s_{1}} - \\frac{2 \\Delta_{t} \\Delta_{x}^{4} \\nu w_{0}^{2}}{s_{1}} + \\frac{4 \\Delta_{t} \\Delta_{x}^{4} \\nu w_{0}}{s_{1}} - \\frac{2 \\Delta_{t} \\Delta_{x}^{4} \\nu}{s_{1}} - \\frac{\\Delta_{t} \\Delta_{x}^{4} \\nu s_{2} w_{0}^{2}}{s_{1}^{2}} + \\frac{2 \\Delta_{t} \\Delta_{x}^{4} \\nu s_{2} w_{0}}{s_{1}^{2}} - \\frac{\\Delta_{t} \\Delta_{x}^{4} \\nu s_{2}}{s_{1}^{2}} + \\frac{\\Delta_{t} \\Delta_{x}^{4} \\nu w_{0}^{2}}{s_{1}^{2}} - \\frac{2 \\Delta_{t} \\Delta_{x}^{4} \\nu w_{0}}{s_{1}^{2}} + \\frac{\\Delta_{t} \\Delta_{x}^{4} \\nu}{s_{1}^{2}}\\right) \\frac{\\partial^{6}}{\\partial x^{6}} \\phi{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "Delta_t*s_{1}*s_{2}*Derivative(phi(x, t), t) + (-Delta_x**2*s_{1}*s_{2}*w_{0}/2 + Delta_x**2*s_{1}*s_{2}/2 + Delta_x**2*s_{2}*w_{0} - Delta_x**2*s_{2})*Derivative(phi(x, t), (x, 2)) + (-Delta_t*Delta_x**2*\\nu*s_{1}*s_{2}*w_{0}/4 + Delta_t*Delta_x**2*\\nu*s_{1}*s_{2}/4 + Delta_t*Delta_x**2*\\nu*s_{1}*w_{0}/2 + 3*Delta_t*Delta_x**2*\\nu*s_{2}*w_{0}/2 - Delta_t*Delta_x**2*\\nu*s_{2} - Delta_t*Delta_x**2*\\nu*w_{0} - Delta_t*Delta_x**2*\\nu*s_{2}*w_{0}/s_{1} + Delta_t*Delta_x**2*\\nu*s_{2}/s_{1} - Delta_x**4*s_{1}*s_{2}*w_{0}/24 + Delta_x**4*s_{1}*s_{2}/24 + Delta_x**4*s_{2}*w_{0}/12 - Delta_x**4*s_{2}/12)*Derivative(phi(x, t), (x, 4)) + (7*Delta_t*Delta_x**4*\\nu*s_{1}*s_{2}*w_{0}**2/24 - 13*Delta_t*Delta_x**4*\\nu*s_{1}*s_{2}*w_{0}/24 + Delta_t*Delta_x**4*\\nu*s_{1}*s_{2}/4 - Delta_t*Delta_x**4*\\nu*s_{1}*w_{0}**2/4 + Delta_t*Delta_x**4*\\nu*s_{1}*w_{0}/2 - 5*Delta_t*Delta_x**4*\\nu*s_{1}/24 - 17*Delta_t*Delta_x**4*\\nu*s_{2}*w_{0}**2/12 + 67*Delta_t*Delta_x**4*\\nu*s_{2}*w_{0}/24 - 4*Delta_t*Delta_x**4*\\nu*s_{2}/3 + 5*Delta_t*Delta_x**4*\\nu*w_{0}**2/4 - 5*Delta_t*Delta_x**4*\\nu*w_{0}/2 + 7*Delta_t*Delta_x**4*\\nu/6 + 13*Delta_t*Delta_x**4*\\nu*s_{2}*w_{0}**2/(6*s_{1}) - 13*Delta_t*Delta_x**4*\\nu*s_{2}*w_{0}/(3*s_{1}) + 13*Delta_t*Delta_x**4*\\nu*s_{2}/(6*s_{1}) - 2*Delta_t*Delta_x**4*\\nu*w_{0}**2/s_{1} + 4*Delta_t*Delta_x**4*\\nu*w_{0}/s_{1} - 2*Delta_t*Delta_x**4*\\nu/s_{1} - Delta_t*Delta_x**4*\\nu*s_{2}*w_{0}**2/s_{1}**2 + 2*Delta_t*Delta_x**4*\\nu*s_{2}*w_{0}/s_{1}**2 - Delta_t*Delta_x**4*\\nu*s_{2}/s_{1}**2 + Delta_t*Delta_x**4*\\nu*w_{0}**2/s_{1}**2 - 2*Delta_t*Delta_x**4*\\nu*w_{0}/s_{1}**2 + Delta_t*Delta_x**4*\\nu/s_{1}**2)*Derivative(phi(x, t), (x, 6))"
+      ]
+     },
+     "execution_count": 49,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rel2=(sp.collect(sp.expand(rel1),[PHI.diff(x, 6),PHI.diff(x, 4),PHI.diff(x, 2)]) )\n",
+    "rel2"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 50,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle - \\frac{\\Delta_{x}^{2} \\nu \\left(3 s_{1}^{2} s_{2} w_{0} - 2 s_{1}^{2} s_{2} - 6 s_{1}^{2} w_{0} - 18 s_{1} s_{2} w_{0} + 12 s_{1} s_{2} + 12 s_{1} w_{0} + 12 s_{2} w_{0} - 12 s_{2}\\right) \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)}}{12 s_{1}^{2} s_{2}} - \\nu \\frac{\\partial^{2}}{\\partial x^{2}} \\phi{\\left(x,t \\right)} + \\left(\\frac{7 \\Delta_{x}^{4} \\nu w_{0}^{2}}{24} - \\frac{13 \\Delta_{x}^{4} \\nu w_{0}}{24} + \\frac{\\Delta_{x}^{4} \\nu}{4} - \\frac{\\Delta_{x}^{4} \\nu w_{0}^{2}}{4 s_{2}} + \\frac{\\Delta_{x}^{4} \\nu w_{0}}{2 s_{2}} - \\frac{5 \\Delta_{x}^{4} \\nu}{24 s_{2}} - \\frac{17 \\Delta_{x}^{4} \\nu w_{0}^{2}}{12 s_{1}} + \\frac{67 \\Delta_{x}^{4} \\nu w_{0}}{24 s_{1}} - \\frac{4 \\Delta_{x}^{4} \\nu}{3 s_{1}} + \\frac{5 \\Delta_{x}^{4} \\nu w_{0}^{2}}{4 s_{1} s_{2}} - \\frac{5 \\Delta_{x}^{4} \\nu w_{0}}{2 s_{1} s_{2}} + \\frac{7 \\Delta_{x}^{4} \\nu}{6 s_{1} s_{2}} + \\frac{13 \\Delta_{x}^{4} \\nu w_{0}^{2}}{6 s_{1}^{2}} - \\frac{13 \\Delta_{x}^{4} \\nu w_{0}}{3 s_{1}^{2}} + \\frac{13 \\Delta_{x}^{4} \\nu}{6 s_{1}^{2}} - \\frac{2 \\Delta_{x}^{4} \\nu w_{0}^{2}}{s_{1}^{2} s_{2}} + \\frac{4 \\Delta_{x}^{4} \\nu w_{0}}{s_{1}^{2} s_{2}} - \\frac{2 \\Delta_{x}^{4} \\nu}{s_{1}^{2} s_{2}} - \\frac{\\Delta_{x}^{4} \\nu w_{0}^{2}}{s_{1}^{3}} + \\frac{2 \\Delta_{x}^{4} \\nu w_{0}}{s_{1}^{3}} - \\frac{\\Delta_{x}^{4} \\nu}{s_{1}^{3}} + \\frac{\\Delta_{x}^{4} \\nu w_{0}^{2}}{s_{1}^{3} s_{2}} - \\frac{2 \\Delta_{x}^{4} \\nu w_{0}}{s_{1}^{3} s_{2}} + \\frac{\\Delta_{x}^{4} \\nu}{s_{1}^{3} s_{2}}\\right) \\frac{\\partial^{6}}{\\partial x^{6}} \\phi{\\left(x,t \\right)} + \\frac{\\partial}{\\partial t} \\phi{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "-Delta_x**2*\\nu*(3*s_{1}**2*s_{2}*w_{0} - 2*s_{1}**2*s_{2} - 6*s_{1}**2*w_{0} - 18*s_{1}*s_{2}*w_{0} + 12*s_{1}*s_{2} + 12*s_{1}*w_{0} + 12*s_{2}*w_{0} - 12*s_{2})*Derivative(phi(x, t), (x, 4))/(12*s_{1}**2*s_{2}) - \\nu*Derivative(phi(x, t), (x, 2)) + (7*Delta_x**4*\\nu*w_{0}**2/24 - 13*Delta_x**4*\\nu*w_{0}/24 + Delta_x**4*\\nu/4 - Delta_x**4*\\nu*w_{0}**2/(4*s_{2}) + Delta_x**4*\\nu*w_{0}/(2*s_{2}) - 5*Delta_x**4*\\nu/(24*s_{2}) - 17*Delta_x**4*\\nu*w_{0}**2/(12*s_{1}) + 67*Delta_x**4*\\nu*w_{0}/(24*s_{1}) - 4*Delta_x**4*\\nu/(3*s_{1}) + 5*Delta_x**4*\\nu*w_{0}**2/(4*s_{1}*s_{2}) - 5*Delta_x**4*\\nu*w_{0}/(2*s_{1}*s_{2}) + 7*Delta_x**4*\\nu/(6*s_{1}*s_{2}) + 13*Delta_x**4*\\nu*w_{0}**2/(6*s_{1}**2) - 13*Delta_x**4*\\nu*w_{0}/(3*s_{1}**2) + 13*Delta_x**4*\\nu/(6*s_{1}**2) - 2*Delta_x**4*\\nu*w_{0}**2/(s_{1}**2*s_{2}) + 4*Delta_x**4*\\nu*w_{0}/(s_{1}**2*s_{2}) - 2*Delta_x**4*\\nu/(s_{1}**2*s_{2}) - Delta_x**4*\\nu*w_{0}**2/s_{1}**3 + 2*Delta_x**4*\\nu*w_{0}/s_{1}**3 - Delta_x**4*\\nu/s_{1}**3 + Delta_x**4*\\nu*w_{0}**2/(s_{1}**3*s_{2}) - 2*Delta_x**4*\\nu*w_{0}/(s_{1}**3*s_{2}) + Delta_x**4*\\nu/(s_{1}**3*s_{2}))*Derivative(phi(x, t), (x, 6)) + Derivative(phi(x, t), t)"
+      ]
+     },
+     "execution_count": 50,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rel3=(sp.collect(sp.expand(rel2/(dt*s1*s2)),[PHI.diff(x, 6),PHI.diff(x, 4),PHI.diff(x, 2)])\n",
+    "             .subs(sp.expand(dx*dx*(-w0/2+sp.Rational(1,2)+w0/s1-1/s1)/dt),sp.factor(dx*dx*(-w0/2+sp.Rational(1,2)+w0/s1-1/s1)/dt))\n",
+    "             .subs(sp.factor(-dx*dx*(-w0/2+sp.Rational(1,2)+w0/s1-1/s1)/dt), nu)\n",
+    "             .subs(sp.expand(dx*dx*dx*dx*(-w0/2+sp.Rational(1,2)+w0/s1-1/s1)/(12*dt)), -dx*dx*nu/12)\n",
+    "             .subs(sp.expand(dx*dx*nu*(-w0/4 + sp.Rational(1,6) + w0/(2*s2) + 3*w0/(2*s1) - 1/s1 - w0/(s1*s2) - w0/s1**2 + 1/s1**2 ) ), sp.factor(sp.expand(dx*dx*nu*(-w0/4 + sp.Rational(1,6) + w0/(2*s2) + 3*w0/(2*s1) - 1/s1 - w0/(s1*s2) - w0/s1**2 + 1/s1**2 ) ))))\n",
+    "rel3"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Sixth-Order Term"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 67,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{7 \\Delta_{x}^{4} \\nu w_{0}^{2}}{24} - \\frac{13 \\Delta_{x}^{4} \\nu w_{0}}{24} + \\frac{\\Delta_{x}^{4} \\nu}{4} - \\frac{\\Delta_{x}^{4} \\nu w_{0}^{2}}{4 s_{2}} + \\frac{\\Delta_{x}^{4} \\nu w_{0}}{2 s_{2}} - \\frac{5 \\Delta_{x}^{4} \\nu}{24 s_{2}} - \\frac{17 \\Delta_{x}^{4} \\nu w_{0}^{2}}{12 s_{1}} + \\frac{67 \\Delta_{x}^{4} \\nu w_{0}}{24 s_{1}} - \\frac{4 \\Delta_{x}^{4} \\nu}{3 s_{1}} + \\frac{5 \\Delta_{x}^{4} \\nu w_{0}^{2}}{4 s_{1} s_{2}} - \\frac{5 \\Delta_{x}^{4} \\nu w_{0}}{2 s_{1} s_{2}} + \\frac{7 \\Delta_{x}^{4} \\nu}{6 s_{1} s_{2}} + \\frac{13 \\Delta_{x}^{4} \\nu w_{0}^{2}}{6 s_{1}^{2}} - \\frac{13 \\Delta_{x}^{4} \\nu w_{0}}{3 s_{1}^{2}} + \\frac{13 \\Delta_{x}^{4} \\nu}{6 s_{1}^{2}} - \\frac{2 \\Delta_{x}^{4} \\nu w_{0}^{2}}{s_{1}^{2} s_{2}} + \\frac{4 \\Delta_{x}^{4} \\nu w_{0}}{s_{1}^{2} s_{2}} - \\frac{2 \\Delta_{x}^{4} \\nu}{s_{1}^{2} s_{2}} - \\frac{\\Delta_{x}^{4} \\nu w_{0}^{2}}{s_{1}^{3}} + \\frac{2 \\Delta_{x}^{4} \\nu w_{0}}{s_{1}^{3}} - \\frac{\\Delta_{x}^{4} \\nu}{s_{1}^{3}} + \\frac{\\Delta_{x}^{4} \\nu w_{0}^{2}}{s_{1}^{3} s_{2}} - \\frac{2 \\Delta_{x}^{4} \\nu w_{0}}{s_{1}^{3} s_{2}} + \\frac{\\Delta_{x}^{4} \\nu}{s_{1}^{3} s_{2}}$"
+      ],
+      "text/plain": [
+       "7*Delta_x**4*\\nu*w_{0}**2/24 - 13*Delta_x**4*\\nu*w_{0}/24 + Delta_x**4*\\nu/4 - Delta_x**4*\\nu*w_{0}**2/(4*s_{2}) + Delta_x**4*\\nu*w_{0}/(2*s_{2}) - 5*Delta_x**4*\\nu/(24*s_{2}) - 17*Delta_x**4*\\nu*w_{0}**2/(12*s_{1}) + 67*Delta_x**4*\\nu*w_{0}/(24*s_{1}) - 4*Delta_x**4*\\nu/(3*s_{1}) + 5*Delta_x**4*\\nu*w_{0}**2/(4*s_{1}*s_{2}) - 5*Delta_x**4*\\nu*w_{0}/(2*s_{1}*s_{2}) + 7*Delta_x**4*\\nu/(6*s_{1}*s_{2}) + 13*Delta_x**4*\\nu*w_{0}**2/(6*s_{1}**2) - 13*Delta_x**4*\\nu*w_{0}/(3*s_{1}**2) + 13*Delta_x**4*\\nu/(6*s_{1}**2) - 2*Delta_x**4*\\nu*w_{0}**2/(s_{1}**2*s_{2}) + 4*Delta_x**4*\\nu*w_{0}/(s_{1}**2*s_{2}) - 2*Delta_x**4*\\nu/(s_{1}**2*s_{2}) - Delta_x**4*\\nu*w_{0}**2/s_{1}**3 + 2*Delta_x**4*\\nu*w_{0}/s_{1}**3 - Delta_x**4*\\nu/s_{1}**3 + Delta_x**4*\\nu*w_{0}**2/(s_{1}**3*s_{2}) - 2*Delta_x**4*\\nu*w_{0}/(s_{1}**3*s_{2}) + Delta_x**4*\\nu/(s_{1}**3*s_{2})"
+      ]
+     },
+     "execution_count": 67,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sixrelex=sp.expand(dx**4*nu*(7*w0**2/24 - 13*w0/24 + sp.Rational(1,4) - w0**2/(4*s2) + w0/(2*s2) - 5/(24*s2) - 17*w0**2/(12*s1) + 67*w0/(24*s1) - 4/(3*s1) + 5*w0**2/(4*s1*s2) \n",
+    "                    - 5*w0/(2*s1*s2) + 7/(6*s1*s2) + 13*w0**2/(6*s1**2) - 13*w0/(3*s1**2) + 13/(6*s1**2) - 2*w0**2/(s1**2*s2) + 4*w0/(s1**2*s2) \n",
+    "                    - 2/(s1**2*s2) - w0**2/(s1**3) + 2*w0/(s1**3) - 1/(s1**3) + w0**2/(s1**3*s2) - 2*w0/(s1**3*s2) + 1/(s1**3*s2) ) )\n",
+    "sixrelex"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 68,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle 7 s_{1}^{3} s_{2} w_{0}^{2} - 13 s_{1}^{3} s_{2} w_{0} + 6 s_{1}^{3} s_{2} - 6 s_{1}^{3} w_{0}^{2} + 12 s_{1}^{3} w_{0} - 5 s_{1}^{3} - 34 s_{1}^{2} s_{2} w_{0}^{2} + 67 s_{1}^{2} s_{2} w_{0} - 32 s_{1}^{2} s_{2} + 30 s_{1}^{2} w_{0}^{2} - 60 s_{1}^{2} w_{0} + 28 s_{1}^{2} + 52 s_{1} s_{2} w_{0}^{2} - 104 s_{1} s_{2} w_{0} + 52 s_{1} s_{2} - 48 s_{1} w_{0}^{2} + 96 s_{1} w_{0} - 48 s_{1} - 24 s_{2} w_{0}^{2} + 48 s_{2} w_{0} - 24 s_{2} + 24 w_{0}^{2} - 48 w_{0} + 24$"
+      ],
+      "text/plain": [
+       "7*s_{1}**3*s_{2}*w_{0}**2 - 13*s_{1}**3*s_{2}*w_{0} + 6*s_{1}**3*s_{2} - 6*s_{1}**3*w_{0}**2 + 12*s_{1}**3*w_{0} - 5*s_{1}**3 - 34*s_{1}**2*s_{2}*w_{0}**2 + 67*s_{1}**2*s_{2}*w_{0} - 32*s_{1}**2*s_{2} + 30*s_{1}**2*w_{0}**2 - 60*s_{1}**2*w_{0} + 28*s_{1}**2 + 52*s_{1}*s_{2}*w_{0}**2 - 104*s_{1}*s_{2}*w_{0} + 52*s_{1}*s_{2} - 48*s_{1}*w_{0}**2 + 96*s_{1}*w_{0} - 48*s_{1} - 24*s_{2}*w_{0}**2 + 48*s_{2}*w_{0} - 24*s_{2} + 24*w_{0}**2 - 48*w_{0} + 24"
+      ]
+     },
+     "execution_count": 68,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sixrels1=sp.factor(sp.expand(dx**4*nu*(7*w0**2/24 - 13*w0/24 + sp.Rational(1,4) - w0**2/(4*s2) + w0/(2*s2) - 5/(24*s2) - 17*w0**2/(12*s1) + 67*w0/(24*s1) - 4/(3*s1) + 5*w0**2/(4*s1*s2) \n",
+    "                    - 5*w0/(2*s1*s2) + 7/(6*s1*s2) + 13*w0**2/(6*s1**2) - 13*w0/(3*s1**2) + 13/(6*s1**2) - 2*w0**2/(s1**2*s2) + 4*w0/(s1**2*s2) \n",
+    "                    - 2/(s1**2*s2) - w0**2/(s1**3) + 2*w0/(s1**3) - 1/(s1**3) + w0**2/(s1**3*s2) - 2*w0/(s1**3*s2) + 1/(s1**3*s2) ) ))\n",
+    "sixrel=sixrels1*24*s1**3*s2/(dx**4*nu)\n",
+    "sixrel"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 70,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\Delta_{x}^{4} \\nu \\left(7 s_{1}^{3} s_{2} w_{0}^{2} - 13 s_{1}^{3} s_{2} w_{0} + 6 s_{1}^{3} s_{2} - 6 s_{1}^{3} w_{0}^{2} + 12 s_{1}^{3} w_{0} - 5 s_{1}^{3} - 34 s_{1}^{2} s_{2} w_{0}^{2} + 67 s_{1}^{2} s_{2} w_{0} - 32 s_{1}^{2} s_{2} + 30 s_{1}^{2} w_{0}^{2} - 60 s_{1}^{2} w_{0} + 28 s_{1}^{2} + 52 s_{1} s_{2} w_{0}^{2} - 104 s_{1} s_{2} w_{0} + 52 s_{1} s_{2} - 48 s_{1} w_{0}^{2} + 96 s_{1} w_{0} - 48 s_{1} - 24 s_{2} w_{0}^{2} + 48 s_{2} w_{0} - 24 s_{2} + 24 w_{0}^{2} - 48 w_{0} + 24\\right) \\frac{\\partial^{6}}{\\partial x^{6}} \\phi{\\left(x,t \\right)}}{24 s_{1}^{3} s_{2}} - \\frac{\\Delta_{x}^{2} \\nu \\left(3 s_{1}^{2} s_{2} w_{0} - 2 s_{1}^{2} s_{2} - 6 s_{1}^{2} w_{0} - 18 s_{1} s_{2} w_{0} + 12 s_{1} s_{2} + 12 s_{1} w_{0} + 12 s_{2} w_{0} - 12 s_{2}\\right) \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)}}{12 s_{1}^{2} s_{2}} - \\nu \\frac{\\partial^{2}}{\\partial x^{2}} \\phi{\\left(x,t \\right)} + \\frac{\\partial}{\\partial t} \\phi{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "Delta_x**4*\\nu*(7*s_{1}**3*s_{2}*w_{0}**2 - 13*s_{1}**3*s_{2}*w_{0} + 6*s_{1}**3*s_{2} - 6*s_{1}**3*w_{0}**2 + 12*s_{1}**3*w_{0} - 5*s_{1}**3 - 34*s_{1}**2*s_{2}*w_{0}**2 + 67*s_{1}**2*s_{2}*w_{0} - 32*s_{1}**2*s_{2} + 30*s_{1}**2*w_{0}**2 - 60*s_{1}**2*w_{0} + 28*s_{1}**2 + 52*s_{1}*s_{2}*w_{0}**2 - 104*s_{1}*s_{2}*w_{0} + 52*s_{1}*s_{2} - 48*s_{1}*w_{0}**2 + 96*s_{1}*w_{0} - 48*s_{1} - 24*s_{2}*w_{0}**2 + 48*s_{2}*w_{0} - 24*s_{2} + 24*w_{0}**2 - 48*w_{0} + 24)*Derivative(phi(x, t), (x, 6))/(24*s_{1}**3*s_{2}) - Delta_x**2*\\nu*(3*s_{1}**2*s_{2}*w_{0} - 2*s_{1}**2*s_{2} - 6*s_{1}**2*w_{0} - 18*s_{1}*s_{2}*w_{0} + 12*s_{1}*s_{2} + 12*s_{1}*w_{0} + 12*s_{2}*w_{0} - 12*s_{2})*Derivative(phi(x, t), (x, 4))/(12*s_{1}**2*s_{2}) - \\nu*Derivative(phi(x, t), (x, 2)) + Derivative(phi(x, t), t)"
+      ]
+     },
+     "execution_count": 70,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rel3s2=rel3.subs(sixrelex,sixrels1)\n",
+    "rel3s2"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 64,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{s_{1}^{3}}{3} + \\frac{4 s_{1}^{2}}{3} - \\frac{16 s_{1}}{3} + s_{2} \\left(\\frac{4 s_{1}^{3}}{9} - \\frac{22 s_{1}^{2}}{9} + \\frac{52 s_{1}}{9} - \\frac{8}{3}\\right) + \\frac{8}{3}$"
+      ],
+      "text/plain": [
+       "s_{1}**3/3 + 4*s_{1}**2/3 - 16*s_{1}/3 + s_{2}*(4*s_{1}**3/9 - 22*s_{1}**2/9 + 52*s_{1}/9 - 8/3) + 8/3"
+      ]
+     },
+     "execution_count": 64,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sp.collect(sixrel.subs(w0,sp.Rational(2,3)),s2)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 76,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\left(s_{1} - 2\\right) \\left(s_{1}^{2} + 6 s_{1} - 4\\right)}{3}$"
+      ],
+      "text/plain": [
+       "(s_{1} - 2)*(s_{1}**2 + 6*s_{1} - 4)/3"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{2 \\left(2 s_{1}^{3} - 11 s_{1}^{2} + 26 s_{1} - 12\\right)}{9}$"
+      ],
+      "text/plain": [
+       "2*(2*s_{1}**3 - 11*s_{1}**2 + 26*s_{1} - 12)/9"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "fac1=sp.factor(s1**3/3 + 4*s1**2/3 - 16*s1/3 + sp.Rational(8,3))\n",
+    "display(fac1)\n",
+    "fac2=sp.factor(4*s1**3/9 - 22*s1**2/9 + 52*s1/9 - sp.Rational(8,3))\n",
+    "display(fac2)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Fouth-Order Term"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle - \\frac{\\Delta_{x}^{2} \\nu w_{0}}{4} + \\frac{\\Delta_{x}^{2} \\nu}{6} + \\frac{\\Delta_{x}^{2} \\nu w_{0}}{2 s_{2}} + \\frac{3 \\Delta_{x}^{2} \\nu w_{0}}{2 s_{1}} - \\frac{\\Delta_{x}^{2} \\nu}{s_{1}} - \\frac{\\Delta_{x}^{2} \\nu w_{0}}{s_{1} s_{2}} - \\frac{\\Delta_{x}^{2} \\nu w_{0}}{s_{1}^{2}} + \\frac{\\Delta_{x}^{2} \\nu}{s_{1}^{2}}$"
+      ],
+      "text/plain": [
+       "-Delta_x**2*\\nu*w_{0}/4 + Delta_x**2*\\nu/6 + Delta_x**2*\\nu*w_{0}/(2*s_{2}) + 3*Delta_x**2*\\nu*w_{0}/(2*s_{1}) - Delta_x**2*\\nu/s_{1} - Delta_x**2*\\nu*w_{0}/(s_{1}*s_{2}) - Delta_x**2*\\nu*w_{0}/s_{1}**2 + Delta_x**2*\\nu/s_{1}**2"
+      ]
+     },
+     "execution_count": 11,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sp.expand(dx*dx*nu*(-w0/4 + sp.Rational(1,6) + w0/(2*s2) + 3*w0/(2*s1) - 1/s1 - w0/(s1*s2) - w0/s1**2 + 1/s1**2 ) )"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle - \\frac{\\Delta_{x}^{2} \\nu \\left(3 s_{1}^{2} s_{2} w_{0} - 2 s_{1}^{2} s_{2} - 6 s_{1}^{2} w_{0} - 18 s_{1} s_{2} w_{0} + 12 s_{1} s_{2} + 12 s_{1} w_{0} + 12 s_{2} w_{0} - 12 s_{2}\\right)}{12 s_{1}^{2} s_{2}}$"
+      ],
+      "text/plain": [
+       "-Delta_x**2*\\nu*(3*s_{1}**2*s_{2}*w_{0} - 2*s_{1}**2*s_{2} - 6*s_{1}**2*w_{0} - 18*s_{1}*s_{2}*w_{0} + 12*s_{1}*s_{2} + 12*s_{1}*w_{0} + 12*s_{2}*w_{0} - 12*s_{2})/(12*s_{1}**2*s_{2})"
+      ]
+     },
+     "execution_count": 12,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "termx=sp.factor(sp.expand(dx*dx*nu*(-w0/4 + sp.Rational(1,6) + w0/(2*s2) + 3*w0/(2*s1) - 1/s1 - w0/(s1*s2) - w0/s1**2 + 1/s1**2 ) ))\n",
+    "termx"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle 4 s_{1}^{2} - 8 s_{1} + 4 s_{2}$"
+      ],
+      "text/plain": [
+       "4*s_{1}**2 - 8*s_{1} + 4*s_{2}"
+      ]
+     },
+     "execution_count": 13,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "termx2=sp.factor(sp.expand(dx*dx*nu*(-w0/4 + sp.Rational(1,6) + w0/(2*s2) + 3*w0/(2*s1) - 1/s1 - w0/(s1*s2) - w0/s1**2 + 1/s1**2 ) ))/(dx*dx*nu)*12*s1*s1*s2\n",
+    "termx2.subs(w0,sp.Rational(2,3))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# from sympy import latex\n",
+    "# print(latex(sp.simplify(kept.subs(dt**2*dx**2,0))))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.12"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}

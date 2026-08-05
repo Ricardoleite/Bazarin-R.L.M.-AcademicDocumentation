@@ -1,0 +1,709 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "editable": true,
+    "slideshow": {
+     "slide_type": ""
+    },
+    "tags": []
+   },
+   "source": [
+    "# Sympy code for FDM expansion of LBM Non-Linear convective-diffusive equation up to Fourth-order"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 38,
+   "metadata": {
+    "editable": true,
+    "slideshow": {
+     "slide_type": ""
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "import sympy as sp\n",
+    "# -----------------------------------------------------------------------------\n",
+    "# 1) Symbols (parameters and step sizes)\n",
+    "# -----------------------------------------------------------------------------\n",
+    "dx, dt = sp.symbols('Delta_x Delta_t', positive=True, real=True)\n",
+    "s1, s2, w0, nu = sp.symbols('s_{1} s_{2} w_{0} \\\\nu', real=True)\n",
+    "\n",
+    "dut, dux, dux2, duxt, dut2 = sp.symbols('\\\\frac{\\partial{u}}{\\partial{t}} \\\\frac{\\partial{u}}{\\partial{x}} \\\\frac{\\partial^{2}{u}}{\\partial{x^{2}}} \\\\frac{\\partial^{2}{u}}{\\partial{x}\\partial{t}} \\\\frac{\\partial^{2}{u}}{\\partial{t^{2}}}')\n",
+    "dux3, dux2t, duxt2, dut3 = sp.symbols('\\\\frac{\\partial^{3}{u}}{\\partial{x^{3}}} \\\\frac{\\partial^{3}{u}}{\\partial{x^{2}}\\partial{t}} \\\\frac{\\partial^{3}{u}}{\\partial{x}\\partial{t^{2}}} \\\\frac{\\partial^{3}{u}}{\\partial{t^{3}}}')\n",
+    "dux3t, dux2t2, duxt3 = sp.symbols('\\\\frac{\\partial^{4}{u}}{\\partial{x^{3}}\\partial{t}} \\\\frac{\\partial^{4}{u}}{\\partial{x^{2}}\\partial{t^{2}}} \\\\frac{\\partial^{4}{u}}{\\partial{x}\\partial{t^{3}}}')\n",
+    "dux4, dut4 = sp.symbols('\\\\frac{\\partial^{4}{u}}{\\partial{x^{4}}} \\\\frac{\\partial^{4}{u}}{\\partial{t^{4}}}')\n",
+    "\n",
+    "dBt, dBx, dBx2, dBxt, dBt2 = sp.symbols('\\\\frac{\\partial{B}}{\\partial{t}} \\\\frac{\\partial{B}}{\\partial{x}} \\\\frac{\\partial^{2}{B}}{\\partial{x^{2}}} \\\\frac{\\partial^{2}{B}}{\\partial{x}\\partial{t}} \\\\frac{\\partial^{2}{B}}{\\partial{t^{2}}}')\n",
+    "dBx3, dBx2t, dBxt2, dBt3 = sp.symbols('\\\\frac{\\partial^{3}{B}}{\\partial{x^{3}}} \\\\frac{\\partial^{3}{B}}{\\partial{x^{2}}\\partial{t}} \\\\frac{\\partial^{3}{B}}{\\partial{x}\\partial{t^{2}}} \\\\frac{\\partial^{3}{B}}{\\partial{t^{3}}}')\n",
+    "dBx3t, dBx2t2, dBxt3 = sp.symbols('\\\\frac{\\partial^{4}{B}}{\\partial{x^{3}}\\partial{t}} \\\\frac{\\partial^{4}{B}}{\\partial{x^{2}}\\partial{t^{2}}} \\\\frac{\\partial^{4}{B}}{\\partial{x}\\partial{t^{3}}}')\n",
+    "dBx4, dBt4 = sp.symbols('\\\\frac{\\partial^{4}{B}}{\\partial{x^{4}}} \\\\frac{\\partial^{4}{B}}{\\partial{t^{4}}}')\n",
+    "\n",
+    "dCt, dCx, dCx2, dCxt, dCt2 = sp.symbols('\\\\frac{\\partial{C}}{\\partial{t}} \\\\frac{\\partial{C}}{\\partial{x}} \\\\frac{\\partial^{2}{C}}{\\partial{x^{2}}} \\\\frac{\\partial^{2}{C}}{\\partial{x}\\partial{t}} \\\\frac{\\partial^{2}{C}}{\\partial{t^{2}}}')\n",
+    "dCx3, dCx2t, dCxt2, dCt3 = sp.symbols('\\\\frac{\\partial^{3}{C}}{\\partial{x^{3}}} \\\\frac{\\partial^{3}{C}}{\\partial{x^{2}}\\partial{t}} \\\\frac{\\partial^{3}{C}}{\\partial{x}\\partial{t^{2}}} \\\\frac{\\partial^{3}{C}}{\\partial{t^{3}}}')\n",
+    "dCx3t, dCx2t2, dCxt3 = sp.symbols('\\\\frac{\\partial^{4}{C}}{\\partial{x^{3}}\\partial{t}} \\\\frac{\\partial^{4}{C}}{\\partial{x^{2}}\\partial{t^{2}}} \\\\frac{\\partial^{4}{C}}{\\partial{x}\\partial{t^{3}}}')\n",
+    "dCx4, dCt4 = sp.symbols('\\\\frac{\\partial^{4}{C}}{\\partial{x^{4}}} \\\\frac{\\partial^{4}{C}}{\\partial{t^{4}}}')\n",
+    "\n",
+    "dLat, dLax, dLax2, dLaxt, dLat2 = sp.symbols('\\\\frac{\\partial{\\\\Lambda}}{\\partial{t}} \\\\frac{\\partial{\\\\Lambda}}{\\partial{x}} \\\\frac{\\partial^{2}{\\\\Lambda}}{\\partial{x^{2}}} \\\\frac{\\partial^{2}{\\\\Lambda}}{\\partial{x}\\partial{t}} \\\\frac{\\partial^{2}{\\\\Lambda}}{\\partial{t^{2}}}')\n",
+    "dLax3, dLax2t, dLaxt2, dLat3 = sp.symbols('\\\\frac{\\partial^{3}{\\\\Lambda}}{\\partial{x^{3}}} \\\\frac{\\partial^{3}{\\\\Lambda}}{\\partial{x^{2}}\\partial{t}} \\\\frac{\\partial^{3}{\\\\Lambda}}{\\partial{x}\\partial{t^{2}}} \\\\frac{\\partial^{3}{\\\\Lambda}}{\\partial{t^{3}}}')\n",
+    "dLax3t, dLax2t2, dLaxt3 = sp.symbols('\\\\frac{\\partial^{4}{\\\\Lambda}}{\\partial{x^{3}}\\partial{t}} \\\\frac{\\partial^{4}{\\\\Lambda}}{\\partial{x^{2}}\\partial{t^{2}}} \\\\frac{\\partial^{4}{\\\\Lambda}}{\\partial{x}\\partial{t^{3}}}')\n",
+    "dLax4, dLat4 = sp.symbols('\\\\frac{\\partial^{4}{\\\\Lambda}}{\\partial{x^{4}}} \\\\frac{\\partial^{4}{\\\\Lambda}}{\\partial{t^{4}}}')\n",
+    "\n",
+    "alpha1 = sp.simplify(1 - 2*s2/3)\n",
+    "alpha2 = sp.simplify(-s1/2 - s2/6 + 1)\n",
+    "beta1  = sp.simplify(-s1*s2/3 + s1 + s2/3 -1)\n",
+    "beta2  = sp.simplify(-s1*s2/3 + s1/2 + 5*s2/6 - 1)\n",
+    "eta1  = sp.simplify(s1/2)\n",
+    "eta2  = sp.simplify(s1*s2/2 - s1/2)\n",
+    "kappa1  = sp.simplify(s2/6)\n",
+    "kappa2  = sp.simplify(-s1*s2/6 + s2/6)\n",
+    "gamma  = sp.simplify((s1-1)*(s2-1))\n",
+    "# -----------------------------------------------------------------------------\n",
+    "# 2) Continuous variables and field\n",
+    "# -----------------------------------------------------------------------------\n",
+    "x, t = sp.symbols('x t', real=True)\n",
+    "u = sp.Function('u')\n",
+    "B = sp.Function('B')\n",
+    "C = sp.Function('C')\n",
+    "La = sp.Function('\\\\Lambda')\n",
+    "# Shorthand for the base (continuous) field value at (x,t)\n",
+    "UF = u(x, t)\n",
+    "BF = B(x, t)\n",
+    "CF = C(x, t)\n",
+    "LF = La(x, t)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 39,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def taylor_u(sx=0, st=0, order_x=4, order_t=4):\n",
+    "    expr = sp.S(0)\n",
+    "    # Keep all mixed terms up to the specified individual orders.\n",
+    "    for m in range(order_x + 1):\n",
+    "        for n in range(order_t + 1):\n",
+    "            # skip the (0,0) term? no, keep it.\n",
+    "            term = ( (sx*dx)**m * (st*dt)**n\n",
+    "                    / (sp.factorial(m)*sp.factorial(n))\n",
+    "                    * sp.diff(UF, x, m, t, n) )\n",
+    "            expr += term\n",
+    "    return sp.expand(expr)\n",
+    "def taylor_B(sx=0, st=0, order_x=4, order_t=4):\n",
+    "    expr = sp.S(0)\n",
+    "    # Keep all mixed terms up to the specified individual orders.\n",
+    "    for m in range(order_x + 1):\n",
+    "        for n in range(order_t + 1):\n",
+    "            # skip the (0,0) term? no, keep it.\n",
+    "            term = ( (sx*dx)**m * (st*dt)**n\n",
+    "                    / (sp.factorial(m)*sp.factorial(n))\n",
+    "                    * sp.diff(BF, x, m, t, n) )\n",
+    "            expr += term\n",
+    "    return sp.expand(expr)\n",
+    "def taylor_C(sx=0, st=0, order_x=4, order_t=4):\n",
+    "    expr = sp.S(0)\n",
+    "    # Keep all mixed terms up to the specified individual orders.\n",
+    "    for m in range(order_x + 1):\n",
+    "        for n in range(order_t + 1):\n",
+    "            # skip the (0,0) term? no, keep it.\n",
+    "            term = ( (sx*dx)**m * (st*dt)**n\n",
+    "                    / (sp.factorial(m)*sp.factorial(n))\n",
+    "                    * sp.diff(CF, x, m, t, n) )\n",
+    "            expr += term\n",
+    "    return sp.expand(expr)\n",
+    "def taylor_La(sx=0, st=0, order_x=4, order_t=4):\n",
+    "    expr = sp.S(0)\n",
+    "    # Keep all mixed terms up to the specified individual orders.\n",
+    "    for m in range(order_x + 1):\n",
+    "        for n in range(order_t + 1):\n",
+    "            # skip the (0,0) term? no, keep it.\n",
+    "            term = ( (sx*dx)**m * (st*dt)**n\n",
+    "                    / (sp.factorial(m)*sp.factorial(n))\n",
+    "                    * sp.diff(LF, x, m, t, n) )\n",
+    "            expr += term\n",
+    "    return sp.expand(expr)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 40,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\Delta_{t}^{4} \\frac{\\partial^{4}}{\\partial t^{4}} u{\\left(x,t \\right)}}{24} + \\frac{\\Delta_{t}^{3} \\frac{\\partial^{3}}{\\partial t^{3}} u{\\left(x,t \\right)}}{6} + \\frac{\\Delta_{t}^{2} \\frac{\\partial^{2}}{\\partial t^{2}} u{\\left(x,t \\right)}}{2} + \\Delta_{t} \\frac{\\partial}{\\partial t} u{\\left(x,t \\right)} + u{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "Delta_t**4*Derivative(u(x, t), (t, 4))/24 + Delta_t**3*Derivative(u(x, t), (t, 3))/6 + Delta_t**2*Derivative(u(x, t), (t, 2))/2 + Delta_t*Derivative(u(x, t), t) + u(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle u{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "u(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\Delta_{t}^{4} \\frac{\\partial^{4}}{\\partial t^{4}} u{\\left(x,t \\right)}}{24} - \\frac{\\Delta_{t}^{3} \\frac{\\partial^{3}}{\\partial t^{3}} u{\\left(x,t \\right)}}{6} + \\frac{\\Delta_{t}^{2} \\frac{\\partial^{2}}{\\partial t^{2}} u{\\left(x,t \\right)}}{2} - \\Delta_{t} \\frac{\\partial}{\\partial t} u{\\left(x,t \\right)} + u{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "Delta_t**4*Derivative(u(x, t), (t, 4))/24 - Delta_t**3*Derivative(u(x, t), (t, 3))/6 + Delta_t**2*Derivative(u(x, t), (t, 2))/2 - Delta_t*Derivative(u(x, t), t) + u(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{2 \\Delta_{t}^{4} \\frac{\\partial^{4}}{\\partial t^{4}} u{\\left(x,t \\right)}}{3} - \\frac{4 \\Delta_{t}^{3} \\frac{\\partial^{3}}{\\partial t^{3}} u{\\left(x,t \\right)}}{3} + 2 \\Delta_{t}^{2} \\frac{\\partial^{2}}{\\partial t^{2}} u{\\left(x,t \\right)} - 2 \\Delta_{t} \\frac{\\partial}{\\partial t} u{\\left(x,t \\right)} + u{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "2*Delta_t**4*Derivative(u(x, t), (t, 4))/3 - 4*Delta_t**3*Derivative(u(x, t), (t, 3))/3 + 2*Delta_t**2*Derivative(u(x, t), (t, 2)) - 2*Delta_t*Derivative(u(x, t), t) + u(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\Delta_{x}^{4} \\frac{\\partial^{4}}{\\partial x^{4}} u{\\left(x,t \\right)}}{24} - \\frac{\\Delta_{x}^{3} \\frac{\\partial^{3}}{\\partial x^{3}} u{\\left(x,t \\right)}}{6} + \\frac{\\Delta_{x}^{2} \\frac{\\partial^{2}}{\\partial x^{2}} u{\\left(x,t \\right)}}{2} - \\Delta_{x} \\frac{\\partial}{\\partial x} u{\\left(x,t \\right)} + u{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "Delta_x**4*Derivative(u(x, t), (x, 4))/24 - Delta_x**3*Derivative(u(x, t), (x, 3))/6 + Delta_x**2*Derivative(u(x, t), (x, 2))/2 - Delta_x*Derivative(u(x, t), x) + u(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\Delta_{x}^{4} \\frac{\\partial^{4}}{\\partial x^{4}} u{\\left(x,t \\right)}}{24} + \\frac{\\Delta_{x}^{3} \\frac{\\partial^{3}}{\\partial x^{3}} u{\\left(x,t \\right)}}{6} + \\frac{\\Delta_{x}^{2} \\frac{\\partial^{2}}{\\partial x^{2}} u{\\left(x,t \\right)}}{2} + \\Delta_{x} \\frac{\\partial}{\\partial x} u{\\left(x,t \\right)} + u{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "Delta_x**4*Derivative(u(x, t), (x, 4))/24 + Delta_x**3*Derivative(u(x, t), (x, 3))/6 + Delta_x**2*Derivative(u(x, t), (x, 2))/2 + Delta_x*Derivative(u(x, t), x) + u(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "# u_x^{t+1}, u_x^{t}, u_x^{t-1}, u_x^{t-2}\n",
+    "u_t_p1 = taylor_u(sx=0,  st=+1, order_x=0, order_t=4)\n",
+    "display(u_t_p1)\n",
+    "u_t_0  = taylor_u(sx=0,  st=0,  order_x=0, order_t=0)  # exactly phi(x,t)\n",
+    "display(u_t_0)\n",
+    "u_t_m1 = taylor_u(sx=0,  st=-1, order_x=0, order_t=4)\n",
+    "display(u_t_m1)\n",
+    "u_t_m2 = taylor_u(sx=0,  st=-2, order_x=0, order_t=4)\n",
+    "display(u_t_m2)\n",
+    "\n",
+    "# u_{x±1}^{t}\n",
+    "u_xm1_t0 = taylor_u(sx=-1, st=0,  order_x=4, order_t=0)\n",
+    "display(u_xm1_t0)\n",
+    "u_xp1_t0 = taylor_u(sx=+1, st=0,  order_x=4, order_t=0)\n",
+    "display(u_xp1_t0)\n",
+    "\n",
+    "# u_{x±1}^{t-1}\n",
+    "u_xm1_tm1 = taylor_u(sx=-1, st=-1, order_x=4, order_t=4)\n",
+    "u_xp1_tm1 = taylor_u(sx=+1, st=-1, order_x=4, order_t=4)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 41,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\Delta_{x}^{4} \\frac{\\partial^{4}}{\\partial x^{4}} B{\\left(x,t \\right)}}{24} - \\frac{\\Delta_{x}^{3} \\frac{\\partial^{3}}{\\partial x^{3}} B{\\left(x,t \\right)}}{6} + \\frac{\\Delta_{x}^{2} \\frac{\\partial^{2}}{\\partial x^{2}} B{\\left(x,t \\right)}}{2} - \\Delta_{x} \\frac{\\partial}{\\partial x} B{\\left(x,t \\right)} + B{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "Delta_x**4*Derivative(B(x, t), (x, 4))/24 - Delta_x**3*Derivative(B(x, t), (x, 3))/6 + Delta_x**2*Derivative(B(x, t), (x, 2))/2 - Delta_x*Derivative(B(x, t), x) + B(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\Delta_{x}^{4} \\frac{\\partial^{4}}{\\partial x^{4}} B{\\left(x,t \\right)}}{24} + \\frac{\\Delta_{x}^{3} \\frac{\\partial^{3}}{\\partial x^{3}} B{\\left(x,t \\right)}}{6} + \\frac{\\Delta_{x}^{2} \\frac{\\partial^{2}}{\\partial x^{2}} B{\\left(x,t \\right)}}{2} + \\Delta_{x} \\frac{\\partial}{\\partial x} B{\\left(x,t \\right)} + B{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "Delta_x**4*Derivative(B(x, t), (x, 4))/24 + Delta_x**3*Derivative(B(x, t), (x, 3))/6 + Delta_x**2*Derivative(B(x, t), (x, 2))/2 + Delta_x*Derivative(B(x, t), x) + B(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "# B_{x±1}^{t}\n",
+    "B_xm1_t0 = taylor_B(sx=-1, st=0,  order_x=4, order_t=0)\n",
+    "display(B_xm1_t0)\n",
+    "B_xp1_t0 = taylor_B(sx=+1, st=0,  order_x=4, order_t=0)\n",
+    "display(B_xp1_t0)\n",
+    "\n",
+    "# B_{x±1}^{t-1}\n",
+    "B_xm1_tm1 = taylor_B(sx=-1, st=-1, order_x=4, order_t=4)\n",
+    "B_xp1_tm1 = taylor_B(sx=+1, st=-1, order_x=4, order_t=4)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 42,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle C{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "C(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\Delta_{t}^{4} \\frac{\\partial^{4}}{\\partial t^{4}} C{\\left(x,t \\right)}}{24} - \\frac{\\Delta_{t}^{3} \\frac{\\partial^{3}}{\\partial t^{3}} C{\\left(x,t \\right)}}{6} + \\frac{\\Delta_{t}^{2} \\frac{\\partial^{2}}{\\partial t^{2}} C{\\left(x,t \\right)}}{2} - \\Delta_{t} \\frac{\\partial}{\\partial t} C{\\left(x,t \\right)} + C{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "Delta_t**4*Derivative(C(x, t), (t, 4))/24 - Delta_t**3*Derivative(C(x, t), (t, 3))/6 + Delta_t**2*Derivative(C(x, t), (t, 2))/2 - Delta_t*Derivative(C(x, t), t) + C(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\Delta_{x}^{4} \\frac{\\partial^{4}}{\\partial x^{4}} C{\\left(x,t \\right)}}{24} - \\frac{\\Delta_{x}^{3} \\frac{\\partial^{3}}{\\partial x^{3}} C{\\left(x,t \\right)}}{6} + \\frac{\\Delta_{x}^{2} \\frac{\\partial^{2}}{\\partial x^{2}} C{\\left(x,t \\right)}}{2} - \\Delta_{x} \\frac{\\partial}{\\partial x} C{\\left(x,t \\right)} + C{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "Delta_x**4*Derivative(C(x, t), (x, 4))/24 - Delta_x**3*Derivative(C(x, t), (x, 3))/6 + Delta_x**2*Derivative(C(x, t), (x, 2))/2 - Delta_x*Derivative(C(x, t), x) + C(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\Delta_{x}^{4} \\frac{\\partial^{4}}{\\partial x^{4}} C{\\left(x,t \\right)}}{24} + \\frac{\\Delta_{x}^{3} \\frac{\\partial^{3}}{\\partial x^{3}} C{\\left(x,t \\right)}}{6} + \\frac{\\Delta_{x}^{2} \\frac{\\partial^{2}}{\\partial x^{2}} C{\\left(x,t \\right)}}{2} + \\Delta_{x} \\frac{\\partial}{\\partial x} C{\\left(x,t \\right)} + C{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "Delta_x**4*Derivative(C(x, t), (x, 4))/24 + Delta_x**3*Derivative(C(x, t), (x, 3))/6 + Delta_x**2*Derivative(C(x, t), (x, 2))/2 + Delta_x*Derivative(C(x, t), x) + C(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "C_t_0  = taylor_C(sx=0,  st=0,  order_x=0, order_t=0)  # exactly C(x,t)\n",
+    "display(C_t_0)\n",
+    "C_t_m1 = taylor_C(sx=0,  st=-1, order_x=0, order_t=4)  # C(x,t-1)\n",
+    "display(C_t_m1)\n",
+    "\n",
+    "# C_{x±1}^{t}\n",
+    "C_xm1_t0 = taylor_C(sx=-1, st=0,  order_x=4, order_t=0)\n",
+    "display(C_xm1_t0)\n",
+    "C_xp1_t0 = taylor_C(sx=+1, st=0,  order_x=4, order_t=0)\n",
+    "display(C_xp1_t0)\n",
+    "\n",
+    "# B_{x±1}^{t-1}\n",
+    "C_xm1_tm1 = taylor_C(sx=-1, st=-1, order_x=4, order_t=4)\n",
+    "C_xp1_tm1 = taylor_C(sx=+1, st=-1, order_x=4, order_t=4)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 43,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\Lambda{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "\\Lambda(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\Delta_{t}^{4} \\frac{\\partial^{4}}{\\partial t^{4}} \\Lambda{\\left(x,t \\right)}}{24} - \\frac{\\Delta_{t}^{3} \\frac{\\partial^{3}}{\\partial t^{3}} \\Lambda{\\left(x,t \\right)}}{6} + \\frac{\\Delta_{t}^{2} \\frac{\\partial^{2}}{\\partial t^{2}} \\Lambda{\\left(x,t \\right)}}{2} - \\Delta_{t} \\frac{\\partial}{\\partial t} \\Lambda{\\left(x,t \\right)} + \\Lambda{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "Delta_t**4*Derivative(\\Lambda(x, t), (t, 4))/24 - Delta_t**3*Derivative(\\Lambda(x, t), (t, 3))/6 + Delta_t**2*Derivative(\\Lambda(x, t), (t, 2))/2 - Delta_t*Derivative(\\Lambda(x, t), t) + \\Lambda(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\Delta_{x}^{4} \\frac{\\partial^{4}}{\\partial x^{4}} \\Lambda{\\left(x,t \\right)}}{24} - \\frac{\\Delta_{x}^{3} \\frac{\\partial^{3}}{\\partial x^{3}} \\Lambda{\\left(x,t \\right)}}{6} + \\frac{\\Delta_{x}^{2} \\frac{\\partial^{2}}{\\partial x^{2}} \\Lambda{\\left(x,t \\right)}}{2} - \\Delta_{x} \\frac{\\partial}{\\partial x} \\Lambda{\\left(x,t \\right)} + \\Lambda{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "Delta_x**4*Derivative(\\Lambda(x, t), (x, 4))/24 - Delta_x**3*Derivative(\\Lambda(x, t), (x, 3))/6 + Delta_x**2*Derivative(\\Lambda(x, t), (x, 2))/2 - Delta_x*Derivative(\\Lambda(x, t), x) + \\Lambda(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\Delta_{x}^{4} \\frac{\\partial^{4}}{\\partial x^{4}} \\Lambda{\\left(x,t \\right)}}{24} + \\frac{\\Delta_{x}^{3} \\frac{\\partial^{3}}{\\partial x^{3}} \\Lambda{\\left(x,t \\right)}}{6} + \\frac{\\Delta_{x}^{2} \\frac{\\partial^{2}}{\\partial x^{2}} \\Lambda{\\left(x,t \\right)}}{2} + \\Delta_{x} \\frac{\\partial}{\\partial x} \\Lambda{\\left(x,t \\right)} + \\Lambda{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "Delta_x**4*Derivative(\\Lambda(x, t), (x, 4))/24 + Delta_x**3*Derivative(\\Lambda(x, t), (x, 3))/6 + Delta_x**2*Derivative(\\Lambda(x, t), (x, 2))/2 + Delta_x*Derivative(\\Lambda(x, t), x) + \\Lambda(x, t)"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "La_t_0  = taylor_La(sx=0,  st=0,  order_x=0, order_t=0)  # exaLatly La(x,t)\n",
+    "display(La_t_0)\n",
+    "La_t_m1 = taylor_La(sx=0,  st=-1, order_x=0, order_t=4)  # La(x,t-1)\n",
+    "display(La_t_m1)\n",
+    "\n",
+    "# La_{x±1}^{t}\n",
+    "La_xm1_t0 = taylor_La(sx=-1, st=0,  order_x=4, order_t=0)\n",
+    "display(La_xm1_t0)\n",
+    "La_xp1_t0 = taylor_La(sx=+1, st=0,  order_x=4, order_t=0)\n",
+    "display(La_xp1_t0)\n",
+    "\n",
+    "# B_{x±1}^{t-1}\n",
+    "La_xm1_tm1 = taylor_La(sx=-1, st=-1, order_x=4, order_t=4)\n",
+    "La_xp1_tm1 = taylor_La(sx=+1, st=-1, order_x=4, order_t=4)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 48,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# -----------------------------------------------------------------------------\n",
+    "# 5) Build the discrete equation (expanded) and move everything to one side\n",
+    "# -----------------------------------------------------------------------------\n",
+    "lhs = u_t_p1\n",
+    "\n",
+    "rhs = (alpha1*u_t_0 + alpha2*(u_xp1_t0+u_xm1_t0) \n",
+    "       + beta1*u_t_m1 + beta2*(u_xp1_tm1+u_xm1_tm1)\n",
+    "       + eta1*(B_xm1_t0 - B_xp1_t0) + eta2*(B_xm1_tm1 - B_xp1_tm1)\n",
+    "       + kappa1*(-2*(C_t_0+3*La_t_0-2*u_t_0) + (C_xm1_t0+3*La_xm1_t0+C_xp1_t0+3*La_xp1_t0-2*u_xm1_t0-2*u_xp1_t0))\n",
+    "       + kappa2*(-2*(C_t_m1+3*La_t_m1-2*u_t_m1) + (C_xm1_tm1+3*La_xm1_tm1+C_xp1_tm1+3*La_xp1_tm1-2*u_xm1_tm1-2*u_xp1_tm1))\n",
+    "       + gamma * u_t_m2)\n",
+    "\n",
+    "residual = sp.simplify(sp.expand(lhs - rhs))  # = 0 is the modified equation"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 49,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "max_dx=4\n",
+    "max_dt=4\n",
+    "max_total=4\n",
+    "expr = sp.expand(residual)\n",
+    "poly = sp.Poly(expr, dx, dt, domain='EX')  # keep symbolic coeffs\n",
+    "kept = sp.S(0)\n",
+    "\n",
+    "for (px, pt), coeff in poly.terms():\n",
+    "    if (px <= max_dx) and (pt <= max_dt) and ((px + pt) <= max_total):\n",
+    "        kept += coeff * dx**px * dt**pt"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 69,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle - \\frac{\\Delta_{t}^{4} \\frac{\\partial^{4}{B}}{\\partial{x}\\partial{t^{3}}} s_{1} \\left(s_{2} - 1\\right)}{6} + \\frac{\\Delta_{t}^{4} \\frac{\\partial^{4}{u}}{\\partial{t^{4}}} \\left(- 15 s_{1} s_{2} + 14 s_{1} + 14 s_{2} - 12\\right)}{24} + \\frac{\\Delta_{t}^{3} \\frac{\\partial^{3}{B}}{\\partial{x}\\partial{t^{2}}} s_{1} \\left(s_{2} - 1\\right)}{2} + \\frac{\\Delta_{t}^{3} \\frac{\\partial^{3}{u}}{\\partial{t^{3}}} \\left(7 s_{1} s_{2} - 6 s_{1} - 6 s_{2} + 6\\right)}{6} - \\frac{\\Delta_{t}^{2} \\Delta_{x}^{2} \\frac{\\partial^{4}{B}}{\\partial{x^{3}}\\partial{t}} s_{1} \\left(s_{2} - 1\\right)}{6} + \\frac{\\Delta_{t}^{2} \\Delta_{x}^{2} \\left(\\frac{3 \\Delta_{t}^{2} \\frac{\\partial^{4}{\\Lambda}}{\\partial{x^{2}}\\partial{t^{2}}} s_{1} s_{2}}{\\Delta_{x}^{2}} - \\frac{3 \\Delta_{t}^{2} \\frac{\\partial^{4}{\\Lambda}}{\\partial{x^{2}}\\partial{t^{2}}} s_{2}}{\\Delta_{x}^{2}} + \\frac{\\partial^{4}{C}}{\\partial{x^{2}}\\partial{t^{2}}} s_{1} s_{2} - \\frac{\\partial^{4}{C}}{\\partial{x^{2}}\\partial{t^{2}}} s_{2} - 3 \\frac{\\partial^{4}{u}}{\\partial{x^{2}}\\partial{t^{2}}} s_{1} - 3 \\frac{\\partial^{4}{u}}{\\partial{x^{2}}\\partial{t^{2}}} s_{2} + 6 \\frac{\\partial^{4}{u}}{\\partial{x^{2}}\\partial{t^{2}}}\\right)}{12} - \\Delta_{t}^{2} \\frac{\\partial^{2}{B}}{\\partial{x}\\partial{t}} s_{1} \\left(s_{2} - 1\\right) + \\frac{\\Delta_{t}^{2} \\frac{\\partial^{2}{u}}{\\partial{t^{2}}} \\left(- 3 s_{1} s_{2} + 2 s_{1} + 2 s_{2}\\right)}{2} + \\frac{\\Delta_{t} \\Delta_{x}^{2} \\frac{\\partial^{3}{B}}{\\partial{x^{3}}} s_{1} s_{2}}{6} + \\frac{\\Delta_{t} \\Delta_{x}^{2} \\left(- \\frac{3 \\Delta_{t}^{2} \\frac{\\partial^{3}{\\Lambda}}{\\partial{x^{2}}\\partial{t}} s_{1} s_{2}}{\\Delta_{x}^{2}} + \\frac{3 \\Delta_{t}^{2} \\frac{\\partial^{3}{\\Lambda}}{\\partial{x^{2}}\\partial{t}} s_{2}}{\\Delta_{x}^{2}} - \\frac{\\partial^{3}{C}}{\\partial{x^{2}}\\partial{t}} s_{1} s_{2} + \\frac{\\partial^{3}{C}}{\\partial{x^{2}}\\partial{t}} s_{2} + 3 \\frac{\\partial^{3}{u}}{\\partial{x^{2}}\\partial{t}} s_{1} + 3 \\frac{\\partial^{3}{u}}{\\partial{x^{2}}\\partial{t}} s_{2} - 6 \\frac{\\partial^{3}{u}}{\\partial{x^{2}}\\partial{t}}\\right)}{6} + \\Delta_{t} \\frac{\\partial{B}}{\\partial{x}} s_{1} s_{2} + \\Delta_{t} \\frac{\\partial{u}}{\\partial{t}} s_{1} s_{2} + \\frac{\\Delta_{x}^{4} s_{2} \\left(\\frac{3 \\Delta_{t}^{2} \\frac{\\partial^{4}{\\Lambda}}{\\partial{x^{4}}} s_{1}}{\\Delta_{x}^{2}} - \\frac{6 \\Delta_{t}^{2} \\frac{\\partial^{4}{\\Lambda}}{\\partial{x^{4}}}}{\\Delta_{x}^{2}} + \\frac{\\partial^{4}{C}}{\\partial{x^{4}}} s_{1} - 2 \\frac{\\partial^{4}{C}}{\\partial{x^{4}}}\\right)}{72} + \\frac{\\Delta_{x}^{2} s_{2} \\left(\\frac{3 \\Delta_{t}^{2} \\frac{\\partial^{2}{\\Lambda}}{\\partial{x^{2}}} s_{1}}{\\Delta_{x}^{2}} - \\frac{6 \\Delta_{t}^{2} \\frac{\\partial^{2}{\\Lambda}}{\\partial{x^{2}}}}{\\Delta_{x}^{2}} + \\frac{\\partial^{2}{C}}{\\partial{x^{2}}} s_{1} - 2 \\frac{\\partial^{2}{C}}{\\partial{x^{2}}}\\right)}{6}$"
+      ],
+      "text/plain": [
+       "-Delta_t**4*\\frac{\\partial^{4}{B}}{\\partial{x}\\partial{t^{3}}}*s_{1}*(s_{2} - 1)/6 + Delta_t**4*\\frac{\\partial^{4}{u}}{\\partial{t^{4}}}*(-15*s_{1}*s_{2} + 14*s_{1} + 14*s_{2} - 12)/24 + Delta_t**3*\\frac{\\partial^{3}{B}}{\\partial{x}\\partial{t^{2}}}*s_{1}*(s_{2} - 1)/2 + Delta_t**3*\\frac{\\partial^{3}{u}}{\\partial{t^{3}}}*(7*s_{1}*s_{2} - 6*s_{1} - 6*s_{2} + 6)/6 - Delta_t**2*Delta_x**2*\\frac{\\partial^{4}{B}}{\\partial{x^{3}}\\partial{t}}*s_{1}*(s_{2} - 1)/6 + Delta_t**2*Delta_x**2*(3*Delta_t**2*\\frac{\\partial^{4}{\\Lambda}}{\\partial{x^{2}}\\partial{t^{2}}}*s_{1}*s_{2}/Delta_x**2 - 3*Delta_t**2*\\frac{\\partial^{4}{\\Lambda}}{\\partial{x^{2}}\\partial{t^{2}}}*s_{2}/Delta_x**2 + \\frac{\\partial^{4}{C}}{\\partial{x^{2}}\\partial{t^{2}}}*s_{1}*s_{2} - \\frac{\\partial^{4}{C}}{\\partial{x^{2}}\\partial{t^{2}}}*s_{2} - 3*\\frac{\\partial^{4}{u}}{\\partial{x^{2}}\\partial{t^{2}}}*s_{1} - 3*\\frac{\\partial^{4}{u}}{\\partial{x^{2}}\\partial{t^{2}}}*s_{2} + 6*\\frac{\\partial^{4}{u}}{\\partial{x^{2}}\\partial{t^{2}}})/12 - Delta_t**2*\\frac{\\partial^{2}{B}}{\\partial{x}\\partial{t}}*s_{1}*(s_{2} - 1) + Delta_t**2*\\frac{\\partial^{2}{u}}{\\partial{t^{2}}}*(-3*s_{1}*s_{2} + 2*s_{1} + 2*s_{2})/2 + Delta_t*Delta_x**2*\\frac{\\partial^{3}{B}}{\\partial{x^{3}}}*s_{1}*s_{2}/6 + Delta_t*Delta_x**2*(-3*Delta_t**2*\\frac{\\partial^{3}{\\Lambda}}{\\partial{x^{2}}\\partial{t}}*s_{1}*s_{2}/Delta_x**2 + 3*Delta_t**2*\\frac{\\partial^{3}{\\Lambda}}{\\partial{x^{2}}\\partial{t}}*s_{2}/Delta_x**2 - \\frac{\\partial^{3}{C}}{\\partial{x^{2}}\\partial{t}}*s_{1}*s_{2} + \\frac{\\partial^{3}{C}}{\\partial{x^{2}}\\partial{t}}*s_{2} + 3*\\frac{\\partial^{3}{u}}{\\partial{x^{2}}\\partial{t}}*s_{1} + 3*\\frac{\\partial^{3}{u}}{\\partial{x^{2}}\\partial{t}}*s_{2} - 6*\\frac{\\partial^{3}{u}}{\\partial{x^{2}}\\partial{t}})/6 + Delta_t*\\frac{\\partial{B}}{\\partial{x}}*s_{1}*s_{2} + Delta_t*\\frac{\\partial{u}}{\\partial{t}}*s_{1}*s_{2} + Delta_x**4*s_{2}*(3*Delta_t**2*\\frac{\\partial^{4}{\\Lambda}}{\\partial{x^{4}}}*s_{1}/Delta_x**2 - 6*Delta_t**2*\\frac{\\partial^{4}{\\Lambda}}{\\partial{x^{4}}}/Delta_x**2 + \\frac{\\partial^{4}{C}}{\\partial{x^{4}}}*s_{1} - 2*\\frac{\\partial^{4}{C}}{\\partial{x^{4}}})/72 + Delta_x**2*s_{2}*(3*Delta_t**2*\\frac{\\partial^{2}{\\Lambda}}{\\partial{x^{2}}}*s_{1}/Delta_x**2 - 6*Delta_t**2*\\frac{\\partial^{2}{\\Lambda}}{\\partial{x^{2}}}/Delta_x**2 + \\frac{\\partial^{2}{C}}{\\partial{x^{2}}}*s_{1} - 2*\\frac{\\partial^{2}{C}}{\\partial{x^{2}}})/6"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "term1u = sp.simplify(kept).subs({UF.diff(t, 4):dut4,UF.diff(x,t, 3):duxt3,UF.diff(t, 3):dut3,UF.diff(x, 2, t, 2):dux2t2,UF.diff(x, t, 2):duxt2,\n",
+    "                                UF.diff(t, 2):dut2,UF.diff(x,3,t):dux3t,UF.diff(x,2,t):dux2t,UF.diff(x,t):duxt,\n",
+    "                                UF.diff(t):dut,UF.diff(x,4):dux4,UF.diff(x,3):dux3,UF.diff(x,2):dux2,UF.diff(x):dux})\n",
+    "# term1B = term1u.subs({BF.diff(t, 4):dBt4,BF.diff(x,t, 3):dBxt3,BF.diff(t, 3):dBt3,BF.diff(x, 2, t, 2):dBx2t2,BF.diff(x, t, 2):dBxt2,\n",
+    "#                                 BF.diff(t, 2):dBt2,BF.diff(x,3,t):dBx3t,BF.diff(x,2,t):dBx2t,BF.diff(x,t):dBxt,\n",
+    "#                                 BF.diff(t):dBt,BF.diff(x,4):dBx4,BF.diff(x,3):dBx3,BF.diff(x,2):dBx2,BF.diff(x):dBx})\n",
+    "term1B = term1u.subs({BF.diff(t, 4):dBt4,BF.diff(x,t, 3):dBxt3*dt/dx,BF.diff(t, 3):dBt3*dt/dx,BF.diff(x, 2, t, 2):dBx2t2*dt/dx,BF.diff(x, t, 2):dBxt2*dt/dx,\n",
+    "                                BF.diff(t, 2):dBt2*dt/dx,BF.diff(x,3,t):dBx3t*dt/dx,BF.diff(x,2,t):dBx2t*dt/dx,BF.diff(x,t):dBxt*dt/dx,\n",
+    "                                BF.diff(t):dBt*dt/dx,BF.diff(x,4):dBx4*dt/dx,BF.diff(x,3):dBx3*dt/dx,BF.diff(x,2):dBx2*dt/dx,BF.diff(x):dBx*dt/dx})\n",
+    "term1C = term1B.subs({CF.diff(t, 4):dCt4,CF.diff(x,t, 3):dCxt3,CF.diff(t, 3):dCt3,CF.diff(x, 2, t, 2):dCx2t2,CF.diff(x, t, 2):dCxt2,\n",
+    "                                CF.diff(t, 2):dCt2,CF.diff(x,3,t):dCx3t,CF.diff(x,2,t):dCx2t,CF.diff(x,t):dCxt,\n",
+    "                                CF.diff(t):dCt,CF.diff(x,4):dCx4,CF.diff(x,3):dCx3,CF.diff(x,2):dCx2,CF.diff(x):dCx})\n",
+    "# term1 = term1C.subs({LF.diff(t, 4):dLat4,LF.diff(x,t, 3):dLaxt3,LF.diff(t, 3):dLat3,LF.diff(x, 2, t, 2):dLax2t2,LF.diff(x, t, 2):dLaxt2,\n",
+    "#                                 LF.diff(t, 2):dLat2,LF.diff(x,3,t):dLax3t,LF.diff(x,2,t):dLax2t,LF.diff(x,t):dLaxt,\n",
+    "#                                 LF.diff(t):dLat,LF.diff(x,4):dLax4,LF.diff(x,3):dLax3,LF.diff(x,2):dLax2,LF.diff(x):dLax})\n",
+    "term1 = term1C.subs({LF.diff(t, 4):dLat4,LF.diff(x,t, 3):dLaxt3*(dt/dx)**2,LF.diff(t, 3):dLat3*(dt/dx)**2,LF.diff(x, 2, t, 2):dLax2t2*(dt/dx)**2,LF.diff(x, t, 2):dLaxt2*(dt/dx)**2,\n",
+    "                                LF.diff(t, 2):dLat2*(dt/dx)**2,LF.diff(x,3,t):dLax3t*(dt/dx)**2,LF.diff(x,2,t):dLax2t*(dt/dx)**2,LF.diff(x,t):dLaxt*(dt/dx)**2,\n",
+    "                                LF.diff(t):dLat*(dt/dx)**2,LF.diff(x,4):dLax4*(dt/dx)**2,LF.diff(x,3):dLax3*(dt/dx)**2,LF.diff(x,2):dLax2*(dt/dx)**2,LF.diff(x):dLax*(dt/dx)**2})\n",
+    "display(term1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 71,
+   "metadata": {
+    "scrolled": true
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\Delta_{t}^{3} \\frac{\\partial^{4}{B}}{\\partial{x}\\partial{t^{3}}} \\left(\\frac{1}{6} - \\frac{1}{6 s_{2}}\\right) + \\Delta_{t}^{3} \\frac{\\partial^{4}{\\Lambda}}{\\partial{x^{2}}\\partial{t^{2}}} \\left(- \\frac{1}{4} + \\frac{1}{4 s_{1}}\\right) + \\Delta_{t}^{3} \\frac{\\partial^{4}{u}}{\\partial{t^{4}}} \\left(\\frac{5}{8} - \\frac{7}{12 s_{2}} - \\frac{7}{12 s_{1}} + \\frac{1}{2 s_{1} s_{2}}\\right) + \\Delta_{t}^{2} \\frac{\\partial^{3}{B}}{\\partial{x}\\partial{t^{2}}} \\left(- \\frac{1}{2} + \\frac{1}{2 s_{2}}\\right) + \\Delta_{t}^{2} \\frac{\\partial^{3}{\\Lambda}}{\\partial{x^{2}}\\partial{t}} \\left(\\frac{1}{2} - \\frac{1}{2 s_{1}}\\right) + \\Delta_{t}^{2} \\frac{\\partial^{3}{u}}{\\partial{t^{3}}} \\left(- \\frac{7}{6} + \\frac{1}{s_{2}} + \\frac{1}{s_{1}} - \\frac{1}{s_{1} s_{2}}\\right) + \\Delta_{t} \\Delta_{x}^{2} \\frac{\\partial^{4}{B}}{\\partial{x^{3}}\\partial{t}} \\left(\\frac{1}{6} - \\frac{1}{6 s_{2}}\\right) + \\Delta_{t} \\Delta_{x}^{2} \\frac{\\partial^{4}{C}}{\\partial{x^{2}}\\partial{t^{2}}} \\left(- \\frac{1}{12} + \\frac{1}{12 s_{1}}\\right) + \\Delta_{t} \\Delta_{x}^{2} \\frac{\\partial^{4}{\\Lambda}}{\\partial{x^{4}}} \\left(- \\frac{1}{24} + \\frac{1}{12 s_{1}}\\right) + \\Delta_{t} \\Delta_{x}^{2} \\frac{\\partial^{4}{u}}{\\partial{x^{2}}\\partial{t^{2}}} \\left(\\frac{1}{4 s_{2}} + \\frac{1}{4 s_{1}} - \\frac{1}{2 s_{1} s_{2}}\\right) + \\Delta_{t} \\frac{\\partial^{2}{B}}{\\partial{x}\\partial{t}} \\left(1 - \\frac{1}{s_{2}}\\right) + \\Delta_{t} \\frac{\\partial^{2}{\\Lambda}}{\\partial{x^{2}}} \\left(- \\frac{1}{2} + \\frac{1}{s_{1}}\\right) + \\Delta_{t} \\frac{\\partial^{2}{u}}{\\partial{t^{2}}} \\left(\\frac{3}{2} - \\frac{1}{s_{2}} - \\frac{1}{s_{1}}\\right) - \\frac{\\Delta_{x}^{2} \\frac{\\partial^{3}{B}}{\\partial{x^{3}}}}{6} + \\Delta_{x}^{2} \\frac{\\partial^{3}{C}}{\\partial{x^{2}}\\partial{t}} \\left(\\frac{1}{6} - \\frac{1}{6 s_{1}}\\right) + \\Delta_{x}^{2} \\frac{\\partial^{3}{u}}{\\partial{x^{2}}\\partial{t}} \\left(- \\frac{1}{2 s_{2}} - \\frac{1}{2 s_{1}} + \\frac{1}{s_{1} s_{2}}\\right) - \\frac{\\partial{B}}{\\partial{x}} + \\frac{\\Delta_{x}^{4} \\frac{\\partial^{4}{C}}{\\partial{x^{4}}} \\left(- \\frac{1}{72} + \\frac{1}{36 s_{1}}\\right)}{\\Delta_{t}} + \\frac{\\Delta_{x}^{2} \\frac{\\partial^{2}{C}}{\\partial{x^{2}}} \\left(- \\frac{1}{6} + \\frac{1}{3 s_{1}}\\right)}{\\Delta_{t}}$"
+      ],
+      "text/plain": [
+       "Delta_t**3*\\frac{\\partial^{4}{B}}{\\partial{x}\\partial{t^{3}}}*(1/6 - 1/(6*s_{2})) + Delta_t**3*\\frac{\\partial^{4}{\\Lambda}}{\\partial{x^{2}}\\partial{t^{2}}}*(-1/4 + 1/(4*s_{1})) + Delta_t**3*\\frac{\\partial^{4}{u}}{\\partial{t^{4}}}*(5/8 - 7/(12*s_{2}) - 7/(12*s_{1}) + 1/(2*s_{1}*s_{2})) + Delta_t**2*\\frac{\\partial^{3}{B}}{\\partial{x}\\partial{t^{2}}}*(-1/2 + 1/(2*s_{2})) + Delta_t**2*\\frac{\\partial^{3}{\\Lambda}}{\\partial{x^{2}}\\partial{t}}*(1/2 - 1/(2*s_{1})) + Delta_t**2*\\frac{\\partial^{3}{u}}{\\partial{t^{3}}}*(-7/6 + 1/s_{2} + 1/s_{1} - 1/(s_{1}*s_{2})) + Delta_t*Delta_x**2*\\frac{\\partial^{4}{B}}{\\partial{x^{3}}\\partial{t}}*(1/6 - 1/(6*s_{2})) + Delta_t*Delta_x**2*\\frac{\\partial^{4}{C}}{\\partial{x^{2}}\\partial{t^{2}}}*(-1/12 + 1/(12*s_{1})) + Delta_t*Delta_x**2*\\frac{\\partial^{4}{\\Lambda}}{\\partial{x^{4}}}*(-1/24 + 1/(12*s_{1})) + Delta_t*Delta_x**2*\\frac{\\partial^{4}{u}}{\\partial{x^{2}}\\partial{t^{2}}}*(1/(4*s_{2}) + 1/(4*s_{1}) - 1/(2*s_{1}*s_{2})) + Delta_t*\\frac{\\partial^{2}{B}}{\\partial{x}\\partial{t}}*(1 - 1/s_{2}) + Delta_t*\\frac{\\partial^{2}{\\Lambda}}{\\partial{x^{2}}}*(-1/2 + 1/s_{1}) + Delta_t*\\frac{\\partial^{2}{u}}{\\partial{t^{2}}}*(3/2 - 1/s_{2} - 1/s_{1}) - Delta_x**2*\\frac{\\partial^{3}{B}}{\\partial{x^{3}}}/6 + Delta_x**2*\\frac{\\partial^{3}{C}}{\\partial{x^{2}}\\partial{t}}*(1/6 - 1/(6*s_{1})) + Delta_x**2*\\frac{\\partial^{3}{u}}{\\partial{x^{2}}\\partial{t}}*(-1/(2*s_{2}) - 1/(2*s_{1}) + 1/(s_{1}*s_{2})) - \\frac{\\partial{B}}{\\partial{x}} + Delta_x**4*\\frac{\\partial^{4}{C}}{\\partial{x^{4}}}*(-1/72 + 1/(36*s_{1}))/Delta_t + Delta_x**2*\\frac{\\partial^{2}{C}}{\\partial{x^{2}}}*(-1/6 + 1/(3*s_{1}))/Delta_t"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "term2 = sp.collect(sp.expand(-term1/(dt*s1*s2)) + dut, {\n",
+    "                    dut4*dt**3,dux2t2*dx**2*dt,dux2t*dx**2,dut3*dt**2,dut2*dt,\n",
+    "                    # dBxt3*dt**2*dx, dBxt2*dt*dx, dBx3t*dx**3, dBxt*dx, \n",
+    "                    dBxt3*dt**3, dBxt2*dt**2, dBx3t*dx**2*dt, dBxt*dt, \n",
+    "                    dCx2t2*dt*dx**2, dCx2t*dx**2, dCx4*dx**4/dt, dCx2*dx**2/dt,\n",
+    "                    # dLax2t2*dt*dx**2, dLax2t*dx**2, dLax4*dx**4/dt, dLax2*dx**2/dt\n",
+    "                    dLax2t2*dt**3, dLax2t*dt**2, dLax4*dx**2*dt, dLax2*dt})\n",
+    "display(term2)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 85,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\Delta_{t}^{3} \\frac{\\partial^{4}{B}}{\\partial{x}\\partial{t^{3}}} \\left(- \\frac{11}{24} + \\frac{5}{12 s_{2}} + \\frac{7}{12 s_{1}} - \\frac{1}{2 s_{1} s_{2}}\\right) + \\Delta_{t}^{3} \\frac{\\partial^{4}{\\Lambda}}{\\partial{x^{2}}\\partial{t^{2}}} \\left(- \\frac{1}{4} + \\frac{1}{4 s_{1}}\\right) + \\Delta_{t}^{2} \\frac{\\partial^{3}{B}}{\\partial{x}\\partial{t^{2}}} \\left(\\frac{2}{3} - \\frac{1}{2 s_{2}} - \\frac{1}{s_{1}} + \\frac{1}{s_{1} s_{2}}\\right) + \\Delta_{t}^{2} \\frac{\\partial^{3}{\\Lambda}}{\\partial{x^{2}}\\partial{t}} \\left(\\frac{1}{2} - \\frac{1}{2 s_{1}}\\right) + \\Delta_{t} \\Delta_{x}^{2} \\frac{\\partial^{4}{B}}{\\partial{x^{3}}\\partial{t}} \\left(\\frac{1}{6} - \\frac{5}{12 s_{2}} - \\frac{1}{4 s_{1}} + \\frac{1}{2 s_{1} s_{2}}\\right) + \\Delta_{t} \\Delta_{x}^{2} \\frac{\\partial^{4}{C}}{\\partial{x^{2}}\\partial{t^{2}}} \\left(\\frac{1}{9} - \\frac{1}{6 s_{2}} - \\frac{17}{36 s_{1}} + \\frac{1}{2 s_{1} s_{2}} + \\frac{1}{3 s_{1}^{2}} - \\frac{1}{3 s_{1}^{2} s_{2}}\\right) + \\Delta_{t} \\Delta_{x}^{2} \\frac{\\partial^{4}{\\Lambda}}{\\partial{x^{4}}} \\left(- \\frac{1}{24} + \\frac{1}{12 s_{1}}\\right) + \\Delta_{t} \\frac{\\partial^{2}{B}}{\\partial{x}\\partial{t}} \\left(- \\frac{1}{2} + \\frac{1}{s_{1}}\\right) + \\Delta_{t} \\frac{\\partial^{2}{\\Lambda}}{\\partial{x^{2}}} \\left(- \\frac{1}{2} + \\frac{1}{s_{1}}\\right) + \\Delta_{x}^{2} \\frac{\\partial^{3}{B}}{\\partial{x^{3}}} \\left(- \\frac{1}{6} + \\frac{1}{2 s_{2}} + \\frac{1}{2 s_{1}} - \\frac{1}{s_{1} s_{2}}\\right) + \\Delta_{x}^{2} \\frac{\\partial^{3}{C}}{\\partial{x^{2}}\\partial{t}} \\left(- \\frac{1}{12} + \\frac{1}{6 s_{2}} + \\frac{1}{2 s_{1}} - \\frac{1}{3 s_{1} s_{2}} - \\frac{1}{3 s_{1}^{2}}\\right) - \\frac{\\partial{B}}{\\partial{x}} + \\frac{\\Delta_{x}^{4} \\frac{\\partial^{4}{C}}{\\partial{x^{4}}} \\left(- \\frac{1}{72} + \\frac{1}{12 s_{2}} + \\frac{1}{9 s_{1}} - \\frac{1}{3 s_{1} s_{2}} - \\frac{1}{6 s_{1}^{2}} + \\frac{1}{3 s_{1}^{2} s_{2}}\\right)}{\\Delta_{t}} + \\frac{\\Delta_{x}^{2} \\frac{\\partial^{2}{C}}{\\partial{x^{2}}} \\left(- \\frac{1}{6} + \\frac{1}{3 s_{1}}\\right)}{\\Delta_{t}}$"
+      ],
+      "text/plain": [
+       "Delta_t**3*\\frac{\\partial^{4}{B}}{\\partial{x}\\partial{t^{3}}}*(-11/24 + 5/(12*s_{2}) + 7/(12*s_{1}) - 1/(2*s_{1}*s_{2})) + Delta_t**3*\\frac{\\partial^{4}{\\Lambda}}{\\partial{x^{2}}\\partial{t^{2}}}*(-1/4 + 1/(4*s_{1})) + Delta_t**2*\\frac{\\partial^{3}{B}}{\\partial{x}\\partial{t^{2}}}*(2/3 - 1/(2*s_{2}) - 1/s_{1} + 1/(s_{1}*s_{2})) + Delta_t**2*\\frac{\\partial^{3}{\\Lambda}}{\\partial{x^{2}}\\partial{t}}*(1/2 - 1/(2*s_{1})) + Delta_t*Delta_x**2*\\frac{\\partial^{4}{B}}{\\partial{x^{3}}\\partial{t}}*(1/6 - 5/(12*s_{2}) - 1/(4*s_{1}) + 1/(2*s_{1}*s_{2})) + Delta_t*Delta_x**2*\\frac{\\partial^{4}{C}}{\\partial{x^{2}}\\partial{t^{2}}}*(1/9 - 1/(6*s_{2}) - 17/(36*s_{1}) + 1/(2*s_{1}*s_{2}) + 1/(3*s_{1}**2) - 1/(3*s_{1}**2*s_{2})) + Delta_t*Delta_x**2*\\frac{\\partial^{4}{\\Lambda}}{\\partial{x^{4}}}*(-1/24 + 1/(12*s_{1})) + Delta_t*\\frac{\\partial^{2}{B}}{\\partial{x}\\partial{t}}*(-1/2 + 1/s_{1}) + Delta_t*\\frac{\\partial^{2}{\\Lambda}}{\\partial{x^{2}}}*(-1/2 + 1/s_{1}) + Delta_x**2*\\frac{\\partial^{3}{B}}{\\partial{x^{3}}}*(-1/6 + 1/(2*s_{2}) + 1/(2*s_{1}) - 1/(s_{1}*s_{2})) + Delta_x**2*\\frac{\\partial^{3}{C}}{\\partial{x^{2}}\\partial{t}}*(-1/12 + 1/(6*s_{2}) + 1/(2*s_{1}) - 1/(3*s_{1}*s_{2}) - 1/(3*s_{1}**2)) - \\frac{\\partial{B}}{\\partial{x}} + Delta_x**4*\\frac{\\partial^{4}{C}}{\\partial{x^{4}}}*(-1/72 + 1/(12*s_{2}) + 1/(9*s_{1}) - 1/(3*s_{1}*s_{2}) - 1/(6*s_{1}**2) + 1/(3*s_{1}**2*s_{2}))/Delta_t + Delta_x**2*\\frac{\\partial^{2}{C}}{\\partial{x^{2}}}*(-1/6 + 1/(3*s_{1}))/Delta_t"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "bu, buu, buuu = sp.symbols('B_{u} B_{uu} B_{uuu}', positive=True, real=True)\n",
+    "cu, cuu, cuuu = sp.symbols('C_{u} C_{uu} C_{uuu}', positive=True, real=True)\n",
+    "dbux= sp.symbols(' \\\\frac{\\partial{B_{u}}}{\\partial{x}}', positive=True, real=True)\n",
+    "# term3 = sp.collect( sp.expand(term2.subs(dBxt,nu*dbux*dCx2 + nu*bu*dCx3-dLax2) ), {\n",
+    "term3 = sp.collect( sp.expand(term2.subs(dut2,nu*dCx2t - dBxt)\n",
+    "                                   .subs(dux2t,nu*dCx4 - dBx3)\n",
+    "                                   .subs(dut3,nu*dCx2t2 - dBxt2)\n",
+    "                                   .subs(dux2t2, - dBx3t)\n",
+    "                                   .subs(dut4, - dBxt3)\n",
+    "                                   .subs(nu,sp.expand( (2-s1)/(6*s1)*dx**2/dt) ) ), {\n",
+    "                    dut4*dt**3,dux2t2*dx**2*dt,dux2t*dx**2,dut3*dt**2,dut2*dt,\n",
+    "                    dBxt3*dt**3, dBxt2*dt**2, dBx3t*dx**2*dt, dBxt*dt, dBx3*dx**2, \n",
+    "                    dCx2t2*dt*dx**2, dCx2t*dx**2, dCx4*dx**4/dt, dCx2*dx**2/dt,\n",
+    "                    dLax2t2*dt**3, dLax2t*dt**2, dLax4*dx**2*dt, dLax2*dt}) \n",
+    "display(term3)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 74,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{\\partial{B_{u}}}{\\partial{t}}$"
+      ],
+      "text/plain": [
+       "\\frac{\\partial{B_{u}}}{\\partial{t}}"
+      ]
+     },
+     "execution_count": 74,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "dbux"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 53,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# from sympy import latex\n",
+    "# print(latex(term2))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 62,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle - \\frac{\\Delta_{t}^{2} \\Delta_{x} \\frac{\\partial^{4}}{\\partial x\\partial t^{3}} B{\\left(x,t \\right)}}{6} + \\frac{\\Delta_{t}^{2} \\Delta_{x} \\frac{\\partial^{4}}{\\partial x\\partial t^{3}} B{\\left(x,t \\right)}}{6 s_{2}} - \\frac{7 \\Delta_{t}^{2} \\frac{\\partial^{3}}{\\partial t^{3}} u{\\left(x,t \\right)}}{6} + \\frac{\\Delta_{t}^{2} \\frac{\\partial^{3}}{\\partial t^{3}} u{\\left(x,t \\right)}}{s_{2}} + \\frac{\\Delta_{t}^{2} \\frac{\\partial^{3}}{\\partial t^{3}} u{\\left(x,t \\right)}}{s_{1}} - \\frac{\\Delta_{t}^{2} \\frac{\\partial^{3}}{\\partial t^{3}} u{\\left(x,t \\right)}}{s_{1} s_{2}} - \\frac{\\Delta_{t} \\Delta_{x}^{2} \\frac{\\partial^{4}}{\\partial x^{2}\\partial t^{2}} C{\\left(x,t \\right)}}{12} + \\frac{\\Delta_{t} \\Delta_{x}^{2} \\frac{\\partial^{4}}{\\partial x^{2}\\partial t^{2}} u{\\left(x,t \\right)}}{4 s_{2}} + \\frac{\\Delta_{t} \\Delta_{x}^{2} \\frac{\\partial^{4}}{\\partial x^{2}\\partial t^{2}} C{\\left(x,t \\right)}}{12 s_{1}} + \\frac{\\Delta_{t} \\Delta_{x}^{2} \\frac{\\partial^{4}}{\\partial x^{2}\\partial t^{2}} u{\\left(x,t \\right)}}{4 s_{1}} - \\frac{\\Delta_{t} \\Delta_{x}^{2} \\frac{\\partial^{4}}{\\partial x^{2}\\partial t^{2}} u{\\left(x,t \\right)}}{2 s_{1} s_{2}} + \\frac{\\Delta_{t} \\Delta_{x} \\frac{\\partial^{3}}{\\partial x\\partial t^{2}} B{\\left(x,t \\right)}}{2} - \\frac{\\Delta_{t} \\Delta_{x} \\frac{\\partial^{3}}{\\partial x\\partial t^{2}} B{\\left(x,t \\right)}}{2 s_{2}} + \\frac{3 \\Delta_{t} \\frac{\\partial^{2}}{\\partial t^{2}} u{\\left(x,t \\right)}}{2} - \\frac{\\Delta_{t} \\frac{\\partial^{2}}{\\partial t^{2}} u{\\left(x,t \\right)}}{s_{2}} - \\frac{\\Delta_{t} \\frac{\\partial^{2}}{\\partial t^{2}} u{\\left(x,t \\right)}}{s_{1}} - \\frac{\\Delta_{x}^{3} \\frac{\\partial^{4}}{\\partial x^{3}\\partial t} B{\\left(x,t \\right)}}{6} + \\frac{\\Delta_{x}^{3} \\frac{\\partial^{4}}{\\partial x^{3}\\partial t} B{\\left(x,t \\right)}}{6 s_{2}} + \\frac{\\Delta_{x}^{2} \\frac{\\partial^{3}}{\\partial x^{2}\\partial t} C{\\left(x,t \\right)}}{6} - \\frac{\\Delta_{x}^{2} \\frac{\\partial^{3}}{\\partial x^{2}\\partial t} u{\\left(x,t \\right)}}{2 s_{2}} - \\frac{\\Delta_{x}^{2} \\frac{\\partial^{3}}{\\partial x^{2}\\partial t} C{\\left(x,t \\right)}}{6 s_{1}} - \\frac{\\Delta_{x}^{2} \\frac{\\partial^{3}}{\\partial x^{2}\\partial t} u{\\left(x,t \\right)}}{2 s_{1}} + \\frac{\\Delta_{x}^{2} \\frac{\\partial^{3}}{\\partial x^{2}\\partial t} u{\\left(x,t \\right)}}{s_{1} s_{2}} - \\Delta_{x} \\frac{\\partial^{2}}{\\partial x\\partial t} B{\\left(x,t \\right)} + \\frac{\\Delta_{x} \\frac{\\partial^{2}}{\\partial x\\partial t} B{\\left(x,t \\right)}}{s_{2}} - \\frac{\\Delta_{x}^{4} \\frac{\\partial^{4}}{\\partial x^{4}} C{\\left(x,t \\right)}}{72 \\Delta_{t}} + \\frac{\\Delta_{x}^{4} \\frac{\\partial^{4}}{\\partial x^{4}} C{\\left(x,t \\right)}}{36 \\Delta_{t} s_{1}} + \\frac{\\Delta_{x}^{3} \\frac{\\partial^{3}}{\\partial x^{3}} B{\\left(x,t \\right)}}{6 \\Delta_{t}} - \\frac{\\Delta_{x}^{2} \\frac{\\partial^{2}}{\\partial x^{2}} C{\\left(x,t \\right)}}{6 \\Delta_{t}} + \\frac{\\Delta_{x}^{2} \\frac{\\partial^{2}}{\\partial x^{2}} C{\\left(x,t \\right)}}{3 \\Delta_{t} s_{1}} + \\frac{\\Delta_{x} \\frac{\\partial}{\\partial x} B{\\left(x,t \\right)}}{\\Delta_{t}}$"
+      ],
+      "text/plain": [
+       "-Delta_t**2*Delta_x*Derivative(B(x, t), (t, 3), x)/6 + Delta_t**2*Delta_x*Derivative(B(x, t), (t, 3), x)/(6*s_{2}) - 7*Delta_t**2*Derivative(u(x, t), (t, 3))/6 + Delta_t**2*Derivative(u(x, t), (t, 3))/s_{2} + Delta_t**2*Derivative(u(x, t), (t, 3))/s_{1} - Delta_t**2*Derivative(u(x, t), (t, 3))/(s_{1}*s_{2}) - Delta_t*Delta_x**2*Derivative(C(x, t), (t, 2), (x, 2))/12 + Delta_t*Delta_x**2*Derivative(u(x, t), (t, 2), (x, 2))/(4*s_{2}) + Delta_t*Delta_x**2*Derivative(C(x, t), (t, 2), (x, 2))/(12*s_{1}) + Delta_t*Delta_x**2*Derivative(u(x, t), (t, 2), (x, 2))/(4*s_{1}) - Delta_t*Delta_x**2*Derivative(u(x, t), (t, 2), (x, 2))/(2*s_{1}*s_{2}) + Delta_t*Delta_x*Derivative(B(x, t), (t, 2), x)/2 - Delta_t*Delta_x*Derivative(B(x, t), (t, 2), x)/(2*s_{2}) + 3*Delta_t*Derivative(u(x, t), (t, 2))/2 - Delta_t*Derivative(u(x, t), (t, 2))/s_{2} - Delta_t*Derivative(u(x, t), (t, 2))/s_{1} - Delta_x**3*Derivative(B(x, t), t, (x, 3))/6 + Delta_x**3*Derivative(B(x, t), t, (x, 3))/(6*s_{2}) + Delta_x**2*Derivative(C(x, t), t, (x, 2))/6 - Delta_x**2*Derivative(u(x, t), t, (x, 2))/(2*s_{2}) - Delta_x**2*Derivative(C(x, t), t, (x, 2))/(6*s_{1}) - Delta_x**2*Derivative(u(x, t), t, (x, 2))/(2*s_{1}) + Delta_x**2*Derivative(u(x, t), t, (x, 2))/(s_{1}*s_{2}) - Delta_x*Derivative(B(x, t), t, x) + Delta_x*Derivative(B(x, t), t, x)/s_{2} - Delta_x**4*Derivative(C(x, t), (x, 4))/(72*Delta_t) + Delta_x**4*Derivative(C(x, t), (x, 4))/(36*Delta_t*s_{1}) + Delta_x**3*Derivative(B(x, t), (x, 3))/(6*Delta_t) - Delta_x**2*Derivative(C(x, t), (x, 2))/(6*Delta_t) + Delta_x**2*Derivative(C(x, t), (x, 2))/(3*Delta_t*s_{1}) + Delta_x*Derivative(B(x, t), x)/Delta_t"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "dxdt = sp.Derivative(UF, x, t)   # UF_{xt}\n",
+    "term1 = sp.expand(-kept/(dt*s1*s2)) + UF.diff(t, 1)\n",
+    "display(term1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\frac{6 \\Delta_{t} \\Delta_{x}^{2} \\nu s_{1} \\left(2 - 3 s_{2}\\right) \\left(s_{1} - 2\\right) \\left(w_{0} - 1\\right) \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)} + 12 \\Delta_{t} \\Delta_{x}^{2} \\nu s_{2} \\left(s_{1} - 2\\right) \\left(w_{0} - 1\\right) \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)} + s_{1} \\left(12 \\Delta_{t} \\Delta_{x}^{2} \\nu \\left(s_{1} s_{2} w_{0} - s_{1} s_{2} + s_{1} - s_{2} w_{0} + 2 s_{2} - 2\\right) \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)} + 24 \\Delta_{t} s_{1} s_{2} \\frac{\\partial}{\\partial t} \\phi{\\left(x,t \\right)} + \\Delta_{x}^{4} s_{2} \\left(- s_{1} w_{0} + s_{1} + 2 w_{0} - 2\\right) \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)} + 12 \\Delta_{x}^{2} s_{2} \\left(- s_{1} w_{0} + s_{1} + 2 w_{0} - 2\\right) \\frac{\\partial^{2}}{\\partial x^{2}} \\phi{\\left(x,t \\right)}\\right)}{24 s_{1}}$"
+      ],
+      "text/plain": [
+       "(6*Delta_t*Delta_x**2*\\nu*s_{1}*(2 - 3*s_{2})*(s_{1} - 2)*(w_{0} - 1)*Derivative(phi(x, t), (x, 4)) + 12*Delta_t*Delta_x**2*\\nu*s_{2}*(s_{1} - 2)*(w_{0} - 1)*Derivative(phi(x, t), (x, 4)) + s_{1}*(12*Delta_t*Delta_x**2*\\nu*(s_{1}*s_{2}*w_{0} - s_{1}*s_{2} + s_{1} - s_{2}*w_{0} + 2*s_{2} - 2)*Derivative(phi(x, t), (x, 4)) + 24*Delta_t*s_{1}*s_{2}*Derivative(phi(x, t), t) + Delta_x**4*s_{2}*(-s_{1}*w_{0} + s_{1} + 2*w_{0} - 2)*Derivative(phi(x, t), (x, 4)) + 12*Delta_x**2*s_{2}*(-s_{1}*w_{0} + s_{1} + 2*w_{0} - 2)*Derivative(phi(x, t), (x, 2))))/(24*s_{1})"
+      ]
+     },
+     "execution_count": 9,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rel1=sp.simplify(kept.subs(dt**2*dx**2, 0).subs(PHI.diff(t, 2), (1-w0)*((2-s1)/(2*s1))*dx*dx/dt*nu*PHI.diff(x, 4)).subs(PHI.diff(t, x, 2), nu*PHI.diff(x, 4)))\n",
+    "rel1"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle - \\frac{\\Delta_{x}^{2} \\nu \\left(3 s_{1}^{2} s_{2} w_{0} - 2 s_{1}^{2} s_{2} - 6 s_{1}^{2} w_{0} - 18 s_{1} s_{2} w_{0} + 12 s_{1} s_{2} + 12 s_{1} w_{0} + 12 s_{2} w_{0} - 12 s_{2}\\right) \\frac{\\partial^{4}}{\\partial x^{4}} \\phi{\\left(x,t \\right)}}{12 s_{1}^{2} s_{2}} - \\nu \\frac{\\partial^{2}}{\\partial x^{2}} \\phi{\\left(x,t \\right)} + \\frac{\\partial}{\\partial t} \\phi{\\left(x,t \\right)}$"
+      ],
+      "text/plain": [
+       "-Delta_x**2*\\nu*(3*s_{1}**2*s_{2}*w_{0} - 2*s_{1}**2*s_{2} - 6*s_{1}**2*w_{0} - 18*s_{1}*s_{2}*w_{0} + 12*s_{1}*s_{2} + 12*s_{1}*w_{0} + 12*s_{2}*w_{0} - 12*s_{2})*Derivative(phi(x, t), (x, 4))/(12*s_{1}**2*s_{2}) - \\nu*Derivative(phi(x, t), (x, 2)) + Derivative(phi(x, t), t)"
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rel2=(sp.collect(sp.simplify(sp.expand(rel1)/(dt*s1*s2)),[PHI.diff(x, 4),PHI.diff(x, 2)])\n",
+    "      .subs(sp.expand(dx*dx*(-w0/2+sp.Rational(1,2)+w0/s1-1/s1)/dt),sp.factor(dx*dx*(-w0/2+sp.Rational(1,2)+w0/s1-1/s1)/dt))\n",
+    "     .subs(sp.factor(-dx*dx*(-w0/2+sp.Rational(1,2)+w0/s1-1/s1)/dt), nu)\n",
+    "     .subs(sp.expand(dx*dx*dx*dx*(-w0/2+sp.Rational(1,2)+w0/s1-1/s1)/(12*dt)), -dx*dx*nu/12)\n",
+    "     .subs(sp.expand(dx*dx*nu*(-w0/4 + sp.Rational(1,6) + w0/(2*s2) + 3*w0/(2*s1) - 1/s1 - w0/(s1*s2) - w0/s1**2 + 1/s1**2 ) ), sp.factor(sp.expand(dx*dx*nu*(-w0/4 + sp.Rational(1,6) + w0/(2*s2) + 3*w0/(2*s1) - 1/s1 - w0/(s1*s2) - w0/s1**2 + 1/s1**2 ) ))) )\n",
+    "rel2"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# from sympy import latex\n",
+    "# print(latex(sp.simplify(kept.subs(dt**2*dx**2,0))))"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.12"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}

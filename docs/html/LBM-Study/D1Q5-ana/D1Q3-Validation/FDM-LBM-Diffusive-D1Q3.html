@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Difference Finite Scheme derived from MRT Lattice Boltzmann for Convective-Diffusive Equation &mdash; Academic-Live-Documentation 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/sphinx_rtd_size.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sphinx-thebe.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/eqno.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/sidebar.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+        <script async="async" src="../../../_static/sphinx-thebe.js?v=afe5de03"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../../_static/css/sidebar.js?v=29393464"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Academic-Live-Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Porous Media - Multiphase Flow in Porous Continuous Porous Media:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Porous-Media-Study/Intro/Intro-PM-MFinPCPM.html">Introdution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Porous-Media-Study/Intro/Intro-PM-MFinPCPM.html#mass-balance-for-two-fluids-continuous-porous-media">Mass Balance for two-fluids (Continuous Porous Media)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Lattice Boltzmann Method - Application to Different Partial differential Equation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro-lbm-conv-diff/Diffusive-Equation.html">Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro-lbm-conv-diff/Poisson-Equation.html">Poisson Equation (Steady-State Diffusive Equation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro-lbm-conv-diff/Convective-Equation.html">Convective Equation (Transport Equation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro-lbm-conv-diff/Convective-Diffusive-Equation.html">Convective-Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FDM-LBM-Diffusive.html">Difference Finite Scheme of Diffusive Equation derived from Lattice Boltzmann</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FDM-LBM-Convective-Diffusive.html">Difference Finite Scheme derived from MRT Lattice Boltzmann for Convective-Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ementa.html">Conteúdo - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">LBM-Analysis:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro-lbm-conv-diff/Extra-Avoiding-Diffusive-Effect-in-CE%28Unfinished%29.html">Extra::Avoiding Diffusive effect in Convective Equation (Unfinished) - Variable Lattice Sound Sped</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Citations.html">Citations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro-lbm-conv-diff/appendix/bcs-D2Q5-poisson-equation.html">Boundary Conditions: Deduction for the Lattice D2Q5 - Poisson Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix/sympy-code-fdm-diffusive-expansion.html">Sympy code for FDM expansion of LBM diffusive equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix/sympy-code-mrt-fdm-diffusive-expansion-4th.html">Sympy code for FDM expansion of LBM diffusive equation up to Fourth-order</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix/sympy-code-mrt-fdm-diffusive-expansion-6th.html">Sympy code for FDM expansion of LBM diffusive equation up to Sixth-order</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Porous-Media-Study/Intro/trans-eq/base-trans-eq.html">Introdution for Transport Equations</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Academic-Live-Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Difference Finite Scheme derived from MRT Lattice Boltzmann for Convective-Diffusive Equation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/LBM-Study/D1Q5-ana/D1Q3-Validation/FDM-LBM-Diffusive-D1Q3.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="difference-finite-scheme-derived-from-mrt-lattice-boltzmann-for-convective-diffusive-equation">
+<h1>Difference Finite Scheme derived from MRT Lattice Boltzmann for Convective-Diffusive Equation<a class="headerlink" href="#difference-finite-scheme-derived-from-mrt-lattice-boltzmann-for-convective-diffusive-equation" title="Link to this heading"></a></h1>
+<p>Based on the works of <span id="id1">Bellotti <em>et al.</em> [<a class="reference internal" href="../../../Citations.html#id11" title="Thomas Bellotti, Benjamin Graille, and Marc Massot. Finite difference formulation of any lattice boltzmann scheme. Numerische Mathematik, 152(1):1–40, 2022.">7</a>]</span> and <span id="id2">Chen <em>et al.</em> [<a class="reference internal" href="../../../Citations.html#id8" title="Ying Chen, Zhenhua Chai, and Baochang Shi. Fourth-order multiple-relaxation-time lattice boltzmann model and equivalent finite-difference scheme for one-dimensional convection-diffusion equations. Physical Review E, 107(5):055305, 2023.">8</a>]</span>, we will develop a difference finite description of lattice Boltzmann equation in the multi-relaxation-times (MRT) framework.</p>
+<section id="mrt-lattice-boltzmann-equation-for-convective-diffusive-equation">
+<h2>MRT Lattice Boltzmann equation for Convective-Diffusive Equation<a class="headerlink" href="#mrt-lattice-boltzmann-equation-for-convective-diffusive-equation" title="Link to this heading"></a></h2>
+<p>To describe convective-diffusive problems, the MRT lattice Boltzmann formulation is described by:</p>
+<div class="math notranslate nohighlight" id="equation-mrt-lb-conv-df-eq">
+<span class="eqno">()<a class="headerlink" href="#equation-mrt-lb-conv-df-eq" title="Link to this equation"></a></span>\[
+f_i( x_{\alpha} + e_{i,\alpha} \delta t, t+\delta t) = f_i(x_{\alpha}, t)  - (\textbf{M}^{-1}\textbf{S}\textbf{M})_{ik}\left( f_{k} - f_{k}^{eq}  \right), 
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\textbf{M}\)</span> is matrix of moments, <span class="math notranslate nohighlight">\(\textbf{S}\)</span> is the diagonal matrix of relaxation times, and <span class="math notranslate nohighlight">\(\textbf{M}^{-1}\)</span> is the inverse matrix of <span class="math notranslate nohighlight">\(\textbf{M}\)</span>. Considering the problem description in a lattice D1Q3, we have:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\textbf{M} =\begin{pmatrix} 1 \\ e_{i,x} \\ 3e_{i,x}^{2}-2 \end{pmatrix} =\begin{pmatrix} 1 &amp; 1 &amp; 1 \\ 0 &amp; 1   &amp; -1 \\ -2  &amp; 1 &amp; 1 \end{pmatrix},  \qquad \qquad  \textbf{S} = \begin{pmatrix} s_0 &amp; 0   &amp; 0 \\ 0   &amp; s_1 &amp; 0 \\ 0   &amp; 0   &amp; s_2 \end{pmatrix},  \qquad \qquad \textbf{M}^{-1}=\begin{pmatrix}\dfrac{1}{3} &amp; 0 &amp; -\dfrac{1}{3} \\ \dfrac{1}{3} &amp; \dfrac{1}{2} &amp; \dfrac{1}{6} \\ \dfrac{1}{3} &amp; -\dfrac{1}{2} &amp; \dfrac{1}{6} \end{pmatrix}.
+\end{split}\]</div>
+<p>The equilibrium distribution function is defined by</p>
+<div class="math notranslate nohighlight">
+\[
+f^{eq}_{i} = w_{i}\left( u \right).
+\]</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pylab</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">S</span><span class="p">,</span> <span class="n">collect</span><span class="p">,</span> <span class="n">expand</span><span class="p">,</span> <span class="n">factor</span><span class="p">,</span> <span class="n">Wild</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">fraction</span><span class="p">,</span> <span class="n">Rational</span><span class="p">,</span> <span class="n">Symbol</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">Rational</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Math</span><span class="p">,</span> <span class="n">Latex</span>
+<span class="c1">#-------------------------------------------------Símbolos----------------------------------------------</span>
+<span class="n">omega</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">Lamb</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;omega, u, B_{</span><span class="se">\\</span><span class="s1">alpha}, w, C, </span><span class="se">\\</span><span class="s1">Lambda_{</span><span class="se">\\</span><span class="s1">alpha</span><span class="se">\\</span><span class="s1">beta}&#39;</span><span class="p">)</span>
+<span class="n">wi</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">cs</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;w_</span><span class="si">{i}</span><span class="s1"> c_</span><span class="si">{x}</span><span class="s1"> c_</span><span class="si">{y}</span><span class="s1"> c_</span><span class="si">{s}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">fi</span><span class="p">,</span> <span class="n">f0</span><span class="p">,</span> <span class="n">f1</span><span class="p">,</span> <span class="n">f2</span>  <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;f_</span><span class="si">{i}</span><span class="s1"> f_</span><span class="si">{0}</span><span class="s1"> f_</span><span class="si">{1}</span><span class="s1"> f_</span><span class="si">{2}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1">#-------------------------------------------------Funções----------------------------------------------</span>
+<span class="n">feq</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="s1">&#39;feq&#39;</span><span class="p">)(</span><span class="n">wi</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">)</span>
+<span class="n">fneq</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="s1">&#39;fneq&#39;</span><span class="p">)(</span><span class="n">wi</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">)(</span><span class="n">fi</span><span class="p">)</span>
+<span class="c1">#----------------------------------------------Lattice-D2Q9---Variáveis----------------------------------------------</span>
+<span class="n">fi</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">f0</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">])</span>
+<span class="n">w0</span><span class="o">=</span><span class="n">Rational</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span><span class="n">w1</span><span class="o">=</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">wi</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">w0</span><span class="p">,</span><span class="n">w1</span><span class="p">,</span><span class="n">w1</span><span class="p">])</span>
+<span class="n">cx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">as2</span><span class="o">=</span><span class="n">Rational</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">cs2</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">as2</span>
+<span class="c1">#-------------------------------------------------Calc.Func------------------------------------------------</span>
+<span class="n">f</span><span class="o">=</span> <span class="n">fi</span>
+<span class="n">feq</span><span class="o">=</span><span class="n">wi</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>The different orders of equilibrium moments can be recovered by:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a0</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cx</span><span class="p">))</span>
+<span class="n">axx</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cx</span><span class="o">*</span><span class="n">cx</span><span class="p">))</span>
+<span class="n">axxx</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cx</span><span class="o">*</span><span class="n">cx</span><span class="o">*</span><span class="n">cx</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> =\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2"> }_{\textrm{Zero-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span> 
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">e_{i,x} }_{\textrm{x-First-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> e_{i,x}e_{i,x} }_{\textrm{xx-Second-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">axx</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> e_{i,x}e_{i,x}e_{i,x} }_{\textrm{xxx-Third-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">axxx</span><span class="p">)</span> <span class="p">))</span>
+
+<span class="n">aH0</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="p">))</span>
+<span class="n">aHx</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cx</span><span class="p">))</span>
+<span class="n">aHxx</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="p">(</span><span class="n">cx</span><span class="o">*</span><span class="n">cx</span><span class="o">-</span><span class="n">cs2</span><span class="p">)))</span>
+<span class="n">aHxxx</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="p">(</span><span class="n">cx</span><span class="o">*</span><span class="n">cx</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">cs2</span><span class="p">)</span><span class="o">*</span><span class="n">cx</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> =\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2"> }_{\textrm{Zero-Order Hermite Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">aH0</span><span class="p">)</span> 
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">e_{i,x} }_{\textrm{x-First-Order Hermite Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">aHx</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> \left(e_{i,x}e_{i,x} - \frac</span><span class="si">{1}</span><span class="s2">{a_</span><span class="si">{s}</span><span class="s2">^</span><span class="si">{2}</span><span class="s2">}\right) }_{\textrm{xx-Second-Order Hermite Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">aHxx</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> \left(e_{i,x}e_{i,x} - \frac</span><span class="si">{3}</span><span class="s2">{a_</span><span class="si">{s}</span><span class="s2">^</span><span class="si">{2}</span><span class="s2">}\right) e_{i,x} }_{\textrm{xxx-Third-Order Hermite Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">aHxxx</span><span class="p">)</span> <span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \underbrace{\sum_{i=0} f_{i}^{eq} =\sum_{i=0} f_{i} }_{\textrm{Zero-Order Moment}} =u,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}e_{i,x} }_{\textrm{x-First-Order Moment}} =0,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq} e_{i,x}e_{i,x} }_{\textrm{xx-Second-Order Moment}} =\frac{u}{3},\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq} e_{i,x}e_{i,x}e_{i,x} }_{\textrm{xxx-Third-Order Moment}} =0\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \underbrace{\sum_{i=0} f_{i}^{eq} =\sum_{i=0} f_{i} }_{\textrm{Zero-Order Hermite Moment}} =u,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}e_{i,x} }_{\textrm{x-First-Order Hermite Moment}} =0,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq} \left(e_{i,x}e_{i,x} - \frac{1}{a_{s}^{2}}\right) }_{\textrm{xx-Second-Order Hermite Moment}} =0,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq} \left(e_{i,x}e_{i,x} - \frac{3}{a_{s}^{2}}\right) e_{i,x} }_{\textrm{xxx-Third-Order Hermite Moment}} =0\]</div>
+</div>
+</div>
+</section>
+<section id="fdm-interpretation-in-mrt-framework">
+<h2>FDM Interpretation in MRT Framework<a class="headerlink" href="#fdm-interpretation-in-mrt-framework" title="Link to this heading"></a></h2>
+<p>Reinterpreting the Eq. <a class="reference internal" href="../../FDM-LBM-Convective-Diffusive.html#equation-mrt-lb-conv-df-eq">(62)</a> with a shift in distribution function direction:</p>
+<div class="math notranslate nohighlight">
+\[
+f_{i,x}^{t+1}  = f_{i,x-e_{i}}^{t}  - (\textbf{M}^{-1}\textbf{S}\textbf{M})_{ik}\left( f_{k,x-e_{i}}^{t} - f_{k,x-e_{i}}^{eq,t} \right) =   (\textbf{M}^{-1} (\textbf{I} -\textbf{S}) \textbf{M})_{ik} f_{k,x-e_{i}}^{t} + (\textbf{M}^{-1}\textbf{S}\textbf{M})_{ik} f_{k,x-e_{i}}^{eq,t}  , 
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_i( x_{\alpha} + e_{i,\alpha} \delta t, t+\delta t)=f_{i,x+c_{i}}^{t+1}\)</span> for simplificate the notation and <span class="math notranslate nohighlight">\(\textbf{I}\)</span> is identity matrix. Defining the shift operator <span class="math notranslate nohighlight">\(T_{\Delta x}^{c_{i}}\)</span>, where <span class="math notranslate nohighlight">\(f_{k,x-e_{i}}^{t}= T_{\Delta x}^{c_{i}}[f_{k,x}^{t}]\)</span>, we can rewrite the above equation inside of the moments space:</p>
+<div class="math notranslate nohighlight" id="equation-prem-rt-lb-conv-df-eq">
+<span class="eqno">()<a class="headerlink" href="#equation-prem-rt-lb-conv-df-eq" title="Link to this equation"></a></span>\[
+\textbf{m}_{k,x}^{t+1}  = \textbf{P}\textbf{m}_{k,x}^{t}  + \textbf{Q}\textbf{m}_{k,x}^{eq,t}, 
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\textbf{m}_{k,x}^{t}=M_{ik}f_{i,x}^{t}\)</span>, <span class="math notranslate nohighlight">\(k\)</span> is the index of moments in the space moment, <span class="math notranslate nohighlight">\(\textbf{T}:= \textbf{M} (diag\left( T_{\Delta x}^{c_{0}}, T_{\Delta x}^{c_{1}}, T_{\Delta x}^{c_{2}} \right)) \textbf{M}^{-1}\)</span>, <span class="math notranslate nohighlight">\(\textbf{P}:=\textbf{T}(\textbf{I}-\textbf{S})\)</span>, and , <span class="math notranslate nohighlight">\(\textbf{Q}:=\textbf{T}\textbf{S}\)</span>. The matrices are given by:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pylab</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">fic</span><span class="p">,</span> <span class="n">f0c</span><span class="p">,</span> <span class="n">f1c</span><span class="p">,</span> <span class="n">f2c</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">([</span><span class="s1">&#39;f_{i\,x+c_</span><span class="si">{i}</span><span class="s1">}^t&#39;</span><span class="p">,</span><span class="s1">&#39;f_{0\,x+c_</span><span class="si">{i}</span><span class="s1">}^t&#39;</span><span class="p">,</span><span class="s1">&#39;f_{1\,x+c_</span><span class="si">{i}</span><span class="s1">}^t&#39;</span><span class="p">,</span><span class="s1">&#39;f_{2\,x+c_</span><span class="si">{i}</span><span class="s1">}^t&#39;</span><span class="p">])</span>
+<span class="n">f0tp1</span><span class="p">,</span> <span class="n">f1tp1</span><span class="p">,</span> <span class="n">f2tp1</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">([</span><span class="s1">&#39;f_{0\,x}^{t+1}&#39;</span><span class="p">,</span><span class="s1">&#39;f_{1\,x}^{t+1}&#39;</span><span class="p">,</span><span class="s1">&#39;f_{2\,x}^{t+1}&#39;</span><span class="p">])</span>
+<span class="n">f0</span><span class="p">,</span> <span class="n">f1</span><span class="p">,</span> <span class="n">f2</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">([</span><span class="s1">&#39;f_{0\,x}^t&#39;</span><span class="p">,</span><span class="s1">&#39;f_{1\,x}^t&#39;</span><span class="p">,</span><span class="s1">&#39;f_{2\,x}^t&#39;</span><span class="p">])</span>
+<span class="n">f0m1</span><span class="p">,</span> <span class="n">f1m1</span><span class="p">,</span> <span class="n">f2m1</span><span class="p">,</span> <span class="n">f0p1</span><span class="p">,</span> <span class="n">f1p1</span><span class="p">,</span> <span class="n">f2p1</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">([</span><span class="s1">&#39;f_{0\,x-1}^t&#39;</span><span class="p">,</span><span class="s1">&#39;f_{1\,x-1}^t&#39;</span><span class="p">,</span><span class="s1">&#39;f_{2\,x-1}^t&#39;</span><span class="p">,</span><span class="s1">&#39;f_{0\,x+1}^t&#39;</span><span class="p">,</span><span class="s1">&#39;f_{1\,x+1}^t&#39;</span><span class="p">,</span><span class="s1">&#39;f_{2\,x+1}^t&#39;</span><span class="p">])</span>
+<span class="n">f0m1t1</span><span class="p">,</span> <span class="n">f1m1t1</span><span class="p">,</span> <span class="n">f2m1t1</span><span class="p">,</span> <span class="n">f0p1t1</span><span class="p">,</span> <span class="n">f1p1t1</span><span class="p">,</span> <span class="n">f2p1t1</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">([</span><span class="s1">&#39;f_{0\,x-1}^{t-1}&#39;</span><span class="p">,</span><span class="s1">&#39;f_{1\,x-1}^{t-1}&#39;</span><span class="p">,</span><span class="s1">&#39;f_{2\,x-1}^{t-1}&#39;</span><span class="p">,</span><span class="s1">&#39;f_{0\,x+1}^{t-1}&#39;</span><span class="p">,</span><span class="s1">&#39;f_{1\,x+1}^{t-1}&#39;</span><span class="p">,</span><span class="s1">&#39;f_{2\,x+1}^{t-1}&#39;</span><span class="p">])</span>
+<span class="n">f0t1</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;f_{0\,x}^{t-1}&#39;</span><span class="p">)</span>
+<span class="n">w0</span><span class="p">,</span> <span class="n">w1</span><span class="p">,</span> <span class="n">w2</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">([</span><span class="s1">&#39;w_0&#39;</span><span class="p">,</span><span class="s1">&#39;w_1&#39;</span><span class="p">,</span><span class="s1">&#39;w_2&#39;</span><span class="p">])</span>
+<span class="n">s0</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">([</span><span class="s1">&#39;s_0&#39;</span><span class="p">,</span><span class="s1">&#39;s_1&#39;</span><span class="p">,</span><span class="s1">&#39;s_2&#39;</span><span class="p">])</span>
+<span class="n">phi</span><span class="p">,</span> <span class="n">phic</span><span class="p">,</span> <span class="n">phim1</span><span class="p">,</span> <span class="n">phip1</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">([</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">phi_</span><span class="si">{x}</span><span class="s1">^</span><span class="si">{t}</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">phi_{x-c_</span><span class="si">{i}</span><span class="s1">}^</span><span class="si">{t}</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">phi_{x-1}^</span><span class="si">{t}</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">phi_{x+1}^</span><span class="si">{t}</span><span class="s1">&#39;</span><span class="p">])</span>
+<span class="n">phitp1</span><span class="p">,</span> <span class="n">phit1</span><span class="p">,</span> <span class="n">phit2</span><span class="o">=</span> <span class="n">symbols</span><span class="p">([</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">phi_</span><span class="si">{x}</span><span class="s1">^{t+1}&#39;</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">phi_</span><span class="si">{x}</span><span class="s1">^{t-1}&#39;</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">phi_</span><span class="si">{x}</span><span class="s1">^{t-2}&#39;</span><span class="p">])</span>
+<span class="n">phim1t1</span><span class="p">,</span><span class="n">phip1t1</span><span class="o">=</span> <span class="n">symbols</span><span class="p">([</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">phi_{x-1}^{t-1}&#39;</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">phi_{x+1}^{t-1}&#39;</span><span class="p">])</span>
+<span class="n">Tc0</span><span class="p">,</span> <span class="n">Tc1</span><span class="p">,</span> <span class="n">Tc2</span><span class="o">=</span> <span class="n">symbols</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;T_{\Delta_</span><span class="si">{x}</span><span class="s1">}^{c_</span><span class="si">{0}</span><span class="s1">}&#39;</span><span class="p">,</span><span class="s1">&#39;T_{\Delta_</span><span class="si">{x}</span><span class="s1">}^{c_</span><span class="si">{1}</span><span class="s1">}&#39;</span><span class="p">,</span><span class="s1">&#39;T_{\Delta_</span><span class="si">{x}</span><span class="s1">}^{c_</span><span class="si">{2}</span><span class="s1">}&#39;</span><span class="p">])</span>
+<span class="n">cx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">wi</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">w0</span><span class="p">,</span><span class="n">w1</span><span class="p">,</span><span class="n">w2</span><span class="p">])</span>
+<span class="n">wiM</span><span class="o">=</span><span class="n">Matrix</span><span class="p">([</span><span class="n">w0</span><span class="p">,</span><span class="n">w1</span><span class="p">,</span><span class="n">w2</span><span class="p">])</span>
+<span class="n">fi</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">f0</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">])</span>
+<span class="n">fM</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([</span><span class="n">f0</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">])</span>
+<span class="n">ficM</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([</span><span class="n">f0c</span><span class="p">,</span><span class="n">f1c</span><span class="p">,</span><span class="n">f2c</span><span class="p">])</span>
+<span class="n">I</span><span class="o">=</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">Tc</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([</span><span class="n">I</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span><span class="o">*</span><span class="n">Tc0</span><span class="p">,</span><span class="n">I</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span><span class="o">*</span><span class="n">Tc1</span><span class="p">,</span><span class="n">I</span><span class="p">[</span><span class="mi">2</span><span class="p">,:]</span><span class="o">*</span><span class="n">Tc2</span><span class="p">])</span>
+<span class="n">SM</span><span class="o">=</span><span class="n">Matrix</span><span class="p">([</span><span class="n">I</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span><span class="o">*</span><span class="n">s0</span><span class="p">,</span><span class="n">I</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span><span class="o">*</span><span class="n">s1</span><span class="p">,</span><span class="n">I</span><span class="p">[</span><span class="mi">2</span><span class="p">,:]</span><span class="o">*</span><span class="n">s2</span><span class="p">])</span>
+<span class="n">feq</span><span class="o">=</span><span class="n">phi</span><span class="o">*</span><span class="n">wi</span>
+<span class="n">feqM</span><span class="o">=</span><span class="n">Matrix</span><span class="p">([</span><span class="n">feq</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">feq</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">feq</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">m0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">m1</span><span class="o">=</span><span class="n">cx</span>
+<span class="n">m2</span><span class="o">=</span><span class="mi">3</span><span class="o">*</span><span class="n">cx</span><span class="o">*</span><span class="n">cx</span> <span class="o">-</span> <span class="mi">2</span>
+<span class="n">M</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">m0</span><span class="p">,</span><span class="n">m1</span><span class="p">,</span><span class="n">m2</span><span class="p">])</span>
+<span class="n">MM</span><span class="o">=</span><span class="n">Matrix</span><span class="p">([</span><span class="n">m0</span><span class="p">,</span><span class="n">m1</span><span class="p">,</span><span class="n">m2</span><span class="p">])</span>
+<span class="n">MMinv</span><span class="o">=</span><span class="n">MM</span><span class="o">.</span><span class="n">inv</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TM</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">MM</span><span class="o">*</span><span class="n">Tc</span><span class="o">*</span><span class="n">MMinv</span><span class="p">)</span>
+<span class="n">P</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">TM</span><span class="o">*</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="n">SM</span><span class="p">))</span>
+<span class="n">Q</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">TM</span><span class="o">*</span><span class="n">SM</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\textbf</span><span class="si">{T}</span><span class="s2"> =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">TM</span><span class="p">)</span> <span class="o">+</span><span class="s2">&quot;,&quot;</span> <span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\textbf</span><span class="si">{P}</span><span class="s2"> =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">P</span><span class="p">)</span> <span class="o">+</span><span class="s2">&quot;,&quot;</span> <span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\textbf</span><span class="si">{Q}</span><span class="s2"> =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span> <span class="o">+</span><span class="s2">&quot;.&quot;</span> <span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \textbf{T} =\left[\begin{matrix}\frac{T_{\Delta_{x}}^{c_{0}}}{3} + \frac{T_{\Delta_{x}}^{c_{1}}}{3} + \frac{T_{\Delta_{x}}^{c_{2}}}{3} &amp; \frac{T_{\Delta_{x}}^{c_{1}}}{2} - \frac{T_{\Delta_{x}}^{c_{2}}}{2} &amp; - \frac{T_{\Delta_{x}}^{c_{0}}}{3} + \frac{T_{\Delta_{x}}^{c_{1}}}{6} + \frac{T_{\Delta_{x}}^{c_{2}}}{6}\\\frac{T_{\Delta_{x}}^{c_{1}}}{3} - \frac{T_{\Delta_{x}}^{c_{2}}}{3} &amp; \frac{T_{\Delta_{x}}^{c_{1}}}{2} + \frac{T_{\Delta_{x}}^{c_{2}}}{2} &amp; \frac{T_{\Delta_{x}}^{c_{1}}}{6} - \frac{T_{\Delta_{x}}^{c_{2}}}{6}\\- \frac{2 T_{\Delta_{x}}^{c_{0}}}{3} + \frac{T_{\Delta_{x}}^{c_{1}}}{3} + \frac{T_{\Delta_{x}}^{c_{2}}}{3} &amp; \frac{T_{\Delta_{x}}^{c_{1}}}{2} - \frac{T_{\Delta_{x}}^{c_{2}}}{2} &amp; \frac{2 T_{\Delta_{x}}^{c_{0}}}{3} + \frac{T_{\Delta_{x}}^{c_{1}}}{6} + \frac{T_{\Delta_{x}}^{c_{2}}}{6}\end{matrix}\right],\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \textbf{P} =\left[\begin{matrix}- \frac{\left(s_{0} - 1\right) \left(T_{\Delta_{x}}^{c_{0}} + T_{\Delta_{x}}^{c_{1}} + T_{\Delta_{x}}^{c_{2}}\right)}{3} &amp; - \frac{\left(T_{\Delta_{x}}^{c_{1}} - T_{\Delta_{x}}^{c_{2}}\right) \left(s_{1} - 1\right)}{2} &amp; - \frac{\left(s_{2} - 1\right) \left(- 2 T_{\Delta_{x}}^{c_{0}} + T_{\Delta_{x}}^{c_{1}} + T_{\Delta_{x}}^{c_{2}}\right)}{6}\\- \frac{\left(T_{\Delta_{x}}^{c_{1}} - T_{\Delta_{x}}^{c_{2}}\right) \left(s_{0} - 1\right)}{3} &amp; - \frac{\left(T_{\Delta_{x}}^{c_{1}} + T_{\Delta_{x}}^{c_{2}}\right) \left(s_{1} - 1\right)}{2} &amp; - \frac{\left(T_{\Delta_{x}}^{c_{1}} - T_{\Delta_{x}}^{c_{2}}\right) \left(s_{2} - 1\right)}{6}\\- \frac{\left(s_{0} - 1\right) \left(- 2 T_{\Delta_{x}}^{c_{0}} + T_{\Delta_{x}}^{c_{1}} + T_{\Delta_{x}}^{c_{2}}\right)}{3} &amp; - \frac{\left(T_{\Delta_{x}}^{c_{1}} - T_{\Delta_{x}}^{c_{2}}\right) \left(s_{1} - 1\right)}{2} &amp; - \frac{\left(s_{2} - 1\right) \left(4 T_{\Delta_{x}}^{c_{0}} + T_{\Delta_{x}}^{c_{1}} + T_{\Delta_{x}}^{c_{2}}\right)}{6}\end{matrix}\right],\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \textbf{Q} =\left[\begin{matrix}\frac{s_{0} \left(T_{\Delta_{x}}^{c_{0}} + T_{\Delta_{x}}^{c_{1}} + T_{\Delta_{x}}^{c_{2}}\right)}{3} &amp; \frac{s_{1} \left(T_{\Delta_{x}}^{c_{1}} - T_{\Delta_{x}}^{c_{2}}\right)}{2} &amp; \frac{s_{2} \left(- 2 T_{\Delta_{x}}^{c_{0}} + T_{\Delta_{x}}^{c_{1}} + T_{\Delta_{x}}^{c_{2}}\right)}{6}\\\frac{s_{0} \left(T_{\Delta_{x}}^{c_{1}} - T_{\Delta_{x}}^{c_{2}}\right)}{3} &amp; \frac{s_{1} \left(T_{\Delta_{x}}^{c_{1}} + T_{\Delta_{x}}^{c_{2}}\right)}{2} &amp; \frac{s_{2} \left(T_{\Delta_{x}}^{c_{1}} - T_{\Delta_{x}}^{c_{2}}\right)}{6}\\\frac{s_{0} \left(- 2 T_{\Delta_{x}}^{c_{0}} + T_{\Delta_{x}}^{c_{1}} + T_{\Delta_{x}}^{c_{2}}\right)}{3} &amp; \frac{s_{1} \left(T_{\Delta_{x}}^{c_{1}} - T_{\Delta_{x}}^{c_{2}}\right)}{2} &amp; \frac{s_{2} \left(4 T_{\Delta_{x}}^{c_{0}} + T_{\Delta_{x}}^{c_{1}} + T_{\Delta_{x}}^{c_{2}}\right)}{6}\end{matrix}\right].\end{split}\]</div>
+</div>
+</div>
+<p>By the Eq. <a class="reference internal" href="../../FDM-LBM-Convective-Diffusive.html#equation-prem-rt-lb-conv-df-eq">(63)</a> can be shifted in time, we recursively over <span class="math notranslate nohighlight">\(n\)</span> timestep replace the shifted time function in it:</p>
+<div class="math notranslate nohighlight" id="equation-prem-rt-lb-conv-df-eq-s2">
+<span class="eqno">()<a class="headerlink" href="#equation-prem-rt-lb-conv-df-eq-s2" title="Link to this equation"></a></span>\[
+\underbrace{ \textbf{m}_{k,x}^{t+1}  = \textbf{P}\textbf{m}_{k,x}^{t}  + \textbf{Q}\textbf{m}_{k,x}^{eq,t} \quad \rightarrow \quad  \textbf{m}_{k,x}^{t}  = \textbf{P}\textbf{m}_{k,x}^{t-1}  + \textbf{Q}\textbf{m}_{k,x}^{eq,t-1} }_{\textrm{Time Shift}} \qquad  \textrm{Recursive Substitution $n$ times:} \qquad \textbf{m}_{k,x}^{t+1}  = \textbf{P}^{n}\textbf{m}_{k,x}^{t-n+1}  + \displaystyle\sum_{l=0}^{n-1}\textbf{P}^{l}\textbf{Q}\textbf{m}_{k,x}^{eq,t-l}.
+\]</div>
+<p>The next steps follow in orde to employ the Calay-Hamilton theorem <span id="id3">[<a class="reference internal" href="../../../Citations.html#id11" title="Thomas Bellotti, Benjamin Graille, and Marc Massot. Finite difference formulation of any lattice boltzmann scheme. Numerische Mathematik, 152(1):1–40, 2022.">7</a>]</span>. In htis way, we need to find the characteristical polinomial <span class="math notranslate nohighlight">\(\mathcal{X}_{P}\)</span> of the matrix <span class="math notranslate nohighlight">\(\textbf{P}\)</span> (the definition of characteristical polinomial are presented in toogle below), given by:</p>
+<div class="toggle docutils container">
+<p>The characteristic polynomial of a square matrix <span class="math notranslate nohighlight">\((P \in \mathbb{R}^{n \times n})\)</span> (or <span class="math notranslate nohighlight">\((\mathbb{C}^{n \times n}))\)</span> is defined as:</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{\mathcal{X}_{P}(X) = \det(X I - P)} \qquad \rightarrow \qquad \mathcal{X}_{P}(X) = \sum_{i=0}^{n} X^{i}\gamma^{i} 
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\gamma_{i}\)</span> are the polynomial coefficients.</p>
+</div>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{X}_{P} = \gamma_{3}X^{3} +  \gamma_{2}X^{2} +  \gamma_{1}X^{1} +  \gamma_{0},
+\]</div>
+<p>where all the polynomial coefficients <span class="math notranslate nohighlight">\(\gamma_{i}\)</span> are shifted by <span class="math notranslate nohighlight">\(T_{\Delta x}^{c_{0}}\)</span>:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">symbols</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">cp</span> <span class="o">=</span> <span class="n">P</span><span class="o">.</span><span class="n">charpoly</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="c1"># cp.as_expr() </span>
+<span class="n">gamma3</span><span class="o">=</span><span class="n">Tc0</span>
+<span class="n">gamma2</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">collect</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">all_coeffs</span><span class="p">()[</span><span class="mi">1</span><span class="p">],[</span><span class="n">s2</span><span class="p">,</span><span class="n">s1</span><span class="p">,</span><span class="n">s0</span><span class="p">])</span>
+<span class="n">gamma1</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">collect</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">all_coeffs</span><span class="p">()[</span><span class="mi">2</span><span class="p">],[</span><span class="n">s2</span><span class="o">*</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span><span class="n">s0</span><span class="p">])</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">Tc1</span><span class="o">*</span><span class="n">Tc2</span><span class="p">,</span><span class="n">Tc0</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">Tc0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">Tc0</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Tc0</span><span class="p">)</span>
+<span class="n">gamma0</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">collect</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">all_coeffs</span><span class="p">()[</span><span class="mi">3</span><span class="p">],[</span><span class="n">s2</span><span class="o">*</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span><span class="n">s0</span><span class="p">])</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">Tc1</span><span class="o">*</span><span class="n">Tc2</span><span class="p">,</span><span class="n">Tc0</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">Tc0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">Tc0</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\gamma_</span><span class="si">{3}</span><span class="s2"> =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">gamma3</span><span class="p">)</span> <span class="o">+</span><span class="s2">&quot;,&quot;</span> <span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\gamma_</span><span class="si">{2}</span><span class="s2"> =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">gamma2</span><span class="p">)</span> <span class="o">+</span><span class="s2">&quot;,&quot;</span> <span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\gamma_</span><span class="si">{1}</span><span class="s2"> =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">gamma1</span><span class="p">)</span> <span class="o">+</span><span class="s2">&quot;,&quot;</span> <span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\gamma_</span><span class="si">{0}</span><span class="s2"> =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">gamma0</span><span class="p">)</span> <span class="o">+</span><span class="s2">&quot;.&quot;</span> <span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \gamma_{3} =T_{\Delta_{x}}^{c_{0}},\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \gamma_{2} =- T_{\Delta_{x}}^{c_{0}} - T_{\Delta_{x}}^{c_{1}} - T_{\Delta_{x}}^{c_{2}} + s_{0} \left(\frac{T_{\Delta_{x}}^{c_{0}}}{3} + \frac{T_{\Delta_{x}}^{c_{1}}}{3} + \frac{T_{\Delta_{x}}^{c_{2}}}{3}\right) + s_{1} \left(\frac{T_{\Delta_{x}}^{c_{1}}}{2} + \frac{T_{\Delta_{x}}^{c_{2}}}{2}\right) + s_{2} \left(\frac{2 T_{\Delta_{x}}^{c_{0}}}{3} + \frac{T_{\Delta_{x}}^{c_{1}}}{6} + \frac{T_{\Delta_{x}}^{c_{2}}}{6}\right),\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \gamma_{1} =T_{\Delta_{x}}^{c_{0}} + T_{\Delta_{x}}^{c_{1}} + T_{\Delta_{x}}^{c_{2}} + \frac{s_{1} s_{2} \left(T_{\Delta_{x}}^{c_{0}} + T_{\Delta_{x}}^{c_{1}} + T_{\Delta_{x}}^{c_{2}}\right)}{3} - \frac{s_{1} \left(2 T_{\Delta_{x}}^{c_{0}} + T_{\Delta_{x}}^{c_{1}} + T_{\Delta_{x}}^{c_{2}}\right)}{2} - \frac{s_{2} \left(2 T_{\Delta_{x}}^{c_{0}} + 5 T_{\Delta_{x}}^{c_{1}} + 5 T_{\Delta_{x}}^{c_{2}}\right)}{6},\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \gamma_{0} =- T_{\Delta_{x}}^{c_{0}} \left(s_{1} - 1\right) \left(s_{2} - 1\right).\]</div>
+</div>
+</div>
+<p>To reach the above coeficient results, were considered: <span class="math notranslate nohighlight">\(T_{\Delta x}^{c_{1}}T_{\Delta x}^{c_{2}}=T_{\Delta x}^{c_{0}}\)</span>; <span class="math notranslate nohighlight">\(T_{\Delta x}^{c_{1}}T_{\Delta x}^{c_{0}}=T_{\Delta x}^{c_{1}}\)</span>; <span class="math notranslate nohighlight">\(T_{\Delta x}^{c_{2}}T_{\Delta x}^{c_{0}}=T_{\Delta x}^{c_{2}}\)</span>.Defined the characteristical polynomial, we multiply both sides of Eq. <a class="reference internal" href="../../FDM-LBM-Convective-Diffusive.html#equation-prem-rt-lb-conv-df-eq-s2">(64)</a> by <span class="math notranslate nohighlight">\(\sum_{n=0}^{q}\gamma_{n}\)</span> (where <span class="math notranslate nohighlight">\(q\)</span> is the number of lattice velocities) and perform a time shift by change the time variable <span class="math notranslate nohighlight">\(t\)</span> to <span class="math notranslate nohighlight">\(\tilde{t}+n=t+1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{c}
+\textbf{m}_{k,x}^{t+1}  = \textbf{P}^{n}\textbf{m}_{k,x}^{t-n+1}  + \displaystyle\sum_{l=0}^{n-1}\textbf{P}^{l}\textbf{Q}\textbf{m}_{k,x}^{eq,t-l} \qquad \rightarrow \qquad \textbf{m}_{k,x}^{\tilde{t}+n}  = \textbf{P}^{n}\textbf{m}_{k,x}^{\tilde{t}}  + \displaystyle\sum_{l=0}^{n-1}\textbf{P}^{l}\textbf{Q}\textbf{m}_{k,x}^{eq,\tilde{t}+n-1-l} \qquad \rightarrow \\
+\displaystyle\sum_{n=0}^{q}\gamma_{n} \textbf{m}_{k,x}^{\tilde{t}+n}  = \displaystyle\sum_{n=0}^{q}\gamma_{n}\textbf{P}^{n}\textbf{m}_{k,x}^{\tilde{t}}  + \displaystyle\sum_{n=0}^{q}\gamma_{n} \left(\displaystyle\sum_{l=0}^{n-1}\textbf{P}^{l}\textbf{Q}\textbf{m}_{k,x}^{eq,\tilde{t}+n-1-l}\right),
+\end{array}
+\end{split}\]</div>
+<p>by applying the Calay-Hamilton theorem, that imlpie <span class="math notranslate nohighlight">\(\sum_{n=0}^{q}\gamma_{n}\textbf{P}^{n}=0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\displaystyle\sum_{n=0}^{q}\gamma_{n} \textbf{m}_{k,x}^{\tilde{t}+n}  = \underbrace{\left(\displaystyle\sum_{n=0}^{q}\gamma_{n}\textbf{P}^{n}\right)}_{=0}\textbf{m}_{k,x}^{\tilde{t}}  + \displaystyle\sum_{n=0}^{q}\gamma_{n}\left( \displaystyle\sum_{l=0}^{n-1}\textbf{P}^{l}\textbf{Q}\textbf{m}_{k,x}^{eq,\tilde{t}+n-1-l} \right) \qquad \rightarrow \qquad \displaystyle\sum_{n=0}^{q}\gamma_{n} \textbf{m}_{k,x}^{\tilde{t}+n}  =  \displaystyle\sum_{n=0}^{q}\gamma_{n}\left(\displaystyle\sum_{l=0}^{n-1}\textbf{P}^{l}\textbf{Q}\textbf{m}_{k,x}^{eq,\tilde{t}+n-1-l}\right),
+\]</div>
+<p>applying a second time shift by change tha variable back to <span class="math notranslate nohighlight">\(\tilde{t}+q=t+1\)</span> and expanding the left hand-side term to isolate the time <span class="math notranslate nohighlight">\(t+1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{c}
+\displaystyle\sum_{n=0}^{q}\gamma_{n} \textbf{m}_{k,x}^{\tilde{t}+n}  =  \displaystyle\sum_{n=0}^{q}\gamma_{n}\left(\displaystyle\sum_{l=0}^{n-1}\textbf{P}^{l}\textbf{Q}\textbf{m}_{k,x}^{eq,\tilde{t}+n-1-l}\right)  \qquad \rightarrow \qquad \displaystyle\sum_{n=0}^{q}\gamma_{n} \textbf{m}_{k,x}^{t+1-q+n}  =  \displaystyle\sum_{n=0}^{q}\gamma_{n}\left(\displaystyle\sum_{l=0}^{n-1}\textbf{P}^{l}\textbf{Q}\textbf{m}_{k,x}^{eq,t-q+n-l}\right) \qquad \rightarrow \\
+\displaystyle\sum_{n=0}^{q}\gamma_{n} \textbf{m}_{k,x}^{t+1-q+n}  =  \displaystyle\sum_{n=0}^{q}\gamma_{n}\left(\displaystyle\sum_{l=0}^{n-1}\textbf{P}^{l}\textbf{Q}\textbf{m}_{k,x}^{eq,t-q+n-l}\right) \qquad \rightarrow \qquad \gamma_{q} \textbf{m}_{k,x}^{t+1}  = -\displaystyle\sum_{n=0}^{q-1}\gamma_{n} \textbf{m}_{k,x}^{t+1-q+n} + \displaystyle\sum_{n=0}^{q}\gamma_{n}\left(\displaystyle\sum_{l=0}^{n-1}\textbf{P}^{l}\textbf{Q}\textbf{m}_{k,x}^{eq,t-q+n-l}\right),
+\end{array}
+\end{split}\]</div>
+<p>the last sum term can be rewritten by</p>
+<div class="math notranslate nohighlight">
+\[
+\gamma_{q} \textbf{m}_{k,x}^{t+1}  = -\displaystyle\sum_{n=0}^{q-1}\gamma_{n} \textbf{m}_{k,x}^{t+1-q+n} + \displaystyle\sum_{n=0}^{q}\gamma_{n}\left(\displaystyle\sum_{l=0}^{n-1}\textbf{P}^{l}\textbf{Q}\textbf{m}_{k,x}^{eq,t-q+n-l}\right) \qquad \rightarrow \qquad \gamma_{q} \textbf{m}_{k,x}^{t+1}  = -\displaystyle\sum_{n=0}^{q-1}\gamma_{n} \textbf{m}_{k,x}^{t+1-q+n} + \displaystyle\sum_{n=0}^{q-1}\left(\displaystyle\sum_{l=0}^{n}\gamma_{q+l-n}\textbf{P}^{l}\right)\textbf{Q}\textbf{m}_{k,x}^{eq,t-n}.
+\]</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="c1"># ---------------- indices / parameters ----------------</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">integer</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">n</span><span class="p">,</span> <span class="n">l</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;n l&#39;</span><span class="p">,</span> <span class="n">integer</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nonnegative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">m1s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{t+1}_{k,x}&#39;</span><span class="p">)</span>
+<span class="n">m0s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^</span><span class="si">{t}</span><span class="s1">_{k,x}&#39;</span><span class="p">)</span>
+<span class="n">mm1s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{t-1}_{k,x}&#39;</span><span class="p">)</span>
+<span class="n">mm2s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{t-2}_{k,x}&#39;</span><span class="p">)</span>
+<span class="n">meq0s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{eq,t}_{k,x}&#39;</span><span class="p">)</span>
+<span class="n">meqm1s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{eq,t-1}_{k,x}&#39;</span><span class="p">)</span>
+<span class="n">meqm2s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{eq,t-2}_{k,x}&#39;</span><span class="p">)</span>
+
+<span class="c1"># gamma_j as an indexed coefficient sequence</span>
+<span class="n">gammas</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">IndexedBase</span><span class="p">(</span><span class="s1">&#39;gamma&#39;</span><span class="p">)</span>   <span class="c1"># gamma[j] means γ_j</span>
+
+<span class="c1"># Abstract time-shifted moments:</span>
+<span class="c1"># m(s)    := m_{k,x}^{t+s}</span>
+<span class="c1"># meq(s)  := m_{k,x}^{eq, t+s}</span>
+<span class="n">ms</span>   <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Function</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+<span class="n">meqs</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Function</span><span class="p">(</span><span class="s1">&#39;m_eq&#39;</span><span class="p">)</span>
+
+<span class="c1"># Operators/matrices (leave as Symbols unless you need matrix algebra)</span>
+<span class="n">Ps</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">)</span>
+<span class="n">Qs</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;Q&#39;</span><span class="p">)</span>
+
+<span class="c1"># ---------------- build the equation ----------------</span>
+<span class="n">lhs</span> <span class="o">=</span> <span class="n">gammas</span><span class="p">[</span><span class="n">q</span><span class="p">]</span> <span class="o">*</span> <span class="n">ms</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># γ_q * m^{t+1}</span>
+
+<span class="n">rhs1</span> <span class="o">=</span> <span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">summation</span><span class="p">(</span><span class="n">gammas</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">*</span> <span class="n">ms</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">q</span> <span class="o">+</span> <span class="n">n</span><span class="p">),</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">q</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">inner</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">summation</span><span class="p">(</span><span class="n">gammas</span><span class="p">[</span><span class="n">q</span> <span class="o">+</span> <span class="n">l</span> <span class="o">-</span> <span class="n">n</span><span class="p">]</span> <span class="o">*</span> <span class="n">Ps</span><span class="o">**</span><span class="n">l</span><span class="p">,</span> <span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+<span class="n">rhs2</span>  <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">summation</span><span class="p">(</span><span class="n">inner</span> <span class="o">*</span> <span class="n">Qs</span> <span class="o">*</span> <span class="n">meqs</span><span class="p">(</span><span class="o">-</span><span class="n">n</span><span class="p">),</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">q</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># eq = sp.Eq(lhs, rhs1 + rhs2)</span>
+<span class="n">eq</span> <span class="o">=</span> <span class="n">rhs1</span> <span class="o">+</span> <span class="n">rhs2</span>
+<span class="n">eq1</span> <span class="o">=</span> <span class="n">lhs</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">ms</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span><span class="n">m1s</span><span class="p">,</span><span class="n">gammas</span><span class="p">[</span><span class="n">q</span><span class="p">]:</span><span class="n">gammas</span><span class="p">[</span><span class="mi">3</span><span class="p">]})</span>
+
+<span class="c1"># ---------------- expand for a concrete q ----------------</span>
+<span class="c1"># SymPy can only &#39;doit&#39; finite sums once q is a number.</span>
+<span class="n">q_val</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># &lt;-- change to 2,3,4,... as needed</span>
+<span class="n">eq_expanded</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">eq</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">q_val</span><span class="p">)</span><span class="o">.</span><span class="n">doit</span><span class="p">())</span>
+
+<span class="c1"># print(f&quot;\nExpanded for q={q_val}:&quot;)</span>
+<span class="c1"># display(eq_expanded)</span>
+
+<span class="n">eqsubs</span><span class="o">=</span><span class="n">eq_expanded</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">ms</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span><span class="n">m1s</span><span class="p">,</span><span class="n">ms</span><span class="p">(</span><span class="mi">0</span><span class="p">):</span><span class="n">m0s</span><span class="p">,</span><span class="n">ms</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span><span class="n">mm1s</span><span class="p">,</span><span class="n">ms</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">):</span><span class="n">mm2s</span><span class="p">,</span><span class="n">meqs</span><span class="p">(</span><span class="mi">0</span><span class="p">):</span><span class="n">meq0s</span><span class="p">,</span><span class="n">meqs</span><span class="p">(</span><span class="mi">0</span><span class="p">):</span><span class="n">meq0s</span><span class="p">,</span><span class="n">meqs</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span><span class="n">meqm1s</span><span class="p">,</span><span class="n">meqs</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">):</span><span class="n">meqm2s</span><span class="p">})</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">eq1</span><span class="p">,</span> <span class="n">eqsubs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle m^{t+1}_{k,x} {\gamma}_{3} = P^{2} Q m^{eq,t-2}_{k,x} {\gamma}_{3} + P Q m^{eq,t-1}_{k,x} {\gamma}_{3} + P Q m^{eq,t-2}_{k,x} {\gamma}_{2} + Q m^{eq,t-1}_{k,x} {\gamma}_{2} + Q m^{eq,t-2}_{k,x} {\gamma}_{1} + Q m^{eq,t}_{k,x} {\gamma}_{3} - m^{t-1}_{k,x} {\gamma}_{1} - m^{t-2}_{k,x} {\gamma}_{0} - m^{t}_{k,x} {\gamma}_{2}\]</div>
+</div>
+</div>
+<p>Considering the solution for the moment <span class="math notranslate nohighlight">\(m^{t+1}_{0,x}\)</span>, the above equation is rewritten to:</p>
+<div class="math notranslate nohighlight" id="equation-momentum-exp-term-convec-diff">
+<span class="eqno">()<a class="headerlink" href="#equation-momentum-exp-term-convec-diff" title="Link to this equation"></a></span>\[
+m^{t+1}_{0,x} \gamma_{3} = \left[P^{2} Q m^{eq,t-2}_{k,x} \gamma_{3}\right]_{k=0} + \left[P Q m^{eq,t-1}_{k,x} \gamma_{3}\right]_{k=0} + \left[P Q m^{eq,t-2}_{k,x} \gamma_{2}\right]_{k=0} + \left[Q m^{eq,t-1}_{k,x} \gamma_{2}\right]_{k=0} + \left[Q m^{eq,t-2}_{k,x} \gamma_{1}\right]_{k=0} + \left[Q m^{eq,t}_{k,x} \gamma_{3}\right]_{k=0} - m^{t-1}_{0,x} \gamma_{1} - m^{t-2}_{0,x} \gamma_{0} - m^{t}_{0,x} \gamma_{2}
+\]</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="c1"># ---------------- indices / parameters ----------------</span>
+<span class="n">meq0k11s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{eq,t+1}_{0,x}&#39;</span><span class="p">)</span>
+<span class="n">meq0k0s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{eq,t}_{0,x}&#39;</span><span class="p">)</span>
+<span class="n">meq1k0s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{eq,t}_{1,x}&#39;</span><span class="p">)</span>
+<span class="n">meq2k0s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{eq,t}_{2,x}&#39;</span><span class="p">)</span>
+<span class="n">MeqM0s</span><span class="o">=</span><span class="n">Matrix</span><span class="p">([</span><span class="n">meq0k0s</span><span class="p">,</span><span class="n">meq1k0s</span><span class="p">,</span><span class="n">meq2k0s</span><span class="p">])</span>
+<span class="n">meq0k1s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{eq,t-1}_{0,x}&#39;</span><span class="p">)</span>
+<span class="n">meq1k1s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{eq,t-1}_{1,x}&#39;</span><span class="p">)</span>
+<span class="n">meq2k1s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{eq,t-1}_{2,x}&#39;</span><span class="p">)</span>
+<span class="n">MeqM1s</span><span class="o">=</span><span class="n">Matrix</span><span class="p">([</span><span class="n">meq0k1s</span><span class="p">,</span><span class="n">meq1k1s</span><span class="p">,</span><span class="n">meq2k1s</span><span class="p">])</span>
+<span class="n">meq0k2s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{eq,t-2}_{0,x}&#39;</span><span class="p">)</span>
+<span class="n">meq1k2s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{eq,t-2}_{1,x}&#39;</span><span class="p">)</span>
+<span class="n">meq2k2s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{eq,t-2}_{2,x}&#39;</span><span class="p">)</span>
+<span class="n">MeqM2s</span><span class="o">=</span><span class="n">Matrix</span><span class="p">([</span><span class="n">meq0k2s</span><span class="p">,</span><span class="n">meq1k2s</span><span class="p">,</span><span class="n">meq2k2s</span><span class="p">])</span>
+<span class="n">m0k11s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{t+1}_{0,x}&#39;</span><span class="p">)</span>
+<span class="n">m0k0s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^</span><span class="si">{t}</span><span class="s1">_{0,x}&#39;</span><span class="p">)</span>
+<span class="n">m0k1s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{t-1}_{0,x}&#39;</span><span class="p">)</span>
+<span class="n">m0k2s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{t-2}_{0,x}&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">termmeqm1</span><span class="o">=</span><span class="n">collect</span><span class="p">(</span><span class="n">simplify</span><span class="p">(</span><span class="n">expand</span><span class="p">(</span><span class="n">Q</span><span class="o">*</span><span class="n">MeqM1s</span><span class="o">*</span><span class="n">gamma2</span> <span class="o">+</span> <span class="n">P</span><span class="o">*</span><span class="n">Q</span><span class="o">*</span><span class="n">MeqM1s</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">Tc0</span><span class="o">*</span><span class="n">Tc1</span><span class="p">,</span><span class="n">Tc1</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">Tc0</span><span class="o">*</span><span class="n">Tc2</span><span class="p">,</span><span class="n">Tc2</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">Tc1</span><span class="o">*</span><span class="n">Tc2</span><span class="p">,</span><span class="n">Tc0</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span><span class="mi">0</span><span class="p">),[</span><span class="n">meq0k1s</span><span class="p">,</span><span class="n">meq1k1s</span><span class="p">,</span><span class="n">meq2k1s</span><span class="p">])</span>
+<span class="n">termmeqm1</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\left[ P Q m^{eq,t-1}_{k,x} \gamma_</span><span class="si">{3}</span><span class="s2"> \right]_{k=0} + \left[ Q m^{eq,t-1}_{k,x} \gamma_</span><span class="si">{2}</span><span class="s2"> \right]_{k=0} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">termmeqm1</span><span class="p">)</span> <span class="o">+</span><span class="s2">&quot;,&quot;</span> <span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \left[ P Q m^{eq,t-1}_{k,x} \gamma_{3} \right]_{k=0} + \left[ Q m^{eq,t-1}_{k,x} \gamma_{2} \right]_{k=0} =m^{eq,t-1}_{1,x} \left(\frac{T_{\Delta_{x}}^{c_{1}} s_{1} s_{2}}{2} - \frac{T_{\Delta_{x}}^{c_{1}} s_{1}}{2} - \frac{T_{\Delta_{x}}^{c_{2}} s_{1} s_{2}}{2} + \frac{T_{\Delta_{x}}^{c_{2}} s_{1}}{2}\right) + m^{eq,t-1}_{2,x} \left(\frac{T_{\Delta_{x}}^{c_{0}} s_{1} s_{2}}{3} - \frac{T_{\Delta_{x}}^{c_{0}} s_{2}}{3} - \frac{T_{\Delta_{x}}^{c_{1}} s_{1} s_{2}}{6} + \frac{T_{\Delta_{x}}^{c_{1}} s_{2}}{6} - \frac{T_{\Delta_{x}}^{c_{2}} s_{1} s_{2}}{6} + \frac{T_{\Delta_{x}}^{c_{2}} s_{2}}{6}\right),\]</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># termmeqm2 = expand((P*Q)*MeqMs*gamma2 + Q*MeqMs*gamma1)[0]</span>
+<span class="n">termmeqm2</span> <span class="o">=</span> <span class="n">expand</span><span class="p">(</span> <span class="p">((</span><span class="n">P</span><span class="o">*</span><span class="n">P</span><span class="p">)</span><span class="o">*</span><span class="n">Q</span><span class="p">)</span><span class="o">*</span><span class="n">MeqM2s</span><span class="o">*</span><span class="n">gamma3</span> <span class="o">+</span> <span class="p">(</span><span class="n">P</span><span class="o">*</span><span class="n">Q</span><span class="p">)</span><span class="o">*</span><span class="n">MeqM2s</span><span class="o">*</span><span class="n">gamma2</span> <span class="o">+</span> <span class="n">Q</span><span class="o">*</span><span class="n">MeqM2s</span><span class="o">*</span><span class="n">gamma1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">Tc1</span><span class="o">*</span><span class="n">Tc2</span><span class="p">,</span><span class="n">Tc0</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">Tc0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\left[ P^</span><span class="si">{2}</span><span class="s2"> Q m^{eq,t-2}_{k,x} \gamma_</span><span class="si">{3}</span><span class="s2"> \right]_{k=0} + \left[ PQ m^{eq,t-2}_{k,x} \gamma_</span><span class="si">{2}</span><span class="s2"> \right]_{k=0} + \left[ Q m^{eq,t-2}_{k,x} \gamma_</span><span class="si">{1}</span><span class="s2"> \right]_{k=0} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">termmeqm2</span><span class="p">)</span> <span class="o">+</span><span class="s2">&quot;,&quot;</span> <span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \left[ P^{2} Q m^{eq,t-2}_{k,x} \gamma_{3} \right]_{k=0} + \left[ PQ m^{eq,t-2}_{k,x} \gamma_{2} \right]_{k=0} + \left[ Q m^{eq,t-2}_{k,x} \gamma_{1} \right]_{k=0} =0,\]</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">termmeqm3</span> <span class="o">=</span> <span class="p">(</span><span class="n">Q</span><span class="o">*</span><span class="n">MeqM0s</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># sp.Eq(Qs*meq0s*gammas[3], termmeqm3)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\left[Q m^{eq,t}_{k,x} \gamma_</span><span class="si">{3}</span><span class="s2"> \right]_{k=0} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">termmeqm3</span><span class="p">)</span> <span class="o">+</span><span class="s2">&quot;.&quot;</span> <span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \left[Q m^{eq,t}_{k,x} \gamma_{3} \right]_{k=0} =\frac{m^{eq,t}_{1,x} s_{1} \left(T_{\Delta_{x}}^{c_{1}} - T_{\Delta_{x}}^{c_{2}}\right)}{2} + \frac{m^{eq,t}_{2,x} s_{2} \left(- 2 T_{\Delta_{x}}^{c_{0}} + T_{\Delta_{x}}^{c_{1}} + T_{\Delta_{x}}^{c_{2}}\right)}{6}.\]</div>
+</div>
+</div>
+<p>Replacing the terms in the Eq. <a class="reference internal" href="../../FDM-LBM-Convective-Diffusive.html#equation-momentum-exp-term-convec-diff">(65)</a>:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eqsubs2</span><span class="o">=</span><span class="p">(</span><span class="n">eqsubs</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">meqm2s</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="n">Ps</span><span class="o">*</span><span class="n">Qs</span><span class="o">*</span><span class="n">meqm1s</span><span class="o">*</span><span class="n">gammas</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">Qs</span><span class="o">*</span><span class="n">meqm1s</span><span class="o">*</span><span class="n">gammas</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span><span class="n">termmeqm1</span><span class="p">,</span><span class="n">Qs</span><span class="o">*</span><span class="n">meq0s</span><span class="o">*</span><span class="n">gammas</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span><span class="n">termmeqm3</span><span class="p">})</span>
+        <span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">m0s</span><span class="p">:</span><span class="n">m0k0s</span><span class="p">,</span><span class="n">mm1s</span><span class="p">:</span><span class="n">m0k1s</span><span class="p">,</span><span class="n">mm2s</span><span class="p">:</span><span class="n">m0k2s</span><span class="p">})</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">gammas</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span><span class="n">gamma3</span><span class="p">,</span><span class="n">gammas</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span><span class="n">gamma2</span><span class="p">,</span><span class="n">gammas</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="n">gamma1</span><span class="p">,</span><span class="n">gammas</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">gamma0</span><span class="p">})</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">s0</span><span class="p">:</span><span class="mi">0</span><span class="p">})</span>
+        <span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">expand</span><span class="p">((</span><span class="n">Tc1</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="o">-</span><span class="n">Tc1</span><span class="o">*</span><span class="n">s1</span><span class="o">-</span><span class="n">Tc2</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="o">+</span><span class="n">Tc2</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">):</span><span class="n">factor</span><span class="p">(</span><span class="n">expand</span><span class="p">((</span><span class="n">Tc1</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="o">-</span><span class="n">Tc1</span><span class="o">*</span><span class="n">s1</span><span class="o">-</span><span class="n">Tc2</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="o">+</span><span class="n">Tc2</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">))})</span>
+        <span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">expand</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">Tc0</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">Tc0</span><span class="o">*</span><span class="n">s2</span><span class="o">-</span><span class="n">Tc1</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="o">+</span><span class="n">Tc1</span><span class="o">*</span><span class="n">s2</span><span class="o">-</span><span class="n">Tc2</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="o">+</span><span class="n">Tc2</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span><span class="o">/</span><span class="mi">6</span><span class="p">):</span><span class="n">factor</span><span class="p">(</span><span class="n">expand</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">Tc0</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">Tc0</span><span class="o">*</span><span class="n">s2</span><span class="o">-</span><span class="n">Tc1</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="o">+</span><span class="n">Tc1</span><span class="o">*</span><span class="n">s2</span><span class="o">-</span><span class="n">Tc2</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="o">+</span><span class="n">Tc2</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span><span class="o">/</span><span class="mi">6</span><span class="p">))})</span> <span class="p">)</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">eq1</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">m1s</span><span class="p">:</span><span class="n">m0k11s</span><span class="p">,</span><span class="n">gammas</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span><span class="n">gamma3</span><span class="p">}),</span> <span class="n">eqsubs2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle T_{\Delta_{x}}^{c_{0}} m^{t+1}_{0,x} = T_{\Delta_{x}}^{c_{0}} m^{t-2}_{0,x} \left(s_{1} - 1\right) \left(s_{2} - 1\right) + \frac{m^{eq,t-1}_{1,x} s_{1} \left(T_{\Delta_{x}}^{c_{1}} - T_{\Delta_{x}}^{c_{2}}\right) \left(s_{2} - 1\right)}{2} + \frac{m^{eq,t-1}_{2,x} s_{2} \left(s_{1} - 1\right) \left(2 T_{\Delta_{x}}^{c_{0}} - T_{\Delta_{x}}^{c_{1}} - T_{\Delta_{x}}^{c_{2}}\right)}{6} + \frac{m^{eq,t}_{1,x} s_{1} \left(T_{\Delta_{x}}^{c_{1}} - T_{\Delta_{x}}^{c_{2}}\right)}{2} + \frac{m^{eq,t}_{2,x} s_{2} \left(- 2 T_{\Delta_{x}}^{c_{0}} + T_{\Delta_{x}}^{c_{1}} + T_{\Delta_{x}}^{c_{2}}\right)}{6} - m^{t-1}_{0,x} \left(T_{\Delta_{x}}^{c_{0}} + T_{\Delta_{x}}^{c_{1}} + T_{\Delta_{x}}^{c_{2}} + \frac{s_{1} s_{2} \left(T_{\Delta_{x}}^{c_{0}} + T_{\Delta_{x}}^{c_{1}} + T_{\Delta_{x}}^{c_{2}}\right)}{3} - \frac{s_{1} \left(2 T_{\Delta_{x}}^{c_{0}} + T_{\Delta_{x}}^{c_{1}} + T_{\Delta_{x}}^{c_{2}}\right)}{2} - \frac{s_{2} \left(2 T_{\Delta_{x}}^{c_{0}} + 5 T_{\Delta_{x}}^{c_{1}} + 5 T_{\Delta_{x}}^{c_{2}}\right)}{6}\right) - m^{t}_{0,x} \left(- T_{\Delta_{x}}^{c_{0}} - T_{\Delta_{x}}^{c_{1}} - T_{\Delta_{x}}^{c_{2}} + s_{1} \left(\frac{T_{\Delta_{x}}^{c_{1}}}{2} + \frac{T_{\Delta_{x}}^{c_{2}}}{2}\right) + s_{2} \left(\frac{2 T_{\Delta_{x}}^{c_{0}}}{3} + \frac{T_{\Delta_{x}}^{c_{1}}}{6} + \frac{T_{\Delta_{x}}^{c_{2}}}{6}\right)\right)\]</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m0k0sdp1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^</span><span class="si">{t}</span><span class="s1">_{0,x+1}&#39;</span><span class="p">)</span>
+<span class="n">m0k0sdm1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^</span><span class="si">{t}</span><span class="s1">_{0,x-1}&#39;</span><span class="p">)</span>
+<span class="n">m0k1sdp1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{t-1}_{0,x+1}&#39;</span><span class="p">)</span>
+<span class="n">m0k1sdm1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{t-1}_{0,x-1}&#39;</span><span class="p">)</span>
+
+<span class="n">meq1k0sdp1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{eq,t}_{1,x+1}&#39;</span><span class="p">)</span>
+<span class="n">meq1k0sdm1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{eq,t}_{1,x-1}&#39;</span><span class="p">)</span>
+<span class="n">meq2k0sdp1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{eq,t}_{2,x+1}&#39;</span><span class="p">)</span>
+<span class="n">meq2k0sdm1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{eq,t}_{2,x-1}&#39;</span><span class="p">)</span>
+
+<span class="n">meq1k1sdp1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{eq,t-1}_{1,x+1}&#39;</span><span class="p">)</span>
+<span class="n">meq1k1sdm1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{eq,t-1}_{1,x-1}&#39;</span><span class="p">)</span>
+<span class="n">meq2k1sdp1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{eq,t-1}_{2,x+1}&#39;</span><span class="p">)</span>
+<span class="n">meq2k1sdm1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m^{eq,t-1}_{2,x-1}&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eqsubs3</span> <span class="o">=</span> <span class="p">(</span><span class="n">collect</span><span class="p">(</span><span class="n">expand</span><span class="p">(</span><span class="n">eqsubs2</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">Tc0</span><span class="p">:</span><span class="mi">1</span><span class="p">})</span>
+                <span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">Tc2</span><span class="o">*</span><span class="n">m0k0s</span><span class="p">:</span><span class="n">m0k0sdp1</span><span class="p">,</span><span class="n">Tc1</span><span class="o">*</span><span class="n">m0k0s</span><span class="p">:</span><span class="n">m0k0sdm1</span><span class="p">})</span>
+                <span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">Tc2</span><span class="o">*</span><span class="n">m0k1s</span><span class="p">:</span><span class="n">m0k1sdp1</span><span class="p">,</span><span class="n">Tc1</span><span class="o">*</span><span class="n">m0k1s</span><span class="p">:</span><span class="n">m0k1sdm1</span><span class="p">})</span>
+                <span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">Tc2</span><span class="o">*</span><span class="n">meq1k0s</span><span class="p">:</span><span class="n">meq1k0sdp1</span><span class="p">,</span><span class="n">Tc1</span><span class="o">*</span><span class="n">meq1k0s</span><span class="p">:</span><span class="n">meq1k0sdm1</span><span class="p">})</span>
+                <span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">Tc2</span><span class="o">*</span><span class="n">meq2k0s</span><span class="p">:</span><span class="n">meq2k0sdp1</span><span class="p">,</span><span class="n">Tc1</span><span class="o">*</span><span class="n">meq2k0s</span><span class="p">:</span><span class="n">meq2k0sdm1</span><span class="p">})</span>
+                <span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">Tc2</span><span class="o">*</span><span class="n">meq1k1s</span><span class="p">:</span><span class="n">meq1k1sdp1</span><span class="p">,</span><span class="n">Tc1</span><span class="o">*</span><span class="n">meq1k1s</span><span class="p">:</span><span class="n">meq1k1sdm1</span><span class="p">})</span>
+                <span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">Tc2</span><span class="o">*</span><span class="n">meq2k1s</span><span class="p">:</span><span class="n">meq2k1sdp1</span><span class="p">,</span><span class="n">Tc1</span><span class="o">*</span><span class="n">meq2k1s</span><span class="p">:</span><span class="n">meq2k1sdm1</span><span class="p">})</span>
+                <span class="p">,[</span><span class="n">m0k2s</span><span class="p">,</span> <span class="n">m0k0sdp1</span><span class="p">,</span><span class="n">m0k0sdm1</span><span class="p">,</span><span class="n">m0k0s</span><span class="p">,</span> <span class="n">m0k1sdm1</span><span class="p">,</span><span class="n">m0k1sdp1</span><span class="p">,</span><span class="n">m0k1s</span><span class="p">,</span> <span class="n">meq1k0sdm1</span><span class="p">,</span><span class="n">meq1k0sdp1</span><span class="p">,</span><span class="n">meq1k0s</span><span class="p">,</span> <span class="n">meq2k0sdm1</span><span class="p">,</span><span class="n">meq2k0sdp1</span><span class="p">,</span><span class="n">meq2k0s</span><span class="p">,</span>
+                 <span class="n">meq1k1sdm1</span><span class="p">,</span><span class="n">meq1k1sdp1</span><span class="p">,</span><span class="n">meq1k1s</span><span class="p">,</span> <span class="n">meq2k1sdm1</span><span class="p">,</span><span class="n">meq2k1sdp1</span><span class="p">,</span><span class="n">meq2k1s</span><span class="p">])</span>
+           <span class="o">.</span><span class="n">subs</span><span class="p">({(</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="o">-</span><span class="n">s1</span><span class="o">-</span><span class="n">s2</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span><span class="n">factor</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="o">-</span><span class="n">s1</span><span class="o">-</span><span class="n">s2</span><span class="o">+</span><span class="mi">1</span><span class="p">)})</span> 
+          <span class="p">)</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">eq1</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">m1s</span><span class="p">:</span><span class="n">m0k11s</span><span class="p">,</span><span class="n">gammas</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span><span class="mi">1</span><span class="p">}),</span> <span class="n">eqsubs3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle m^{t+1}_{0,x} = m^{eq,t-1}_{1,x+1} \left(- \frac{s_{1} s_{2}}{2} + \frac{s_{1}}{2}\right) + m^{eq,t-1}_{1,x-1} \left(\frac{s_{1} s_{2}}{2} - \frac{s_{1}}{2}\right) + m^{eq,t-1}_{2,x+1} \left(- \frac{s_{1} s_{2}}{6} + \frac{s_{2}}{6}\right) + m^{eq,t-1}_{2,x-1} \left(- \frac{s_{1} s_{2}}{6} + \frac{s_{2}}{6}\right) + m^{eq,t-1}_{2,x} \left(\frac{s_{1} s_{2}}{3} - \frac{s_{2}}{3}\right) - \frac{m^{eq,t}_{1,x+1} s_{1}}{2} + \frac{m^{eq,t}_{1,x-1} s_{1}}{2} + \frac{m^{eq,t}_{2,x+1} s_{2}}{6} + \frac{m^{eq,t}_{2,x-1} s_{2}}{6} - \frac{m^{eq,t}_{2,x} s_{2}}{3} + m^{t-1}_{0,x+1} \left(- \frac{s_{1} s_{2}}{3} + \frac{s_{1}}{2} + \frac{5 s_{2}}{6} - 1\right) + m^{t-1}_{0,x-1} \left(- \frac{s_{1} s_{2}}{3} + \frac{s_{1}}{2} + \frac{5 s_{2}}{6} - 1\right) + m^{t-1}_{0,x} \left(- \frac{s_{1} s_{2}}{3} + s_{1} + \frac{s_{2}}{3} - 1\right) + m^{t-2}_{0,x} \left(s_{1} - 1\right) \left(s_{2} - 1\right) + m^{t}_{0,x+1} \left(- \frac{s_{1}}{2} - \frac{s_{2}}{6} + 1\right) + m^{t}_{0,x-1} \left(- \frac{s_{1}}{2} - \frac{s_{2}}{6} + 1\right) + m^{t}_{0,x} \left(1 - \frac{2 s_{2}}{3}\right)\]</div>
+</div>
+</div>
+<p>Replacing the moments:</p>
+<div class="math notranslate nohighlight">
+\[
+m_{0,x}^{t}=u_{x}^{t}, \qquad m_{0,x}^{eq,t}=u_{x}^{t}, \qquad m_{1,x}^{eq,t}=B_{x}^{t}, \qquad \textrm{and} \qquad m_{1,x}^{eq,t}=C_{x}^{t} + 3\Lambda_{x}^{t} - 2u_{x}^{t},
+\]</div>
+<p>in the above equation:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u11s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;u^{t+1}_</span><span class="si">{x}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">u0s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;u^</span><span class="si">{t}</span><span class="s1">_</span><span class="si">{x}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">u1s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;u^{t-1}_</span><span class="si">{x}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">u2s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;u^{t-2}_</span><span class="si">{x}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">u0sdp1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;u^</span><span class="si">{t}</span><span class="s1">_{x+1}&#39;</span><span class="p">)</span>
+<span class="n">u0sdm1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;u^</span><span class="si">{t}</span><span class="s1">_{x-1}&#39;</span><span class="p">)</span>
+<span class="n">u1sdp1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;u^{t-1}_{x+1}&#39;</span><span class="p">)</span>
+<span class="n">u1sdm1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;u^{t-1}_{x-1}&#39;</span><span class="p">)</span>
+
+<span class="n">B0sdm1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;B^</span><span class="si">{t}</span><span class="s1">_{x-1}&#39;</span><span class="p">)</span>
+<span class="n">B0sdp1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;B^</span><span class="si">{t}</span><span class="s1">_{x+1}&#39;</span><span class="p">)</span>
+<span class="n">B1sdm1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;B^{t-1}_{x-1}&#39;</span><span class="p">)</span>
+<span class="n">B1sdp1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;B^{t-1}_{x+1}&#39;</span><span class="p">)</span>
+
+<span class="n">C0s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;C^</span><span class="si">{t}</span><span class="s1">_</span><span class="si">{x}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">C0sdm1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;C^</span><span class="si">{t}</span><span class="s1">_{x-1}&#39;</span><span class="p">)</span>
+<span class="n">C0sdp1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;C^</span><span class="si">{t}</span><span class="s1">_{x+1}&#39;</span><span class="p">)</span>
+<span class="n">C1s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;C^{t-1}_</span><span class="si">{x}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">C1sdm1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;C^{t-1}_{x-1}&#39;</span><span class="p">)</span>
+<span class="n">C1sdp1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;C^{t-1}_{x+1}&#39;</span><span class="p">)</span>
+
+<span class="n">La0s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">Lambda^</span><span class="si">{t}</span><span class="s1">_</span><span class="si">{x}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">La0sdm1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">Lambda^</span><span class="si">{t}</span><span class="s1">_{x-1}&#39;</span><span class="p">)</span>
+<span class="n">La0sdp1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">Lambda^</span><span class="si">{t}</span><span class="s1">_{x+1}&#39;</span><span class="p">)</span>
+<span class="n">La1s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">Lambda^{t-1}_</span><span class="si">{x}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">La1sdm1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">Lambda^{t-1}_{x-1}&#39;</span><span class="p">)</span>
+<span class="n">La1sdp1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">Lambda^{t-1}_{x+1}&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eqsubs4</span> <span class="o">=</span> <span class="p">(</span><span class="n">eqsubs3</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">m0k0s</span><span class="p">:</span><span class="n">u0s</span><span class="p">,</span><span class="n">m0k1s</span><span class="p">:</span><span class="n">u1s</span><span class="p">,</span><span class="n">m0k2s</span><span class="p">:</span><span class="n">u2s</span><span class="p">,</span><span class="n">m0k0sdp1</span><span class="p">:</span><span class="n">u0sdp1</span><span class="p">,</span><span class="n">m0k0sdm1</span><span class="p">:</span><span class="n">u0sdm1</span><span class="p">,</span><span class="n">m0k1sdm1</span><span class="p">:</span><span class="n">u1sdm1</span><span class="p">,</span><span class="n">m0k1sdp1</span><span class="p">:</span><span class="n">u1sdp1</span><span class="p">})</span>
+          <span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">meq1k0sdp1</span><span class="p">:</span><span class="n">B0sdp1</span><span class="p">,</span><span class="n">meq1k0sdm1</span><span class="p">:</span><span class="n">B0sdm1</span><span class="p">,</span><span class="n">meq1k1sdp1</span><span class="p">:</span><span class="n">B1sdp1</span><span class="p">,</span><span class="n">meq1k1sdm1</span><span class="p">:</span><span class="n">B1sdm1</span><span class="p">})</span>
+          <span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">meq2k0sdp1</span><span class="p">:</span><span class="n">C0sdp1</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">La0sdp1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">u0sdp1</span><span class="p">,</span><span class="n">meq2k0sdm1</span><span class="p">:</span><span class="n">C0sdm1</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">La0sdm1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">u0sdm1</span><span class="p">,</span><span class="n">meq2k1sdp1</span><span class="p">:</span><span class="n">C1sdp1</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">La1sdp1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">u1sdp1</span><span class="p">,</span><span class="n">meq2k1sdm1</span><span class="p">:</span><span class="n">C1sdm1</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">La1sdm1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">u1sdm1</span><span class="p">})</span>
+          <span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">meq2k0s</span><span class="p">:</span><span class="n">C0s</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">La0s</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">u0s</span><span class="p">,</span><span class="n">meq2k1s</span><span class="p">:</span><span class="n">C1s</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">La1s</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">u1s</span><span class="p">}))</span>
+                   
+<span class="n">sp</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">eq1</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">m1s</span><span class="p">:</span><span class="n">u11s</span><span class="p">,</span><span class="n">gammas</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span><span class="mi">1</span><span class="p">}),</span> <span class="n">eqsubs4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle u^{t+1}_{x} = B^{t-1}_{x+1} \left(- \frac{s_{1} s_{2}}{2} + \frac{s_{1}}{2}\right) + B^{t-1}_{x-1} \left(\frac{s_{1} s_{2}}{2} - \frac{s_{1}}{2}\right) - \frac{B^{t}_{x+1} s_{1}}{2} + \frac{B^{t}_{x-1} s_{1}}{2} + \frac{s_{2} \left(C^{t}_{x+1} + 3 \Lambda^{t}_{x+1} - 2 u^{t}_{x+1}\right)}{6} + \frac{s_{2} \left(C^{t}_{x-1} + 3 \Lambda^{t}_{x-1} - 2 u^{t}_{x-1}\right)}{6} - \frac{s_{2} \left(C^{t}_{x} + 3 \Lambda^{t}_{x} - 2 u^{t}_{x}\right)}{3} + u^{t-1}_{x+1} \left(- \frac{s_{1} s_{2}}{3} + \frac{s_{1}}{2} + \frac{5 s_{2}}{6} - 1\right) + u^{t-1}_{x-1} \left(- \frac{s_{1} s_{2}}{3} + \frac{s_{1}}{2} + \frac{5 s_{2}}{6} - 1\right) + u^{t-1}_{x} \left(- \frac{s_{1} s_{2}}{3} + s_{1} + \frac{s_{2}}{3} - 1\right) + u^{t-2}_{x} \left(s_{1} - 1\right) \left(s_{2} - 1\right) + u^{t}_{x+1} \left(- \frac{s_{1}}{2} - \frac{s_{2}}{6} + 1\right) + u^{t}_{x-1} \left(- \frac{s_{1}}{2} - \frac{s_{2}}{6} + 1\right) + u^{t}_{x} \left(1 - \frac{2 s_{2}}{3}\right) + \left(- \frac{s_{1} s_{2}}{6} + \frac{s_{2}}{6}\right) \left(C^{t-1}_{x+1} + 3 \Lambda^{t-1}_{x+1} - 2 u^{t-1}_{x+1}\right) + \left(- \frac{s_{1} s_{2}}{6} + \frac{s_{2}}{6}\right) \left(C^{t-1}_{x-1} + 3 \Lambda^{t-1}_{x-1} - 2 u^{t-1}_{x-1}\right) + \left(\frac{s_{1} s_{2}}{3} - \frac{s_{2}}{3}\right) \left(C^{t-1}_{x} + 3 \Lambda^{t-1}_{x} - 2 u^{t-1}_{x}\right)\]</div>
+</div>
+</div>
+<p>rewriting the above equation, we have:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">alpha_</span><span class="si">{1}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">alpha2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">alpha_</span><span class="si">{2}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">beta1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">beta_</span><span class="si">{1}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">beta2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">beta_</span><span class="si">{2}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">eta1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">eta_</span><span class="si">{1}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">eta2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">eta_</span><span class="si">{2}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">kappa1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">kappa_</span><span class="si">{1}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">kappa2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">kappa_</span><span class="si">{2}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">gamma&#39;</span><span class="p">)</span>
+<span class="c1"># eqsubs5 = eqsubs4.subs({s1/2:beta1,s1*s2/2-s1/2:beta2})</span>
+<span class="n">eqsubs5</span> <span class="o">=</span> <span class="p">(</span><span class="n">eqsubs4</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="o">-</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="o">/</span><span class="mi">3</span><span class="o">+</span><span class="n">s1</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">5</span><span class="o">*</span><span class="n">s2</span><span class="o">/</span><span class="mi">6</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">beta2</span><span class="p">,</span><span class="o">-</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="o">/</span><span class="mi">3</span><span class="o">+</span><span class="n">s1</span><span class="o">+</span><span class="n">s2</span><span class="o">/</span><span class="mi">3</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">beta1</span><span class="p">,</span><span class="o">-</span><span class="n">s1</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">s2</span><span class="o">/</span><span class="mi">6</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">alpha2</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">s2</span><span class="o">/</span><span class="mi">3</span><span class="p">:</span><span class="n">alpha1</span><span class="p">,(</span><span class="n">s1</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">s2</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span><span class="n">gamma</span><span class="p">})</span>
+                  <span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="o">-</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="o">/</span><span class="mi">6</span><span class="o">+</span><span class="n">s2</span><span class="o">/</span><span class="mi">6</span><span class="p">:</span><span class="n">kappa2</span><span class="p">,</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="o">/</span><span class="mi">3</span><span class="o">-</span><span class="n">s2</span><span class="o">/</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">kappa2</span><span class="p">,</span><span class="n">s2</span><span class="o">/</span><span class="mi">6</span><span class="p">:</span><span class="n">kappa1</span><span class="p">,</span><span class="o">-</span><span class="n">s2</span><span class="o">/</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">kappa1</span><span class="p">})</span> 
+                  <span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">s1</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span><span class="n">eta2</span><span class="p">,</span><span class="n">s1</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span><span class="n">eta1</span><span class="p">}))</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">eq1</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">m1s</span><span class="p">:</span><span class="n">u11s</span><span class="p">,</span><span class="n">gammas</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span><span class="mi">1</span><span class="p">}),</span> <span class="n">eqsubs5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle u^{t+1}_{x} = - B^{t-1}_{x+1} \eta_{2} + B^{t-1}_{x-1} \eta_{2} - B^{t}_{x+1} \eta_{1} + B^{t}_{x-1} \eta_{1} + \alpha_{1} u^{t}_{x} + \alpha_{2} u^{t}_{x+1} + \alpha_{2} u^{t}_{x-1} + \beta_{1} u^{t-1}_{x} + \beta_{2} u^{t-1}_{x+1} + \beta_{2} u^{t-1}_{x-1} + \gamma u^{t-2}_{x} + \kappa_{1} \left(C^{t}_{x+1} + 3 \Lambda^{t}_{x+1} - 2 u^{t}_{x+1}\right) + \kappa_{1} \left(C^{t}_{x-1} + 3 \Lambda^{t}_{x-1} - 2 u^{t}_{x-1}\right) - 2 \kappa_{1} \left(C^{t}_{x} + 3 \Lambda^{t}_{x} - 2 u^{t}_{x}\right) + \kappa_{2} \left(C^{t-1}_{x+1} + 3 \Lambda^{t-1}_{x+1} - 2 u^{t-1}_{x+1}\right) + \kappa_{2} \left(C^{t-1}_{x-1} + 3 \Lambda^{t-1}_{x-1} - 2 u^{t-1}_{x-1}\right) - 2 \kappa_{2} \left(C^{t-1}_{x} + 3 \Lambda^{t-1}_{x} - 2 u^{t-1}_{x}\right)\]</div>
+</div>
+</div>
+<p>where coefficients are given by:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\alpha_</span><span class="si">{1}</span><span class="s2"> =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">s2</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\qquad \alpha_</span><span class="si">{2}</span><span class="s2">=&quot;</span><span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="o">-</span><span class="n">s1</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">s2</span><span class="o">/</span><span class="mi">6</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\qquad \beta_</span><span class="si">{1}</span><span class="s2">=&quot;</span>
+            <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="o">-</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="o">/</span><span class="mi">3</span><span class="o">+</span><span class="n">s1</span><span class="o">+</span><span class="n">s2</span><span class="o">/</span><span class="mi">3</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\qquad \beta_</span><span class="si">{2}</span><span class="s2">=&quot;</span><span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="o">-</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="o">/</span><span class="mi">3</span><span class="o">+</span><span class="n">s1</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">5</span><span class="o">*</span><span class="n">s2</span><span class="o">/</span><span class="mi">6</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\eta_</span><span class="si">{1}</span><span class="s2">=&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">s1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\qquad \eta_</span><span class="si">{2}</span><span class="s2">=&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">s1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\qquad \kappa_</span><span class="si">{1}</span><span class="s2">=&quot;</span><span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">s2</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span> 
+             <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\qquad \kappa_</span><span class="si">{1}</span><span class="s2">=&quot;</span><span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="o">-</span><span class="n">s1</span><span class="o">*</span><span class="n">s2</span><span class="o">/</span><span class="mi">6</span><span class="o">+</span><span class="n">s2</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span> <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\qquad \gamma=&quot;</span><span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">((</span><span class="n">s1</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">s2</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \alpha_{1} =1 - \frac{2 s_{2}}{3},\qquad \alpha_{2}=- \frac{s_{1}}{2} - \frac{s_{2}}{6} + 1,\qquad \beta_{1}=- \frac{s_{1} s_{2}}{3} + s_{1} + \frac{s_{2}}{3} - 1,\qquad \beta_{2}=- \frac{s_{1} s_{2}}{3} + \frac{s_{1}}{2} + \frac{5 s_{2}}{6} - 1\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \eta_{1}=\frac{s_{1}}{2},\qquad \eta_{2}=\frac{s_{1} s_{2}}{2} - \frac{s_{1}}{2},\qquad \kappa_{1}=\frac{s_{2}}{6},\qquad \kappa_{1}=- \frac{s_{1} s_{2}}{6} + \frac{s_{2}}{6},\qquad \gamma=\left(s_{1} - 1\right) \left(s_{2} - 1\right)\]</div>
+</div>
+</div>
+<section id="linear-diffusive-equation">
+<h3>Linear Diffusive Equation<a class="headerlink" href="#linear-diffusive-equation" title="Link to this heading"></a></h3>
+<p>Considering linear convective-diffusive equation:</p>
+<div class="math notranslate nohighlight">
+\[
+\partial_t u = \partial_{\alpha}\left(\nu \partial_{\alpha} u \right) 
+\]</div>
+<p>we have <span class="math notranslate nohighlight">\(C=u\)</span>. Replacing <span class="math notranslate nohighlight">\(C\)</span> in FD scheme obtained</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;c_{</span><span class="se">\\</span><span class="s1">alpha}&#39;</span><span class="p">)</span>
+<span class="n">cb</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;\overline</span><span class="si">{c}</span><span class="s1">_{</span><span class="se">\\</span><span class="s1">alpha}&#39;</span><span class="p">)</span>
+<span class="n">leqsubs4</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">collect</span><span class="p">(</span><span class="n">eqsubs4</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">B0sdp1</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="n">B0sdm1</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="n">B1sdp1</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="n">B1sdm1</span><span class="p">:</span><span class="mi">0</span><span class="p">})</span>
+                 <span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">C0s</span><span class="p">:</span><span class="n">u0s</span><span class="p">,</span><span class="n">La0s</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="n">C0sdp1</span><span class="p">:</span><span class="n">u0sdp1</span><span class="p">,</span><span class="n">La0sdp1</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="n">C0sdm1</span><span class="p">:</span><span class="n">u0sdm1</span><span class="p">,</span><span class="n">La0sdm1</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+                        <span class="n">C1s</span><span class="p">:</span><span class="n">u1s</span><span class="p">,</span><span class="n">La1s</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="n">C1sdp1</span><span class="p">:</span><span class="n">u1sdp1</span><span class="p">,</span><span class="n">La1sdp1</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="n">C1sdm1</span><span class="p">:</span><span class="n">u1sdm1</span><span class="p">,</span><span class="n">La1sdm1</span><span class="p">:</span><span class="mi">0</span><span class="p">})</span> <span class="p">,</span> <span class="p">[</span><span class="n">u0s</span><span class="p">,</span><span class="n">u1s</span><span class="p">,</span><span class="n">u0sdp1</span><span class="p">,</span><span class="n">u0sdm1</span><span class="p">,</span><span class="n">u1sdp1</span><span class="p">,</span><span class="n">u1sdm1</span><span class="p">])</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">eq1</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">m1s</span><span class="p">:</span><span class="n">u11s</span><span class="p">,</span><span class="n">gammas</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span><span class="mi">1</span><span class="p">}),</span> <span class="n">leqsubs4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle u^{t+1}_{x} = u^{t-1}_{x+1} \left(- \frac{s_{1} s_{2}}{6} + \frac{s_{1}}{2} + \frac{2 s_{2}}{3} - 1\right) + u^{t-1}_{x-1} \left(- \frac{s_{1} s_{2}}{6} + \frac{s_{1}}{2} + \frac{2 s_{2}}{3} - 1\right) + u^{t-1}_{x} \left(- \frac{2 s_{1} s_{2}}{3} + s_{1} + \frac{2 s_{2}}{3} - 1\right) + u^{t-2}_{x} \left(s_{1} - 1\right) \left(s_{2} - 1\right) + u^{t}_{x+1} \left(- \frac{s_{1}}{2} - \frac{s_{2}}{3} + 1\right) + u^{t}_{x-1} \left(- \frac{s_{1}}{2} - \frac{s_{2}}{3} + 1\right) + u^{t}_{x} \left(1 - \frac{s_{2}}{3}\right)\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha1s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">alpha_</span><span class="si">{1}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">alpha1</span> <span class="o">=</span> <span class="n">leqsubs4</span><span class="o">.</span><span class="n">coeff</span><span class="p">(</span><span class="n">u0s</span><span class="p">)</span>
+<span class="n">alpha2s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">alpha_</span><span class="si">{2}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">alpha2</span> <span class="o">=</span> <span class="n">leqsubs4</span><span class="o">.</span><span class="n">coeff</span><span class="p">(</span><span class="n">u0sdp1</span><span class="p">)</span>
+<span class="n">beta1s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">beta_</span><span class="si">{1}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">beta1</span> <span class="o">=</span> <span class="n">leqsubs4</span><span class="o">.</span><span class="n">coeff</span><span class="p">(</span><span class="n">u1s</span><span class="p">)</span>
+<span class="n">beta2s</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">beta_</span><span class="si">{2}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">beta2</span> <span class="o">=</span> <span class="n">leqsubs4</span><span class="o">.</span><span class="n">coeff</span><span class="p">(</span><span class="n">u1sdp1</span><span class="p">)</span>
+<span class="n">gammass</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">gamma&#39;</span><span class="p">)</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="n">leqsubs4</span><span class="o">.</span><span class="n">coeff</span><span class="p">(</span><span class="n">u2s</span><span class="p">)</span>
+
+<span class="n">leqsubs5</span> <span class="o">=</span> <span class="p">(</span><span class="n">leqsubs4</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">beta2</span><span class="p">:</span><span class="n">beta2s</span><span class="p">,</span><span class="n">beta1</span><span class="p">:</span><span class="n">beta1s</span><span class="p">,</span><span class="n">alpha2</span><span class="p">:</span><span class="n">alpha2s</span><span class="p">,</span><span class="n">alpha1</span><span class="p">:</span><span class="n">alpha1s</span><span class="p">,</span><span class="n">gamma</span><span class="p">:</span><span class="n">gammass</span><span class="p">})</span> <span class="p">)</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">eq1</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">m1s</span><span class="p">:</span><span class="n">u11s</span><span class="p">,</span><span class="n">gammas</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span><span class="mi">1</span><span class="p">}),</span> <span class="n">leqsubs5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle u^{t+1}_{x} = \alpha_{1} u^{t}_{x} + \alpha_{2} u^{t}_{x+1} + \alpha_{2} u^{t}_{x-1} + \beta_{1} u^{t-1}_{x} + \beta_{2} u^{t-1}_{x+1} + \beta_{2} u^{t-1}_{x-1} + \gamma u^{t-2}_{x}\]</div>
+</div>
+</div>
+<p>where coefficients are given by:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\alpha_</span><span class="si">{1}</span><span class="s2"> =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">alpha1</span><span class="p">)</span> <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\qquad \alpha_</span><span class="si">{2}</span><span class="s2">=&quot;</span><span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">alpha2</span><span class="p">)</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;,\qquad\beta_</span><span class="si">{1}</span><span class="s2">=&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">beta1</span><span class="p">)</span> 
+             <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\qquad \beta_</span><span class="si">{2}</span><span class="s2">=&quot;</span><span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">beta2</span><span class="p">)</span> <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\qquad \gamma=&quot;</span><span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span> <span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \alpha_{1} =1 - \frac{s_{2}}{3},\qquad \alpha_{2}=- \frac{s_{1}}{2} - \frac{s_{2}}{3} + 1,\qquad\beta_{1}=- \frac{2 s_{1} s_{2}}{3} + s_{1} + \frac{2 s_{2}}{3} - 1,\qquad \beta_{2}=- \frac{s_{1} s_{2}}{6} + \frac{s_{1}}{2} + \frac{2 s_{2}}{3} - 1,\qquad \gamma=\left(s_{1} - 1\right) \left(s_{2} - 1\right)\]</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./LBM-Study/D1Q5-ana/D1Q3-Validation"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Ricardo LMB.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
