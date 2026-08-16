@@ -61,29 +61,34 @@ List of lattice-Boltzmann Benchmarked Works
 Academic Material:
 ==================
 
+Porous Media - Multiphase Flow in Porous Continuous Porous Media:
+#################################################################
+
 .. toctree::
    :maxdepth: 1
-   :caption: Porous Media - Multiphase Flow in Porous Continuous Porous Media:
+   :caption: Introduction:
 
    /Porous-Media-Study/Intro/Intro-PM-MFinPCPM
 
+Lattice Boltzmann Method - Application to Different Partial differential Equation:
+##################################################################################
+
 .. toctree::
    :maxdepth: 1
-   :caption: Lattice Boltzmann Method - Application to Different Partial differential Equation:
+   :caption: Convective-Diffusive-Equation (CDE) LBM Approach: Part 1
 
    /LBM-Study/intro-lbm-conv-diff/Diffusive-Equation
    /LBM-Study/intro-lbm-conv-diff/Poisson-Equation
    /LBM-Study/intro-lbm-conv-diff/Convective-Equation
    /LBM-Study/intro-lbm-conv-diff/Convective-Diffusive-Equation
-   /LBM-Study/FDM-Belloti/FDM-LBM-Diffusive.ipynb
-   /LBM-Study/FDM-Belloti/FDM-LBM-Convective-Diffusive.ipynb
-   /LBM-Study/Ementa
 
 .. toctree::
    :maxdepth: 1
-   :caption: LBM-Analysis:
+   :caption: CDE - Finite Difference Structure of LBM: Part 2
 
-   /LBM-Study/intro-lbm-conv-diff/Extra-Avoiding-Diffusive-Effect-in-CE(Unfinished)
+   /LBM-Study/FDM-Belloti/FDM-LBM-Diffusive.ipynb
+   /LBM-Study/FDM-Belloti/FDM-LBM-Convective-Diffusive.ipynb
+   /LBM-Study/Ementa
 
 .. toctree::
    :maxdepth: 1
