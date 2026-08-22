@@ -49,13 +49,14 @@ Articles Published in Periodics:
   - Area: (Porous media fluid-flow - Multicomponent/multiphase modeling) Numerical modeling of multicomponent/multiphase flow in porous-continuous porous media.
   - Suplemetar Materials - `C++ code of lattice Boltzmann simulation presented. <https://github.com/poro-labcc/Buckley-Leverett-Equation-Non-Linear-Convective-Diffusive-Lattice-Boltzmann-Method>`_
 
-
-List of lattice-Boltzmann Benchmarked Works
-===========================================
-
 .. raw:: html
 
-   <iframe src="_static/references-map.html" width="100%" height="800" style="border:0; border-radius:12px;"></iframe>
+   <iframe src="_static/references-map.html?bib=bib/mypub.bibtex"
+         width="100%"
+         height="200"
+         style="border:0; border-radius:12px;">
+   </iframe>
+
 
 
 Academic Material:
@@ -89,6 +90,14 @@ Lattice Boltzmann Method - Application to Different Partial differential Equatio
    /LBM-Study/FDM-Belloti/FDM-LBM-Diffusive.ipynb
    /LBM-Study/FDM-Belloti/FDM-LBM-Convective-Diffusive.ipynb
    /LBM-Study/Ementa
+
+.. raw:: html
+
+   <iframe src="_static/references-map.html?bib=bib/fdm-lbm.bibtex"
+         width="100%"
+         height="200"
+         style="border:0; border-radius:12px;">
+   </iframe>
 
 .. toctree::
    :maxdepth: 1

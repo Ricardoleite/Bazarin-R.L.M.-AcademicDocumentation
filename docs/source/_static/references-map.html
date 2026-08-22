@@ -1,210 +1,559 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Reference Graph (Year vs Citations)</title>
+<title>Reference Map</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 <style>
-  html, body { margin:0; height:100%; font-family: Inter, system-ui, Arial, sans-serif; }
-  #toolbar { position:fixed; top:12px; right:12px; background:#fff; border:1px solid #e0e0e0; border-radius:12px; padding:12px; z-index:10; box-shadow:0 2px 10px rgba(0,0,0,.08); max-width:360px;}
-  #graph { width:100%; height:100%; }
-  .node text { pointer-events:none; font-size:12px; fill:#fff; text-shadow: 0px 0px 3px rgba(0,0,0,0.7);}
-  .link { stroke:#cfd8dc; stroke-opacity:.8; }
-  .node circle { stroke:#fff; stroke-width:1.5px; }
-  .tooltip {
-    position:absolute; pointer-events:none; background:#111; color:#fff; padding:8px 10px;
-    border-radius:8px; font-size:12px; line-height:1.4; box-shadow:0 2px 10px rgba(0,0,0,.2);
+  html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000000;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
   }
-  a.tooltip-link { color:#4fc3f7; }
-  .row { display:flex; gap:6px; align-items:center; margin-top:6px; flex-wrap:wrap; }
-  .row label { font-size:12px; color:#333; }
-  input[type="number"] { width:96px; }
-  textarea { width:100%; height:100px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size:12px; }
-  button { cursor:pointer; }
-  .legend { margin-top:8px; display:flex; gap:8px; flex-wrap:wrap; }
-  .legend-item { display:flex; align-items:center; gap:6px; font-size:12px; }
-  .swatch { width:12px; height:12px; border-radius:50%; border:1px solid #999; }
-  /* collapsible toolbar */
-  #toolbar.collapsed #toolbar-content { display: none; }
-  #toggleToolbar {
-    background:#eee;
-    border:1px solid #ccc;
-    border-radius:4px;
+
+  #graph {
+    width: 100%;
+    height: 100%;
+    display: block;
   }
+
+  .year-guide {
+    stroke: #444444;
+    stroke-width: 1;
+    stroke-dasharray: 3 5;
+  }
+
+  .year-label {
+    font-size: 13px;
+    font-weight: 600;
+    fill: #dddddd;
+    text-anchor: middle;
+    pointer-events: none;
+  }
+
+  .node-circle {
+    fill: #607d8b;
+    stroke: #ffffff;
+    stroke-width: 2;
+    cursor: pointer;
+  }
+
+  .node-circle:hover {
+    stroke: #263238;
+    stroke-width: 2.5;
+  }
+
+  .node-label {
+    font-size: 12px;
+    fill: #ffffff;
+    text-anchor: middle;
+    pointer-events: none;
+  }
+
+  .message {
+    font-size: 15px;
+    fill: #dddddd;
+    text-anchor: middle;
+  }
+
+  .error-title {
+    font-size: 16px;
+    font-weight: 700;
+    fill: #b42318;
+    text-anchor: middle;
+  }
+
+  .error-detail {
+    font-size: 12px;
+    fill: #bbbbbb;
+    text-anchor: middle;
+  }
+
+  #tooltip {
+    position: absolute;
+    display: none;
+    pointer-events: none;
+    z-index: 20;
+    max-width: min(440px, calc(100vw - 32px));
+    padding: 9px 11px;
+    border-radius: 8px;
+    background: rgba(17,17,17,.96);
+    color: #ffffff;
+    font-size: 12px;
+    line-height: 1.45;
+    box-shadow: 0 3px 14px rgba(0,0,0,.25);
+  }
+
+  #tooltip .title {
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+
+  #tooltip .muted { color: #cfd8dc; }
 </style>
 </head>
 <body>
-<div id="toolbar">
-  <div style="display:flex; justify-content:space-between; align-items:center;">
-    <div style="font-weight:700;">Reference Graph</div>
-    <button id="toggleToolbar" style="font-size:12px; padding:2px 6px; cursor:pointer;">–</button>
-  </div>
-  <div id="toolbar-content">
-    <div style="font-size:12px; color:#555; line-height:1.3; margin-top:4px;">
-      x = year • y = citations • bubble size ≈ citations
-    </div>
 
-    <div class="row" style="margin-top:8px;">
-      <label>Year range:</label>
-      <input id="minY" type="number" value="2010">
-      <span>–</span>
-      <input id="maxY" type="number" value="2030">
-      <button id="apply">Filter</button>
-    </div>
-
-    <div class="row">
-      <label>Load nodes CSV</label>
-      <input id="nodesCSV" type="file" accept=".csv">
-    </div>
-    <div class="row" style="font-size:11px; color:#666;">
-      Expected columns: id,label,author,year,citations,url,group,notes
-    </div>
-
-    <div class="row">
-      <label>Load links CSV</label>
-      <input id="linksCSV" type="file" accept=".csv">
-    </div>
-    <div class="row" style="font-size:11px; color:#666;">Expected columns: source,target,weight</div>
-
-    <details style="margin-top:8px;">
-      <summary style="cursor:pointer;">Or edit JSON here (then click “Reload from JSON”)</summary>
-      <div style="margin-top:6px; font-weight:600; font-size:12px;">nodes JSON</div>
-      <textarea id="nodesJSON">[
-  {"id":"Pan2006","label":"Pan, 2006","author":"Pan","year":2006,"citations":5,"group":"LBM Absolute-Permeability","url":"https://doi.org/10.1016/j.compfluid.2005.03.008","notes":"Viscosity-Permeability"},
-  {"id":"Baz2021","label":"Bazarin, 2021","author":"Bazarin","year":2021,"citations":5,"group":"LBM Absolute-Permeability","url":"https://doi.org/10.1007/s11242-020-01530-w","notes":"Fractal-Porous Media"},
-  {"id":"Meng2016","label":"Meng, 2016","author":"Meng","year":2016,"citations":1,"group":"LBM-Multiscale","url":"https://doi.org/10.1016/j.ijheatmasstransfer.2016.04.095","notes":"Linear Convective-Diffusive"},
-  {"id":"Baz2024","label":"Bazarin, 2024","author":"Bazarin","year":2024,"citations":10,"group":"Your work","url":"https://doi.org/10.1103/PhysRevE.110.015303","notes":"Multicomponent numerical modeling"},
-  {"id":"Baz2025","label":"Bazarin, 2025","author":"Bazarin","year":2025,"citations":1,"group":"LBM-Multiscale","url":"https://doi.org/10.1063/5.0264878","notes":"Dynamic capillary"},
-  {"id":"Suga2010","label":"Suga, 2010","author":"Suga","year":2010,"citations":7,"group":"LBM-FDM-Erros","url":"https://doi.org/10.1007/s10955-010-0004-y","notes":"Diffusive FDM"},
-  {"id":"Lin2021","label":"Lin, 2021","author":"Suga","year":2021,"citations":7,"group":"LBM-FDM-Erros","url":"https://doi.org/10.1103/PhysRevE.104.015312","notes":"Diffusive FDM"}
-]</textarea>
-      <div style="font-weight:600; font-size:12px;">links JSON</div>
-      <textarea id="linksJSON">[
-  {"source":"Meng2016","target":"Baz2025","weight":1},
-  {"source":"Suga2010","target":"Lin2021","weight":1},
-  {"source":"Pan2006","target":"Baz2021","weight":1}
-]</textarea>
-      <button id="reloadJSON" style="margin-top:6px;">Reload from JSON</button>
-    </details>
-
-    <div class="legend" id="legend"></div>
-  </div> <!-- closes #toolbar-content -->
-</div> <!-- ✅ closes #toolbar (this was missing) -->
-
-<svg id="graph"></svg>
-<div id="tooltip" class="tooltip" style="display:none;"></div>
+<svg id="graph" xmlns="http://www.w3.org/2000/svg" aria-label="Reference map"></svg>
+<div id="tooltip"></div>
 
 <script>
-// ======= Color mapping by group =======
-const GROUP_COLORS = {
-  "LBM Absolute-Permeability":"#8B0000",
-  "LBM BCs":"#e74c3c",
-  "LBM multiphase":"#27ae60",
-  "LBM-Multiscale":"#2ecc71",
-  "LBM theory":"#1abc9c",
-  "Applications":"#9b59b6",
-  "Your work":"#00bcd4"
-};
+(() => {
+  "use strict";
 
-// ======= State =======
-let nodes = JSON.parse(document.getElementById("nodesJSON").value);
-let links = JSON.parse(document.getElementById("linksJSON").value);
+  const SVG_NS = "http://www.w3.org/2000/svg";
+  const DEFAULT_BIB = "refs.bibtex";
 
-// ======= Chart bootstrap =======
-const svg = d3.select('#graph');
-const width = window.innerWidth;
-const height = window.innerHeight;
-svg.attr('width', width).attr('height', height);
+  const params = new URLSearchParams(window.location.search);
+  const bibPath = (params.get("bib") || DEFAULT_BIB).trim();
 
-const gLinks = svg.append('g');
-const gNodes = svg.append('g');
+  const svg = document.getElementById("graph");
+  const tooltip = document.getElementById("tooltip");
 
-// Tooltip
-const tooltip = document.getElementById('tooltip');
-function showTip(event, d) {
-  tooltip.style.display = 'block';
-  tooltip.innerHTML = `<b>${d.label}</b><br>Author: ${d.author}<br>Year: ${d.year}<br>
-                       Citations: ${d.citations}<br>Group: ${d.group}<br>${d.notes || ""}
-                       <br><a class="tooltip-link" href="${d.url}" target="_blank">Open DOI/URL</a>`;
-  tooltip.style.left = (event.pageX + 12) + 'px';
-  tooltip.style.top  = (event.pageY + 12) + 'px';
-}
-function hideTip() { tooltip.style.display = 'none'; }
+  let nodes = [];
+  let errorMessage = "";
 
-// Build graph
-function buildGraph() {
-  nodes.forEach(d => {
-    d.citations = +d.citations;
-    d.year = +d.year;
-    d.r = 10 + Math.sqrt(Math.max(d.citations, 0)) * 3.5;
-    d.color = GROUP_COLORS[d.group] || '#95a5a6';
+  function svgEl(tag, attrs = {}) {
+    const el = document.createElementNS(SVG_NS, tag);
+    for (const [key, value] of Object.entries(attrs)) {
+      el.setAttribute(key, value);
+    }
+    return el;
+  }
+
+  function clearSvg() {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+  }
+
+  function cleanText(value) {
+    if (value == null) return "";
+    return String(value)
+      .replace(/\\&/g, "&")
+      .replace(/\\_/g, "_")
+      .replace(/\\%/g, "%")
+      .replace(/\\textit\s*/g, "")
+      .replace(/\\textbf\s*/g, "")
+      .replace(/\\emph\s*/g, "")
+      .replace(/\\url\s*/g, "")
+      .replace(/[{}]/g, "")
+      .replace(/~/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function parseYear(value) {
+    const m = String(value ?? "").match(/\b(?:18|19|20|21)\d{2}\b/);
+    return m ? Number(m[0]) : null;
+  }
+
+  function firstAuthor(authorField) {
+    const author = cleanText(authorField);
+    if (!author) return "Unknown";
+
+    const first = author.split(/\s+and\s+/i)[0].trim();
+    if (first.includes(",")) return first.split(",")[0].trim();
+
+    const parts = first.split(/\s+/).filter(Boolean);
+    return parts.length ? parts[parts.length - 1] : "Unknown";
+  }
+
+  function buildUrl(tags) {
+    const doi = cleanText(tags.doi);
+    const url = cleanText(tags.url);
+
+    if (doi) {
+      const normalized = doi.replace(/^https?:\/\/(?:dx\.)?doi\.org\//i, "");
+      return `https://doi.org/${normalized}`;
+    }
+    return url || "";
+  }
+
+  function parseBibTeX(text) {
+    const entries = [];
+    let i = 0;
+
+    function skipSpaceAndComments() {
+      while (i < text.length) {
+        if (/\s/.test(text[i])) { i++; continue; }
+        if (text[i] === "%") {
+          while (i < text.length && text[i] !== "\n") i++;
+          continue;
+        }
+        break;
+      }
+    }
+
+    function readIdentifier() {
+      skipSpaceAndComments();
+      const start = i;
+      while (i < text.length && /[A-Za-z0-9_:\-.]/.test(text[i])) i++;
+      return text.slice(start, i).trim();
+    }
+
+    function readBracedValue() {
+      let depth = 1;
+      let out = "";
+      i++;
+
+      while (i < text.length && depth > 0) {
+        const ch = text[i++];
+        const escaped = i >= 2 && text[i - 2] === "\\";
+
+        if (ch === "{" && !escaped) {
+          depth++;
+          if (depth > 1) out += ch;
+        } else if (ch === "}" && !escaped) {
+          depth--;
+          if (depth > 0) out += ch;
+        } else {
+          out += ch;
+        }
+      }
+      return out.trim();
+    }
+
+    function readQuotedValue() {
+      let out = "";
+      i++;
+
+      while (i < text.length) {
+        const ch = text[i++];
+        const escaped = i >= 2 && text[i - 2] === "\\";
+        if (ch === '"' && !escaped) break;
+        out += ch;
+      }
+      return out.trim();
+    }
+
+    function readBareValue(closeChar) {
+      const start = i;
+      while (i < text.length && text[i] !== "," && text[i] !== closeChar) i++;
+      return text.slice(start, i).trim();
+    }
+
+    while (i < text.length) {
+      const at = text.indexOf("@", i);
+      if (at < 0) break;
+      i = at + 1;
+
+      const entryType = readIdentifier();
+      skipSpaceAndComments();
+
+      if (text[i] !== "{" && text[i] !== "(") {
+        i++;
+        continue;
+      }
+
+      const openChar = text[i++];
+      const closeChar = openChar === "{" ? "}" : ")";
+
+      skipSpaceAndComments();
+
+      const keyStart = i;
+      while (i < text.length && text[i] !== "," && text[i] !== closeChar) i++;
+      const citationKey = text.slice(keyStart, i).trim();
+
+      if (["comment", "preamble", "string"].includes(entryType.toLowerCase())) {
+        let depth = 1;
+        while (i < text.length && depth > 0) {
+          const ch = text[i++];
+          if (ch === openChar) depth++;
+          else if (ch === closeChar) depth--;
+        }
+        continue;
+      }
+
+      if (text[i] === ",") i++;
+
+      const tags = {};
+
+      while (i < text.length) {
+        skipSpaceAndComments();
+
+        if (text[i] === closeChar) {
+          i++;
+          break;
+        }
+
+        if (text[i] === ",") {
+          i++;
+          continue;
+        }
+
+        const field = readIdentifier().toLowerCase();
+        skipSpaceAndComments();
+
+        if (!field) {
+          i++;
+          continue;
+        }
+
+        if (text[i] !== "=") {
+          while (i < text.length && text[i] !== "," && text[i] !== closeChar) i++;
+          continue;
+        }
+
+        i++;
+        skipSpaceAndComments();
+
+        let value = "";
+        if (text[i] === "{") value = readBracedValue();
+        else if (text[i] === '"') value = readQuotedValue();
+        else value = readBareValue(closeChar);
+
+        tags[field] = value;
+        skipSpaceAndComments();
+        if (text[i] === ",") i++;
+      }
+
+      const year = parseYear(tags.year || tags.date);
+      if (!year) continue;
+
+      const key = cleanText(citationKey) || `ref-${entries.length + 1}`;
+      const author = cleanText(tags.author || tags.editor);
+      const title = cleanText(tags.title) || key;
+
+      entries.push({
+        id: key,
+        key,
+        type: cleanText(entryType).toLowerCase(),
+        title,
+        author,
+        firstAuthor: firstAuthor(author),
+        year,
+        source: cleanText(tags.journal || tags.booktitle || tags.publisher),
+        doi: cleanText(tags.doi),
+        url: buildUrl(tags)
+      });
+    }
+
+    return entries.sort((a, b) =>
+      a.year - b.year || a.firstAuthor.localeCompare(b.firstAuthor)
+    );
+  }
+
+  function escapeHtml(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function showTooltip(event, d) {
+    tooltip.innerHTML =
+      `<div class="title">${escapeHtml(d.title)}</div>` +
+      `<div>${escapeHtml(d.author || "Unknown author")}</div>` +
+      `<div class="muted">${escapeHtml(d.source)}</div>` +
+      `<div>Year: ${d.year}</div>` +
+      `<div>BibTeX key: ${escapeHtml(d.key)}</div>` +
+      (d.doi ? `<div>DOI: ${escapeHtml(d.doi)}</div>` : "");
+
+    tooltip.style.display = "block";
+    moveTooltip(event);
+  }
+
+  function moveTooltip(event) {
+    const pad = 12;
+    let x = event.clientX + pad;
+    let y = event.clientY + pad;
+
+    tooltip.style.left = x + "px";
+    tooltip.style.top = y + "px";
+
+    const rect = tooltip.getBoundingClientRect();
+    if (rect.right > window.innerWidth - 8) x = event.clientX - rect.width - pad;
+    if (rect.bottom > window.innerHeight - 8) y = event.clientY - rect.height - pad;
+
+    tooltip.style.left = Math.max(8, x) + "px";
+    tooltip.style.top = Math.max(8, y) + "px";
+  }
+
+  function hideTooltip() {
+    tooltip.style.display = "none";
+  }
+
+  function render() {
+    clearSvg();
+
+    const width = Math.max(320, window.innerWidth);
+    const height = Math.max(220, window.innerHeight);
+
+    svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+    svg.setAttribute("width", width);
+    svg.setAttribute("height", height);
+
+    if (errorMessage) {
+      const title = svgEl("text", {
+        class: "error-title",
+        x: width / 2,
+        y: height / 2 - 8
+      });
+      title.textContent = "Could not load the BibTeX data.";
+
+      const detail = svgEl("text", {
+        class: "error-detail",
+        x: width / 2,
+        y: height / 2 + 18
+      });
+      detail.textContent = errorMessage;
+
+      svg.appendChild(title);
+      svg.appendChild(detail);
+      return;
+    }
+
+    if (!nodes.length) {
+      const msg = svgEl("text", {
+        class: "message",
+        x: width / 2,
+        y: height / 2
+      });
+      msg.textContent = "No references with a valid year were found.";
+      svg.appendChild(msg);
+      return;
+    }
+
+    const years = nodes.map(d => d.year);
+    const minYear = Math.min(...years);
+    const maxYear = Math.max(...years);
+
+    const left = 70;
+    const right = 70;
+    const top = 55;
+    const bottom = 45;
+    const usableWidth = Math.max(1, width - left - right);
+
+    const domainMin = minYear === maxYear ? minYear - 1 : minYear;
+    const domainMax = minYear === maxYear ? maxYear + 1 : maxYear;
+
+    function yearX(year) {
+      return left + ((year - domainMin) / (domainMax - domainMin)) * usableWidth;
+    }
+
+    const uniqueYears = [...new Set(years)].sort((a, b) => a - b);
+
+    for (const year of uniqueYears) {
+      const x = yearX(year);
+
+      svg.appendChild(svgEl("line", {
+        class: "year-guide",
+        x1: x,
+        x2: x,
+        y1: top,
+        y2: height - bottom
+      }));
+
+      const label = svgEl("text", {
+        class: "year-label",
+        x: x,
+        y: 27
+      });
+      label.textContent = year;
+      svg.appendChild(label);
+    }
+
+    const byYear = new Map();
+    for (const node of nodes) {
+      if (!byYear.has(node.year)) byYear.set(node.year, []);
+      byYear.get(node.year).push(node);
+    }
+
+    const availableHeight = Math.max(80, height - top - bottom - 40);
+    const centerY = top + availableHeight / 2;
+
+    for (const [year, group] of byYear.entries()) {
+      const x = yearX(year);
+      const n = group.length;
+      const desiredSpacing = 58;
+      const spacing = n <= 1
+        ? 0
+        : Math.min(desiredSpacing, availableHeight / Math.max(1, n - 1));
+
+      const startY = centerY - ((n - 1) * spacing) / 2;
+
+      group.forEach((d, index) => {
+        const y = startY + index * spacing;
+        const r = 10;
+
+        const g = svgEl("g", { transform: `translate(${x},${y})` });
+
+        const circle = svgEl("circle", {
+          class: "node-circle",
+          cx: 0,
+          cy: 0,
+          r: r
+        });
+
+        circle.addEventListener("mouseenter", ev => showTooltip(ev, d));
+        circle.addEventListener("mousemove", moveTooltip);
+        circle.addEventListener("mouseleave", hideTooltip);
+        circle.addEventListener("click", () => {
+          if (d.url) window.open(d.url, "_blank", "noopener,noreferrer");
+        });
+
+        const label = svgEl("text", {
+          class: "node-label",
+          x: 0,
+          y: r + 17
+        });
+        label.textContent = `${d.firstAuthor}, ${d.year}`;
+
+        g.appendChild(circle);
+        g.appendChild(label);
+        svg.appendChild(g);
+      });
+    }
+  }
+
+  function loadBibData() {
+    // The Sphinx build creates "<bibPath>.js" in _static.
+    // Example:
+    //   ?bib=fdm-lbm.bibtex  ->  fdm-lbm.bibtex.js
+    const script = document.createElement("script");
+    script.src = bibPath + ".js";
+
+    script.onload = () => {
+      if (typeof window.REFERENCE_MAP_BIBTEX !== "string") {
+        errorMessage =
+          `The generated data file for "${bibPath}" did not contain BibTeX data.`;
+        render();
+        return;
+      }
+
+      try {
+        nodes = parseBibTeX(window.REFERENCE_MAP_BIBTEX);
+        errorMessage = "";
+      } catch (error) {
+        console.error(error);
+        errorMessage = `Could not parse "${bibPath}": ${error.message}`;
+      }
+
+      render();
+    };
+
+    script.onerror = () => {
+      errorMessage =
+        `Missing "${bibPath}.js". Rebuild Sphinx after placing the BibTeX file inside source/_static.`;
+      render();
+    };
+
+    document.head.appendChild(script);
+  }
+
+  let resizeTimer = null;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(render, 100);
   });
 
-  const yearExtent = d3.extent(nodes, d => d.year);
-  const citExtent  = d3.extent(nodes, d => d.citations);
-
-  // Centered scales (no axes)
-  const x = d3.scaleLinear().domain(yearExtent).range([width*0.25, width*0.75]);
-  const y = d3.scaleLinear().domain(citExtent).range([height*0.75, height*0.25]);
-
-  gLinks.selectAll('*').remove();
-  gNodes.selectAll('*').remove();
-
-  const linkSel = gLinks.selectAll('line')
-    .data(links)
-    .enter().append('line')
-    .attr('class','link')
-    .attr('stroke','#cfd8dc')
-    .attr('stroke-width', d=> 0.8 + (+d.weight || 0));
-
-  const nodeSel = gNodes.selectAll('g.node')
-    .data(nodes, d => d.id)
-    .enter().append('g')
-    .attr('class','node');
-
-  nodeSel.append('circle')
-    .attr('r', d=>d.r)
-    .attr('fill', d=>d.color)
-    .on('mouseover', showTip)
-    .on('mouseout', hideTip)
-    .on('click', (ev,d)=> d.url && window.open(d.url, '_blank'));
-
-  nodeSel.append('text')
-    .attr('text-anchor','middle')
-    .attr('dy', d=> d.r + 14)
-    .text(d=> d.label);
-
-  // Simulation toward scatter coordinates (centered)
-  const byId = new Map(nodes.map(d => [d.id, d]));
-  const getNode = s => (typeof s === 'object') ? s : byId.get(s);
-
-  const sim = d3.forceSimulation(nodes)
-    .force('x', d3.forceX(d => x(d.year)).strength(1))
-    .force('y', d3.forceY(d => y(d.citations)).strength(1))
-    .force('collide', d3.forceCollide().radius(d => d.r + 2))
-    .alpha(1)
-    .on('tick', () => {
-      nodeSel.attr('transform', d => `translate(${d.x}, ${d.y})`);
-      linkSel
-        .attr('x1', d => getNode(d.source).x)
-        .attr('y1', d => getNode(d.source).y)
-        .attr('x2', d => getNode(d.target).x)
-        .attr('y2', d => getNode(d.target).y);
-    });
-}
-
-// Toggle toolbar collapse/expand
-document.getElementById('toggleToolbar').addEventListener('click', () => {
-  const tb = document.getElementById('toolbar');
-  tb.classList.toggle('collapsed');
-  document.getElementById('toggleToolbar').textContent =
-    tb.classList.contains('collapsed') ? '+' : '–';
-});
-
-// Initial draw
-buildGraph();
+  loadBibData();
+})();
 </script>
+
 </body>
 </html>

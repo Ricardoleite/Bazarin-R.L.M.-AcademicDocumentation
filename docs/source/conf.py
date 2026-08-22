@@ -100,3 +100,48 @@ numfig_format = {'figure': 'Fig. %s', 'table': 'Table %s', 'code-block': 'Listin
 
 # Show current build date in desired format
 today_fmt = '%d/%B/%Y'   # e.g. 05/September/2025
+
+# -- Reference-map BibTeX support --------------------------------------------
+# Convert every .bib/.bibtex file inside _static into a JavaScript data file.
+# This allows references-map.html to work even when the generated Sphinx site
+# is opened directly with file://, without fetch(), a web server, CDN, or any
+# external dependency.
+def _build_reference_map_data(app, exception):
+    if exception is not None or app.builder.format != "html":
+        return
+
+    from pathlib import Path
+    import json
+
+    static_src = Path(app.srcdir) / "_static"
+    static_out = Path(app.outdir) / "_static"
+
+    if not static_src.exists():
+        return
+
+    bib_files = list(static_src.rglob("*.bib")) + list(static_src.rglob("*.bibtex"))
+
+    for bib_file in bib_files:
+        relative = bib_file.relative_to(static_src)
+        output_file = static_out / Path(str(relative) + ".js")
+        output_file.parent.mkdir(parents=True, exist_ok=True)
+
+        try:
+            bib_text = bib_file.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            bib_text = bib_file.read_text(encoding="latin-1")
+
+        payload = (
+            "window.REFERENCE_MAP_BIBTEX = "
+            + json.dumps(bib_text, ensure_ascii=False)
+            + ";\n"
+            + "window.REFERENCE_MAP_BIBTEX_SOURCE = "
+            + json.dumps(str(relative).replace("\\\\", "/"), ensure_ascii=False)
+            + ";\n"
+        )
+
+        output_file.write_text(payload, encoding="utf-8")
+
+
+def setup(app):
+    app.connect("build-finished", _build_reference_map_data)
