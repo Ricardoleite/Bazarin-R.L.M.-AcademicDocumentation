@@ -109,9 +109,9 @@ Lattice Boltzmann Method - Application to Different Partial differential Equatio
    :maxdepth: 1
    :caption: Appendix:
 
+   /Porous-Media-Study/Intro/trans-eq/base-trans-eq
    /LBM-Study/intro-lbm-conv-diff/appendix/bcs-D2Q5-poisson-equation
    /LBM-Study/FDM-Belloti/appendix/sympy-code-fdm-diffusive-expansion
    /LBM-Study/FDM-Belloti/appendix/sympy-code-mrt-fdm-diffusive-expansion-4th
    /LBM-Study/FDM-Belloti/appendix/sympy-code-mrt-fdm-diffusive-expansion-6th
-   /Porous-Media-Study/Intro/trans-eq/base-trans-eq
    
