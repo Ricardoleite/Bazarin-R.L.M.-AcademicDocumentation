@@ -92,6 +92,7 @@ html_css_files = [
     'css/eqno.css',
     'custom.css',
     'css/sidebar.css',
+    'css/fake-header-Levels.css',
     ]
 
 html_js_files = ["css/sidebar.js"]

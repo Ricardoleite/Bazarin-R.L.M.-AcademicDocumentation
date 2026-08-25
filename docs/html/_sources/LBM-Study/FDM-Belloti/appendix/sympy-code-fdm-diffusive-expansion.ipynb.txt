@@ -15,7 +15,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 1,
+   "execution_count": 3,
    "metadata": {
     "editable": true,
     "slideshow": {
@@ -70,7 +70,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 2,
+   "execution_count": 4,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -89,7 +89,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 3,
+   "execution_count": 5,
    "metadata": {},
    "outputs": [
     {
@@ -216,7 +216,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 4,
+   "execution_count": 6,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -234,7 +234,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 5,
+   "execution_count": 7,
    "metadata": {},
    "outputs": [
     {
@@ -246,7 +246,7 @@
        "Delta_t**2*Delta_x**2*(a*omega**2*Derivative(phi(x, t), (t, 2), (x, 2))/2 - a*omega*Derivative(phi(x, t), (t, 2), (x, 2))/2 - omega*Derivative(phi(x, t), (t, 2), (x, 2))/2 + Derivative(phi(x, t), (t, 2), (x, 2))/2) + Delta_t**2*(-3*omega**2*Derivative(phi(x, t), (t, 2))/2 + 2*omega*Derivative(phi(x, t), (t, 2))) + Delta_t*Delta_x**2*(-a*omega**2*Derivative(phi(x, t), t, (x, 2)) + a*omega*Derivative(phi(x, t), t, (x, 2)) + omega*Derivative(phi(x, t), t, (x, 2)) - Derivative(phi(x, t), t, (x, 2))) + Delta_t*omega**2*Derivative(phi(x, t), t) + Delta_x**4*(a*omega**2*Derivative(phi(x, t), (x, 4))/12 - a*omega*Derivative(phi(x, t), (x, 4))/6) + Delta_x**2*(a*omega**2*Derivative(phi(x, t), (x, 2)) - 2*a*omega*Derivative(phi(x, t), (x, 2)))"
       ]
      },
-     "execution_count": 5,
+     "execution_count": 7,
      "metadata": {},
      "output_type": "execute_result"
     }
