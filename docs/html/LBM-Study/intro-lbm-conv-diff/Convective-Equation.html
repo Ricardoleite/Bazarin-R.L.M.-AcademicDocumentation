@@ -80,9 +80,8 @@ const thebe_selector_output = ".output, .cell_output"
               <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Porous-Media-Study/Intro/Intro-PM-MFinPCPM.html">Introdution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Porous-Media-Study/Intro/Intro-PM-MFinPCPM.html#mass-balance-for-two-fluids-continuous-porous-media">Mass Balance for two-fluids (Continuous Porous Media)</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Convective-Diffusive-Equation (CDE) LBM Approach: Part 1</span></p>
+<p class="caption" role="heading"><span class="caption-text">Convective-Diffusive-Equation (CDE) LBM Approach (One Conserved Moment): Part 1</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="Diffusive-Equation.html">Diffusive Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Poisson-Equation.html">Poisson Equation (Steady-State Diffusive Equation)</a></li>
@@ -122,10 +121,14 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Convective-Diffusive-Equation.html">Convective-Diffusive Equation</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">CDE - Finite Difference Structure of LBM: Part 2</span></p>
+<p class="caption" role="heading"><span class="caption-text">CDE - Finite Difference Structure of LBM (One Conserved Moment): Part 2</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../FDM-Belloti/FDM-LBM-Diffusive.html">Difference Finite Scheme of Diffusive Equation derived from Lattice Boltzmann</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../FDM-Belloti/FDM-LBM-Convective-Diffusive.html">Difference Finite Scheme derived from MRT Lattice Boltzmann for Convective-Diffusive Equation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Navier-Stokes Equation (NSE) LBM Approach (Two Conserved Moment): Part 1</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro-nse-lbm/Navier-Stokes-Equation.html">Navier-Stokes Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Ementa.html">Conteúdo - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References:</span></p>
@@ -180,7 +183,7 @@ const thebe_selector_output = ".output, .cell_output"
 <a class="reference internal image-reference" href="../../_images/mesh-1-convective.svg"><img alt="../../_images/mesh-1-convective.svg" src="../../_images/mesh-1-convective.svg" style="width: 382.5px; height: 172.5px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text">1D regular grid.</span><a class="headerlink" href="#mesh-1-convective" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">1D regular grid.</span><a class="headerlink" href="#mesh-1-convective" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <section id="fdm-discretization">
@@ -268,6 +271,8 @@ f^{eq}_{i} = w_{i}\left( u + \frac{c_{i,\alpha} B_{\alpha}}{c_{s}^{2}} \right).
 </div>
 </details>
 </div>
+<section id="raw-moments">
+<h5>Raw Moments<a class="headerlink" href="#raw-moments" title="Link to this heading"></a></h5>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -279,38 +284,66 @@ f^{eq}_{i} = w_{i}\left( u + \frac{c_{i,\alpha} B_{\alpha}}{c_{s}^{2}} \right).
 <span class="n">ax</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cx</span><span class="p">))</span>
 <span class="n">axx</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cx</span><span class="o">*</span><span class="n">cx</span><span class="p">))</span>
 <span class="n">axxx</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cx</span><span class="o">*</span><span class="n">cx</span><span class="o">*</span><span class="n">cx</span><span class="p">))</span>
-<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> =\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2"> }_{\textrm{Zero-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span> 
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\begin</span><span class="si">{gathered}</span><span class="s2">&quot;</span>
+             <span class="sa">r</span><span class="s2">&quot;\underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> =\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2"> }_{\textrm{Zero-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span> 
             <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">c_{i,x} }_{\textrm{x-First-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
             <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> c_{i,x}c_{i,x} }_{\textrm{xx-Second-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">axx</span><span class="p">)</span>
-            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> c_{i,x}c_{i,x}c_{i,x} }_{\textrm{xxx-Third-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">axxx</span><span class="p">)</span> <span class="p">))</span>
-
-<span class="n">aH0</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="p">))</span>
-<span class="n">aHx</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cx</span><span class="p">))</span>
-<span class="n">aHxx</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="p">(</span><span class="n">cx</span><span class="o">*</span><span class="n">cx</span><span class="o">-</span><span class="n">cs2</span><span class="p">)))</span>
-<span class="n">aHxxx</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="p">(</span><span class="n">cx</span><span class="o">*</span><span class="n">cx</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">cs2</span><span class="p">)</span><span class="o">*</span><span class="n">cx</span><span class="p">))</span>
-<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> =\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2"> }_{\textrm{Zero-Order Hermite Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">aH0</span><span class="p">)</span> 
-            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">c_{i,x} }_{\textrm{x-First-Order Hermite Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">aHx</span><span class="p">)</span>
-            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> \left(c_{i,x}c_{i,x} - \frac</span><span class="si">{1}</span><span class="s2">{c_</span><span class="si">{s}</span><span class="s2">^</span><span class="si">{2}</span><span class="s2">}\right) }_{\textrm{xx-Second-Order Hermite Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">aHxx</span><span class="p">)</span>
-            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> \left(c_{i,x}c_{i,x} - \frac</span><span class="si">{3}</span><span class="s2">{c_</span><span class="si">{s}</span><span class="s2">^</span><span class="si">{2}</span><span class="s2">}\right) c_{i,x} }_{\textrm{xxx-Third-Order Hermite Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">aHxxx</span><span class="p">)</span> <span class="p">))</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> c_{i,x}c_{i,x}c_{i,x} }_{\textrm{xxx-Third-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">axxx</span><span class="p">)</span> 
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;\end</span><span class="si">{gathered}</span><span class="s2">&quot;</span>
+            <span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\displaystyle \underbrace{\sum_{i=0} f_{i}^{eq} =\sum_{i=0} f_{i} }_{\textrm{Zero-Order Moment}} =u,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}c_{i,x} }_{\textrm{x-First-Order Moment}} =B_{\alpha},\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq} c_{i,x}c_{i,x} }_{\textrm{xx-Second-Order Moment}} =\frac{u}{3},\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq} c_{i,x}c_{i,x}c_{i,x} }_{\textrm{xxx-Third-Order Moment}} =B_{\alpha}\]</div>
+\[\displaystyle \begin{gathered}\underbrace{\sum_{i=0} f_{i}^{eq} =\sum_{i=0} f_{i} }_{\textrm{Zero-Order Moment}} =u,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}c_{i,x} }_{\textrm{x-First-Order Moment}} =B_{\alpha},\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq} c_{i,x}c_{i,x} }_{\textrm{xx-Second-Order Moment}} =\frac{u}{3},\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq} c_{i,x}c_{i,x}c_{i,x} }_{\textrm{xxx-Third-Order Moment}} =B_{\alpha}\end{gathered}\]</div>
+</div>
+</div>
+</section>
+<section id="hermite-moments">
+<h5>Hermite Moments<a class="headerlink" href="#hermite-moments" title="Link to this heading"></a></h5>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aH0</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="p">))</span>
+<span class="n">aHx</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cx</span><span class="p">))</span>
+<span class="n">aHxx</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="p">(</span><span class="n">cx</span><span class="o">*</span><span class="n">cx</span><span class="o">-</span><span class="n">cs2</span><span class="p">)))</span>
+<span class="n">aHxxx</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="p">(</span><span class="n">cx</span><span class="o">*</span><span class="n">cx</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">cs2</span><span class="p">)</span><span class="o">*</span><span class="n">cx</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\begin</span><span class="si">{gathered}</span><span class="s2">&quot;</span>
+             <span class="sa">r</span><span class="s2">&quot;\underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> =\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2"> }_{\textrm{Zero-Order Hermite Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">aH0</span><span class="p">)</span> 
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">c_{i,x} }_{\textrm{x-First-Order Hermite Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">aHx</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;\end</span><span class="si">{gathered}</span><span class="s2">&quot;</span>
+            <span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\begin</span><span class="si">{gathered}</span><span class="s2">&quot;</span>
+            <span class="sa">r</span><span class="s2">&quot;\underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> \left(c_{i,x}c_{i,x} - c_</span><span class="si">{s}</span><span class="s2">^</span><span class="si">{2}</span><span class="s2">\right) }_{\textrm{xx-Second-Order Hermite Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">aHxx</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> \left(c_{i,x}c_{i,x} - 3c_</span><span class="si">{s}</span><span class="s2">^</span><span class="si">{2}</span><span class="s2"> \right) c_{i,x} }_{\textrm{xxx-Third-Order Hermite Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">aHxxx</span><span class="p">)</span> 
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;\end</span><span class="si">{gathered}</span><span class="s2">&quot;</span>
+            <span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\displaystyle \underbrace{\sum_{i=0} f_{i}^{eq} =\sum_{i=0} f_{i} }_{\textrm{Zero-Order Hermite Moment}} =u,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}c_{i,x} }_{\textrm{x-First-Order Hermite Moment}} =B_{\alpha},\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq} \left(c_{i,x}c_{i,x} - \frac{1}{c_{s}^{2}}\right) }_{\textrm{xx-Second-Order Hermite Moment}} =0,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq} \left(c_{i,x}c_{i,x} - \frac{3}{c_{s}^{2}}\right) c_{i,x} }_{\textrm{xxx-Third-Order Hermite Moment}} =0\]</div>
+\[\displaystyle \begin{gathered}\underbrace{\sum_{i=0} f_{i}^{eq} =\sum_{i=0} f_{i} }_{\textrm{Zero-Order Hermite Moment}} =u,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}c_{i,x} }_{\textrm{x-First-Order Hermite Moment}} =B_{\alpha}\end{gathered}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \begin{gathered}\underbrace{\sum_{i=0} f_{i}^{eq} \left(c_{i,x}c_{i,x} - c_{s}^{2}\right) }_{\textrm{xx-Second-Order Hermite Moment}} =0,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq} \left(c_{i,x}c_{i,x} - 3c_{s}^{2} \right) c_{i,x} }_{\textrm{xxx-Third-Order Hermite Moment}} =0\end{gathered}\]</div>
 </div>
 </div>
+</section>
 </section>
 <section id="chapmann-enskog-analysis-considering-equilibrium-state-consequently-disregarding-inherited-diffusive-effects">
 <h4>Chapmann-Enskog Analysis (Considering Equilibrium State - Consequently Disregarding Inherited Diffusive Effects)<a class="headerlink" href="#chapmann-enskog-analysis-considering-equilibrium-state-consequently-disregarding-inherited-diffusive-effects" title="Link to this heading"></a></h4>
 <div class="toggle docutils container">
-<p>Applying the Chapmann-Enskog procedure to LB equation, we expand the term <span class="math notranslate nohighlight">\(f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)\)</span> in a Taylor series to recover the derivative form of the equation, i.e.,</p>
+<p>Applying the Chapmann-Enskog procedure to LB equation, we expand the term <span class="math notranslate nohighlight">\(f_{i}\left(\boldsymbol{x}+\boldsymbol{e}_i \Delta t, t+\Delta t\right)=f_{i}^{'}\)</span> in a Taylor series to recover the derivative form of the equation, i.e.,</p>
 <div class="math notranslate nohighlight" id="equation-eqexp-cv-eq">
 <span class="eqno">(34)<a class="headerlink" href="#equation-eqexp-cv-eq" title="Link to this equation"></a></span>\[
-f_{i}\left(x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(\boldsymbol{x}, t)=\displaystyle\sum_{j=1}^{\infty}\frac{\Delta t^{j}}{j!}D_{t}^{j}f_{i}= -\left( \frac{ f_{i} - f_{i}^{eq} }{ \tau } \right) \quad \quad \overbrace{\rightarrow}^{\textrm{Equilibrium State}} \quad \quad f_{i}\left(x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)=\displaystyle\sum_{j=0}^{\infty}\frac{\Delta t^{j}}{j!}D_{t}^{j}f_{i}= f_{i}^{eq}(\boldsymbol{x}, t).
+f_{i}^{'} - f_{i}(\boldsymbol{x}, t)=\displaystyle\sum_{j=1}^{\infty}\frac{\Delta t^{j}}{j!}D_{t}^{j}f_{i}= -\left( \frac{ f_{i} - f_{i}^{eq} }{ \tau } \right) \quad \quad \overbrace{\rightarrow}^{\textrm{Equilibrium State}} \quad \quad f_{i}^{'} = \displaystyle\sum_{j=0}^{\infty}\frac{\Delta t^{j}}{j!}D_{t}^{j}f_{i}= f_{i}^{eq}(\boldsymbol{x}, t).
 \]</div>
 <p>Rescaling the dimensionless form of the Eq. <a class="reference internal" href="#equation-eqexp-cv-eq">(34)</a> in terms of the Knudsen number (<span class="math notranslate nohighlight">\(Kn\)</span>), we have</p>
 <div class="math notranslate nohighlight">
@@ -324,10 +357,11 @@ f_{i}\left(x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(\boldsym
     (Kn^{(0)}):&amp; f_{i}^{(0)}= f_{i}^{eq},\\
     (Kn^{(1)}):&amp; \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)}= 0, \\
     (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(1)} + \displaystyle\frac{\left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)^{2} f_{i}^{(0)}}{2}= 0,\\
-    \textrm{ou}\\
+    \textrm{ou} &amp;\\
     (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(1)} = 0,\\
-    (Kn^{(3)}):&amp; \partial_{t}^{(2)} f_{i}^{(0)} +\partial_{t}^{(1)} f_{i}^{(1)} + \partial_{t}^{(1)}\left( \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)} \right) + \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(2)} + \displaystyle\frac{\left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)^{2} f_{i}^{(1)}}{2} +  \displaystyle\frac{\left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)^{3} f_{i}^{(0)}}{6} =  0,  \\
-    \textrm{ou}\\
+    (Kn^{(3)}):&amp; \partial_{t}^{(2)} f_{i}^{(0)} +\partial_{t}^{(1)} f_{i}^{(1)} + \partial_{t}^{(1)}\left( \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)} \right) + \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(2)} + \displaystyle\frac{\left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)^{2} f_{i}^{(1)}}{2} \\ 
+    &amp; +  \displaystyle\frac{\left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)^{3} f_{i}^{(0)}}{6} =  0,  \\
+    \textrm{ou} &amp;\\
     (Kn^{(3)}):&amp; \partial_{t}^{(2)} f_{i}^{(0)} +\partial_{t}^{(1)} f_{i}^{(1)} + \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(2)} =  0.  \\
  \end{array}
 \end{split}\]</div>
@@ -342,16 +376,16 @@ f_{i}\left(x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(\boldsym
 \end{split}\]</div>
 <div class="math notranslate nohighlight" id="equation-cv-kn2-b0">
 <span class="eqno">(37)<a class="headerlink" href="#equation-cv-kn2-b0" title="Link to this equation"></a></span>\[\begin{split}
-\begin{array}{l}
-(Kn^{(2)}):&amp; \displaystyle\sum_{i}\left[ \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right) f_{i}^{(1)}   \right]=  0, \nonumber \\
+\begin{array}{ll}
+(Kn^{(2)}):&amp; \displaystyle\sum_{i}\left[ \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right) f_{i}^{(1)}   \right]=  0, \\
 (Kn^{(2)}):&amp; \partial_{t}^{(1)} u + \partial_{\alpha} m^{(1)}_{\alpha} = 0,
 \end{array}
 \end{split}\]</div>
 <p>and</p>
 <div class="math notranslate nohighlight" id="equation-cv-kn3-b0">
 <span class="eqno">(38)<a class="headerlink" href="#equation-cv-kn3-b0" title="Link to this equation"></a></span>\[\begin{split}
-\begin{array}{l}
-(Kn^{(3)}):&amp; \displaystyle\sum_{i}\left[ \partial_{t}^{(2)} f_{i}^{(0)} +\partial_{t}^{(1)} f_{i}^{(1)} + \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(2)}   \right]=  0, \nonumber \\
+\begin{array}{ll}
+(Kn^{(3)}):&amp; \displaystyle\sum_{i}\left[ \partial_{t}^{(2)} f_{i}^{(0)} +\partial_{t}^{(1)} f_{i}^{(1)} + \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(2)}   \right]=  0, \\
 (Kn^{(3)}):&amp; \partial_{t}^{(2)} u + \partial_{\alpha} m^{(2)}_{\alpha} = 0.
 \end{array}
 \end{split}\]</div>
@@ -383,12 +417,13 @@ f_{i}\left(x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(x_{\alph
     (Kn^{(0)}):&amp; f_{i}^{(0)}= f_{i}^{eq},\\
     (Kn^{(1)}):&amp; \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)}= - \displaystyle\frac{ f_{i}^{(1)} }{ \tau } , \\
     (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(1)} + \displaystyle\frac{\left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)^{2} f_{i}^{(0)}}{2}= - \displaystyle\frac{ f_{i}^{(2)} }{ \tau },\\
-    \textrm{ou}\\
+    \textrm{ou} &amp; \\
     (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)\displaystyle\left(1 - \frac{1}{2\tau}\right) f_{i}^{(1)} =  - \displaystyle\frac{ f_{i}^{(2)} }{ \tau } \quad\quad \rightarrow \quad\quad  f_{i}^{(1)}\textrm{ Formulation} \\
-    \textrm{ou}\\
+    \textrm{ou} &amp; \\
     (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)^{2} \displaystyle\left(\frac{1}{2} - \tau\right) f_{i}^{(0)} =  - \displaystyle\frac{ f_{i}^{(2)} }{ \tau } \quad\quad \rightarrow  \quad\quad f_{i}^{(0)}\textrm{ Formulation} \\
-    (Kn^{(3)}):&amp; \partial_{t}^{(2)} f_{i}^{(0)} +\partial_{t}^{(1)} f_{i}^{(1)} + \partial_{t}^{(1)}\left( \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)} \right) + \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(2)} + \displaystyle\frac{\left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)^{2} f_{i}^{(1)}}{2} +  \displaystyle\frac{\left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)^{3} f_{i}^{(0)}}{6} = - \displaystyle\frac{ f_{i}^{(3)} }{ \tau },  \\
-    \textrm{ou}\\
+    (Kn^{(3)}):&amp; \partial_{t}^{(2)} f_{i}^{(0)} +\partial_{t}^{(1)} f_{i}^{(1)} + \partial_{t}^{(1)}\left( \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)} \right) + \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(2)} + \displaystyle\frac{\left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)^{2} f_{i}^{(1)}}{2} \\
+    &amp; + \displaystyle\frac{\left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)^{3} f_{i}^{(0)}}{6} = - \displaystyle\frac{ f_{i}^{(3)} }{ \tau },  \\
+    \textrm{ou} &amp; \\
     (Kn^{(3)}):&amp; \partial_{t}^{(2)} f_{i}^{(0)} + \left(1-\displaystyle\frac{1}{\tau}\right)\partial_{t}^{(1)} f_{i}^{(1)} + \displaystyle\left(\frac{1}{2} - \frac{1}{6\tau}\right) \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)^{2} f_{i}^{(1)} + \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(2)} =  - \displaystyle\frac{f_{i}^{(3)}}{\tau},
  \end{array}
 \end{split}\]</div>
@@ -403,8 +438,8 @@ f_{i}\left(x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(x_{\alph
 \end{split}\]</div>
 <div class="math notranslate nohighlight" id="equation-cv-kn2-b0-all">
 <span class="eqno">(42)<a class="headerlink" href="#equation-cv-kn2-b0-all" title="Link to this equation"></a></span>\[\begin{split}
-\begin{array}{l}
-(Kn^{(2)}):&amp; \displaystyle\sum_{i}\left[ \partial_{t}^{(1)} f_{i}^{(0)} + \displaystyle\left(1 - \frac{1}{2\tau}\right)\left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right) f_{i}^{(1)}   \right]=  - \displaystyle\sum_{i}\left(\displaystyle\frac{ f_{i}^{(2)} }{ \tau } \right), \nonumber \\
+\begin{array}{ll}
+(Kn^{(2)}):&amp; \displaystyle\sum_{i}\left[ \partial_{t}^{(1)} f_{i}^{(0)} + \displaystyle\left(1 - \frac{1}{2\tau}\right)\left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right) f_{i}^{(1)}   \right]=  - \displaystyle\sum_{i}\left(\displaystyle\frac{ f_{i}^{(2)} }{ \tau } \right), \\
 (Kn^{(2)}):&amp; \partial_{t}^{(1)} u + \displaystyle\left(1 - \frac{1}{2\tau}\right)\partial_{\alpha} m^{(1)}_{\alpha} = 0,
 \end{array}
 \end{split}\]</div>
@@ -419,15 +454,16 @@ f_{i}\left(x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(x_{\alph
 <p>Extending the analysis up to <span class="math notranslate nohighlight">\(Kn^{(3)}\)</span></p>
 <div class="math notranslate nohighlight" id="equation-cv-kn3-b0-all">
 <span class="eqno">(44)<a class="headerlink" href="#equation-cv-kn3-b0-all" title="Link to this equation"></a></span>\[\begin{split}
-\begin{array}{l}
-(Kn^{(3)}):&amp; \displaystyle\sum_{i}\left[ \partial_{t}^{(2)} f_{i}^{(0)} + \left(1-\displaystyle\frac{1}{\tau}\right)\partial_{t}^{(1)} f_{i}^{(1)} + \displaystyle\left(\frac{1}{2} - \frac{1}{6\tau}\right) \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)^{2} f_{i}^{(1)} + \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(2)} \right] =  - \displaystyle\sum_{i}\left[\displaystyle\frac{f_{i}^{(3)}}{\tau} \right], \\
+\begin{array}{ll}
+(Kn^{(3)}):&amp; \displaystyle\sum_{i}\Bigg[ \partial_{t}^{(2)} f_{i}^{(0)} + \left(1-\displaystyle\frac{1}{\tau}\right)\partial_{t}^{(1)} f_{i}^{(1)} + \left(\frac{1}{2} - \frac{1}{6\tau}\right) \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)^{2} f_{i}^{(1)} \\
+&amp; + \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(2)} \Bigg] =  - \displaystyle\sum_{i}\left[\displaystyle\frac{f_{i}^{(3)}}{\tau} \right], \\
 (Kn^{(3)}):&amp; \partial_{t}^{(2)} u + \partial_{t}^{(1)}\left(\partial_{\alpha} m^{(1)}_{\alpha} + \partial_{\beta} m^{(1)}_{\beta}\right) + \partial_{\alpha}\partial_{\beta} m^{(1)}_{\alpha\beta} + \partial_{\alpha} m^{(2)}_{\alpha} = 0.
 \end{array}
 \end{split}\]</div>
 <p>By summing the Eqs. <a class="reference internal" href="#equation-cv-kn1-b0-all">(41)</a>, <a class="reference internal" href="#equation-cv-kn2-b0-all">(42)</a>, and <a class="reference internal" href="#equation-cv-kn3-b0-all">(44)</a>, and also extending to higher orders of Knudsen, we have</p>
 <div class="math notranslate nohighlight">
 \[
-\partial_{t}  u + \partial_{\alpha} B_{\alpha} - \partial_{\alpha}\left(\nu \partial_{\alpha} u \right) + \underbrace{\partial_{\alpha} m^{(2)}_{\alpha} + \partial_{\alpha}\partial_{\beta} m^{(1)}_{\alpha\beta} + \partial_{t}^{(1)}\left(\partial_{\alpha} m^{(1)}_{\alpha} + \partial_{\beta} m^{(1)}_{\beta}\right) - \left(\tau - \frac{1}{2} \right) \partial_{t}^{(0)} \partial_{\alpha} B_{\alpha} + ...  }_{\textrm{Numerical Errors}} =0,
+\partial_{t}  u + \partial_{\alpha} B_{\alpha} - \partial_{\alpha}\left(\nu \partial_{\alpha} u \right) + \underbrace{\partial_{\alpha} m^{(2)}_{\alpha} + \partial_{\alpha}\partial_{\beta} m^{(1)}_{\alpha\beta} + \partial_{t}^{(1)}\left(\partial_{\alpha} m^{(1)}_{\alpha} + \partial_{\beta} m^{(1)}_{\beta}\right) - \left(\tau - \frac{1}{2} \right) \partial_{t}^{(0)} \partial_{\alpha} B_{\alpha} + ...  }_{\text{Numerical Errors}} =0,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\nu=c_{s}^{2}(\tau-1/2)\)</span>. The numerical errors can be corrected using extra moments in the equilibrium distribution function and some ones can neglected due to its relevance decay exponentially with the decrease of <span class="math notranslate nohighlight">\(\Delta x\)</span> and <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p>
 </div>
@@ -484,12 +520,12 @@ f_{i}\left(x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(x_{\alph
 <span class="eqno">(46)<a class="headerlink" href="#equation-eqfractionalflow" title="Link to this equation"></a></span>\[
 F(s_w) = \frac{ s_{w}^{2} }{ s_{w}^{2} + M_{\mu}(1-s_{w})^{2}}.
 \]</div>
-<p>The simulation parameters are chosen so that the average velocity component <span class="math notranslate nohighlight">\(\langle u \rangle_{\alpha} / \varphi\)</span> equals <span class="math notranslate nohighlight">\(1\,\mathrm{m/s}\)</span> and the dynamic viscosity ratio <span class="math notranslate nohighlight">\(M_{\mu}\)</span> equals <span class="math notranslate nohighlight">\(1\)</span>. We consider a one-dimensional porous medium of length <span class="math notranslate nohighlight">\(L_x = 20\,\mathrm{m}\)</span>, initially saturated with oil (see <a class="reference internal" href="#d-displace-bl"><span class="std std-numref">Fig. 6</span></a>). Water is injected at the inlet <span class="math notranslate nohighlight">\((x=0)\)</span> under a Dirichlet boundary condition <span class="math notranslate nohighlight">\(s_{w}(x=0)=1\)</span>. At the outlet <span class="math notranslate nohighlight">\((x=L)\)</span>, a Neumann boundary condition specifying a zero gradient in water saturation is applied.</p>
+<p>The simulation parameters are chosen so that the average velocity component <span class="math notranslate nohighlight">\(\langle u \rangle_{\alpha} / \varphi\)</span> equals <span class="math notranslate nohighlight">\(1\,\mathrm{m/s}\)</span> and the dynamic viscosity ratio <span class="math notranslate nohighlight">\(M_{\mu}\)</span> equals <span class="math notranslate nohighlight">\(1\)</span>. We consider a one-dimensional porous medium of length <span class="math notranslate nohighlight">\(L_x = 20\,\mathrm{m}\)</span>, initially saturated with oil (see <a class="reference internal" href="#d-displace-bl"><span class="std std-numref">Fig. 8</span></a>). Water is injected at the inlet <span class="math notranslate nohighlight">\((x=0)\)</span> under a Dirichlet boundary condition <span class="math notranslate nohighlight">\(s_{w}(x=0)=1\)</span>. At the outlet <span class="math notranslate nohighlight">\((x=L)\)</span>, a Neumann boundary condition specifying a zero gradient in water saturation is applied.</p>
 <figure class="align-center" id="d-displace-bl">
-<a class="reference internal image-reference" href="../../_images/1D-Displace-BL.svg"><img alt="../../_images/1D-Displace-BL.svg" src="../../_images/1D-Displace-BL.svg" style="width: 686.0px; height: 205.0px;" />
+<a class="reference internal image-reference" href="../../_images/1D-Displace-BL.svg"><img alt="../../_images/1D-Displace-BL.svg" src="../../_images/1D-Displace-BL.svg" style="width: 411.59999999999997px; height: 123.0px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Geometry of the non-linear convective problem: initial and boundary conditions.</span><a class="headerlink" href="#d-displace-bl" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Geometry of the non-linear convective problem: initial and boundary conditions.</span><a class="headerlink" href="#d-displace-bl" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <section id="transient-analytical-solution">
@@ -513,8 +549,16 @@ s_{w}(x,t)= \left\{  \begin{array}{ccc}
 </section>
 <section id="fdm-solution">
 <h4>FDM Solution:<a class="headerlink" href="#fdm-solution" title="Link to this heading"></a></h4>
-<div class="toggle docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">pylab</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
@@ -543,22 +587,41 @@ s_{w}(x,t)= \left\{  \begin{array}{ccc}
     <span class="n">sf</span><span class="o">=</span><span class="n">sfo</span>
     <span class="n">Bx</span><span class="o">=</span><span class="n">uo</span><span class="o">*</span><span class="n">sf</span><span class="o">**</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">sf</span><span class="o">**</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span><span class="o">+</span><span class="n">m</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">sf</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">2.0</span><span class="p">))</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">Nx</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sf</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Water Saturation (t=4)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$x$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$u(x,t)$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="c1"># plt.plot(x, sf, &#39;k-&#39; ,label=&#39;Water Saturation (t=4)&#39;)</span>
+<span class="c1"># plt.xlabel(r&quot;$x$&quot;,fontsize=18)</span>
+<span class="c1"># plt.ylabel(r&quot;$u(x,t)$&quot;,fontsize=18)</span>
+<span class="c1"># plt.xlim(0,20)</span>
+<span class="c1"># plt.ylim(0,1)</span>
+<span class="c1"># plt.legend()</span>
+<span class="c1"># plt.grid(True)</span>
+<span class="c1"># plt.tight_layout()</span>
 </pre></div>
 </div>
+</div>
+</details>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dx= 0.16 	 dt= 0.04
+</pre></div>
+</div>
+</div>
+</details>
 </div>
 </section>
 <section id="lattice-boltzmann-framework-of-ftfs">
 <h4>Lattice Boltzmann Framework of FTFS:<a class="headerlink" href="#lattice-boltzmann-framework-of-ftfs" title="Link to this heading"></a></h4>
-<div class="toggle docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">pylab</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
@@ -598,22 +661,42 @@ s_{w}(x,t)= \left\{  \begin{array}{ccc}
     <span class="n">sk</span><span class="p">[:]</span><span class="o">=</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span><span class="o">+</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span>
     <span class="n">Bx</span><span class="o">=</span><span class="n">ue</span><span class="o">*</span><span class="n">sk</span><span class="o">*</span><span class="n">sk</span><span class="o">/</span><span class="p">(</span><span class="n">sk</span><span class="o">*</span><span class="n">sk</span><span class="o">+</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">sk</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">2.0</span><span class="p">))</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">Nx</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sk</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Water Saturation $(t=4)$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$x$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$u(x,t)$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="c1"># plt.plot(x, sk, &#39;k-&#39; ,label=&#39;Water Saturation $(t=4)$&#39;)</span>
+<span class="c1"># plt.xlabel(r&quot;$x$&quot;,fontsize=18)</span>
+<span class="c1"># plt.ylabel(r&quot;$u(x,t)$&quot;,fontsize=18)</span>
+<span class="c1"># plt.xlim(0,20)</span>
+<span class="c1"># plt.ylim(0,1)</span>
+<span class="c1"># plt.legend()</span>
+<span class="c1"># plt.grid(True)</span>
+<span class="c1"># plt.tight_layout()</span>
 </pre></div>
 </div>
+</div>
+</details>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dx= 0.16 	 dt= 0.04
+</pre></div>
+</div>
+</div>
+</details>
 </div>
 </section>
 <section id="numerical-and-analytical-comparisson">
 <h4>Numerical and Analytical Comparisson<a class="headerlink" href="#numerical-and-analytical-comparisson" title="Link to this heading"></a></h4>
-<div class="toggle docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sf</span><span class="p">,</span> <span class="s1">&#39;ks:&#39;</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;FDM (FTFS): Water Saturation $(t=4)$&#39;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mf">3.5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sf</span><span class="p">,</span> <span class="s1">&#39;ks:&#39;</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;FDM (FTFS): Water Saturation $(t=4)$&#39;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sk</span><span class="p">,</span> <span class="s1">&#39;ro:&#39;</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;LBM (FTFS): Water Saturation $(t=4)$&#39;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$x$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$u(x,t)$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
@@ -625,21 +708,25 @@ s_{w}(x,t)= \left\{  \begin{array}{ccc}
 </pre></div>
 </div>
 </div>
-<figure class="align-center" id="sat-ftfs">
-<a class="reference internal image-reference" href="../../_images/sat-FTFS.png"><img alt="../../_images/sat-FTFS.png" src="../../_images/sat-FTFS.png" style="width: 613.0px; height: 455.0px;" />
-</a>
-<figcaption>
-<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Comparisson of saturation profile for FDM and LBM FTFS schemes.</span><a class="headerlink" href="#sat-ftfs" title="Link to this image"></a></p>
-</figcaption>
-</figure>
+</details>
+<div class="cell_output docutils container">
+<img alt="../../_images/2dceeb4bae91b609db7f314c69b1836356bdf744293821ec550a0aab1d9fa921.png" src="../../_images/2dceeb4bae91b609db7f314c69b1836356bdf744293821ec550a0aab1d9fa921.png" />
+</div>
+</div>
 </section>
 </section>
 <section id="id2">
 <h3>Forward-Time and Central-Space with Small Diffusivity (FTCS-SD)<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
 <section id="lattice-boltzmann-method-d1q3">
 <h4>Lattice Boltzmann Method (D1Q3):<a class="headerlink" href="#lattice-boltzmann-method-d1q3" title="Link to this heading"></a></h4>
-<div class="toggle docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">pylab</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
@@ -683,22 +770,41 @@ s_{w}(x,t)= \left\{  \begin{array}{ccc}
     <span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
     <span class="n">f</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">f</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">Nx</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sk</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Water Saturation $(t=10)$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$x$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$u(x,t)$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="c1"># plt.plot(x, sk, &#39;k-&#39; ,label=&#39;Water Saturation $(t=10)$&#39;)</span>
+<span class="c1"># plt.xlabel(r&quot;$x$&quot;,fontsize=18)</span>
+<span class="c1"># plt.ylabel(r&quot;$u(x,t)$&quot;,fontsize=18)</span>
+<span class="c1"># plt.xlim(0,20)</span>
+<span class="c1"># plt.ylim(0,1)</span>
+<span class="c1"># plt.legend()</span>
+<span class="c1"># plt.grid(True)</span>
+<span class="c1"># plt.tight_layout()</span>
 </pre></div>
 </div>
+</div>
+</details>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dx= 0.16 	 dt= 0.04
+</pre></div>
+</div>
+</div>
+</details>
 </div>
 </section>
 <section id="fdm-approach-of-lbm-framework-d1q3">
 <h4>FDM approach of LBM Framework D1Q3:<a class="headerlink" href="#fdm-approach-of-lbm-framework-d1q3" title="Link to this heading"></a></h4>
-<div class="toggle docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">pylab</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
@@ -728,22 +834,42 @@ s_{w}(x,t)= \left\{  \begin{array}{ccc}
     <span class="n">sfo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>     <span class="c1"># Inlet boundary condition</span>
     <span class="n">sfo</span><span class="p">[</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>  <span class="c1"># Inlet boundary condition</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">Nx</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sk</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Water Saturation $(t=10)$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$x$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$u(x,t)$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="c1"># plt.plot(x, sk, &#39;k-&#39; ,label=&#39;Water Saturation $(t=10)$&#39;)</span>
+<span class="c1"># plt.xlabel(r&quot;$x$&quot;,fontsize=18)</span>
+<span class="c1"># plt.ylabel(r&quot;$u(x,t)$&quot;,fontsize=18)</span>
+<span class="c1"># plt.xlim(0,20)</span>
+<span class="c1"># plt.ylim(0,1)</span>
+<span class="c1"># plt.legend()</span>
+<span class="c1"># plt.grid(True)</span>
+<span class="c1"># plt.tight_layout()</span>
 </pre></div>
 </div>
+</div>
+</details>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dx= 0.16 	 dt= 0.04
+</pre></div>
+</div>
+</div>
+</details>
 </div>
 </section>
 <section id="id3">
 <h4>Numerical and Analytical Comparisson<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
-<div class="toggle docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sf</span><span class="p">,</span> <span class="s1">&#39;ks:&#39;</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;FDM (FTCS-SD): Water Saturation $(t=10)$&#39;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mf">3.5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sf</span><span class="p">,</span> <span class="s1">&#39;ks:&#39;</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;FDM (FTCS-SD): Water Saturation $(t=10)$&#39;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sk</span><span class="p">,</span> <span class="s1">&#39;ro:&#39;</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;LBM D1Q3: Water Saturation $(t=10)$&#39;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$x$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$u(x,t)$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
@@ -755,13 +881,11 @@ s_{w}(x,t)= \left\{  \begin{array}{ccc}
 </pre></div>
 </div>
 </div>
-<figure class="align-center" id="sat-ftcs-sd">
-<a class="reference internal image-reference" href="../../_images/sat-FTCS-SD.png"><img alt="../../_images/sat-FTCS-SD.png" src="../../_images/sat-FTCS-SD.png" style="width: 613.0px; height: 455.0px;" />
-</a>
-<figcaption>
-<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Comparisson of saturation profile for FDM and LBM FTCS-SD schemes.</span><a class="headerlink" href="#sat-ftcs-sd" title="Link to this image"></a></p>
-</figcaption>
-</figure>
+</details>
+<div class="cell_output docutils container">
+<img alt="../../_images/0ecf32fa32dd9a1868357f9422b464befeec339ae0f3ff7364b0268ba3bddf66.png" src="../../_images/0ecf32fa32dd9a1868357f9422b464befeec339ae0f3ff7364b0268ba3bddf66.png" />
+</div>
+</div>
 </section>
 </section>
 </section>

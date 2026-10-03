@@ -80,9 +80,8 @@ const thebe_selector_output = ".output, .cell_output"
               <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Porous-Media-Study/Intro/Intro-PM-MFinPCPM.html">Introdution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Porous-Media-Study/Intro/Intro-PM-MFinPCPM.html#mass-balance-for-two-fluids-continuous-porous-media">Mass Balance for two-fluids (Continuous Porous Media)</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Convective-Diffusive-Equation (CDE) LBM Approach: Part 1</span></p>
+<p class="caption" role="heading"><span class="caption-text">Convective-Diffusive-Equation (CDE) LBM Approach (One Conserved Moment): Part 1</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Diffusive Equation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#numerical-discretization">Numerical Discretization</a><ul>
@@ -101,22 +100,20 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="#numerical-and-analytical-comparisson">Numerical and Analytical Comparisson</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#nd-benchmark-temperature-ramp">2nd Benchmark: Temperature ramp</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#steady-state-analytical-solution">Steady-State Analytical Solution</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#transient-analytical-solution">Transient Analytical Solution</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#rd-benchmark-temperature-ramp-with-adiabatic-boundary">3rd Benchmark: Temperature Ramp with Adiabatic Boundary</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Poisson-Equation.html">Poisson Equation (Steady-State Diffusive Equation)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Convective-Equation.html">Convective Equation (Transport Equation)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Convective-Diffusive-Equation.html">Convective-Diffusive Equation</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">CDE - Finite Difference Structure of LBM: Part 2</span></p>
+<p class="caption" role="heading"><span class="caption-text">CDE - Finite Difference Structure of LBM (One Conserved Moment): Part 2</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../FDM-Belloti/FDM-LBM-Diffusive.html">Difference Finite Scheme of Diffusive Equation derived from Lattice Boltzmann</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../FDM-Belloti/FDM-LBM-Convective-Diffusive.html">Difference Finite Scheme derived from MRT Lattice Boltzmann for Convective-Diffusive Equation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Navier-Stokes Equation (NSE) LBM Approach (Two Conserved Moment): Part 1</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro-nse-lbm/Navier-Stokes-Equation.html">Navier-Stokes Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Ementa.html">Conteúdo - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References:</span></p>
@@ -170,7 +167,7 @@ const thebe_selector_output = ".output, .cell_output"
 <a class="reference internal image-reference" href="../../_images/mesh-1-diffusive.svg"><img alt="../../_images/mesh-1-diffusive.svg" src="../../_images/mesh-1-diffusive.svg" style="width: 392.5px; height: 175.0px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">1D regular grid example for diffusive equation.</span><a class="headerlink" href="#mesh-1-diffusive" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">1D regular grid example for diffusive equation.</span><a class="headerlink" href="#mesh-1-diffusive" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <section id="fdm-discretization">
@@ -265,19 +262,22 @@ m^{neq}_{\alpha} = \displaystyle\sum_{i} c_{i,\alpha}\left( f_i-f_i^{eq}\right) 
 <span class="n">axx</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cx</span><span class="o">*</span><span class="n">cx</span><span class="p">))</span>
 <span class="n">axy</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cx</span><span class="o">*</span><span class="n">cy</span><span class="p">))</span>
 <span class="n">ayy</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cy</span><span class="o">*</span><span class="n">cy</span><span class="p">))</span>
-<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> =\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2"> }_{\textrm{Zero-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span> 
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\begin</span><span class="si">{gathered}</span><span class="s2">&quot;</span>
+             <span class="sa">r</span><span class="s2">&quot;\underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> =\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2"> }_{\textrm{Zero-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span> 
             <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">c_{i,x} }_{\textrm{x-First-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
             <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">c_{i,y} }_{\textrm{y-First-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">ay</span><span class="p">)</span>
             <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,</span><span class="se">\\</span><span class="s2"> \quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">c_{i,x}c_{i,x} }_{\textrm{xx-Second-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">axx</span><span class="p">)</span>
             <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">c_{i,x}c_{i,y} }_{\textrm{xy-Second-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">axy</span><span class="p">)</span>
-            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot; \quad \quad and \quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">c_{i,y}c_{i,y} }_{\textrm{yy-Second-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">ayy</span><span class="p">)))</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot; \quad \quad and \quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">c_{i,y}c_{i,y} }_{\textrm{yy-Second-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">ayy</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;\end</span><span class="si">{gathered}</span><span class="s2">&quot;</span>
+       <span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\displaystyle \underbrace{\sum_{i=0} f_{i}^{eq} =\sum_{i=0} f_{i} }_{\textrm{Zero-Order Moment}} =\phi,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}c_{i,x} }_{\textrm{x-First-Order Moment}} =0,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}c_{i,y} }_{\textrm{y-First-Order Moment}} =0,\\ \quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}c_{i,x}c_{i,x} }_{\textrm{xx-Second-Order Moment}} =\frac{\phi}{3},\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}c_{i,x}c_{i,y} }_{\textrm{xy-Second-Order Moment}} =0 \quad \quad and \quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}c_{i,y}c_{i,y} }_{\textrm{yy-Second-Order Moment}} =\frac{\phi}{3}\end{split}\]</div>
+\[\begin{split}\displaystyle \begin{gathered}\underbrace{\sum_{i=0} f_{i}^{eq} =\sum_{i=0} f_{i} }_{\textrm{Zero-Order Moment}} =\phi,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}c_{i,x} }_{\textrm{x-First-Order Moment}} =0,\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}c_{i,y} }_{\textrm{y-First-Order Moment}} =0,\\ \quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}c_{i,x}c_{i,x} }_{\textrm{xx-Second-Order Moment}} =\frac{\phi}{3},\quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}c_{i,x}c_{i,y} }_{\textrm{xy-Second-Order Moment}} =0 \quad \quad and \quad \quad \underbrace{\sum_{i=0} f_{i}^{eq}c_{i,y}c_{i,y} }_{\textrm{yy-Second-Order Moment}} =\frac{\phi}{3}\end{gathered}\end{split}\]</div>
 </div>
 </div>
 </section>
@@ -301,9 +301,9 @@ f_{i}\left( x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}( x_{\al
     (Kn^{(0)}):&amp; f_{i}^{(0)}= f_{i}^{eq},\\
     (Kn^{(1)}):&amp; \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)}= - \displaystyle\frac{ f_{i}^{(1)} }{ \tau } , \\
     (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(1)} + \displaystyle\frac{\left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)^{2} f_{i}^{(0)}}{2}= - \displaystyle\frac{ f_{i}^{(2)} }{ \tau },\\
-    \textrm{ou}\\
+    \textrm{ou}&amp;  \\
     (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)\displaystyle\left(1 - \frac{1}{2\tau}\right) f_{i}^{(1)} =  - \displaystyle\frac{ f_{i}^{(2)} }{ \tau } \quad\quad \rightarrow \quad\quad  f_{i}^{(1)}\textrm{ Formulation} \\
-    \textrm{ou}\\
+    \textrm{ou}&amp; \\
     (Kn^{(2)}):&amp; \partial_{t}^{(1)} f_{i}^{(0)} + \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)^{2} \displaystyle\left(\frac{1}{2} - \tau\right) f_{i}^{(0)} =  - \displaystyle\frac{ f_{i}^{(2)} }{ \tau } \quad\quad \rightarrow  \quad\quad f_{i}^{(0)}\textrm{ Formulation}.
  \end{array}
 \end{split}\]</div>
@@ -327,7 +327,7 @@ f_{i}\left( x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}( x_{\al
 <p>or</p>
 <div class="math notranslate nohighlight" id="equation-df-kn1-0-b0">
 <span class="eqno">(23)<a class="headerlink" href="#equation-df-kn1-0-b0" title="Link to this equation"></a></span>\[\begin{split}
-\begin{array}{l}
+\begin{array}{ll}
 (Kn^{(2)}):&amp; \displaystyle\sum_{i}\left[ \partial_{t}^{(1)} f_{i}^{(0)} + \left(1-\displaystyle\frac{1}{2\tau}\right)\left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right) f_{i}^{(1)}   \right]=  \displaystyle\sum_{i}\left( - \displaystyle\frac{f_{i}^{(2)}}{\tau} \right), \nonumber \\
 (Kn^{(2)}):&amp; \partial_{t}^{(1)}\phi + \left(1-\displaystyle\frac{1}{2\tau}\right) m^{(1)}_{\alpha} = 0.
 \end{array}
@@ -371,40 +371,26 @@ f_{i}\left( x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}( x_{\al
 <td><p></p></td>
 <td><p><span class="math notranslate nohighlight">\(f_1=\phi_{w} - f_2\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p>D1Q3:</p></td>
+<tr class="row-even"><td><p>D1Q3:</p></td>
 <td><p>Boundaries</p></td>
 <td><p></p></td>
 <td><p>Layers</p></td>
 <td><p></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p></p></td>
+<tr class="row-odd"><td><p></p></td>
 <td><p></p></td>
 <td><p></p></td>
 <td><p>West</p></td>
 <td><p></p></td>
 <td><p>East</p></td>
 </tr>
-<tr class="row-odd"><td><p></p></td>
+<tr class="row-even"><td><p></p></td>
 <td><p>Unknown <span class="math notranslate nohighlight">\(f_{i}\)</span></p></td>
 <td><p></p></td>
 <td><p><span class="math notranslate nohighlight">\(f_2=\phi_{e} - f_1 - f_0\)</span></p></td>
 <td><p></p></td>
 <td><p><span class="math notranslate nohighlight">\(f_1=\phi_{w} - f_2 - f_0\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -605,7 +591,7 @@ nue=0.1667	 tau=1.0000
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">nu</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
 <span class="n">xl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">Nx</span><span class="p">)</span>
 <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t_end</span><span class="p">,</span> <span class="n">snaps</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span> <span class="c1"># timesteps to take the field</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">colors</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">snaps</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">snaps</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span> <span class="n">T_exact</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span> <span class="n">times</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">L</span><span class="p">,</span> <span class="n">nu</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Exact $t = </span><span class="si">{</span><span class="n">times</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
@@ -613,9 +599,9 @@ nue=0.1667	 tau=1.0000
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span> <span class="n">Tf_snaps</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;FDM  $t=</span><span class="si">{</span><span class="p">(</span><span class="n">snaps_id</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">nt</span><span class="p">)</span><span class="o">*</span><span class="n">t_end</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$x$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\phi(x,t)$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">ncol</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;center left&quot;</span><span class="p">,</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.01</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.05</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -624,240 +610,240 @@ nue=0.1667	 tau=1.0000
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../../_images/c5cc3526c8732aaa0be616770d2b1d08fd4eeb1a34ff574ad7def2c43353ee55.png" src="../../_images/c5cc3526c8732aaa0be616770d2b1d08fd4eeb1a34ff574ad7def2c43353ee55.png" />
+<img alt="../../_images/55234d5692dce1c246184742da092377313fdd7752e743ec6a2e20557d7e0a75.png" src="../../_images/55234d5692dce1c246184742da092377313fdd7752e743ec6a2e20557d7e0a75.png" />
 </div>
 </div>
-</section>
-</section>
-<section id="nd-benchmark-temperature-ramp">
-<h2>2nd Benchmark: Temperature ramp<a class="headerlink" href="#nd-benchmark-temperature-ramp" title="Link to this heading"></a></h2>
-<p>Analyzing the accuracy of diffusive equation solver, we apply it to a one-dimensional analytical case. The geometry is described by a domain of length <span class="math notranslate nohighlight">\(L\)</span> initialized with a constant temperatura <span class="math notranslate nohighlight">\(T(x,t=0)=0\)</span>. The boundary conditions are given <span class="math notranslate nohighlight">\(T(x=0,t)=1\)</span> and <span class="math notranslate nohighlight">\(T(x=L,t)=0\)</span>.</p>
-<section id="steady-state-analytical-solution">
-<h3>Steady-State Analytical Solution<a class="headerlink" href="#steady-state-analytical-solution" title="Link to this heading"></a></h3>
-<p>The analytical solution of this problem is given by:</p>
-<div class="math notranslate nohighlight">
-\[
+<!-- ## 2nd Benchmark: Temperature ramp
+
+Analyzing the accuracy of diffusive equation solver, we apply it to a one-dimensional analytical case. The geometry is described by a domain of length $L$ initialized with a constant temperatura $T(x,t=0)=0$. The boundary conditions are given $T(x=0,t)=1$ and $T(x=L,t)=0$.
+
+### Steady-State Analytical Solution
+
+The analytical solution of this problem is given by:
+
+$$
 T(x,t\rightarrow \infty)= -\frac{x}{L} + 1.
-\]</div>
-</section>
-<section id="transient-analytical-solution">
-<h3>Transient Analytical Solution<a class="headerlink" href="#transient-analytical-solution" title="Link to this heading"></a></h3>
-<p>For the 1D heat equation <span class="math notranslate nohighlight">\(\partial_t T=\nu\,\partial_{xx}T\)</span> on <span class="math notranslate nohighlight">\(0&lt;x&lt;L\)</span> with</p>
-<div class="math notranslate nohighlight">
-\[
+$$
+
+### Transient Analytical Solution
+
+For the 1D heat equation $\partial_t T=\nu\,\partial_{xx}T$ on $0<x<L$ with
+
+$$
 T(0,t)=1,\qquad T(L,t)=0,
-\]</div>
-<p>the steady state is <span class="math notranslate nohighlight">\(T_{\text{ss}}(x)=1-\tfrac{x}{L}\)</span>. With <span class="math notranslate nohighlight">\(u=T-T_{\text{ss}}\)</span> (so <span class="math notranslate nohighlight">\(u(0,t)=u(L,t)=0\)</span>), the solution is</p>
-<div class="math notranslate nohighlight">
-\[
+$$
+
+the steady state is $T_{\text{ss}}(x)=1-\tfrac{x}{L}$. With $u=T-T_{\text{ss}}$ (so $u(0,t)=u(L,t)=0$), the solution is
+
+$$
 T(x,t)=1-\frac{x}{L}+\sum_{n=1}^{\infty} B_n\,e^{-\nu (n\pi/L)^2 t}\,\sin\!\Big(\frac{n\pi x}{L}\Big),
 \quad
 B_n=\frac{2}{L}\int_0^L\!\Big[T_0(\xi)-\Big(1-\frac{\xi}{L}\Big)\Big]\sin\!\Big(\frac{n\pi \xi}{L}\Big)\,d\xi.
-\]</div>
-<p>Special case <span class="math notranslate nohighlight">\(T_0(x)=0\)</span>: <span class="math notranslate nohighlight">\(B_n=-\dfrac{2}{n\pi}\)</span>, so</p>
-<div class="math notranslate nohighlight">
-\[
+$$
+
+Special case $T_0(x)=0$: $B_n=-\dfrac{2}{n\pi}$, so
+
+$$
 T(x,t)=1-\frac{x}{L}-\frac{2}{\pi}\sum_{n=1}^{\infty}\frac{1}{n}\,e^{-\nu (n\pi/L)^2 t}\,\sin\!\Big(\frac{n\pi x}{L}\Big).
-\]</div>
-<p>Here’s a ready-to-run Python snippet (with a single plot of <span class="math notranslate nohighlight">\(T(x,t)\)</span> vs <span class="math notranslate nohighlight">\(x\)</span> for multiple times):</p>
-<div class="cell tag_hide-input docutils container">
+$$
+
+Here’s a ready-to-run Python snippet (with a single plot of $T(x,t)$ vs $x$ for multiple times): --><div class="cell tag_hide-input tag_hide-output docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
 <span class="collapsed">Show code cell source</span>
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import warnings</span>
+<span class="c1"># warnings.filterwarnings(&quot;ignore&quot;)</span>
+<span class="c1"># import numpy as np</span>
+<span class="c1"># import matplotlib.pyplot as plt</span>
+<span class="c1"># import matplotlib</span>
+<span class="c1"># matplotlib.rcParams[&#39;mathtext.fontset&#39;] = &#39;cm&#39;</span>
 
-<span class="c1"># ---- Modes and series -------------------------------------------------------</span>
-<span class="k">def</span> <span class="nf">modes_dirichlet_dirichlet</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>        <span class="c1"># n = 1,2,...,N</span>
-    <span class="n">k</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">L</span>            <span class="c1"># eigenvalues mu_n</span>
-    <span class="k">return</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span>
+<span class="c1"># # ---- Modes and series -------------------------------------------------------</span>
+<span class="c1"># def modes_dirichlet_dirichlet(L, N):</span>
+<span class="c1">#     n = np.arange(1, N+1)        # n = 1,2,...,N</span>
+<span class="c1">#     k = n * np.pi / L            # eigenvalues mu_n</span>
+<span class="c1">#     return n, k</span>
 
-<span class="k">def</span> <span class="nf">project_coeffs_dirichlet</span><span class="p">(</span><span class="n">T0_func</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">grid_pts</span><span class="o">=</span><span class="mi">4000</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    B_n = (2/L) ∫( T0(x) - T_ss(x) ) sin(nπx/L) dx, with T_ss = 1 - x/L.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">grid_pts</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">Tss</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">x</span> <span class="o">/</span> <span class="n">L</span>
-    <span class="n">u0</span> <span class="o">=</span> <span class="n">T0_func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">Tss</span>
-    <span class="n">n</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">modes_dirichlet_dirichlet</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>          <span class="c1"># (N,), (N,)</span>
-    <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">k</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:])</span>             <span class="c1"># (N, M)</span>
-    <span class="n">B</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">u0</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="n">S</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">B</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span>
+<span class="c1"># def project_coeffs_dirichlet(T0_func, L, N, grid_pts=4000):</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#     B_n = (2/L) ∫( T0(x) - T_ss(x) ) sin(nπx/L) dx, with T_ss = 1 - x/L.</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#     x = np.linspace(0.0, L, grid_pts, endpoint=True)</span>
+<span class="c1">#     Tss = 1.0 - x / L</span>
+<span class="c1">#     u0 = T0_func(x) - Tss</span>
+<span class="c1">#     n, k = modes_dirichlet_dirichlet(L, N)          # (N,), (N,)</span>
+<span class="c1">#     S = np.sin(k[:, None] * x[None, :])             # (N, M)</span>
+<span class="c1">#     B = (2.0 / L) * np.trapz(u0[None, :] * S, x, axis=1)</span>
+<span class="c1">#     return B, n, k</span>
 
-<span class="k">def</span> <span class="nf">T_series_dirichlet</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">nu</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    T(x,t) = T_ss(x) + sum_n B_n e^{-nu k_n^2 t} sin(k_n x), T_ss = 1 - x/L.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">Tss</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">x</span> <span class="o">/</span> <span class="n">L</span>
-    <span class="n">coeff</span> <span class="o">=</span> <span class="n">B</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">nu</span> <span class="o">*</span> <span class="p">(</span><span class="n">k</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>            <span class="c1"># (N,)</span>
-    <span class="n">add</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">coeff</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">k</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">Tss</span> <span class="o">+</span> <span class="n">add</span>
+<span class="c1"># def T_series_dirichlet(x, t, L, nu, B, k):</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#     T(x,t) = T_ss(x) + sum_n B_n e^{-nu k_n^2 t} sin(k_n x), T_ss = 1 - x/L.</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#     x = np.asarray(x)</span>
+<span class="c1">#     Tss = 1.0 - x / L</span>
+<span class="c1">#     coeff = B * np.exp(-nu * (k**2) * t)            # (N,)</span>
+<span class="c1">#     add = np.sum(coeff[:, None] * np.sin(k[:, None] * x[None, :]), axis=0)</span>
+<span class="c1">#     return Tss + add</span>
 
-<span class="c1"># ---- Parameters -------------------------------------------------------------</span>
-<span class="n">L</span>   <span class="o">=</span> <span class="mf">1.0</span>
-<span class="n">nu</span>  <span class="o">=</span> <span class="mf">0.1</span>
-<span class="n">N</span>   <span class="o">=</span> <span class="mi">200</span>
-<span class="n">x</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span>
+<span class="c1"># # ---- Parameters -------------------------------------------------------------</span>
+<span class="c1"># L   = 1.0</span>
+<span class="c1"># nu  = 0.1</span>
+<span class="c1"># N   = 200</span>
+<span class="c1"># x   = np.linspace(0, L, 600)</span>
 
-<span class="c1"># ---- Case A: initially cold rod T0(x)=0 (closed-form coefficients) ----------</span>
-<span class="n">n</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">modes_dirichlet_dirichlet</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
-<span class="n">B_cold</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>   <span class="c1"># exact coefficients for T0 ≡ 0</span>
+<span class="c1"># # ---- Case A: initially cold rod T0(x)=0 (closed-form coefficients) ----------</span>
+<span class="c1"># n, k = modes_dirichlet_dirichlet(L, N)</span>
+<span class="c1"># B_cold = -2.0 / (n * np.pi)   # exact coefficients for T0 ≡ 0</span>
 
-<span class="n">times</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]</span>
+<span class="c1"># times = [0.0, 0.01, 0.05, 0.2]</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">times</span><span class="p">:</span>
-    <span class="n">T_xt</span> <span class="o">=</span> <span class="n">T_series_dirichlet</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">nu</span><span class="p">,</span> <span class="n">B_cold</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">T_xt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$t = </span><span class="si">{</span><span class="n">t</span><span class="si">:</span><span class="s2">g</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="c1"># plt.figure()</span>
+<span class="c1"># for t in times:</span>
+<span class="c1">#     T_xt = T_series_dirichlet(x, t, L, nu, B_cold, k)</span>
+<span class="c1">#     plt.plot(x, T_xt, label=f&quot;$t = {t:g}$&quot;)</span>
 
-<span class="c1"># steady state</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;steady state&quot;</span><span class="p">)</span>
+<span class="c1"># # steady state</span>
+<span class="c1"># plt.plot(x, 1.0 - x/L, linestyle=&quot;--&quot;, linewidth=1, label=&quot;steady state&quot;)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$x$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$T(x,t)$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Heat eq.: $T(0,t)=1$, $T(L,t)=0$  ($T0(x)=0$)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1"># plt.xlabel(&quot;$x$&quot;,fontsize=16)</span>
+<span class="c1"># plt.ylabel(&quot;$T(x,t)$&quot;,fontsize=16)</span>
+<span class="c1"># plt.title(&quot;Heat eq.: $T(0,t)=1$, $T(L,t)=0$  ($T0(x)=0$)&quot;)</span>
+<span class="c1"># plt.legend()</span>
+<span class="c1"># plt.grid(True)</span>
+<span class="c1"># plt.tight_layout()</span>
+<span class="c1"># plt.show()</span>
 </pre></div>
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<img alt="../../_images/2403470fec7d4e060ad997d120a119634f7db0e84ddd220de8334dace53cc433.png" src="../../_images/2403470fec7d4e060ad997d120a119634f7db0e84ddd220de8334dace53cc433.png" />
 </div>
-</div>
-</section>
-</section>
-<section id="rd-benchmark-temperature-ramp-with-adiabatic-boundary">
-<h2>3rd Benchmark: Temperature Ramp with Adiabatic Boundary<a class="headerlink" href="#rd-benchmark-temperature-ramp-with-adiabatic-boundary" title="Link to this heading"></a></h2>
-<p>Assuming the <strong>forward heat equation</strong> in 1D with constant diffusivity <span class="math notranslate nohighlight">\(\nu&gt;0\)</span>,</p>
-<div class="math notranslate nohighlight">
-\[
-\partial_t T=\nu\,\partial_{xx}T,\qquad 0&lt;x&lt;L,\ t&gt;0,
-\]</div>
-<p>and the mixed boundary conditions</p>
-<div class="math notranslate nohighlight">
-\[
+<!-- ## 3rd Benchmark: Temperature Ramp with Adiabatic Boundary
+
+Assuming the **forward heat equation** in 1D with constant diffusivity $\nu>0$,
+
+$$
+\partial_t T=\nu\,\partial_{xx}T,\qquad 0<x<L,\ t>0,
+$$
+
+and the mixed boundary conditions
+
+$$
 T(0,t)=1,\qquad \partial_x T(L,t)=0,
-\]</div>
-<p>the steady state is <span class="math notranslate nohighlight">\(T_{\mathrm{ss}}(x)=1\)</span>.</p>
-<p>Let <span class="math notranslate nohighlight">\(u(x,t)=T(x,t)-1\)</span>. Then <span class="math notranslate nohighlight">\(u\)</span> solves</p>
-<div class="math notranslate nohighlight">
-\[
+$$
+
+the steady state is $T_{\mathrm{ss}}(x)=1$.
+
+Let $u(x,t)=T(x,t)-1$. Then $u$ solves
+
+$$
 \partial_t u=\nu\,\partial_{xx}u,\quad u(0,t)=0,\quad \partial_x u(L,t)=0,\quad u(x,0)=u_0(x):=T_0(x)-1.
-\]</div>
-<p>Separation of variables with eigenfunctions satisfying <span class="math notranslate nohighlight">\(X(0)=0,\ X'(L)=0\)</span> gives</p>
-<div class="math notranslate nohighlight">
-\[
+$$
+
+Separation of variables with eigenfunctions satisfying $X(0)=0,\ X'(L)=0$ gives
+
+$$
 X_n(x)=\sin(\mu_n x),\qquad \mu_n=\frac{(n+\tfrac12)\pi}{L},\quad n=0,1,2,\dots
-\]</div>
-<p>Hence the solution is the sine‐series</p>
-<div class="math notranslate nohighlight">
-\[
+$$
+
+Hence the solution is the sine‐series
+
+$$
 \boxed{\
 T(x,t)=1+\sum_{n=0}^{\infty} A_n\,e^{-\nu\,\mu_n^{2}\,t}\,\sin(\mu_n x),\qquad 
 \mu_n=\frac{(n+\tfrac12)\pi}{L},\
 }
-\]</div>
-<p>with coefficients (using <span class="math notranslate nohighlight">\(\int_0^L \sin(\mu_m x)\sin(\mu_n x)\,dx=\tfrac{L}{2}\delta_{mn}\)</span>)</p>
-<div class="math notranslate nohighlight">
-\[
+$$
+
+with coefficients (using $\int_0^L \sin(\mu_m x)\sin(\mu_n x)\,dx=\tfrac{L}{2}\delta_{mn}$)
+
+$$
 \boxed{\ A_n=\frac{2}{L}\int_0^L \big[T_0(\xi)-1\big]\sin(\mu_n \xi)\,d\xi.\ }
-\]</div>
-<p><strong>Common special case (initially cold rod):</strong> if <span class="math notranslate nohighlight">\(T_0(x)=0\)</span>, then <span class="math notranslate nohighlight">\(u_0(x)=-1\)</span> and</p>
-<div class="math notranslate nohighlight">
-\[
+$$
+
+**Common special case (initially cold rod):** if $T_0(x)=0$, then $u_0(x)=-1$ and
+
+$$
 A_n=\frac{2}{L}\int_0^L (-1)\sin(\mu_n \xi)\,d\xi=-\frac{2}{L\mu_n},
-\]</div>
-<p>so</p>
-<div class="math notranslate nohighlight">
-\[
+$$
+
+so
+
+$$
 \boxed{\
 T(x,t)=1-\sum_{n=0}^\infty \frac{2}{L\mu_n}\,e^{-\nu\,\mu_n^{2}\,t}\,\sin(\mu_n x),\qquad 
 \mu_n=\frac{(n+\tfrac12)\pi}{L}.\
 }
-\]</div>
-<blockquote>
-<div><p>Note: if you literally use your original sign <span class="math notranslate nohighlight">\(\partial_t T+\nu T_{xx}=0\)</span> (the <strong>backward</strong> heat equation), the time-dependent problem is ill-posed forward in <span class="math notranslate nohighlight">\(t\)</span>. For a physically meaningful diffusion process, use <span class="math notranslate nohighlight">\(\partial_t T=\nu T_{xx}\)</span>.</p>
-</div></blockquote>
-<div class="cell tag_hide-input docutils container">
+$$
+
+> Note: if you literally use your original sign $\partial_t T+\nu T_{xx}=0$ (the **backward** heat equation), the time-dependent problem is ill-posed forward in $t$. For a physically meaningful diffusion process, use $\partial_t T=\nu T_{xx}$. --><div class="cell tag_hide-input tag_hide-output docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
 <span class="collapsed">Show code cell source</span>
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import numpy as np</span>
+<span class="c1"># import matplotlib.pyplot as plt</span>
+<span class="c1"># import matplotlib</span>
+<span class="c1"># matplotlib.rcParams[&#39;mathtext.fontset&#39;] = &#39;cm&#39;</span>
+<span class="c1"># import warnings</span>
+<span class="c1"># warnings.filterwarnings(&quot;ignore&quot;)</span>
 
-<span class="k">def</span> <span class="nf">heat_modes</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
-    <span class="n">mu</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">L</span>
-    <span class="k">return</span> <span class="n">mu</span>
+<span class="c1"># def heat_modes(L, N):</span>
+<span class="c1">#     n = np.arange(N)</span>
+<span class="c1">#     mu = (n + 0.5) * np.pi / L</span>
+<span class="c1">#     return mu</span>
 
-<span class="k">def</span> <span class="nf">project_coeffs</span><span class="p">(</span><span class="n">T0_func</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">grid_pts</span><span class="o">=</span><span class="mi">2000</span><span class="p">):</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">grid_pts</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">u0</span> <span class="o">=</span> <span class="n">T0_func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.0</span>
-    <span class="n">mu</span> <span class="o">=</span> <span class="n">heat_modes</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>                           <span class="c1"># (N,)</span>
-    <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">mu</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:])</span>            <span class="c1"># (N, M)</span>
-    <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">u0</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="n">S</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># (N,)</span>
-    <span class="k">return</span> <span class="n">A</span><span class="p">,</span> <span class="n">mu</span>
+<span class="c1"># def project_coeffs(T0_func, L, N, grid_pts=2000):</span>
+<span class="c1">#     x = np.linspace(0.0, L, grid_pts, endpoint=True)</span>
+<span class="c1">#     u0 = T0_func(x) - 1.0</span>
+<span class="c1">#     mu = heat_modes(L, N)                           # (N,)</span>
+<span class="c1">#     S = np.sin(mu[:, None] * x[None, :])            # (N, M)</span>
+<span class="c1">#     A = (2.0 / L) * np.trapz(u0[None, :] * S, x, axis=1)  # (N,)</span>
+<span class="c1">#     return A, mu</span>
 
-<span class="k">def</span> <span class="nf">T_series</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">nu</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">mu</span><span class="p">):</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">coeff</span> <span class="o">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">nu</span> <span class="o">*</span> <span class="p">(</span><span class="n">mu</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>           <span class="c1"># (N,)</span>
-    <span class="k">return</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">coeff</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">mu</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># def T_series(x, t, L, nu, A, mu):</span>
+<span class="c1">#     x = np.asarray(x)</span>
+<span class="c1">#     coeff = A * np.exp(-nu * (mu**2) * t)           # (N,)</span>
+<span class="c1">#     return 1.0 + np.sum(coeff[:, None] * np.sin(mu[:, None] * x[None, :]), axis=0)</span>
 
-<span class="c1"># ---- Parameters -------------------------------------------------------------</span>
-<span class="n">L</span> <span class="o">=</span> <span class="mf">1.0</span>
-<span class="n">nu</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="n">N</span> <span class="o">=</span> <span class="mi">200</span>               <span class="c1"># number of modes</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span>
+<span class="c1"># # ---- Parameters -------------------------------------------------------------</span>
+<span class="c1"># L = 1.0</span>
+<span class="c1"># nu = 0.1</span>
+<span class="c1"># N = 200               # number of modes</span>
+<span class="c1"># x = np.linspace(0, L, 600)</span>
 
-<span class="c1"># ---- Case 1: initially cold rod T0(x)=0 (closed-form A_n) -------------------</span>
-<span class="n">mu</span> <span class="o">=</span> <span class="n">heat_modes</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
-<span class="n">A_cold</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">L</span> <span class="o">*</span> <span class="n">mu</span><span class="p">)</span>
+<span class="c1"># # ---- Case 1: initially cold rod T0(x)=0 (closed-form A_n) -------------------</span>
+<span class="c1"># mu = heat_modes(L, N)</span>
+<span class="c1"># A_cold = -2.0 / (L * mu)</span>
 
-<span class="n">times</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]</span>
+<span class="c1"># times = [0.0, 0.01, 0.05, 0.2]</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">times</span><span class="p">:</span>
-    <span class="n">T_xt</span> <span class="o">=</span> <span class="n">T_series</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">nu</span><span class="p">,</span> <span class="n">A_cold</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">T_xt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$t = </span><span class="si">{</span><span class="n">t</span><span class="si">:</span><span class="s2">g</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="c1"># plt.figure()</span>
+<span class="c1"># for t in times:</span>
+<span class="c1">#     T_xt = T_series(x, t, L, nu, A_cold, mu)</span>
+<span class="c1">#     plt.plot(x, T_xt, label=f&quot;$t = {t:g}$&quot;)</span>
 
-<span class="c1"># Steady-state baseline (T=1)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;steady state&quot;</span><span class="p">)</span>
+<span class="c1"># # Steady-state baseline (T=1)</span>
+<span class="c1"># plt.axhline(1.0, linestyle=&quot;--&quot;, linewidth=1, label=&quot;steady state&quot;)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$x$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$T(x,t)$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Heat eq. with $T(0,t)=1$,  $T_x(L,t)=0$  (initially cold rod)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1"># plt.xlabel(&quot;$x$&quot;,fontsize=16)</span>
+<span class="c1"># plt.ylabel(&quot;$T(x,t)$&quot;,fontsize=16)</span>
+<span class="c1"># plt.title(&quot;Heat eq. with $T(0,t)=1$,  $T_x(L,t)=0$  (initially cold rod)&quot;)</span>
+<span class="c1"># plt.legend()</span>
+<span class="c1"># plt.grid(True)</span>
+<span class="c1"># plt.tight_layout()</span>
+<span class="c1"># plt.show()</span>
 </pre></div>
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<img alt="../../_images/9d36f688a2acd06f0e0f919f38d1395b30db333af6d6dda4984df3da6b6439aa.png" src="../../_images/9d36f688a2acd06f0e0f919f38d1395b30db333af6d6dda4984df3da6b6439aa.png" />
 </div>
-</div>
+</section>
 </section>
 </section>
 

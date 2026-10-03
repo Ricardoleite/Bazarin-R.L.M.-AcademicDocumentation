@@ -1,0 +1,20 @@
+title: "Ricardo Leite Martins Bazarin - Academic Documentation"
+author: "Ricardo Leite Martins Bazarin"
+copyright: "2025, Ricardo Leite Martins Bazarin"
+
+only_build_toc_files: true
+
+execute:
+  execute_notebooks: "off"  # Desativa a execução de todos os notebooks
+
+latex:
+  latex_engine: xelatex
+
+bibtex_bibfiles:
+  - Refs/references.bib
+
+sphinx:
+  config:
+    html_show_copyright: false
+  extra_extensions:
+    - sphinxemoji.sphinxemoji

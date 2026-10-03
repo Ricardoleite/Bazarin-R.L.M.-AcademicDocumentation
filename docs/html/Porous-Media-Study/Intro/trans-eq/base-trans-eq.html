@@ -80,19 +80,22 @@ const thebe_selector_output = ".output, .cell_output"
               <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Intro-PM-MFinPCPM.html">Introdution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Intro-PM-MFinPCPM.html#mass-balance-for-two-fluids-continuous-porous-media">Mass Balance for two-fluids (Continuous Porous Media)</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Convective-Diffusive-Equation (CDE) LBM Approach: Part 1</span></p>
+<p class="caption" role="heading"><span class="caption-text">Convective-Diffusive-Equation (CDE) LBM Approach (One Conserved Moment): Part 1</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/intro-lbm-conv-diff/Diffusive-Equation.html">Diffusive Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/intro-lbm-conv-diff/Poisson-Equation.html">Poisson Equation (Steady-State Diffusive Equation)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/intro-lbm-conv-diff/Convective-Equation.html">Convective Equation (Transport Equation)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/intro-lbm-conv-diff/Convective-Diffusive-Equation.html">Convective-Diffusive Equation</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">CDE - Finite Difference Structure of LBM: Part 2</span></p>
+<p class="caption" role="heading"><span class="caption-text">CDE - Finite Difference Structure of LBM (One Conserved Moment): Part 2</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/FDM-Belloti/FDM-LBM-Diffusive.html">Difference Finite Scheme of Diffusive Equation derived from Lattice Boltzmann</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/FDM-Belloti/FDM-LBM-Convective-Diffusive.html">Difference Finite Scheme derived from MRT Lattice Boltzmann for Convective-Diffusive Equation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Navier-Stokes Equation (NSE) LBM Approach (Two Conserved Moment): Part 1</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/intro-nse-lbm/Navier-Stokes-Equation.html">Navier-Stokes Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../LBM-Study/Ementa.html">Conteúdo - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References:</span></p>
@@ -143,10 +146,21 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Introdution for Transport Equations<a class="headerlink" href="#introdution-for-transport-equations" title="Link to this heading"></a></h1>
 <p>The transport equation is given by</p>
 <div class="math notranslate nohighlight" id="equation-tansp-eq-sup">
-<span class="eqno">(68)<a class="headerlink" href="#equation-tansp-eq-sup" title="Link to this equation"></a></span>\[
+<span class="eqno">(87)<a class="headerlink" href="#equation-tansp-eq-sup" title="Link to this equation"></a></span>\[
 \partial_{t}u+c\partial_{x}u=0
 \]</div>
 <p><a class="reference internal" href="../../../_images/corda-naval.gif"><img alt="../../../_images/corda-naval.gif" src="../../../_images/corda-naval.gif" style="width: 18%;" /></a> <a class="reference internal" href="../../../_images/gif-onda-violao.gif"><img alt="../../../_images/gif-onda-violao.gif" src="../../../_images/gif-onda-violao.gif" style="width: 20%;" /></a> <a class="reference internal" href="../../../_images/water.gif"><img alt="../../../_images/water.gif" src="../../../_images/water.gif" style="width: 18%;" /></a> <a class="reference internal" href="../../../_images/BOUNCING.gif"><img alt="../../../_images/BOUNCING.gif" src="../../../_images/BOUNCING.gif" style="width: 21%;" /></a> <a class="reference internal" href="../../../_images/2V4OvG.gif"><img alt="../../../_images/2V4OvG.gif" src="../../../_images/2V4OvG.gif" style="width: 21%;" /></a></p>
+<a class="reference internal image-reference" href="../../../_images/gif-onda-violao.png"><img alt="../../../_images/gif-onda-violao.png" src="../../../_images/gif-onda-violao.png" style="width: 20%;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/water.png"><img alt="../../../_images/water.png" src="../../../_images/water.png" style="width: 18%;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/BOUNCING.png"><img alt="../../../_images/BOUNCING.png" src="../../../_images/BOUNCING.png" style="width: 21%;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/2V4OvG.png"><img alt="../../../_images/2V4OvG.png" src="../../../_images/2V4OvG.png" style="width: 21%;" />
+</a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 <figure class="align-center" id="wave-trans-evo">
 <a class="reference internal image-reference" href="../../../_images/wave-transport-Illustration.svg"><img alt="../../../_images/wave-transport-Illustration.svg" src="../../../_images/wave-transport-Illustration.svg" style="width: 784.8000000000001px; height: 298.40000000000003px;" />
 </a>

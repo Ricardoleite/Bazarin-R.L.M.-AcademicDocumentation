@@ -76,7 +76,7 @@ Lattice Boltzmann Method - Application to Different Partial differential Equatio
 
 .. toctree::
    :maxdepth: 1
-   :caption: Convective-Diffusive-Equation (CDE) LBM Approach: Part 1
+   :caption: Convective-Diffusive-Equation (CDE) LBM Approach (One Conserved Moment): Part 1
 
    /LBM-Study/intro-lbm-conv-diff/Diffusive-Equation
    /LBM-Study/intro-lbm-conv-diff/Poisson-Equation
@@ -85,11 +85,10 @@ Lattice Boltzmann Method - Application to Different Partial differential Equatio
 
 .. toctree::
    :maxdepth: 1
-   :caption: CDE - Finite Difference Structure of LBM: Part 2
+   :caption: CDE - Finite Difference Structure of LBM (One Conserved Moment): Part 2
 
    /LBM-Study/FDM-Belloti/FDM-LBM-Diffusive.ipynb
    /LBM-Study/FDM-Belloti/FDM-LBM-Convective-Diffusive.ipynb
-   /LBM-Study/Ementa
 
 .. raw:: html
 
@@ -101,9 +100,24 @@ Lattice Boltzmann Method - Application to Different Partial differential Equatio
 
 .. toctree::
    :maxdepth: 1
+   :caption: Navier-Stokes Equation (NSE) LBM Approach (Two Conserved Moment): Part 1
+
+   /LBM-Study/intro-nse-lbm/Navier-Stokes-Equation
+   /LBM-Study/Ementa
+   
+.. toctree::
+   :maxdepth: 1
    :caption: References:
 
    /Citations
+
+.. raw:: html
+
+   <iframe src="_static/references-map.html?bib=bib/references.bib"
+         width="100%"
+         height="200"
+         style="border:0; border-radius:12px;">
+   </iframe>
 
 .. toctree::
    :maxdepth: 1

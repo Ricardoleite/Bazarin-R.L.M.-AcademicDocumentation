@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2D Continuous Shear-Wave Decay &mdash; Academic-Live-Documentation 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/sphinx_rtd_size.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/sphinx-thebe.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/eqno.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/sidebar.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/fake-header-Levels.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+        <script async="async" src="../../../../_static/sphinx-thebe.js?v=afe5de03"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../../../_static/css/sidebar.js?v=29393464"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Academic-Live-Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Porous-Media-Study/Intro/Intro-PM-MFinPCPM.html">Introdution</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Convective-Diffusive-Equation (CDE) LBM Approach (One Conserved Moment): Part 1</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro-lbm-conv-diff/Diffusive-Equation.html">Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro-lbm-conv-diff/Poisson-Equation.html">Poisson Equation (Steady-State Diffusive Equation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro-lbm-conv-diff/Convective-Equation.html">Convective Equation (Transport Equation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro-lbm-conv-diff/Convective-Diffusive-Equation.html">Convective-Diffusive Equation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">CDE - Finite Difference Structure of LBM (One Conserved Moment): Part 2</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../FDM-Belloti/FDM-LBM-Diffusive.html">Difference Finite Scheme of Diffusive Equation derived from Lattice Boltzmann</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FDM-Belloti/FDM-LBM-Convective-Diffusive.html">Difference Finite Scheme derived from MRT Lattice Boltzmann for Convective-Diffusive Equation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Navier-Stokes Equation (NSE) LBM Approach (Two Conserved Moment): Part 1</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Navier-Stokes-Equation.html">Navier-Stokes Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Ementa.html">Conteúdo - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Citations.html">Citations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Porous-Media-Study/Intro/trans-eq/base-trans-eq.html">Introdution for Transport Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro-lbm-conv-diff/appendix/bcs-D2Q5-poisson-equation.html">Boundary Conditions: Deduction for the Lattice D2Q5 - Poisson Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FDM-Belloti/appendix/sympy-code-fdm-diffusive-expansion.html">Sympy code for FDM expansion of LBM diffusive equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FDM-Belloti/appendix/sympy-code-mrt-fdm-diffusive-expansion-4th.html">Sympy code for FDM expansion of LBM diffusive equation up to Fourth-order</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FDM-Belloti/appendix/sympy-code-mrt-fdm-diffusive-expansion-6th.html">Sympy code for FDM expansion of LBM diffusive equation up to Sixth-order</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Academic-Live-Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">2D Continuous Shear-Wave Decay</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/LBM-Study/intro-nse-lbm/Gallilean-Invariance/D2Q9/Shear-Wave-D2Q9.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="d-continuous-shear-wave-decay">
+<h1>2D Continuous Shear-Wave Decay<a class="headerlink" href="#d-continuous-shear-wave-decay" title="Link to this heading"></a></h1>
+<p>In the <strong>Lattice Boltzmann Method (LBM)</strong>, <strong>Galilean invariance</strong> means that the macroscopic equations recovered by the method should not depend on the constant velocity of the observer/reference frame.</p>
+<p>For example, suppose you have a flow field</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{u}(\mathbf{x},t).
+\]</div>
+<p>Now imagine observing exactly the same physical system from a frame moving with a constant velocity (\mathbf{U}_0). The transformed velocity is</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{u}'=\mathbf{u}-\mathbf{U}_0.
+\]</div>
+<p>A Galilean-invariant numerical method should predict the same physical behavior in both frames.</p>
+<p>For the Navier–Stokes equations, the transformation is</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{x}'=\mathbf{x}-\mathbf{U}_0t, \qquad t'=t, \qquad \mathbf{u}'=\mathbf{u}-\mathbf{U}_0,
+\]</div>
+<p>and the equations retain the same form. Ideally, the LBM should recover this property as well.</p>
+<p>The issue is that standard LBM is only <strong>approximately Galilean invariant</strong>. Consider the discrete Boltzmann equation</p>
+<div class="math notranslate nohighlight">
+\[
+f_i(\mathbf{x}+\mathbf{c}_i\Delta t,t+\Delta t)-f_i(\mathbf{x},t)=\Omega_i.
+\]</div>
+<p>For BGK,</p>
+<div class="math notranslate nohighlight">
+\[
+\Omega_i=-\frac{1}{\tau} \left( f_i-f_i^{eq}\right),
+\]</div>
+<p>with the common second-order equilibrium</p>
+<div class="math notranslate nohighlight">
+\[
+f_i^{eq}=w_i \rho \left[ 1+ \frac{\mathbf{c}_i\cdot\mathbf{u}}{c_s^2} + \frac{(\mathbf{c}_i\cdot\mathbf{u})^2}{2c_s^4} - \frac{\mathbf{u}^2}{2c_s^2} \right].
+\]</div>
+<p>This equilibrium is obtained from a low-Mach-number expansion of the Maxwell-Boltzmann distribution. It is truncated at second order in velocity. That truncation is one of the main reasons standard LBM does not possess exact Galilean invariance.</p>
+<section id="where-the-error-appears">
+<h2>Where the error appears<a class="headerlink" href="#where-the-error-appears" title="Link to this heading"></a></h2>
+<p>The Navier–Stokes momentum equation should be</p>
+<div class="math notranslate nohighlight">
+\[
+\partial_t(\rho\mathbf{u}) + \nabla\cdot(\rho\mathbf{u}\mathbf{u}) = -\nabla p + \nabla \cdot \left[ \rho \nu \left( \nabla\mathbf{u} + \nabla\mathbf{u}^{T} \right) \right].
+\]</div>
+<p>A Chapman–Enskog expansion of a standard lattice such as D2Q9 or D3Q19 produces this equation plus higher-order errors. Some of these errors depend explicitly on the absolute velocity (\mathbf{u}), typically through terms of order</p>
+<div class="math notranslate nohighlight">
+\[
+O(Ma^3),
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[
+Ma=\frac{|\mathbf{u}|}{c_s}.
+\]</div>
+<p>Schematically, you can get corrections such as</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla\cdot\left(\rho\,\mathbf{u}\mathbf{u}\mathbf{u}\right),
+\]</div>
+<p>or related cubic-velocity contributions.</p>
+<p>These are often called <strong>cubic velocity errors</strong> or <strong>Galilean invariance errors</strong>.</p>
+<p>A particularly intuitive consequence is that the apparent viscosity can become dependent on the background velocity:</p>
+<div class="math notranslate nohighlight">
+\[
+\nu_{\mathrm{eff}}=\nu+\Delta\nu(\mathbf{U}_0).
+\]</div>
+<p>Physically, that should not happen.</p>
+</section>
+<section id="simple-example-continuous-shear-wave-decay">
+<h2>Simple example (Continuous Shear Wave Decay)<a class="headerlink" href="#simple-example-continuous-shear-wave-decay" title="Link to this heading"></a></h2>
+<p>Imagine a shear wave</p>
+<div class="math notranslate nohighlight">
+\[
+u_x(y)=A\sin(ky).
+\]</div>
+<p>Without a background flow, its decay is approximately</p>
+<div class="math notranslate nohighlight">
+\[
+A(t)=A_0 e^{-\nu k^2t}.
+\]</div>
+<p>Now add a uniform translation,</p>
+<div class="math notranslate nohighlight">
+\[
+u_x(y)=U_0+A\sin(ky).
+\]</div>
+<p>In the continuous Navier–Stokes equations, the uniform velocity (U_0) should <strong>not change the viscous decay rate</strong>. You should still obtain</p>
+<div class="math notranslate nohighlight">
+\[
+A(t)=A_0 e^{-\nu k^2t}.
+\]</div>
+<p>If an LBM simulation instead gives</p>
+<div class="math notranslate nohighlight">
+\[
+A(t) \approx A_0e^{-\nu_{\mathrm{eff}}(U_0)k^2t},
+\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[
+\nu_{\mathrm{eff}}(U_0)\neq \nu,
+\]</div>
+<p>then you are observing a Galilean-invariance defect.</p>
+<p>This is actually a very useful numerical test.</p>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.colors</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Math</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="c1"># ====================================Domain=====================================================</span>
+<span class="n">Nx</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">Ny</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="c1"># ======================================D2Q9 lattice===================================================</span>
+<span class="n">w0</span> <span class="o">=</span> <span class="mf">4.0</span> <span class="o">/</span> <span class="mf">9.0</span><span class="p">;</span> <span class="n">w1</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">9.0</span><span class="p">;</span> <span class="n">w2</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">36.0</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">w0</span><span class="p">,</span> <span class="n">w1</span><span class="p">,</span> <span class="n">w1</span><span class="p">,</span> <span class="n">w1</span><span class="p">,</span> <span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="n">w2</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">cx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int8&quot;</span><span class="p">)</span>
+<span class="n">cy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int8&quot;</span><span class="p">)</span>
+<span class="n">cs</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span>
+<span class="c1"># ===============================Physical parameters==========================================================</span>
+<span class="n">ho</span> <span class="o">=</span> <span class="mf">1.0</span>                      <span class="c1"># Physical domain length</span>
+<span class="n">nuo</span> <span class="o">=</span> <span class="mf">0.01</span>                    <span class="c1"># Physical kinematic viscosity</span>
+<span class="c1"># Shear-wave parameters</span>
+<span class="n">A0_phys</span> <span class="o">=</span> <span class="mf">0.05</span>                <span class="c1"># Physical wave amplitude</span>
+<span class="n">U0_phys</span> <span class="o">=</span> <span class="mf">0.10</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="mi">1</span>                <span class="c1"># Uniform background velocity</span>
+<span class="n">m_waves</span> <span class="o">=</span> <span class="mi">1</span>                   <span class="c1"># Number of wavelengths in y direction</span>
+<span class="c1"># ================================caling=========================================================</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="n">ho</span> <span class="o">/</span> <span class="n">Ny</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">2.0</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>                       <span class="c1"># r = dx/dt</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">dx</span> <span class="o">/</span> <span class="n">r</span>
+<span class="c1"># LBM viscosity</span>
+<span class="n">nu</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">nuo</span> <span class="o">/</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
+<span class="c1"># Convert velocities to lattice units</span>
+<span class="n">A0</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">A0_phys</span> <span class="o">/</span> <span class="n">dx</span>
+<span class="n">U0</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">U0_phys</span> <span class="o">/</span> <span class="n">dx</span>
+<span class="n">tau</span> <span class="o">=</span> <span class="n">nu</span> <span class="o">/</span> <span class="n">cs</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mf">0.5</span>
+<span class="n">rhoi</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="c1"># Simulation time</span>
+<span class="n">mstep</span> <span class="o">=</span> <span class="mi">3000</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\tau=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\qquad \nu=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">nu</span><span class="p">)))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;A_0=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">A0</span><span class="p">)</span><span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\qquad U_0=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">U0</span><span class="p">)))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;dx=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dx</span><span class="p">)</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\qquad dt=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dt</span><span class="p">)))</span>
+<span class="c1"># ===================================Arrays======================================================</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">Vx</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">Vy</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">f</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">9</span><span class="p">,</span> <span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">fp</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">9</span><span class="p">,</span> <span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">feq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">9</span><span class="p">,</span> <span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">Amplitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">mstep</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">Mass</span>      <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">mstep</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="c1"># ===================================Initial condition======================================================</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">Nx</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span>
+<span class="n">yi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">Ny</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span>
+<span class="n">Xi</span><span class="p">,</span> <span class="n">Yi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s2">&quot;ij&quot;</span><span class="p">)</span>
+<span class="c1"># Wave number in lattice coordinates</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">m_waves</span> <span class="o">/</span> <span class="n">Ny</span>
+<span class="n">rho</span><span class="p">[:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">rhoi</span>
+<span class="c1"># Shear wave + uniform Galilean shift</span>
+<span class="n">Vx</span><span class="p">[:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">U0</span> <span class="o">+</span> <span class="n">A0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="n">Yi</span><span class="p">)</span>
+<span class="n">Vy</span><span class="p">[:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">U0</span>
+<span class="c1"># ================Initialize distributions with second-order equilibrium============================</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">cx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">Vx</span> <span class="o">+</span> <span class="n">cy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">Vy</span>
+    <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">rho</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">t1</span><span class="o">/</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">t1</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">cs</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span><span class="o">-</span> <span class="p">(</span><span class="n">Vx</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">Vy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="c1"># ==============================Main-Loop===========================================================</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mstep</span><span class="p">):</span>
+    <span class="c1"># -------------------------------------Collision------------------------------------------------</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">cx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">Vx</span> <span class="o">+</span> <span class="n">cy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">Vy</span>
+        <span class="n">feq</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">rho</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">t1</span><span class="o">/</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">t1</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">cs</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">Vx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">Vy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">fp</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span><span class="o">-</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">tau</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">feq</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]))</span>
+    <span class="c1"># ------------------------------------Streaming - periodic in both directions-------------------------------------------------</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">fp</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:],</span><span class="n">cx</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span><span class="n">cy</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># ----------------------------------Macroscopic variables---------------------------------------------------</span>
+    <span class="n">rho</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">Vx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;i,ixy-&gt;xy&quot;</span><span class="p">,</span><span class="n">cx</span><span class="p">,</span><span class="n">f</span><span class="p">)</span> <span class="o">/</span> <span class="n">rho</span>
+    <span class="n">Vy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;i,ixy-&gt;xy&quot;</span><span class="p">,</span><span class="n">cy</span><span class="p">,</span><span class="n">f</span><span class="p">)</span> <span class="o">/</span> <span class="n">rho</span>
+    <span class="c1"># ---------------------------------Mass----------------------------------------------------</span>
+    <span class="n">Mass</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span>
+    <span class="c1"># Remove the uniform velocity U0 and project the velocity field onto sin(k y).</span>
+    <span class="c1"># --------------------------------Shear-wave amplitude-----------------------------------------------------</span>
+    <span class="n">ux_mean_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Vx</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ux_perturbation</span> <span class="o">=</span> <span class="n">ux_mean_x</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ux_mean_x</span><span class="p">)</span>
+    <span class="n">Amplitude</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="n">Ny</span><span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ux_perturbation</span><span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="n">yi</span><span class="p">)))</span>
+    <span class="k">if</span> <span class="n">kk</span> <span class="o">%</span> <span class="mi">200</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;step = </span><span class="si">{</span><span class="n">kk</span><span class="si">:</span><span class="s2">5d</span><span class="si">}</span><span class="s2"> &quot;</span><span class="sa">f</span><span class="s2">&quot;A = </span><span class="si">{</span><span class="n">Amplitude</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span><span class="si">:</span><span class="s2">.8e</span><span class="si">}</span><span class="s2"> &quot;</span><span class="sa">f</span><span class="s2">&quot;rho = </span><span class="si">{</span><span class="n">Mass</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span><span class="si">:</span><span class="s2">.12f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Simulation time =&quot;</span><span class="p">,</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \tau=0.7999999999999998\qquad \nu=0.09999999999999998\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle A_0=0.012500000000000002\qquad U_0=0.025000000000000005\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle dx=0.025\qquad dt=0.00625\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>step =     0 A = 1.24487014e-02 rho = 1.000000000000
+step =   200 A = 5.35605379e-03 rho = 1.000000000000
+step =   400 A = -1.82527649e-05 rho = 1.000000000000
+step =   600 A = -2.01311288e-03 rho = 1.000000000000
+step =   800 A = -1.73174227e-03 rho = 1.000000000000
+step =  1000 A = -7.44835092e-04 rho = 1.000000000000
+step =  1200 A = 2.54289835e-06 rho = 1.000000000000
+step =  1400 A = 2.79955808e-04 rho = 1.000000000000
+step =  1600 A = 2.40824987e-04 rho = 1.000000000000
+step =  1800 A = 1.03579862e-04 rho = 1.000000000000
+step =  2000 A = -3.54264744e-07 rho = 1.000000000000
+step =  2200 A = -3.89323693e-05 rho = 1.000000000000
+step =  2400 A = -3.34903614e-05 rho = 1.000000000000
+step =  2600 A = -1.44042460e-05 rho = 1.000000000000
+step =  2800 A = 4.93543545e-08 rho = 1.000000000000
+Simulation time = 2.278461217880249 s
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ==============================Analytical solution===========================================================</span>
+<span class="n">time_lbm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mstep</span><span class="p">)</span>
+<span class="n">Amplitude_analytical</span> <span class="o">=</span> <span class="n">A0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">nu</span> <span class="o">*</span> <span class="n">k</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">time_lbm</span><span class="p">)</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Plot both subplots side by side</span>
+<span class="c1"># =========================================================================================</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_lbm</span><span class="p">,</span> <span class="n">Amplitude</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;LBM&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_lbm</span><span class="p">,</span> <span class="n">Amplitude_analytical</span><span class="p">,</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Analytical&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time [LBM steps]&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$A(t)$&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_lbm</span><span class="p">,</span> <span class="n">Amplitude</span> <span class="o">/</span> <span class="n">A0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;LBM&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_lbm</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">nu</span> <span class="o">*</span> <span class="n">k</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">time_lbm</span><span class="p">),</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$e^{-\nu k^2 t}$&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time [LBM steps]&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$A(t)/A_0$&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/f4af18866e3611d48be083f0b72471ecbe1fe569c10dd8b699c7499986d4f1a5.png" src="../../../../_images/f4af18866e3611d48be083f0b72471ecbe1fe569c10dd8b699c7499986d4f1a5.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># =========================================================================================</span>
+<span class="c1"># Effective viscosity from shear-wave decay</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Time in lattice units</span>
+<span class="n">time_lbm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mstep</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="c1"># Avoid numerical problems if amplitude becomes too small or changes sign</span>
+<span class="n">valid</span> <span class="o">=</span> <span class="n">Amplitude</span> <span class="o">&gt;</span> <span class="mf">0.0</span>
+<span class="n">t_fit</span> <span class="o">=</span> <span class="n">time_lbm</span><span class="p">[</span><span class="n">valid</span><span class="p">]</span>
+<span class="n">A_fit</span> <span class="o">=</span> <span class="n">Amplitude</span><span class="p">[</span><span class="n">valid</span><span class="p">]</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Optional: choose only part of the simulation for fitting</span>
+<span class="c1"># This helps avoid the initial transient and the very small-amplitude region.</span>
+<span class="c1"># Example: fit from step 100 to 2000</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="n">fit_start</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">fit_end</span>   <span class="o">=</span> <span class="mi">2000</span>
+<span class="n">mask_fit</span> <span class="o">=</span> <span class="p">((</span><span class="n">t_fit</span> <span class="o">&gt;=</span> <span class="n">fit_start</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">t_fit</span> <span class="o">&lt;=</span> <span class="n">fit_end</span><span class="p">))</span>
+<span class="n">t_fit</span> <span class="o">=</span> <span class="n">t_fit</span><span class="p">[</span><span class="n">mask_fit</span><span class="p">]</span>
+<span class="n">A_fit</span> <span class="o">=</span> <span class="n">A_fit</span><span class="p">[</span><span class="n">mask_fit</span><span class="p">]</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Linearized analytical relation</span>
+<span class="c1"># ln(A/A0) = -nu_eff * k^2 * t</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="n">log_A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">A_fit</span> <span class="o">/</span> <span class="n">A0</span><span class="p">)</span>
+<span class="c1"># Linear regression:</span>
+<span class="c1"># log(A/A0) = slope*t + intercept</span>
+<span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">t_fit</span><span class="p">,</span><span class="n">log_A</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Effective viscosity</span>
+<span class="n">nu_eff</span> <span class="o">=</span> <span class="o">-</span><span class="n">slope</span> <span class="o">/</span> <span class="n">k</span><span class="o">**</span><span class="mi">2</span>
+<span class="c1"># Relative viscosity error</span>
+<span class="n">nu_error</span> <span class="o">=</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">nu_eff</span> <span class="o">-</span> <span class="n">nu</span><span class="p">)</span> <span class="o">/</span> <span class="n">nu</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;==============================================&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shear-wave effective viscosity&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;==============================================&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nominal viscosity   = </span><span class="si">{</span><span class="n">nu</span><span class="si">:</span><span class="s2">.12e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Effective viscosity = </span><span class="si">{</span><span class="n">nu_eff</span><span class="si">:</span><span class="s2">.12e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Relative error      = </span><span class="si">{</span><span class="n">nu_error</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> %&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Background velocity = </span><span class="si">{</span><span class="n">U0</span><span class="si">:</span><span class="s2">.12e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mach number         = </span><span class="si">{</span><span class="n">U0</span><span class="o">/</span><span class="n">cs</span><span class="si">:</span><span class="s2">.12e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fitting interval    = [</span><span class="si">{</span><span class="n">fit_start</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">fit_end</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;==============================================&quot;</span><span class="p">)</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Fitted curve</span>
+<span class="c1"># =========================================================================================</span>
+<span class="n">Amplitude_fit</span> <span class="o">=</span> <span class="n">A0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">nu_eff</span> <span class="o">*</span> <span class="n">k</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">time_lbm</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">time_lbm</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Amplitude</span> <span class="o">/</span> <span class="n">A0</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;LBM&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">time_lbm</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">nu</span> <span class="o">*</span> <span class="n">k</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">time_lbm</span><span class="p">),</span><span class="s2">&quot;--&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Analytical, $\nu$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">time_lbm</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">nu_eff</span> <span class="o">*</span> <span class="n">k</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">time_lbm</span><span class="p">),</span><span class="s2">&quot;:&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Fit, $\nu_{\mathrm</span><span class="si">{eff}</span><span class="s2">}$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time [LBM steps]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$|A(t)/A_0|$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Save effective viscosity to TXT file</span>
+<span class="c1"># =========================================================================================</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;effective_viscosity-nu=</span><span class="si">{</span><span class="n">nu</span><span class="si">}</span><span class="s2">-U0=</span><span class="si">{</span><span class="n">U0</span><span class="si">}</span><span class="s2">.txt&quot;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;# Shear-wave Galilean invariance test</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;# -----------------------------------</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nx                    = </span><span class="si">{</span><span class="n">Nx</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ny                    = </span><span class="si">{</span><span class="n">Ny</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;tau                   = </span><span class="si">{</span><span class="n">tau</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;cs                    = </span><span class="si">{</span><span class="n">cs</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;k                     = </span><span class="si">{</span><span class="n">k</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;A0                    = </span><span class="si">{</span><span class="n">A0</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;U0                    = </span><span class="si">{</span><span class="n">U0</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mach                  = </span><span class="si">{</span><span class="n">U0</span><span class="o">/</span><span class="n">cs</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;nu_nominal            = </span><span class="si">{</span><span class="n">nu</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;nu_effective          = </span><span class="si">{</span><span class="n">nu_eff</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;relative_error_percent= </span><span class="si">{</span><span class="n">nu_error</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fit_start             = </span><span class="si">{</span><span class="n">fit_start</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fit_end               = </span><span class="si">{</span><span class="n">fit_end</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;slope                 = </span><span class="si">{</span><span class="n">slope</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;intercept             = </span><span class="si">{</span><span class="n">intercept</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Results saved to &quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==============================================
+Shear-wave effective viscosity
+==============================================
+Nominal viscosity   = 1.000000000000e-01
+Effective viscosity = 9.579379313244e-02
+Relative error      = -4.206207 %
+Background velocity = 2.500000000000e-02
+Mach number         = 4.330127018922e-02
+Fitting interval    = [100, 2000]
+==============================================
+</pre></div>
+</div>
+<img alt="../../../../_images/630498ff1d42cc9d93c501220c9d433ef07368fd3ce1b4167f70038f2575cce4.png" src="../../../../_images/630498ff1d42cc9d93c501220c9d433ef07368fd3ce1b4167f70038f2575cce4.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Results saved to &quot;effective_viscosity-nu=0.09999999999999998-U0=0.025000000000000005.txt&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Folder containing the .txt files</span>
+<span class="c1"># =========================================================================================</span>
+<span class="n">folder</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>   <span class="c1"># Current directory</span>
+<span class="n">files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">folder</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.txt&quot;</span><span class="p">))</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Arrays for results</span>
+<span class="c1"># =========================================================================================</span>
+<span class="n">U0_all</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">nu_all</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">nu_eff_all</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">error_all</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">filename_all</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Read all files</span>
+<span class="c1"># =========================================================================================</span>
+<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="c1"># Ignore comments and empty lines</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span> <span class="ow">or</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">):</span>
+                <span class="k">continue</span>
+            <span class="c1"># Read lines containing key = value</span>
+            <span class="k">if</span> <span class="s2">&quot;=&quot;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                    <span class="k">pass</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="c1"># Check whether the required quantities exist</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="k">if</span> <span class="s2">&quot;nu_nominal&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="ow">and</span> <span class="s2">&quot;nu_effective&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">nu_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;nu_nominal&quot;</span><span class="p">])</span>
+        <span class="n">nu_eff_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;nu_effective&quot;</span><span class="p">])</span>
+        <span class="n">filename_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="c1"># Optional quantities</span>
+        <span class="n">U0_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;U0&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">))</span>
+        <span class="n">error_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;relative_error_percent&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: &quot;</span><span class="sa">f</span><span class="s2">&quot;nu = </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;nu_nominal&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.8e</span><span class="si">}</span><span class="s2">, &quot;</span><span class="sa">f</span><span class="s2">&quot;nu_eff = </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;nu_effective&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.8e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Convert to numpy arrays</span>
+<span class="n">nu_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nu_all</span><span class="p">)</span>
+<span class="n">nu_eff_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nu_eff_all</span><span class="p">)</span>
+<span class="n">U0_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">U0_all</span><span class="p">)</span>
+<span class="n">error_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">error_all</span><span class="p">)</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Sort results according to nominal viscosity</span>
+<span class="c1"># =========================================================================================</span>
+<span class="n">order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">nu_all</span><span class="p">)</span>
+<span class="n">nu_all</span> <span class="o">=</span> <span class="n">nu_all</span><span class="p">[</span><span class="n">order</span><span class="p">]</span>
+<span class="n">nu_eff_all</span> <span class="o">=</span> <span class="n">nu_eff_all</span><span class="p">[</span><span class="n">order</span><span class="p">]</span>
+<span class="n">U0_all</span> <span class="o">=</span> <span class="n">U0_all</span><span class="p">[</span><span class="n">order</span><span class="p">]</span>
+<span class="n">error_all</span> <span class="o">=</span> <span class="n">error_all</span><span class="p">[</span><span class="n">order</span><span class="p">]</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Plot: effective viscosity vs nominal viscosity</span>
+<span class="c1"># =========================================================================================</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="c1"># plt.plot(nu_all,nu_eff_all,&quot;o-&quot;,label=r&quot;LBM: $\nu_{\mathrm{eff}}$&quot;)</span>
+<span class="c1"># plt.plot(nu_all,nu_eff_all/nu_all,&quot;o&quot;,label=r&quot;LBM: $\nu_{\mathrm{eff}}$&quot;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">U0_all</span><span class="p">,</span><span class="n">nu_eff_all</span><span class="o">/</span><span class="n">nu_all</span><span class="p">,</span><span class="s2">&quot;o&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;LBM: $\nu_{\mathrm</span><span class="si">{eff}</span><span class="s2">}$&quot;</span><span class="p">)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Perfect agreement line: nu_eff = nu</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="n">nu_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">nu_all</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">nu_eff_all</span><span class="p">))</span>
+<span class="n">nu_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">nu_all</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">nu_eff_all</span><span class="p">))</span>
+
+<span class="c1"># plt.plot([nu_min, nu_max],[nu_min, nu_max],&quot;--&quot;,label=r&quot;$\nu_{\mathrm{eff}}=\nu$&quot;)</span>
+<span class="c1"># plt.plot([nu_min, nu_max],[nu_min*0+1, nu_max*0+1],&quot;--&quot;,label=r&quot;$\nu_{\mathrm{eff}}=\nu$&quot;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">U0_all</span><span class="p">,</span><span class="n">nu_eff_all</span><span class="o">/</span><span class="n">nu_all</span><span class="o">*</span><span class="mi">0</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;k-&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;LBM: $\nu_{\mathrm</span><span class="si">{eff}</span><span class="s2">}$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Velocity, $U_</span><span class="si">{0}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Normalized viscosity, $\nu_{\mathrm</span><span class="si">{eff}</span><span class="s2">}/\nu$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>effective_viscosity-nu=0.09999999999999998-U0=0.00025.txt: nu = 1.00000000e-01, nu_eff = 1.00197583e-01
+effective_viscosity-nu=0.09999999999999998-U0=0.0025.txt: nu = 1.00000000e-01, nu_eff = 1.07343097e-01
+effective_viscosity-nu=0.09999999999999998-U0=0.025000000000000005.txt: nu = 1.00000000e-01, nu_eff = 9.57937931e-02
+effective_viscosity-nu=0.09999999999999998-U0=0.25.txt: nu = 1.00000000e-01, nu_eff = 8.11787467e-02
+</pre></div>
+</div>
+<img alt="../../../../_images/0349f1610badfe8999ebaff8ba854a4e5f1cdff3bb09e2bb520946c808ea0c51.png" src="../../../../_images/0349f1610badfe8999ebaff8ba854a4e5f1cdff3bb09e2bb520946c808ea0c51.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
+<span class="n">fig1</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span><span class="n">ax2</span><span class="p">,</span><span class="n">ax3</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">img1</span><span class="o">=</span><span class="n">ax1</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">rho</span><span class="p">[:,:]),</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">fig1</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$X$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$Y$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span><span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">img2</span><span class="o">=</span><span class="n">ax2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">Vx</span><span class="p">[:,:]),</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">fig1</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$X$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$Y$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span><span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> 
+<span class="n">img3</span><span class="o">=</span><span class="n">ax3</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">Vy</span><span class="p">[:,:]),</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">fig1</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img3</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax3</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$X$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$Y$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span><span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$Y$&#39;)
+</pre></div>
+</div>
+<img alt="../../../../_images/ca098df7a90cc3c9dbb88100cb94206b78d0698e6c902be9341e3281a48d2301.png" src="../../../../_images/ca098df7a90cc3c9dbb88100cb94206b78d0698e6c902be9341e3281a48d2301.png" />
+</div>
+</div>
+</section>
+<section id="d-discontinuous-shear-wave-decay">
+<h2>2D Discontinuous Shear-Wave Decay<a class="headerlink" href="#d-discontinuous-shear-wave-decay" title="Link to this heading"></a></h2>
+<p>Yes. A useful discontinuous shear-wave test is to replace the sinusoidal initial condition</p>
+<div class="math notranslate nohighlight">
+\[
+u_x(y,0)=U_0+A_0\sin(ky)
+\]</div>
+<p>by a square-wave profile,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+u_x(y,0)= U_0+
+\begin{cases}
++A_0, &amp; 0\le y&lt;L_y/2,\\[2mm]
+-A_0, &amp; L_y/2\le y&lt;L_y,
+\end{cases} \qquad u_y=0.
+\end{split}\]</div>
+<p>Because the domain is periodic, this produces two velocity discontinuities. Viscosity progressively smooths those discontinuities according to</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial u_x}{\partial t} = \nu \frac{\partial^2u_x}{\partial y^2}.
+\]</div>
+<p>The discontinuous profile can be represented analytically by its Fourier series,</p>
+<div class="math notranslate nohighlight">
+\[
+u_x(y,t)-U_0 = \frac{4A_0}{\pi} \sum_{n=0}^{\infty} \frac{1}{2n+1} \sin\left[(2n+1)k y\right] e^{-\nu(2n+1)^2k^2t}.
+\]</div>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.colors</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Math</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="c1"># ====================================Domain=====================================================</span>
+<span class="n">Nx</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">Ny</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="c1"># ======================================D2Q9 lattice===================================================</span>
+<span class="n">w0</span> <span class="o">=</span> <span class="mf">4.0</span> <span class="o">/</span> <span class="mf">9.0</span><span class="p">;</span> <span class="n">w1</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">9.0</span><span class="p">;</span> <span class="n">w2</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">36.0</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">w0</span><span class="p">,</span> <span class="n">w1</span><span class="p">,</span> <span class="n">w1</span><span class="p">,</span> <span class="n">w1</span><span class="p">,</span> <span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="n">w2</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">cx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int8&quot;</span><span class="p">)</span>
+<span class="n">cy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int8&quot;</span><span class="p">)</span>
+<span class="n">cs</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span>
+<span class="c1"># ===============================Physical parameters==========================================================</span>
+<span class="n">ho</span> <span class="o">=</span> <span class="mf">1.0</span>                      <span class="c1"># Physical domain length</span>
+<span class="n">nuo</span> <span class="o">=</span> <span class="mf">0.01</span>                    <span class="c1"># Physical kinematic viscosity</span>
+<span class="c1"># Shear-wave parameters</span>
+<span class="n">A0_phys</span> <span class="o">=</span> <span class="mf">0.05</span>                <span class="c1"># Physical wave amplitude</span>
+<span class="n">U0_phys</span> <span class="o">=</span> <span class="mf">0.10</span><span class="o">*</span><span class="mi">10</span><span class="o">/</span><span class="mi">1</span>               <span class="c1"># Uniform background velocity</span>
+<span class="n">m_waves</span> <span class="o">=</span> <span class="mi">1</span>                   <span class="c1"># Number of wavelengths in y direction</span>
+<span class="c1"># ================================caling=========================================================</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="n">ho</span> <span class="o">/</span> <span class="n">Ny</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">2.0</span><span class="o">**</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>                       <span class="c1"># r = dx/dt</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">dx</span> <span class="o">/</span> <span class="n">r</span>
+<span class="c1"># LBM viscosity</span>
+<span class="n">nu</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">nuo</span> <span class="o">/</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
+<span class="c1"># Convert velocities to lattice units</span>
+<span class="n">A0</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">A0_phys</span> <span class="o">/</span> <span class="n">dx</span>
+<span class="n">U0</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">U0_phys</span> <span class="o">/</span> <span class="n">dx</span>
+<span class="n">tau</span> <span class="o">=</span> <span class="n">nu</span> <span class="o">/</span> <span class="n">cs</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mf">0.5</span>
+<span class="n">rhoi</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="c1"># Simulation time</span>
+<span class="n">mstep</span> <span class="o">=</span> <span class="mi">3000</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\tau=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\qquad \nu=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">nu</span><span class="p">)))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;A_0=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">A0</span><span class="p">)</span><span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\qquad U_0=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">U0</span><span class="p">)))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;dx=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dx</span><span class="p">)</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;\qquad dt=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dt</span><span class="p">)))</span>
+<span class="c1"># ===================================Arrays======================================================</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">Vx</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">Vy</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">f</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">9</span><span class="p">,</span> <span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">fp</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">9</span><span class="p">,</span> <span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">feq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">9</span><span class="p">,</span> <span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">Amplitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">mstep</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">Mass</span>      <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">mstep</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="c1"># ===================================Initial condition======================================================</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">Nx</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span>
+<span class="n">yi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">Ny</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span>
+<span class="n">Xi</span><span class="p">,</span> <span class="n">Yi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s2">&quot;ij&quot;</span><span class="p">)</span>
+<span class="c1"># Wave number in lattice coordinates</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">m_waves</span> <span class="o">/</span> <span class="n">Ny</span>
+<span class="n">rho</span><span class="p">[:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">rhoi</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Initial discontinuous shear wave</span>
+<span class="c1"># =========================================================================================</span>
+<span class="n">Vx</span><span class="p">[:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">U0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Yi</span> <span class="o">&lt;</span> <span class="n">Ny</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span><span class="n">A0</span><span class="p">,</span><span class="o">-</span><span class="n">A0</span><span class="p">)</span>
+<span class="c1"># Vx[:, :] = np.where(Yi &lt; Ny / 2.0,A0,-A0)</span>
+<span class="n">Vy</span><span class="p">[:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">U0</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Fundamental Fourier mode</span>
+<span class="c1"># =========================================================================================</span>
+<span class="n">sin_mode</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="n">yi</span><span class="p">)</span>
+<span class="n">ux_mean_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Vx</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ux_perturbation</span> <span class="o">=</span> <span class="n">ux_mean_x</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ux_mean_x</span><span class="p">)</span>
+<span class="n">A1_initial</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ux_perturbation</span> <span class="o">*</span> <span class="n">sin_mode</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sin_mode</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># ================Initialize distributions with second-order equilibrium============================</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">cx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">Vx</span> <span class="o">+</span> <span class="n">cy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">Vy</span>
+    <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">rho</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">t1</span><span class="o">/</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">t1</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">cs</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span><span class="o">-</span> <span class="p">(</span><span class="n">Vx</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">Vy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="c1"># ==============================Init-Loop===========================================================</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mstep</span><span class="p">):</span>
+    <span class="c1"># -------------------------------------Collision------------------------------------------------</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">cx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">Vx</span> <span class="o">+</span> <span class="n">cy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">Vy</span>
+        <span class="n">feq</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">rho</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">t1</span><span class="o">/</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">t1</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">cs</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">Vx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">Vy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">fp</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span><span class="o">-</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">tau</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">feq</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]))</span>
+    <span class="c1"># ------------------------------------Streaming - periodic in both directions-------------------------------------------------</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">fp</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:],</span><span class="n">cx</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span><span class="n">cy</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># ----------------------------------Macroscopic variables---------------------------------------------------</span>
+    <span class="n">rho</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># ==============================Main-Loop===========================================================</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mstep</span><span class="p">):</span>
+    <span class="c1"># -------------------------------------Collision------------------------------------------------</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">cx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">Vx</span> <span class="o">+</span> <span class="n">cy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">Vy</span>
+        <span class="n">feq</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">rho</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">t1</span><span class="o">/</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">t1</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">cs</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">Vx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">Vy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">fp</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span><span class="o">-</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">tau</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">feq</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]))</span>
+    <span class="c1"># ------------------------------------Streaming - periodic in both directions-------------------------------------------------</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">fp</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:],</span><span class="n">cx</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span><span class="n">cy</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># ----------------------------------Macroscopic variables---------------------------------------------------</span>
+    <span class="n">rho</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">Vx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;i,ixy-&gt;xy&quot;</span><span class="p">,</span><span class="n">cx</span><span class="p">,</span><span class="n">f</span><span class="p">)</span> <span class="o">/</span> <span class="n">rho</span>
+    <span class="n">Vy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;i,ixy-&gt;xy&quot;</span><span class="p">,</span><span class="n">cy</span><span class="p">,</span><span class="n">f</span><span class="p">)</span> <span class="o">/</span> <span class="n">rho</span>
+    <span class="c1"># ---------------------------------Mass----------------------------------------------------</span>
+    <span class="n">Mass</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span>
+    <span class="c1"># Remove the uniform velocity U0 and project the velocity field onto sin(k y).</span>
+    <span class="c1"># --------------------------------Shear-wave amplitude-----------------------------------------------------</span>
+    <span class="n">ux_mean_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Vx</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># ux_perturbation = ux_mean_x - np.mean(ux_mean_x)</span>
+    <span class="c1"># Amplitude[kk] = (2.0 / Ny* np.sum(ux_perturbation* np.sin(k * yi)))</span>
+    <span class="c1"># Remove Galilean background velocity</span>
+    <span class="n">ux_perturbation</span> <span class="o">=</span> <span class="n">ux_mean_x</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ux_mean_x</span><span class="p">)</span>
+    <span class="n">Amplitude</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ux_perturbation</span> <span class="o">*</span> <span class="n">sin_mode</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sin_mode</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">kk</span> <span class="o">%</span> <span class="mi">200</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;step = </span><span class="si">{</span><span class="n">kk</span><span class="si">:</span><span class="s2">5d</span><span class="si">}</span><span class="s2"> &quot;</span><span class="sa">f</span><span class="s2">&quot;A = </span><span class="si">{</span><span class="n">Amplitude</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span><span class="si">:</span><span class="s2">.8e</span><span class="si">}</span><span class="s2"> &quot;</span><span class="sa">f</span><span class="s2">&quot;rho = </span><span class="si">{</span><span class="n">Mass</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span><span class="si">:</span><span class="s2">.12f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Simulation time =&quot;</span><span class="p">,</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \tau=0.6499999999999999\qquad \nu=0.04999999999999999\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle A_0=0.006250000000000001\qquad U_0=0.125\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle dx=0.025\qquad dt=0.003125\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>step =     0 A = 7.95952356e-03 rho = 1.000000000000
+step =   200 A = -4.38925401e-03 rho = 1.000000000000
+step =   400 A = -6.52889355e-05 rho = 1.000000000000
+step =   600 A = 2.81299564e-03 rho = 1.000000000000
+step =   800 A = -3.10185132e-03 rho = 1.000000000000
+step =  1000 A = 1.70925732e-03 rho = 1.000000000000
+step =  1200 A = 2.68365275e-05 rho = 1.000000000000
+step =  1400 A = -1.09701016e-03 rho = 1.000000000000
+step =  1600 A = 1.20879942e-03 rho = 1.000000000000
+step =  1800 A = -6.65615952e-04 rho = 1.000000000000
+step =  2000 A = -1.10012267e-05 rho = 1.000000000000
+step =  2200 A = 4.27810860e-04 rho = 1.000000000000
+step =  2400 A = -4.71071994e-04 rho = 1.000000000000
+step =  2600 A = 2.59202706e-04 rho = 0.999999999999
+step =  2800 A = 4.49880239e-06 rho = 0.999999999999
+Simulation time = 2.2256617546081543 s
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ==============================Analytical solution===========================================================</span>
+<span class="n">time_lbm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mstep</span><span class="p">)</span>
+<span class="c1"># Fundamental-mode analytical amplitude</span>
+<span class="n">Amplitude_analytical</span> <span class="o">=</span> <span class="n">A1_initial</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">nu</span> <span class="o">*</span> <span class="n">k</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">time_lbm</span><span class="p">)</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Plot both subplots side by side</span>
+<span class="c1"># =========================================================================================</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="c1"># -----------------------------------------------------------------------------------------</span>
+<span class="c1"># Absolute amplitude</span>
+<span class="c1"># -----------------------------------------------------------------------------------------</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_lbm</span><span class="p">,</span><span class="n">Amplitude</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;LBM&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_lbm</span><span class="p">,</span><span class="n">Amplitude_analytical</span><span class="p">,</span><span class="s2">&quot;--&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Analytical&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time [LBM steps]&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$A_1(t)$&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="c1"># -----------------------------------------------------------------------------------------</span>
+<span class="c1"># Normalized amplitude</span>
+<span class="c1"># -----------------------------------------------------------------------------------------</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_lbm</span><span class="p">,</span><span class="n">Amplitude</span> <span class="o">/</span> <span class="n">A1_initial</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;LBM&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_lbm</span><span class="p">,</span><span class="n">Amplitude_analytical</span> <span class="o">/</span> <span class="n">A1_initial</span><span class="p">,</span><span class="s2">&quot;--&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$e^{-\nu k^2 t}$&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time [LBM steps]&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$A_1(t)/A_1(0)$&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/efb605514e275c902d5968cecebb858cc9abc6094f1f1da5110e58fd11689029.png" src="../../../../_images/efb605514e275c902d5968cecebb858cc9abc6094f1f1da5110e58fd11689029.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># =========================================================================================</span>
+<span class="c1"># Effective viscosity from discontinuous shear-wave decay</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Time in lattice units</span>
+<span class="n">time_lbm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mstep</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Fundamental Fourier amplitude</span>
+<span class="c1"># For the discontinuous square wave:</span>
+<span class="c1">#     ux - U0 = +/- A0</span>
+<span class="c1"># the first Fourier coefficient is approximately:</span>
+<span class="c1">#     A1(0) = 4*A0/pi</span>
+<span class="c1"># Here we use the discrete value already calculated from the initial condition:</span>
+<span class="c1">#     A1_initial</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Avoid numerical problems if amplitude becomes too small or changes sign</span>
+<span class="n">valid</span> <span class="o">=</span> <span class="n">Amplitude</span> <span class="o">&gt;</span> <span class="mf">0.0</span>
+<span class="n">t_fit</span> <span class="o">=</span> <span class="n">time_lbm</span><span class="p">[</span><span class="n">valid</span><span class="p">]</span>
+<span class="n">A_fit</span> <span class="o">=</span> <span class="n">Amplitude</span><span class="p">[</span><span class="n">valid</span><span class="p">]</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Choose fitting interval</span>
+<span class="c1"># =========================================================================================</span>
+<span class="n">fit_start</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">fit_end</span>   <span class="o">=</span> <span class="mi">2000</span>
+<span class="n">mask_fit</span> <span class="o">=</span> <span class="p">((</span><span class="n">t_fit</span> <span class="o">&gt;=</span> <span class="n">fit_start</span><span class="p">)</span><span class="o">&amp;</span> <span class="p">(</span><span class="n">t_fit</span> <span class="o">&lt;=</span> <span class="n">fit_end</span><span class="p">))</span>
+<span class="n">t_fit</span> <span class="o">=</span> <span class="n">t_fit</span><span class="p">[</span><span class="n">mask_fit</span><span class="p">]</span>
+<span class="n">A_fit</span> <span class="o">=</span> <span class="n">A_fit</span><span class="p">[</span><span class="n">mask_fit</span><span class="p">]</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Linearized analytical relation</span>
+<span class="c1"># A1(t) = A1(0) exp(-nu_eff*k^2*t)</span>
+<span class="c1"># therefore:</span>
+<span class="c1"># ln[A1(t)/A1(0)] = -nu_eff*k^2*t</span>
+<span class="c1"># =========================================================================================</span>
+<span class="n">log_A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">A_fit</span> <span class="o">/</span> <span class="n">A1_initial</span><span class="p">)</span>
+<span class="c1"># Linear regression:</span>
+<span class="c1"># log[A1(t)/A1(0)] = slope*t + intercept</span>
+<span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">t_fit</span><span class="p">,</span><span class="n">log_A</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Effective viscosity</span>
+<span class="c1"># =========================================================================================</span>
+<span class="n">nu_eff</span> <span class="o">=</span> <span class="o">-</span><span class="n">slope</span> <span class="o">/</span> <span class="n">k</span><span class="o">**</span><span class="mi">2</span>
+<span class="c1"># Relative viscosity error</span>
+<span class="n">nu_error</span> <span class="o">=</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">nu_eff</span> <span class="o">-</span> <span class="n">nu</span><span class="p">)</span> <span class="o">/</span> <span class="n">nu</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Print results</span>
+<span class="c1"># =========================================================================================</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;======================================================&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Discontinuous shear-wave effective viscosity&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;======================================================&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Square-wave amplitude A0   = </span><span class="si">{</span><span class="n">A0</span><span class="si">:</span><span class="s2">.12e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initial Fourier amplitude  = </span><span class="si">{</span><span class="n">A1_initial</span><span class="si">:</span><span class="s2">.12e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Continuous 4*A0/pi         = </span><span class="si">{</span><span class="mf">4.0</span><span class="o">*</span><span class="n">A0</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="si">:</span><span class="s2">.12e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nominal viscosity          = </span><span class="si">{</span><span class="n">nu</span><span class="si">:</span><span class="s2">.12e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Effective viscosity        = </span><span class="si">{</span><span class="n">nu_eff</span><span class="si">:</span><span class="s2">.12e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;nu_eff / nu                = </span><span class="si">{</span><span class="n">nu_eff</span><span class="o">/</span><span class="n">nu</span><span class="si">:</span><span class="s2">.12e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Relative error             = </span><span class="si">{</span><span class="n">nu_error</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> %&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Background velocity        = </span><span class="si">{</span><span class="n">U0</span><span class="si">:</span><span class="s2">.12e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mach number                = </span><span class="si">{</span><span class="n">U0</span><span class="o">/</span><span class="n">cs</span><span class="si">:</span><span class="s2">.12e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fitting interval           = [</span><span class="si">{</span><span class="n">fit_start</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">fit_end</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;======================================================&quot;</span><span class="p">)</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Analytical and fitted curves</span>
+<span class="c1"># =========================================================================================</span>
+<span class="n">Amplitude_analytical</span> <span class="o">=</span> <span class="p">(</span><span class="n">A1_initial</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">nu</span> <span class="o">*</span> <span class="n">k</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">time_lbm</span><span class="p">))</span>
+<span class="n">Amplitude_fit</span> <span class="o">=</span> <span class="p">(</span><span class="n">A1_initial</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">nu_eff</span> <span class="o">*</span> <span class="n">k</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">time_lbm</span><span class="p">))</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Plot</span>
+<span class="c1"># =========================================================================================</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">time_lbm</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Amplitude</span> <span class="o">/</span> <span class="n">A1_initial</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;LBM&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">time_lbm</span><span class="p">,</span><span class="n">Amplitude_analytical</span> <span class="o">/</span> <span class="n">A1_initial</span><span class="p">,</span><span class="s2">&quot;--&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Analytical, $\nu$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">time_lbm</span><span class="p">,</span><span class="n">Amplitude_fit</span> <span class="o">/</span> <span class="n">A1_initial</span><span class="p">,</span><span class="s2">&quot;:&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Fit, $\nu_{\mathrm</span><span class="si">{eff}</span><span class="s2">}$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time [LBM steps]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$|A_1(t)/A_1(0)|$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Save effective viscosity to TXT file</span>
+<span class="c1"># =========================================================================================</span>
+
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="n">folder</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;disc-wave&quot;</span><span class="p">)</span>
+<span class="n">folder</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="n">folder</span> <span class="o">/</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;effective_viscosity-nu=</span><span class="si">{</span><span class="n">nu</span><span class="si">:</span><span class="s2">.8e</span><span class="si">}</span><span class="s2">-U0=</span><span class="si">{</span><span class="n">U0</span><span class="si">:</span><span class="s2">.8e</span><span class="si">}</span><span class="s2">.txt&quot;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;# Discontinuous shear-wave Galilean invariance test</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;# -------------------------------------------------</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nx                     = </span><span class="si">{</span><span class="n">Nx</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ny                     = </span><span class="si">{</span><span class="n">Ny</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;tau                    = </span><span class="si">{</span><span class="n">tau</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;cs                     = </span><span class="si">{</span><span class="n">cs</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;k                      = </span><span class="si">{</span><span class="n">k</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="c1"># Square-wave amplitude</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;A0                     = </span><span class="si">{</span><span class="n">A0</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="c1"># Fundamental Fourier amplitude</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;A1_initial             = </span><span class="si">{</span><span class="n">A1_initial</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;A1_continuous          = </span><span class="si">{</span><span class="mf">4.0</span><span class="o">*</span><span class="n">A0</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;U0                     = </span><span class="si">{</span><span class="n">U0</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mach                   = </span><span class="si">{</span><span class="n">U0</span><span class="o">/</span><span class="n">cs</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;nu_nominal             = </span><span class="si">{</span><span class="n">nu</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;nu_effective           = </span><span class="si">{</span><span class="n">nu_eff</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;nu_eff_over_nu         = </span><span class="si">{</span><span class="n">nu_eff</span><span class="o">/</span><span class="n">nu</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;relative_error_percent = </span><span class="si">{</span><span class="n">nu_error</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fit_start              = </span><span class="si">{</span><span class="n">fit_start</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fit_end                = </span><span class="si">{</span><span class="n">fit_end</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;slope                  = </span><span class="si">{</span><span class="n">slope</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;intercept              = </span><span class="si">{</span><span class="n">intercept</span><span class="si">:</span><span class="s2">.16e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Results saved to &quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>======================================================
+Discontinuous shear-wave effective viscosity
+======================================================
+Square-wave amplitude A0   = 6.250000000000e-03
+Initial Fourier amplitude  = 7.965934276989e-03
+Continuous 4*A0/pi         = 7.957747154595e-03
+Nominal viscosity          = 5.000000000000e-02
+Effective viscosity        = 4.791363210707e-02
+nu_eff / nu                = 9.582726421415e-01
+Relative error             = -4.172736 %
+Background velocity        = 1.250000000000e-01
+Mach number                = 2.165063509461e-01
+Fitting interval           = [100, 2000]
+======================================================
+</pre></div>
+</div>
+<img alt="../../../../_images/13b653c1e4c34744a3626671876bd181da3cd354b7d943267cfa54f35d354423.png" src="../../../../_images/13b653c1e4c34744a3626671876bd181da3cd354b7d943267cfa54f35d354423.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Results saved to &quot;disc-wave/effective_viscosity-nu=5.00000000e-02-U0=1.25000000e-01.txt&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Folder containing the .txt files</span>
+<span class="c1"># =========================================================================================</span>
+<span class="n">folder</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>   <span class="c1"># Current directory</span>
+<span class="n">files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">folder</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;disc-wave/*.txt&quot;</span><span class="p">))</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Arrays for results</span>
+<span class="c1"># =========================================================================================</span>
+<span class="n">U0_all</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">nu_all</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">nu_eff_all</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">error_all</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">filename_all</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Read all files</span>
+<span class="c1"># =========================================================================================</span>
+<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="c1"># Ignore comments and empty lines</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span> <span class="ow">or</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">):</span>
+                <span class="k">continue</span>
+            <span class="c1"># Read lines containing key = value</span>
+            <span class="k">if</span> <span class="s2">&quot;=&quot;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                    <span class="k">pass</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="c1"># Check whether the required quantities exist</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="k">if</span> <span class="s2">&quot;nu_nominal&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="ow">and</span> <span class="s2">&quot;nu_effective&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">nu_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;nu_nominal&quot;</span><span class="p">])</span>
+        <span class="n">nu_eff_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;nu_effective&quot;</span><span class="p">])</span>
+        <span class="n">filename_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="c1"># Optional quantities</span>
+        <span class="n">U0_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;U0&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">))</span>
+        <span class="n">error_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;relative_error_percent&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: &quot;</span><span class="sa">f</span><span class="s2">&quot;nu = </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;nu_nominal&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.8e</span><span class="si">}</span><span class="s2">, &quot;</span><span class="sa">f</span><span class="s2">&quot;nu_eff = </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;nu_effective&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.8e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Convert to numpy arrays</span>
+<span class="n">nu_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nu_all</span><span class="p">)</span>
+<span class="n">nu_eff_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nu_eff_all</span><span class="p">)</span>
+<span class="n">U0_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">U0_all</span><span class="p">)</span>
+<span class="n">error_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">error_all</span><span class="p">)</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Sort results according to nominal viscosity</span>
+<span class="c1"># =========================================================================================</span>
+<span class="n">order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">nu_all</span><span class="p">)</span>
+<span class="n">nu_all</span> <span class="o">=</span> <span class="n">nu_all</span><span class="p">[</span><span class="n">order</span><span class="p">]</span>
+<span class="n">nu_eff_all</span> <span class="o">=</span> <span class="n">nu_eff_all</span><span class="p">[</span><span class="n">order</span><span class="p">]</span>
+<span class="n">U0_all</span> <span class="o">=</span> <span class="n">U0_all</span><span class="p">[</span><span class="n">order</span><span class="p">]</span>
+<span class="n">error_all</span> <span class="o">=</span> <span class="n">error_all</span><span class="p">[</span><span class="n">order</span><span class="p">]</span>
+<span class="c1"># =========================================================================================</span>
+<span class="c1"># Plot: effective viscosity vs nominal viscosity</span>
+<span class="c1"># =========================================================================================</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="c1"># plt.plot(nu_all,nu_eff_all,&quot;o-&quot;,label=r&quot;LBM: $\nu_{\mathrm{eff}}$&quot;)</span>
+<span class="c1"># plt.plot(nu_all,nu_eff_all/nu_all,&quot;o&quot;,label=r&quot;LBM: $\nu_{\mathrm{eff}}$&quot;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">U0_all</span><span class="p">,</span><span class="n">nu_eff_all</span><span class="o">/</span><span class="n">nu_all</span><span class="p">,</span><span class="s2">&quot;o&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;LBM: $\nu_{\mathrm</span><span class="si">{eff}</span><span class="s2">}$&quot;</span><span class="p">)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Perfect agreement line: nu_eff = nu</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="n">nu_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">nu_all</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">nu_eff_all</span><span class="p">))</span>
+<span class="n">nu_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">nu_all</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">nu_eff_all</span><span class="p">))</span>
+
+<span class="c1"># plt.plot([nu_min, nu_max],[nu_min, nu_max],&quot;--&quot;,label=r&quot;$\nu_{\mathrm{eff}}=\nu$&quot;)</span>
+<span class="c1"># plt.plot([nu_min, nu_max],[nu_min*0+1, nu_max*0+1],&quot;--&quot;,label=r&quot;$\nu_{\mathrm{eff}}=\nu$&quot;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">U0_all</span><span class="p">,</span><span class="n">nu_eff_all</span><span class="o">/</span><span class="n">nu_all</span><span class="o">*</span><span class="mi">0</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;k-&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;LBM: $\nu_{\mathrm</span><span class="si">{eff}</span><span class="s2">}$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Velocity, $U_</span><span class="si">{0}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Normalized viscosity, $\nu_{\mathrm</span><span class="si">{eff}</span><span class="s2">}/\nu$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>effective_viscosity-nu=5.00000000e-02-U0=1.25000000e-01.txt: nu = 5.00000000e-02, nu_eff = 4.79136321e-02
+effective_viscosity-nu=5.00000000e-02-U0=1.25000000e-02.txt: nu = 5.00000000e-02, nu_eff = 2.04871431e-01
+effective_viscosity-nu=5.00000000e-02-U0=1.25000000e-03.txt: nu = 5.00000000e-02, nu_eff = 5.17715688e-02
+effective_viscosity-nu=5.00000000e-02-U0=1.25000000e-04.txt: nu = 5.00000000e-02, nu_eff = 5.01100851e-02
+</pre></div>
+</div>
+<img alt="../../../../_images/a11275cff2f930ee3174d599109b416ddc7e2b75e6b0db1806d1c454fa0c5305.png" src="../../../../_images/a11275cff2f930ee3174d599109b416ddc7e2b75e6b0db1806d1c454fa0c5305.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./LBM-Study/intro-nse-lbm/Gallilean-Invariance/D2Q9"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Ricardo LMB.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

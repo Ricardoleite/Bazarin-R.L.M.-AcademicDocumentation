@@ -52,6 +52,7 @@ extensions = [    'sphinx.ext.doctest',
     "myst_nb",
     'sphinx.ext.graphviz',
     'sphinxcontrib.bibtex', 
+    "sphinxcontrib.inkscapeconverter",
     'sphinxcontrib.tikz']
 
 myst_enable_extensions = [
@@ -62,9 +63,10 @@ myst_enable_extensions = [
     'linkify',
     'substitution',
     "deflist",
-    'tasklist'
+    'tasklist',
 ]
 
+jblatex_load_imgconverter = False
 sphinx_rtd_size_width = "100%"
 templates_path = ['_templates']
 exclude_patterns = ["LBM-Study/tests/**",'**.ipynb_checkpoints', '.DS_Store', 'Thumbs.db', '_build']

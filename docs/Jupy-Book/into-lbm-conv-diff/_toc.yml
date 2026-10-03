@@ -1,0 +1,13 @@
+format: jb-book
+root: index
+
+parts:
+  - caption: "Lattice Boltzmann Method - Application to Different Partial Differential Equation"
+    chapters:
+      - file: LBM-Study/Diffusive-Equation
+      - file: LBM-Study/Poisson-Equation
+      - file: LBM-Study/Convective-Equation
+      - file: LBM-Study/Convective-Diffusive-Equation
+      - file: Refs/LBM-Study/intro-nse-lbm/Navier-Stokes-Equation
+      - file: Refs/Citations
+      
