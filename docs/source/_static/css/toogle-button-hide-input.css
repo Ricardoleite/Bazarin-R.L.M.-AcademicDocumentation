@@ -1,0 +1,53 @@
+/* =========================================
+   Code cell toggle style
+   ========================================= */
+
+.rst-content details {
+    margin: 2px 0;
+    border: none;
+    background: transparent;
+}
+
+.rst-content details > summary {
+    background: #2b2b2b;
+    color: #d0d0d0;
+
+    border: 1px solid #8a8a8a;
+    border-radius: 5px;
+
+    padding: 2px 10px;
+
+    font-size: 14px;
+    font-weight: normal;
+
+    cursor: pointer;
+    list-style: none;
+
+    line-height: 1.2;
+}
+
+/* Remove browser default marker */
+.rst-content details > summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Closed triangle */
+.rst-content details > summary::before {
+    content: "▶";
+    display: inline-block;
+    margin-right: 7px;
+
+    font-size: 10px;
+    color: #d0d0d0;
+}
+
+/* Open triangle */
+.rst-content details[open] > summary::before {
+    content: "▼";
+}
+
+/* Small hover effect */
+.rst-content details > summary:hover {
+    background: #353535;
+    color: #ffffff;
+}

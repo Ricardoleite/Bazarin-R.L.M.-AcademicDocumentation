@@ -43,7 +43,6 @@ extensions = [    'sphinx.ext.doctest',
     'nbsphinx_link',
     'sphinx_togglebutton',
     'sphinx_copybutton',
-    'jupyter_book',
     'sphinx_thebe',
     'sphinx_comments',
     'sphinx.ext.intersphinx',
@@ -94,7 +93,7 @@ html_css_files = [
     'css/eqno.css',
     'custom.css',
     'css/sidebar.css',
-    'css/fake-header-Levels.css',
+    'css/rolamento-lateral.css',
     ]
 
 html_js_files = ["css/sidebar.js"]

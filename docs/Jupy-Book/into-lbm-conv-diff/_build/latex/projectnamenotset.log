@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2026.9.17)  27 SEP 2026 23:46
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2026.10.4)  4 OCT 2026 15:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2016,75 +2016,110 @@ Overfull \hbox (12.55414pt too wide) detected at line 2549
 
 [37] [38]
 Chapter 6.
+
+Overfull \hbox (467.31168pt too wide) detected at line 2591
+[]
+ []
+
+
+Overfull \hbox (483.4754pt too wide) detected at line 2601
+[]
+ []
+
 [39
 
-] [40
-
-]
-Underfull \hbox (badness 6252) in paragraph at lines 2582--2584
-[]\TU/FreeSerif(0)/m/n/10 Zhenhua Chai, Nanzhong He, Zhaoli Guo, and Baochang S
-hi. Lattice Boltzmann model for
+] [40]
+Overfull \hbox (86.86867pt too wide) detected at line 2701
+[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2582--2584
-\TU/FreeSerif(0)/m/n/10 high-order nonlinear partial differential equations. \T
-U/FreeSerif(0)/m/it/10 Physical Review E\TU/FreeSerif(0)/m/n/10 , 2018. [][]arX
-iv:0907.1720[][],
+Overfull \hbox (20.0pt too wide) detected at line 2701
+[]
  []
 
-(./projectnamenotset.ind)
-The property list \polyglossia@langsetup contains the pairs (without outer
-braces):
->  {latex/script}  =>  {latin}
->  {latex/lcscript}  =>  {latin}
->  {latex/scripttag}  =>  {}
->  {latex/language}  =>  {Latex}
->  {latex/langtag}  =>  {ENG}
->  {latex/bcp47}  =>  {}
->  {latex/hyphennames}  =>  {english}
->  {latex/direction}  =>  {LR}
->  {latex/hyphenmins}  =>  {2,3}
->  {latex/frenchspacing}  =>  {false}
->  {latex/indentfirst}  =>  {false}
->  {latex/fontsetup}  =>  {true}
->  {latex/envname}  =>  {latex}
->  {latex/babelname}  =>  {latex}
->  {latex/localnumeral}  =>  {polyglossia@C@localnumeral}
->  {latex/Localnumeral}  =>  {polyglossia@C@localnumeral}
->  {english/script}  =>  {latin}
->  {english/lcscript}  =>  {latin}
->  {english/scripttag}  =>  {}
->  {english/language}  =>  {English}
->  {english/langtag}  =>  {ENG}
->  {english/bcp47}  =>  {en-US}
->  {english/hyphennames}  =>  {english,american,usenglish,USenglish}
->  {english/direction}  =>  {LR}
->  {english/hyphenmins}  =>  {2,3}
->  {english/frenchspacing}  =>  {false}
->  {english/indentfirst}  =>  {false}
->  {english/fontsetup}  =>  {true}
->  {english/envname}  =>  {english}
->  {english/babelname}  =>  {american}
->  {english/localnumeral}  =>  {polyglossia@C@localnumeral}
->  {english/Localnumeral}  =>  {polyglossia@C@localnumeral}.
- [41
 
-] (./projectnamenotset.aux
-LaTeX Info: Redefining \rmfamily on input line 19.
-LaTeX Info: Redefining \sffamily on input line 19.
-LaTeX Info: Redefining \ttfamily on input line 19.
-)
-Package rerunfilecheck Info: File `projectnamenotset.out' has not changed.
-(rerunfilecheck)             Checksum: E090A5D420C6016FAB7B0B434C334B0F;7987.
- ) 
+LaTeX Warning: Reference `equation:Refs/LBM-Study/tests/D1Q5-ZOT-ana/Diffusive/
+FDM-LBM-Convective-Diffusive-Hermite-Moments-D1Q5ZOT:MRT-Herm-LB-conv-df-Eq' on
+ page 41 undefined on input line 2709.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2721--2724
+\TU/FreeSerif(0)/m/n/10 where $[][] [] [][][][]$, $[]$ is the index of moments 
+in the space moment, $[] [][]
+ []
+
+
+Overfull \hbox (1603.43195pt too wide) detected at line 2734
+[]
+ []
+
+
+Overfull \hbox (20.0pt too wide) detected at line 2734
+[]
+ []
+
+
+Overfull \hbox (1644.61652pt too wide) detected at line 2736
+[]
+ []
+
+
+Overfull \hbox (20.0pt too wide) detected at line 2736
+[]
+ []
+
+
+Overfull \hbox (1563.85144pt too wide) detected at line 2738
+[]
+ []
+
+
+Overfull \hbox (20.0pt too wide) detected at line 2738
+[]
+ []
+
+[41]
+
+LaTeX Warning: Reference `equation:Refs/LBM-Study/tests/D1Q5-ZOT-ana/Diffusive/
+FDM-LBM-Convective-Diffusive-Hermite-Moments-D1Q5ZOT:pre-MRT-Herm-LB-conv-df-Eq
+' on page 42 undefined on input line 2744.
+
+
+Overfull \hbox (101.23625pt too wide) detected at line 2749
+[]
+ []
+
+[42]
+Overfull \hbox (1645.76163pt too wide) detected at line 2841
+[]
+ []
+
+
+Overfull \hbox (20.0pt too wide) detected at line 2841
+[]
+ []
+
+! Dimension too large.
+\wdz@ ->\wd \z@ 
+                
+l.2857 ...ta_{x}}^{c_{4}}\right)}{576},\end{split}
+                                                  
+? 
+! Emergency stop.
+\wdz@ ->\wd \z@ 
+                
+l.2857 ...ta_{x}}^{c_{4}}\right)}{576},\end{split}
+                                                  
+End of file on the terminal!
+
+ 
 Here is how much of TeX's memory you used:
- 46469 strings out of 478135
- 1069768 string characters out of 5852426
- 1699280 words of memory out of 5000000
- 66204 multiletter control sequences out of 15000+600000
- 479588 words of font info for 139 fonts, out of 8000000 for 9000
- 15 hyphenation exceptions out of 8191
- 99i,25n,115p,2926b,2140s stack positions out of 5000i,500n,10000p,200000b,80000s
-
-Output written on projectnamenotset.pdf (45 pages).
+ 46489 strings out of 478146
+ 1070519 string characters out of 5853002
+ 1914193 words of memory out of 5000000
+ 66220 multiletter control sequences out of 15000+600000
+ 479636 words of font info for 145 fonts, out of 8000000 for 9000
+ 17 hyphenation exceptions out of 8191
+ 99i,25n,115p,16187b,2295s stack positions out of 5000i,500n,10000p,200000b,80000s
+Output written on projectnamenotset.pdf (46 pages).
