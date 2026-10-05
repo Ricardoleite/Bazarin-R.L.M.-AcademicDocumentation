@@ -1,53 +1,159 @@
-/* =========================================
-   Code cell toggle style
-   ========================================= */
+/* ============================================================
+   MyST-NB hidden source/output style
+   Connected source + output controls
+   ============================================================ */
 
-.rst-content details {
-    margin: 2px 0;
-    border: none;
-    background: transparent;
+
+/* Base hidden section */
+.rst-content .cell > details.admonition.hide {
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background: transparent !important;
+
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
 }
 
-.rst-content details > summary {
-    background: #2b2b2b;
-    color: #d0d0d0;
 
-    border: 1px solid #8a8a8a;
-    border-radius: 5px;
+/* ============================================================
+   TOGGLE BAR
+   ============================================================ */
 
-    padding: 2px 10px;
+.rst-content .cell > details.admonition.hide > summary {
+    box-sizing: border-box !important;
+    width: 100% !important;
 
-    font-size: 14px;
-    font-weight: normal;
+    margin: 0 !important;
+    padding: 3px 8px !important;
 
-    cursor: pointer;
-    list-style: none;
+    background: #282828 !important;
+    color: #cccccc !important;
 
-    line-height: 1.2;
+    border: 1px solid #777 !important;
+
+    font-size: 13px !important;
+    font-weight: normal !important;
+    line-height: 1.2 !important;
+
+    cursor: pointer !important;
 }
 
-/* Remove browser default marker */
-.rst-content details > summary::-webkit-details-marker {
-    display: none;
+
+/* ============================================================
+   SOURCE BUTTON
+   ============================================================ */
+
+.rst-content .cell > details.admonition.hide.above-input > summary {
+    border-radius: 5px 5px 0 0 !important;
+
+    /* dashed separator between source and output */
+    border-bottom: 1px dashed #777 !important;
 }
 
-/* Closed triangle */
-.rst-content details > summary::before {
-    content: "▶";
-    display: inline-block;
-    margin-right: 7px;
 
-    font-size: 10px;
-    color: #d0d0d0;
+/* ============================================================
+   OUTPUT BUTTON
+   ============================================================ */
+
+.rst-content .cell > details.admonition.hide.below-input > summary {
+    border-radius: 0 0 5px 5px !important;
+
+    /* avoid doubled border */
+    border-top: none !important;
 }
 
-/* Open triangle */
-.rst-content details[open] > summary::before {
-    content: "▼";
+
+/* ============================================================
+   TITLE TEXT
+   ============================================================ */
+
+.rst-content
+.cell
+> details.admonition.hide
+> summary
+> p.admonition-title {
+    display: inline !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    color: #cccccc !important;
+
+    font-size: 13px !important;
+    font-weight: normal !important;
+    line-height: inherit !important;
 }
 
-/* Small hover effect */
-.rst-content details > summary:hover {
-    background: #353535;
-    color: #ffffff;
+
+/* Remove RTD admonition icon */
+.rst-content
+.cell
+> details.admonition.hide
+> summary
+> p.admonition-title::before {
+    content: none !important;
+    display: none !important;
+}
+
+
+/* ============================================================
+   SHOW / HIDE TEXT
+   ============================================================ */
+
+/* Closed */
+.rst-content
+.cell
+> details.admonition.hide:not([open])
+> summary
+> .expanded {
+    display: none !important;
+}
+
+.rst-content
+.cell
+> details.admonition.hide:not([open])
+> summary
+> .collapsed {
+    display: inline !important;
+}
+
+
+/* Open */
+.rst-content
+.cell
+> details.admonition.hide[open]
+> summary
+> .collapsed {
+    display: none !important;
+}
+
+.rst-content
+.cell
+> details.admonition.hide[open]
+> summary
+> .expanded {
+    display: inline !important;
+}
+
+
+/* ============================================================
+   HOVER
+   ============================================================ */
+
+.rst-content .cell > details.admonition.hide > summary:hover {
+    background: #303030 !important;
+}
+
+.rst-content
+.cell
+> details.admonition.hide
+> summary:hover
+> p.admonition-title {
+    color: #ffffff !important;
 }

@@ -73,7 +73,7 @@ a:hover {
 }
 
 /* Toggle blocks and details */
-details, summary, .admonition, .toggle, .dropdown {
+.admonition, .dropdown {
     background-color: #222 !important;
     color: #eee !important;
     border-color: #444 !important;

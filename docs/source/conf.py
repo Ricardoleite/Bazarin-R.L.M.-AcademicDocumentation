@@ -28,7 +28,8 @@ comments_config = {'hypothesis': False, 'utterances': False}
 bibtex_bibfiles = ['references.bib']
 bibtex_encoding = 'latin'
 bibtex_default_style = 'unsrt'
-extensions = [    'sphinx.ext.doctest',
+extensions = [    
+    'sphinx.ext.doctest',
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
     'sphinx.ext.mathjax',
@@ -38,11 +39,14 @@ extensions = [    'sphinx.ext.doctest',
     'sphinx.ext.githubpages',
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
+
     'sphinx_rtd_size',
-    "nbsphinx",
-    'nbsphinx_link',
+
+    # "nbsphinx",
+    # 'nbsphinx_link',
     'sphinx_togglebutton',
     'sphinx_copybutton',
+
     'sphinx_thebe',
     'sphinx_comments',
     'sphinx.ext.intersphinx',
@@ -94,6 +98,8 @@ html_css_files = [
     'custom.css',
     'css/sidebar.css',
     'css/rolamento-lateral.css',
+    'css/toogle-button-hide-input.css',
+    'css/center-figures.css',
     ]
 
 html_js_files = ["css/sidebar.js"]
