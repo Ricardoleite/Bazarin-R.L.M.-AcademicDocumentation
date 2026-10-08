@@ -21,7 +21,7 @@
    "id": "88580bae-c33c-41ef-b735-ff704777543f",
    "metadata": {},
    "source": [
-    "## Interpretation for Diffusive Equation"
+    "## Diffusive Equation Interpretation with Single Relaxation Time"
    ]
   },
   {
@@ -69,7 +69,7 @@
    "id": "d5097838-71ff-49e1-9c00-8cafe3875003",
    "metadata": {},
    "source": [
-    "For simplification we redefine the notation for $f_i( x_{\\alpha} + e_{i,\\alpha} \\delta t, t+\\delta t)=f_{i,x+c_{i}}^{t+1}$. Reinterpreting the Eq. {eq}`LB-fdm-df-Eq` in pre-streaming moment:\n",
+    "For simplification we redefine the notation for $f_i( x_{\\alpha} + e_{i,\\alpha} \\delta t, t+\\delta t)=f_{i,x+c_{i}}^{t+1}$. Using this notation, Eq. {eq}`LB-fdm-df-Eq` can be reinterpreted by applying a shift in $c_i$ to express the distribution function at the pre-streaming state:\n",
     "\n",
     "$$\n",
     "f_{i,x}^{t+1}  = f_{i,x-c_{i}}^{t}  - \\omega \\left( f_{i,x-c_{i}}^{t} - f_{i,x-c_{i}}^{eq,t} \\right).\n",
@@ -1164,13 +1164,19 @@
   {
    "cell_type": "markdown",
    "id": "d255eb5d-0dba-4648-95e6-328b26ae26d9",
-   "metadata": {},
+   "metadata": {
+    "editable": true,
+    "slideshow": {
+     "slide_type": ""
+    },
+    "tags": []
+   },
    "source": [
-    "## Extension for Lattices with $d$-Dimensions and $q$-Velocities ($DdQq$):\n",
+    "## Extension to Lattices with $d$-Dimensions and $q$-Velocities ($DdQq$):\n",
     "\n",
-    "Under a generic mathmatical manipulation of lattice Boltzmann equation with single relaxation time is possible find a generic expansion form to expand lattice framework in a finite difference discription. \n",
+    "Through a general mathematical manipulation of the single relaxation time lattice Boltzmann equation, it is possible to derive a general expansion that expresses the lattice framework in a finite-difference form.\n",
     "\n",
-    "{cite:t}`suga2014accurate` after his other work `suga2010accurate`, propose a generalised scheme to extend the diffusive transport description to $DdQq$ lattices considering isotropic and anisotropic scenarios of diffusion. The Eq.  {eq}`Suga-2014-Eqs` illustrate the result equations obtained with errors in red expanded up to the fourth-order of $\\Delta x$. Notice that different second order errors will appear with other dimensions:\n",
+    "Building on the earlier analysis presented in {cite:t}`suga2010accurate`, {cite:t}`suga2014accurate` proposed a generalized formulation for diffusive transport on $DdQq$ lattices, considering both isotropic and anisotropic diffusion. The resulting equations are presented in Eq. {eq}`Suga-2014-Eqs`, with truncation-error terms highlighted in red and retained through fourth order in $\\Delta x$. Notice that additional second-order errors may arise when extending the formulation to higher dimensions:\n",
     "\n",
     "$$\n",
     "\\begin{array}{ll}\n",
@@ -1180,7 +1186,9 @@
     "D3Q19-Isotropic: \\qquad & \\displaystyle\\frac{\\partial\\phi}{\\partial t} = \\nu\\left(\\frac{\\partial^{2}\\phi}{\\partial x^{2}} + \\frac{\\partial^{2}\\phi}{\\partial y^{2}} + \\frac{\\partial^{2}\\phi}{\\partial z^{2}}\\right)  - \\textcolor{red} { \\Delta_{x}^{2} R1 \\left( \\frac{\\partial^{4}\\phi}{\\partial x^{4}} + \\frac{\\partial^{4}\\phi}{\\partial y^{4}} \\right) } - \\textcolor{red} { \\Delta_{x}^{2} R12 \\left( \\frac{\\partial^{4}\\phi}{\\partial x^{2}\\partial y^{2}} + \\frac{\\partial^{4}\\phi}{\\partial x^{2}\\partial z^{2}} + \\frac{\\partial^{4}\\phi}{\\partial y^{2}\\partial z^{2}} \\right) } + \\mathcal{O}(\\Delta x)^{4}\\\\\n",
     "D3Q25-Anisotropic: \\qquad & \\displaystyle\\frac{\\partial\\phi}{\\partial t} = \\nu_{x}\\frac{\\partial^{2}\\phi}{\\partial x^{2}} + \\nu_{y}\\frac{\\partial^{2}\\phi}{\\partial y^{2}} + \\nu_{z}\\frac{\\partial^{2}\\phi}{\\partial z^{2}}  - \\textcolor{red} { \\Delta_{x}^{2} \\left( R1\\frac{\\partial^{4}\\phi}{\\partial x^{4}} + R2\\frac{\\partial^{4}\\phi}{\\partial y^{4}} + R3\\frac{\\partial^{4}\\phi}{\\partial y^{4}} \\right) } - \\textcolor{red} { \\Delta_{x}^{2} \\left( R12\\frac{\\partial^{4}\\phi}{\\partial x^{2}\\partial y^{2}} + R13\\frac{\\partial^{4}\\phi}{\\partial x^{2}\\partial z^{2}} + R23\\frac{\\partial^{4}\\phi}{\\partial y^{2}\\partial z^{2}} \\right) } + \\mathcal{O}(\\Delta x)^{4}\n",
     "\\end{array}\n",
-    "$$(Suga-2014-Eqs)"
+    "$$(Suga-2014-Eqs)\n",
+    "\n",
+    "In the Section XX we will present a generalized expansion of LB equation with single relaxation time in FDM framewrok for any equilibrium distribution function with $n$ conservative terms in $DdQq$ lattice structures."
    ]
   },
   {
@@ -1188,791 +1196,649 @@
    "id": "8d1d47c2-6390-4f6c-bb0e-69080c5cfec7",
    "metadata": {},
    "source": [
-    "## Interpretation for Diffusive Equation in a MRT-Framework\n",
+    "## Diffusive Equation Interpretation with Multi-Relaxation Time (MRT-Framework)\n",
     "\n",
-    "Extending the approach Developed above for now considering a sistems of multiple relaxatio time. The present development follow sequence presente in {cite:t}`lin2021multiple`."
+    "The multiple-relaxation-time (MRT) collision model is a well-established scheme in the LBM literature that allows different non-equilibrium moments to relax independently. This flexibility enables various improvements in the numerical representation of partial differential equations. In the present section, we extend the FDM interpretation to the MRT framework of diffusive equation, following the analysis presented by {cite:t}`lin2021multiple`.\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "342b41a6-2ff9-4700-833c-e0e0c9bfe574",
+   "metadata": {
+    "editable": true,
+    "slideshow": {
+     "slide_type": ""
+    },
+    "tags": []
+   },
+   "source": [
+    "Given the LB equation with MRT for the diffusive equation:\n",
+    "\n",
+    "$$\n",
+    "f_i( x_{\\alpha} + e_{i,\\alpha} \\delta t, t+\\delta t) = f_i(x_{\\alpha}, t)  - (\\textbf{M}^{-1}\\textbf{S}\\textbf{M})_{ik}\\left( f_{k} - f_{k}^{eq}  \\right), \n",
+    "$$(MRT-LB-fdm-diff-Eq)\n",
+    "\n",
+    "where $\\textbf{M}$ is matrix of moments, $\\textbf{S}$ is the diagonal matrix of relaxation times, and $\\textbf{M}^{-1}$ is the inverse matrix of $\\textbf{M}$. Considering the problem description in a lattice D1Q3, we have following a Gram-Schmidt procedure:\n",
+    "\n",
+    "$$\n",
+    "\\textbf{M} =\\begin{pmatrix} 1 \\\\ e_{i,x} \\\\ 3e_{i,x}^{2}-2 \\end{pmatrix} =\\begin{pmatrix} 1 & 1 & 1 \\\\ 0 & 1   & -1 \\\\ -2  & 1 & 1 \\end{pmatrix},  \\qquad \\qquad  \\textbf{S} = \\begin{pmatrix} 0 & 0   & 0 \\\\ 0   & s_1 & 0 \\\\ 0   & 0   & s_2 \\end{pmatrix},  \\qquad \\qquad \\textbf{M}^{-1}=\\begin{pmatrix}\\dfrac{1}{3} & 0 & -\\dfrac{1}{3} \\\\ \\dfrac{1}{3} & \\dfrac{1}{2} & \\dfrac{1}{6} \\\\ \\dfrac{1}{3} & -\\dfrac{1}{2} & \\dfrac{1}{6} \\end{pmatrix}.\n",
+    "$$"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 16,
-   "id": "149b4d11-4be7-4f5e-a871-a1e1f4b88e8e",
+   "execution_count": 2,
+   "id": "9580db1d-706d-4f7c-a03b-be2ae4a024f5",
    "metadata": {
     "editable": true,
     "slideshow": {
      "slide_type": ""
     },
     "tags": [
-     "hide-input"
+     "remove-input"
     ]
    },
    "outputs": [],
    "source": [
     "import warnings\n",
     "warnings.filterwarnings(\"ignore\")\n",
-    "from pylab import *\n",
-    "from sympy import *\n",
+    "import sympy as sp\n",
     "import numpy as np\n",
-    "\n",
-    "fic, f0c, f1c, f2c = symbols(['f_{i\\,x+c_{i}}^t','f_{0\\,x+c_{i}}^t','f_{1\\,x+c_{i}}^t','f_{2\\,x+c_{i}}^t'])\n",
-    "f0tp1, f1tp1, f2tp1 = symbols(['f_{0\\,x}^{t+1}','f_{1\\,x}^{t+1}','f_{2\\,x}^{t+1}'])\n",
-    "f0, f1, f2 = symbols(['f_{0\\,x}^t','f_{1\\,x}^t','f_{2\\,x}^t'])\n",
-    "f0m1, f1m1, f2m1, f0p1, f1p1, f2p1 = symbols(['f_{0\\,x-1}^t','f_{1\\,x-1}^t','f_{2\\,x-1}^t','f_{0\\,x+1}^t','f_{1\\,x+1}^t','f_{2\\,x+1}^t'])\n",
-    "f0m1t1, f1m1t1, f2m1t1, f0p1t1, f1p1t1, f2p1t1 = symbols(['f_{0\\,x-1}^{t-1}','f_{1\\,x-1}^{t-1}','f_{2\\,x-1}^{t-1}','f_{0\\,x+1}^{t-1}','f_{1\\,x+1}^{t-1}','f_{2\\,x+1}^{t-1}'])\n",
-    "f0t1 = symbols('f_{0\\,x}^{t-1}')\n",
-    "w0, w1, w2 = symbols(['w_0','w_1','w_2'])\n",
-    "s0, s1, s2 = symbols(['s_0','s_1','s_2'])\n",
-    "phi, phic, phim1, phip1 = symbols(['\\\\phi_{x}^{t}','\\\\phi_{x-c_{i}}^{t}','\\\\phi_{x-1}^{t}','\\\\phi_{x+1}^{t}'])\n",
-    "phitp1, phit1, phit2= symbols(['\\\\phi_{x}^{t+1}','\\\\phi_{x}^{t-1}','\\\\phi_{x}^{t-2}'])\n",
-    "phim1t1,phip1t1= symbols(['\\\\phi_{x-1}^{t-1}','\\\\phi_{x+1}^{t-1}'])\n",
+    "from IPython.display import display, Math, Markdown\n",
+    "sp.init_printing()\n",
+    "# =========================Symbols=============================================\n",
+    "f0, f1, f2 = sp.symbols(r'f_{0\\,x}^{t} f_{1\\,x}^{t} f_{2\\,x}^{t}' ) # Distribution functions at x,t\n",
+    "f0m, f1m, f2m = sp.symbols(r'f_{0\\,x-1}^{t} f_{1\\,x-1}^{t} f_{2\\,x-1}^{t}' ) # Distribution functions at neighboring nodes\n",
+    "f0p, f1p, f2p = sp.symbols(r'f_{0\\,x+1}^{t} f_{1\\,x+1}^{t} f_{2\\,x+1}^{t}')\n",
+    "f0t1, f0m1t1, f1m1t1, f2m1t1, f0p1t1, f1p1t1, f2p1t1 = sp.symbols(['f_{0\\,x}^{t-1}','f_{0\\,x-1}^{t-1}','f_{1\\,x-1}^{t-1}','f_{2\\,x-1}^{t-1}','f_{0\\,x+1}^{t-1}','f_{1\\,x+1}^{t-1}','f_{2\\,x+1}^{t-1}'])\n",
+    "f0_new, f1_new, f2_new = sp.symbols(r'f_{0\\,x}^{t+1} f_{1\\,x}^{t+1} f_{2\\,x}^{t+1}') # Distribution functions after one time step\n",
+    "phi, phi_m, phi_p = sp.symbols(r'\\phi_x^t \\phi_{x-1}^t \\phi_{x+1}^t') # Macroscopic field\n",
+    "phitp1, phit1, phit2= sp.symbols(['\\\\phi_{x}^{t+1}','\\\\phi_{x}^{t-1}','\\\\phi_{x}^{t-2}'])\n",
+    "phim1t1,phip1t1= sp.symbols(['\\\\phi_{x-1}^{t-1}','\\\\phi_{x+1}^{t-1}'])\n",
+    "s1, s2 = sp.symbols('s_1 s_2') # MRT relaxation parameters\n",
+    "# D1Q3 weights:\n",
+    "w0 = sp.symbols('w_0')\n",
+    "w1 = (1 - w0) / 2\n",
+    "# ==========================D1Q3 lattice=======================================\n",
+    "w0 = sp.symbols('w_0')\n",
+    "w1 = (1 - w0) / 2\n",
+    "# cx = sp.Matrix([0,1,-1])\n",
     "cx=np.array([0,1,-1])\n",
-    "wi=np.array([w0,w1,w2])\n",
-    "wiM=Matrix([w0,w1,w2])\n",
-    "fi=np.array([f0,f1,f2])\n",
-    "fM = Matrix([f0,f1,f2])\n",
-    "ficM = Matrix([f0c,f1c,f2c])\n",
-    "feq=phi*wi\n",
-    "feqM=Matrix([feq[0],feq[1],feq[2]])\n",
-    "feqc=wiM*phic"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 17,
-   "id": "b6afef1d-1d5a-4d34-b61a-0d1c4213d67d",
-   "metadata": {
-    "editable": true,
-    "slideshow": {
-     "slide_type": ""
-    },
-    "tags": [
-     "hide-input"
-    ]
-   },
-   "outputs": [
-    {
-     "data": {
-      "text/latex": [
-       "$\\displaystyle \\left[\\begin{matrix}1 & 1 & 1\\\\0 & 1 & -1\\\\-2 & 1 & 1\\end{matrix}\\right]$"
-      ],
-      "text/plain": [
-       "Matrix([\n",
-       "[ 1, 1,  1],\n",
-       "[ 0, 1, -1],\n",
-       "[-2, 1,  1]])"
-      ]
-     },
-     "execution_count": 17,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
+    "w = sp.Matrix([w0,w1,w1])\n",
+    "# ===========================Distribution vector===============================\n",
+    "f = sp.Matrix([f0,f1,f2])\n",
+    "f_new = sp.Matrix([f0_new,f1_new,f2_new])\n",
+    "# =====================Moment transformation matrix============================\n",
     "m0=np.array([1,1,1])\n",
     "m1=cx\n",
     "m2=3*cx*cx - 2\n",
-    "M=np.array([m0,m1,m2])\n",
-    "MM=Matrix([m0,m1,m2])\n",
-    "MM"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 18,
-   "id": "0b9787bf-cb37-4901-98bb-81024cef3171",
-   "metadata": {
-    "editable": true,
-    "slideshow": {
-     "slide_type": ""
-    },
-    "tags": [
-     "hide-input"
-    ]
-   },
-   "outputs": [
-    {
-     "data": {
-      "text/latex": [
-       "$\\displaystyle \\left[\\begin{matrix}\\phi_{x}^{t} \\left(w_{0} + w_{1} + w_{2}\\right)\\\\\\phi_{x}^{t} \\left(w_{1} - w_{2}\\right)\\\\\\phi_{x}^{t} \\left(- 2 w_{0} + w_{1} + w_{2}\\right)\\end{matrix}\\right]$"
-      ],
-      "text/plain": [
-       "Matrix([\n",
-       "[   \\phi_{x}^{t}*(w_0 + w_1 + w_2)],\n",
-       "[         \\phi_{x}^{t}*(w_1 - w_2)],\n",
-       "[\\phi_{x}^{t}*(-2*w_0 + w_1 + w_2)]])"
-      ]
-     },
-     "execution_count": 18,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
-    "Meq=np.array([simplify(sum(feq*M[0])), simplify(sum(feq*M[1])), simplify(sum(feq*M[2]))])\n",
-    "MeqM=Matrix([simplify(sum(feq*M[0])), simplify(sum(feq*M[1])), simplify(sum(feq*M[2]))])\n",
-    "MeqM"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 19,
-   "id": "5992655c-6259-40fb-9dfa-68940c7ba2f0",
-   "metadata": {
-    "editable": true,
-    "slideshow": {
-     "slide_type": ""
-    },
-    "tags": [
-     "hide-input"
-    ]
-   },
-   "outputs": [
-    {
-     "data": {
-      "text/latex": [
-       "$\\displaystyle \\left[\\begin{matrix}s_{0} & 0 & 0\\\\0 & s_{1} & 0\\\\0 & 0 & s_{2}\\end{matrix}\\right]$"
-      ],
-      "text/plain": [
-       "Matrix([\n",
-       "[s_0,   0,   0],\n",
-       "[  0, s_1,   0],\n",
-       "[  0,   0, s_2]])"
-      ]
-     },
-     "execution_count": 19,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
-    "I=eye(3)\n",
-    "S=np.array([I[0,:]*s0,I[1,:]*s1,I[2,:]*s2])\n",
-    "SM=Matrix([I[0,:]*s0,I[1,:]*s1,I[2,:]*s2])\n",
-    "SM"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 20,
-   "id": "a33d1281-add3-40f2-84e5-a6f5e583938b",
-   "metadata": {
-    "editable": true,
-    "slideshow": {
-     "slide_type": ""
-    },
-    "tags": [
-     "hide-input"
-    ]
-   },
-   "outputs": [
-    {
-     "data": {
-      "text/latex": [
-       "$\\displaystyle \\left[\\begin{matrix}\\frac{1}{3} & 0 & - \\frac{1}{3}\\\\\\frac{1}{3} & \\frac{1}{2} & \\frac{1}{6}\\\\\\frac{1}{3} & - \\frac{1}{2} & \\frac{1}{6}\\end{matrix}\\right]$"
-      ],
-      "text/plain": [
-       "Matrix([\n",
-       "[1/3,    0, -1/3],\n",
-       "[1/3,  1/2,  1/6],\n",
-       "[1/3, -1/2,  1/6]])"
-      ]
-     },
-     "execution_count": 20,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
-    "MMinv=MM.inv()\n",
-    "MMinv"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 21,
-   "id": "b350b626-5259-47ec-8452-ce6f79d588df",
-   "metadata": {
-    "editable": true,
-    "slideshow": {
-     "slide_type": ""
-    },
-    "tags": [
-     "hide-input"
-    ]
-   },
-   "outputs": [
-    {
-     "data": {
-      "text/latex": [
-       "$\\displaystyle \\left[\\begin{matrix}\\frac{s_{0} \\left(f_{0,x+c_{i}}^t + f_{1,x+c_{i}}^t + f_{2,x+c_{i}}^t\\right)}{3} - \\frac{s_{2} \\left(- 2 f_{0,x+c_{i}}^t + f_{1,x+c_{i}}^t + f_{2,x+c_{i}}^t\\right)}{3}\\\\\\frac{s_{0} \\left(f_{0,x+c_{i}}^t + f_{1,x+c_{i}}^t + f_{2,x+c_{i}}^t\\right)}{3} + \\frac{s_{1} \\left(f_{1,x+c_{i}}^t - f_{2,x+c_{i}}^t\\right)}{2} + \\frac{s_{2} \\left(- 2 f_{0,x+c_{i}}^t + f_{1,x+c_{i}}^t + f_{2,x+c_{i}}^t\\right)}{6}\\\\\\frac{s_{0} \\left(f_{0,x+c_{i}}^t + f_{1,x+c_{i}}^t + f_{2,x+c_{i}}^t\\right)}{3} - \\frac{s_{1} \\left(f_{1,x+c_{i}}^t - f_{2,x+c_{i}}^t\\right)}{2} + \\frac{s_{2} \\left(- 2 f_{0,x+c_{i}}^t + f_{1,x+c_{i}}^t + f_{2,x+c_{i}}^t\\right)}{6}\\end{matrix}\\right]$"
-      ],
-      "text/plain": [
-       "Matrix([\n",
-       "[                                            s_0*(f_{0,x+c_{i}}^t + f_{1,x+c_{i}}^t + f_{2,x+c_{i}}^t)/3 - s_2*(-2*f_{0,x+c_{i}}^t + f_{1,x+c_{i}}^t + f_{2,x+c_{i}}^t)/3],\n",
-       "[s_0*(f_{0,x+c_{i}}^t + f_{1,x+c_{i}}^t + f_{2,x+c_{i}}^t)/3 + s_1*(f_{1,x+c_{i}}^t - f_{2,x+c_{i}}^t)/2 + s_2*(-2*f_{0,x+c_{i}}^t + f_{1,x+c_{i}}^t + f_{2,x+c_{i}}^t)/6],\n",
-       "[s_0*(f_{0,x+c_{i}}^t + f_{1,x+c_{i}}^t + f_{2,x+c_{i}}^t)/3 - s_1*(f_{1,x+c_{i}}^t - f_{2,x+c_{i}}^t)/2 + s_2*(-2*f_{0,x+c_{i}}^t + f_{1,x+c_{i}}^t + f_{2,x+c_{i}}^t)/6]])"
-      ]
-     },
-     "metadata": {},
-     "output_type": "display_data"
-    }
-   ],
-   "source": [
-    "display(MMinv*(SM*(MM*(ficM))))"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 22,
-   "id": "577abd11-4499-4209-b4ca-ea531f1a0d1e",
-   "metadata": {
-    "editable": true,
-    "slideshow": {
-     "slide_type": ""
-    },
-    "tags": [
-     "hide-input"
-    ]
-   },
-   "outputs": [
-    {
-     "data": {
-      "text/latex": [
-       "$\\displaystyle \\left[\\begin{matrix}f_{0,x+c_{i}}^t\\\\f_{1,x+c_{i}}^t\\\\f_{2,x+c_{i}}^t\\end{matrix}\\right] = \\left[\\begin{matrix}f_{0,x+c_{i}}^t - \\frac{s_{0} \\left(- \\phi_{x-c_{i}}^{t} w_{0} - \\phi_{x-c_{i}}^{t} w_{1} - \\phi_{x-c_{i}}^{t} w_{2} + f_{0,x+c_{i}}^t + f_{1,x+c_{i}}^t + f_{2,x+c_{i}}^t\\right)}{3} + \\frac{s_{2} \\left(2 \\phi_{x-c_{i}}^{t} w_{0} - \\phi_{x-c_{i}}^{t} w_{1} - \\phi_{x-c_{i}}^{t} w_{2} - 2 f_{0,x+c_{i}}^t + f_{1,x+c_{i}}^t + f_{2,x+c_{i}}^t\\right)}{3}\\\\f_{1,x+c_{i}}^t - \\frac{s_{0} \\left(- \\phi_{x-c_{i}}^{t} w_{0} - \\phi_{x-c_{i}}^{t} w_{1} - \\phi_{x-c_{i}}^{t} w_{2} + f_{0,x+c_{i}}^t + f_{1,x+c_{i}}^t + f_{2,x+c_{i}}^t\\right)}{3} - \\frac{s_{1} \\left(- \\phi_{x-c_{i}}^{t} w_{1} + \\phi_{x-c_{i}}^{t} w_{2} + f_{1,x+c_{i}}^t - f_{2,x+c_{i}}^t\\right)}{2} - \\frac{s_{2} \\left(2 \\phi_{x-c_{i}}^{t} w_{0} - \\phi_{x-c_{i}}^{t} w_{1} - \\phi_{x-c_{i}}^{t} w_{2} - 2 f_{0,x+c_{i}}^t + f_{1,x+c_{i}}^t + f_{2,x+c_{i}}^t\\right)}{6}\\\\f_{2,x+c_{i}}^t - \\frac{s_{0} \\left(- \\phi_{x-c_{i}}^{t} w_{0} - \\phi_{x-c_{i}}^{t} w_{1} - \\phi_{x-c_{i}}^{t} w_{2} + f_{0,x+c_{i}}^t + f_{1,x+c_{i}}^t + f_{2,x+c_{i}}^t\\right)}{3} + \\frac{s_{1} \\left(- \\phi_{x-c_{i}}^{t} w_{1} + \\phi_{x-c_{i}}^{t} w_{2} + f_{1,x+c_{i}}^t - f_{2,x+c_{i}}^t\\right)}{2} - \\frac{s_{2} \\left(2 \\phi_{x-c_{i}}^{t} w_{0} - \\phi_{x-c_{i}}^{t} w_{1} - \\phi_{x-c_{i}}^{t} w_{2} - 2 f_{0,x+c_{i}}^t + f_{1,x+c_{i}}^t + f_{2,x+c_{i}}^t\\right)}{6}\\end{matrix}\\right]$"
-      ],
-      "text/plain": [
-       "Eq(Matrix([\n",
-       "[f_{0,x+c_{i}}^t],\n",
-       "[f_{1,x+c_{i}}^t],\n",
-       "[f_{2,x+c_{i}}^t]]), Matrix([\n",
-       "[                                                                                               f_{0,x+c_{i}}^t - s_0*(-\\phi_{x-c_{i}}^{t}*w_0 - \\phi_{x-c_{i}}^{t}*w_1 - \\phi_{x-c_{i}}^{t}*w_2 + f_{0,x+c_{i}}^t + f_{1,x+c_{i}}^t + f_{2,x+c_{i}}^t)/3 + s_2*(2*\\phi_{x-c_{i}}^{t}*w_0 - \\phi_{x-c_{i}}^{t}*w_1 - \\phi_{x-c_{i}}^{t}*w_2 - 2*f_{0,x+c_{i}}^t + f_{1,x+c_{i}}^t + f_{2,x+c_{i}}^t)/3],\n",
-       "[f_{1,x+c_{i}}^t - s_0*(-\\phi_{x-c_{i}}^{t}*w_0 - \\phi_{x-c_{i}}^{t}*w_1 - \\phi_{x-c_{i}}^{t}*w_2 + f_{0,x+c_{i}}^t + f_{1,x+c_{i}}^t + f_{2,x+c_{i}}^t)/3 - s_1*(-\\phi_{x-c_{i}}^{t}*w_1 + \\phi_{x-c_{i}}^{t}*w_2 + f_{1,x+c_{i}}^t - f_{2,x+c_{i}}^t)/2 - s_2*(2*\\phi_{x-c_{i}}^{t}*w_0 - \\phi_{x-c_{i}}^{t}*w_1 - \\phi_{x-c_{i}}^{t}*w_2 - 2*f_{0,x+c_{i}}^t + f_{1,x+c_{i}}^t + f_{2,x+c_{i}}^t)/6],\n",
-       "[f_{2,x+c_{i}}^t - s_0*(-\\phi_{x-c_{i}}^{t}*w_0 - \\phi_{x-c_{i}}^{t}*w_1 - \\phi_{x-c_{i}}^{t}*w_2 + f_{0,x+c_{i}}^t + f_{1,x+c_{i}}^t + f_{2,x+c_{i}}^t)/3 + s_1*(-\\phi_{x-c_{i}}^{t}*w_1 + \\phi_{x-c_{i}}^{t}*w_2 + f_{1,x+c_{i}}^t - f_{2,x+c_{i}}^t)/2 - s_2*(2*\\phi_{x-c_{i}}^{t}*w_0 - \\phi_{x-c_{i}}^{t}*w_1 - \\phi_{x-c_{i}}^{t}*w_2 - 2*f_{0,x+c_{i}}^t + f_{1,x+c_{i}}^t + f_{2,x+c_{i}}^t)/6]]))"
-      ]
-     },
-     "metadata": {},
-     "output_type": "display_data"
-    }
-   ],
-   "source": [
-    "PM=ficM-MMinv*(SM*(MM*(ficM-feqc)))\n",
-    "display(Eq(ficM,PM))"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 23,
-   "id": "f1b59ed7-a7ce-4e42-9312-a9465010508d",
-   "metadata": {
-    "editable": true,
-    "slideshow": {
-     "slide_type": ""
-    },
-    "tags": [
-     "hide-input"
-    ]
-   },
-   "outputs": [
-    {
-     "data": {
-      "text/latex": [
-       "$\\displaystyle f_{0,x}^{t+1} = \\phi_{x}^{t} s_{2} w_{0} - f_{0,x}^t s_{2} + f_{0,x}^t$"
-      ],
-      "text/plain": [
-       "Eq(f_{0,x}^{t+1}, \\phi_{x}^{t}*s_2*w_0 - f_{0,x}^t*s_2 + f_{0,x}^t)"
-      ]
-     },
-     "execution_count": 23,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
-    "fp0=simplify(collect(PM[0].subs(phic,phi),phi).subs({f0c:f0,f1c:f1,f2c:f2}).subs({-w0-w1-w2:-1,f0+f1+f2:phi,f1+f2:-f0+phi,-w1-w2:-1+w0}))\n",
-    "Eq(f0tp1,fp0)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 24,
-   "id": "099a7744-170b-4785-9b6b-3076ffd4b291",
-   "metadata": {
-    "editable": true,
-    "slideshow": {
-     "slide_type": ""
-    },
-    "tags": [
-     "hide-input"
-    ]
-   },
-   "outputs": [
-    {
-     "data": {
-      "text/latex": [
-       "$\\displaystyle f_{1,x}^{t+1} = - \\frac{\\phi_{x-1}^{t} s_{2} w_{0}}{2} + \\frac{f_{0,x-1}^t s_{2}}{2} - \\frac{f_{1,x-1}^t s_{1}}{2} + f_{1,x-1}^t + \\frac{f_{2,x-1}^t s_{1}}{2}$"
-      ],
-      "text/plain": [
-       "Eq(f_{1,x}^{t+1}, -\\phi_{x-1}^{t}*s_2*w_0/2 + f_{0,x-1}^t*s_2/2 - f_{1,x-1}^t*s_1/2 + f_{1,x-1}^t + f_{2,x-1}^t*s_1/2)"
-      ]
-     },
-     "execution_count": 24,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
-    "fp1=simplify(collect(PM[1].subs(phic,phim1),phim1).subs({f0c:f0m1,f1c:f1m1,f2c:f2m1}).subs({-w0-w1-w2:-1,f0m1+f1m1+f2m1:phim1,-w1-w2:-1+w0}) \n",
-    "                    .subs({f1m1+f2m1:phim1-f0m1,w1-w2:0}) )\n",
-    "Eq(f1tp1,fp1)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 25,
-   "id": "68a9f239-5c26-4f72-bbcd-87596968e68d",
-   "metadata": {
-    "editable": true,
-    "slideshow": {
-     "slide_type": ""
-    },
-    "tags": [
-     "hide-input"
-    ]
-   },
-   "outputs": [
-    {
-     "data": {
-      "text/latex": [
-       "$\\displaystyle f_{2,x}^{t+1} = - \\frac{\\phi_{x+1}^{t} s_{2} w_{0}}{2} + \\frac{f_{0,x+1}^t s_{2}}{2} + \\frac{f_{1,x+1}^t s_{1}}{2} - \\frac{f_{2,x+1}^t s_{1}}{2} + f_{2,x+1}^t$"
-      ],
-      "text/plain": [
-       "Eq(f_{2,x}^{t+1}, -\\phi_{x+1}^{t}*s_2*w_0/2 + f_{0,x+1}^t*s_2/2 + f_{1,x+1}^t*s_1/2 - f_{2,x+1}^t*s_1/2 + f_{2,x+1}^t)"
-      ]
-     },
-     "execution_count": 25,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
-    "fp2=simplify(collect(PM[2].subs(phic,phip1),phip1).subs({f0c:f0p1,f1c:f1p1,f2c:f2p1}).subs({-w0-w1-w2:-1,f0p1+f1p1+f2p1:phip1,-w1-w2:-1+w0}) \n",
-    "                    .subs({f1p1+f2p1:phip1-f0p1,w1-w2:0}) )\n",
-    "Eq(f2tp1,fp2)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 26,
-   "id": "1a4b349f-ff29-4e27-b788-29288e57b473",
-   "metadata": {
-    "editable": true,
-    "slideshow": {
-     "slide_type": ""
-    },
-    "tags": [
-     "hide-input"
-    ]
-   },
-   "outputs": [
-    {
-     "data": {
-      "text/latex": [
-       "$\\displaystyle \\phi_{x}^{t+1} = f_{0,x}^t + f_{1,x-1}^t + f_{2,x+1}^t + \\frac{s_{1} \\left(f_{1,x+1}^t - f_{1,x-1}^t - f_{2,x+1}^t + f_{2,x-1}^t\\right)}{2} + s_{2} w_{0} \\left(- \\frac{\\phi_{x+1}^{t}}{2} - \\frac{\\phi_{x-1}^{t}}{2} + \\phi_{x}^{t}\\right) + s_{2} \\left(\\frac{f_{0,x+1}^t}{2} + \\frac{f_{0,x-1}^t}{2} - f_{0,x}^t\\right)$"
-      ],
-      "text/plain": [
-       "Eq(\\phi_{x}^{t+1}, f_{0,x}^t + f_{1,x-1}^t + f_{2,x+1}^t + s_1*(f_{1,x+1}^t - f_{1,x-1}^t - f_{2,x+1}^t + f_{2,x-1}^t)/2 + s_2*w_0*(-\\phi_{x+1}^{t}/2 - \\phi_{x-1}^{t}/2 + \\phi_{x}^{t}) + s_2*(f_{0,x+1}^t/2 + f_{0,x-1}^t/2 - f_{0,x}^t))"
-      ]
-     },
-     "execution_count": 26,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
-    "term1=collect(fp0+fp1+fp2,[w0*s2,s2,s1/2])\n",
-    "Eq(phitp1,term1)"
+    "M=sp.Matrix([m0,m1,m2])\n",
+    "Minv = sp.simplify(M.inv())\n",
+    "# =============================Relaxation matrix===============================\n",
+    "S = sp.diag(0,s1,s2)\n",
+    "# ==============Equilibrium distribution and equilibrium moments===============\n",
+    "feq = sp.simplify(phi * w)\n",
+    "meq = sp.simplify(M * feq)"
    ]
   },
   {
    "cell_type": "markdown",
-   "id": "46cec5be-ad43-4aa8-a64f-ff94b281cd5e",
-   "metadata": {},
+   "id": "433fb54d-4610-446b-842b-48576ecd4c9b",
+   "metadata": {
+    "editable": true,
+    "slideshow": {
+     "slide_type": ""
+    },
+    "tags": []
+   },
    "source": [
-    "Reinterpreting the above equation, we can derive\n",
+    "Applying the same shift scheme employed in Eq. {eq}`pre-fdm-LB-df-Eq` to Eq. {eq}`MRT-LB-fdm-diff-Eq`, we obtain"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "c677b876-2ac5-4605-a34f-8fb99e971c5f",
+   "metadata": {
+    "editable": true,
+    "slideshow": {
+     "slide_type": ""
+    },
+    "tags": [
+     "remove-input"
+    ]
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\left[\\begin{matrix}f_{0,x}^{t+1}\\\\f_{1,x}^{t+1}\\\\f_{2,x}^{t+1}\\end{matrix}\\right] = \\left[\\begin{matrix}\\phi^{t}_{x} s_{2} w_{0} - \\frac{\\phi^{t}_{x} s_{2}}{3} - \\frac{2 f_{0,x}^{t} s_{2}}{3} + f_{0,x}^{t} + \\frac{f_{1,x}^{t} s_{2}}{3} + \\frac{f_{2,x}^{t} s_{2}}{3}\\\\- \\frac{\\phi_{x-1}^t s_{2} w_{0}}{2} + \\frac{\\phi_{x-1}^t s_{2}}{6} + \\frac{f_{0,x-1}^{t} s_{2}}{3} - \\frac{f_{1,x-1}^{t} s_{1}}{2} - \\frac{f_{1,x-1}^{t} s_{2}}{6} + f_{1,x-1}^{t} + \\frac{f_{2,x-1}^{t} s_{1}}{2} - \\frac{f_{2,x-1}^{t} s_{2}}{6}\\\\- \\frac{\\phi_{x+1}^t s_{2} w_{0}}{2} + \\frac{\\phi_{x+1}^t s_{2}}{6} + \\frac{f_{0,x+1}^{t} s_{2}}{3} + \\frac{f_{1,x+1}^{t} s_{1}}{2} - \\frac{f_{1,x+1}^{t} s_{2}}{6} - \\frac{f_{2,x+1}^{t} s_{1}}{2} - \\frac{f_{2,x+1}^{t} s_{2}}{6} + f_{2,x+1}^{t}\\end{matrix}\\right],$"
+      ],
+      "text/plain": [
+       "<IPython.core.display.Math object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "# ==========================MRT collision operator=============================\n",
+    "f_post = sp.simplify(f - Minv * S * M * (f - feq))\n",
+    "# ==========================Streaming==========================================\n",
+    "fp0 = sp.simplify(f_post[0])  # Rest population\n",
+    "fp1 = sp.simplify(f_post[1].subs({f0: f0m, f1: f1m, f2: f2m, phi: phi_m }).subs(f1 + f2, phi - f0) )\n",
+    "fp2 = sp.simplify(f_post[2].subs({f0: f0p, f1: f1p, f2: f2p, phi: phi_p}).subs(f1p + f2p, phi_p - f0p) )\n",
+    "# =============================Final lattice equations=========================\n",
+    "f_post2 = sp.Matrix([fp0,fp1,fp2])\n",
+    "display(Math(sp.latex(sp.Eq(f_new,f_post2)) + r','))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c53a5e98-0739-4a7f-b8b4-b38325efb6bd",
+   "metadata": {
+    "editable": true,
+    "slideshow": {
+     "slide_type": ""
+    },
+    "tags": []
+   },
+   "source": [
+    "expanding each term and replacing the conservative terms:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "884c3d92-6be4-40be-b02e-2d7f5550767f",
+   "metadata": {
+    "editable": true,
+    "slideshow": {
+     "slide_type": ""
+    },
+    "tags": [
+     "remove-input"
+    ]
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle f_{0,x}^{t+1} = \\phi^{t}_{x} s_{2} w_{0} + f_{0,x}^{t} \\left(1 - s_{2}\\right),$"
+      ],
+      "text/plain": [
+       "<IPython.core.display.Math object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "fp0=sp.collect(sp.expand(f_post2[0].subs(f1,phi-f0-f2)),{f0,phi})\n",
+    "display(Math(sp.latex(sp.Eq(f0_new,fp0)) + r','))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "76095e7b-69d0-4091-abdb-81f1a355330e",
+   "metadata": {
+    "editable": true,
+    "slideshow": {
+     "slide_type": ""
+    },
+    "tags": [
+     "remove-input"
+    ]
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle f_{1,x}^{t+1} = - \\frac{\\phi_{x-1}^t s_{2} w_{0}}{2} + \\frac{f_{0,x-1}^{t} s_{2}}{2} + f_{1,x-1}^{t} + \\frac{s_{1} \\left(- f_{1,x-1}^{t} + f_{2,x-1}^{t}\\right)}{2},$"
+      ],
+      "text/plain": [
+       "<IPython.core.display.Math object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "# eq1=sp.collect(sp.expand(f_post2[1]),{s1,phi_m,-s2/6}).subs(f1m+f2m,phi_m-f0m)\n",
+    "fp1=sp.collect(sp.expand(sp.collect(f_post2[1],{s1,phi_m,-s2/6}).subs(f1m+f2m,phi_m-f0m)),{s1/2})\n",
+    "display(Math(sp.latex(sp.Eq(f1_new,fp1)) + r','))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "08b8d0eb-e961-4523-996f-a6b970c442e6",
+   "metadata": {
+    "editable": true,
+    "slideshow": {
+     "slide_type": ""
+    },
+    "tags": [
+     "remove-input"
+    ]
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle f_{2,x}^{t+1} = - \\frac{\\phi_{x+1}^t s_{2} w_{0}}{2} + \\frac{f_{0,x+1}^{t} s_{2}}{2} + f_{2,x+1}^{t} + \\frac{s_{1} \\left(f_{1,x+1}^{t} - f_{2,x+1}^{t}\\right)}{2}.$"
+      ],
+      "text/plain": [
+       "<IPython.core.display.Math object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "fp2=sp.collect(sp.expand(sp.collect(f_post2[2],{s1,phi_p,-s2/6}).subs(f1p+f2p,phi_p-f0p)),{s1/2})\n",
+    "display(Math(sp.latex(sp.Eq(f2_new,fp2)) + r'.'))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "6d8c4e7e-437f-4296-860e-cc2e3b1c8d4e",
+   "metadata": {
+    "editable": true,
+    "slideshow": {
+     "slide_type": ""
+    },
+    "tags": []
+   },
+   "source": [
+    "Summing over all lattice direction, we have:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "39284511-3dfa-4a0f-9dae-da2166ba53a7",
+   "metadata": {
+    "editable": true,
+    "slideshow": {
+     "slide_type": ""
+    },
+    "tags": [
+     "remove-input"
+    ]
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle \\phi_{x+1}^t = f_{0,x}^{t} \\left(1 - s_{2}\\right) + f_{1,x-1}^{t} + f_{2,x+1}^{t} + \\frac{s_{1} \\left(f_{1,x+1}^{t} - f_{1,x-1}^{t} - f_{2,x+1}^{t} + f_{2,x-1}^{t}\\right)}{2} + s_{2} w_{0} \\left(\\phi^{t}_{x} - \\frac{\\phi_{x+1}^t}{2} - \\frac{\\phi_{x-1}^t}{2}\\right) + s_{2} \\left(\\frac{f_{0,x+1}^{t}}{2} + \\frac{f_{0,x-1}^{t}}{2}\\right),$"
+      ],
+      "text/plain": [
+       "<IPython.core.display.Math object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "term1=sp.collect(fp0+fp1+fp2,[w0*s2,s2,s1/2])\n",
+    "display(Math(sp.latex(sp.Eq(phi_p,term1)) + r','))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f7974a40-f0de-4a4b-b357-0f296abda890",
+   "metadata": {
+    "editable": true,
+    "slideshow": {
+     "slide_type": ""
+    },
+    "tags": []
+   },
+   "source": [
+    "Using the shift interpretation for the distribution functions, we obtain\n",
     "\n",
     "$$\n",
-    "f_{0,x}^{t}+f_{1,x+1}^{t}+f_{2,x-1}^{t}=\\phi^{t-1}_{x}\n",
-    "$$(rel-f-1)"
+    "f_{0,x}^{t}+f_{1,x+1}^{t}+f_{2,x-1}^{t}=\\phi^{t-1}_{x},\n",
+    "$$(rel-f-1)\n",
+    "\n",
+    "applying this relation to the equation above:"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 27,
-   "id": "334ed131-d105-4adb-9d30-fe8cb5bc2a5e",
+   "execution_count": 13,
+   "id": "77f1da76-c66a-4ec3-bf1b-7ffc743f2fca",
    "metadata": {
     "editable": true,
     "slideshow": {
      "slide_type": ""
     },
     "tags": [
-     "hide-input"
+     "remove-input"
     ]
    },
    "outputs": [
     {
      "data": {
       "text/latex": [
-       "$\\displaystyle \\phi_{x}^{t+1} = f_{0,x}^t + f_{1,x-1}^t + f_{2,x+1}^t + \\frac{s_{1} \\left(\\phi_{x}^{t-1} - f_{0,x}^t - f_{1,x-1}^t - f_{2,x+1}^t\\right)}{2} + s_{2} w_{0} \\left(- \\frac{\\phi_{x+1}^{t}}{2} - \\frac{\\phi_{x-1}^{t}}{2} + \\phi_{x}^{t}\\right) + s_{2} \\left(\\frac{f_{0,x+1}^t}{2} + \\frac{f_{0,x-1}^t}{2} - f_{0,x}^t\\right)$"
+       "$\\displaystyle \\phi_{x+1}^t = f_{0,x}^{t} \\left(1 - s_{2}\\right) + f_{1,x-1}^{t} + f_{2,x+1}^{t} + \\frac{s_{1} \\left(\\phi_{x}^{t-1} - f_{0,x}^{t} - f_{1,x-1}^{t} - f_{2,x+1}^{t}\\right)}{2} + s_{2} w_{0} \\left(\\phi^{t}_{x} - \\frac{\\phi_{x+1}^t}{2} - \\frac{\\phi_{x-1}^t}{2}\\right) + s_{2} \\left(\\frac{f_{0,x+1}^{t}}{2} + \\frac{f_{0,x-1}^{t}}{2}\\right).$"
       ],
       "text/plain": [
-       "Eq(\\phi_{x}^{t+1}, f_{0,x}^t + f_{1,x-1}^t + f_{2,x+1}^t + s_1*(\\phi_{x}^{t-1} - f_{0,x}^t - f_{1,x-1}^t - f_{2,x+1}^t)/2 + s_2*w_0*(-\\phi_{x+1}^{t}/2 - \\phi_{x-1}^{t}/2 + \\phi_{x}^{t}) + s_2*(f_{0,x+1}^t/2 + f_{0,x-1}^t/2 - f_{0,x}^t))"
+       "<IPython.core.display.Math object>"
       ]
      },
-     "execution_count": 27,
      "metadata": {},
-     "output_type": "execute_result"
+     "output_type": "display_data"
     }
    ],
    "source": [
-    "term2=collect(fp0+fp1+fp2,[w0*s2,s2,s1/2]).subs(f1p1,phit1-f0-f2m1).subs(f1p1,phit1-f0-f2m1)\n",
-    "Eq(phitp1,term2)"
+    "term2=sp.collect(fp0+fp1+fp2,[w0*s2,s2,s1/2]).subs(f1p,phit1-f0-f2m).subs(f1p,phit1-f0-f2m)\n",
+    "display(Math(sp.latex(sp.Eq(phi_p,term2)) + r'.'))"
    ]
   },
   {
    "cell_type": "markdown",
-   "id": "7edc314d-bfea-4c15-96a1-f6d776850660",
-   "metadata": {},
+   "id": "a004759b-ba28-4817-b8ed-2d4ed906b8a4",
+   "metadata": {
+    "editable": true,
+    "slideshow": {
+     "slide_type": ""
+    },
+    "tags": []
+   },
    "source": [
     "To repalce the term $f_{0,x}^{t}+f_{1,x-1}^{t}+f_{2,x+1}^{t}$, in the above equation we use the $\\sum_{i}f_{i,x}^{t}=\\phi_{x}^{t}$:"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 28,
-   "id": "e575a688-c042-4999-b367-7480e57d3dd5",
+   "execution_count": 14,
+   "id": "94c36c56-d995-47fb-8ea7-bb50db0d98fd",
    "metadata": {
     "editable": true,
     "slideshow": {
      "slide_type": ""
     },
     "tags": [
-     "hide-input"
+     "remove-input"
     ]
    },
    "outputs": [
     {
      "data": {
       "text/latex": [
-       "$\\displaystyle f_{0,x}^t + f_{1,x-1}^t + f_{2,x+1}^t = \\phi_{x+1}^{t} + \\phi_{x-1}^{t} - \\phi_{x}^{t-1} - f_{0,x+1}^t - f_{0,x-1}^t + 2 f_{0,x}^t$"
+       "$\\displaystyle f_{0,x}^{t} + f_{1,x-1}^{t} + f_{2,x+1}^{t} = \\phi_{x+1}^t + \\phi_{x-1}^t - \\phi_{x}^{t-1} - f_{0,x+1}^{t} - f_{0,x-1}^{t} + 2 f_{0,x}^{t},$"
       ],
       "text/plain": [
-       "Eq(f_{0,x}^t + f_{1,x-1}^t + f_{2,x+1}^t, \\phi_{x+1}^{t} + \\phi_{x-1}^{t} - \\phi_{x}^{t-1} - f_{0,x+1}^t - f_{0,x-1}^t + 2*f_{0,x}^t)"
+       "<IPython.core.display.Math object>"
       ]
      },
-     "execution_count": 28,
      "metadata": {},
-     "output_type": "execute_result"
+     "output_type": "display_data"
     }
    ],
    "source": [
-    "rel2=(f0+f1m1+f2p1).subs(f1m1,phim1-f0m1-f2m1).subs(f2p1,phip1-f0p1-f1p1).subs(-f1p1-f2m1,f0-phit1)\n",
-    "Eq(f0+f1m1+f2p1,rel2)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 29,
-   "id": "a7017119-893f-454d-85c2-2b24c78f5507",
-   "metadata": {
-    "editable": true,
-    "slideshow": {
-     "slide_type": ""
-    },
-    "tags": [
-     "hide-input"
-    ]
-   },
-   "outputs": [
-    {
-     "data": {
-      "text/latex": [
-       "$\\displaystyle \\phi_{x}^{t+1} = \\phi_{x+1}^{t} \\left(- \\frac{s_{1}}{2} - \\frac{s_{2} w_{0}}{2} + 1\\right) + \\phi_{x-1}^{t} \\left(- \\frac{s_{1}}{2} - \\frac{s_{2} w_{0}}{2} + 1\\right) + \\phi_{x}^{t-1} \\left(s_{1} - 1\\right) + \\phi_{x}^{t} s_{2} w_{0} + \\left(f_{0,x+1}^t + f_{0,x-1}^t - 2 f_{0,x}^t\\right) \\left(\\frac{s_{1}}{2} + \\frac{s_{2}}{2} - 1\\right)$"
-      ],
-      "text/plain": [
-       "Eq(\\phi_{x}^{t+1}, \\phi_{x+1}^{t}*(-s_1/2 - s_2*w_0/2 + 1) + \\phi_{x-1}^{t}*(-s_1/2 - s_2*w_0/2 + 1) + \\phi_{x}^{t-1}*(s_1 - 1) + \\phi_{x}^{t}*s_2*w_0 + (f_{0,x+1}^t + f_{0,x-1}^t - 2*f_{0,x}^t)*(s_1/2 + s_2/2 - 1))"
-      ]
-     },
-     "execution_count": 29,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
-    "term3=collect(fp0+fp1+fp2,[w0*s2,s2,s1/2]).subs(f1p1,phit1-f0-f2m1).subs(f1p1,phit1-f0-f2m1).subs(-f0-f1m1-f2p1,-rel2)\n",
-    "term4=collect(collect(expand(term3),[f0m1,f0,f0p1,phip1,phim1,phit1]).subs(f0*(-s1-s2+2),-2*f0*(s1/2+s2/2-1)),(s1/2+s2/2-1))\n",
-    "Eq(phitp1,term4)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 30,
-   "id": "31abf5fd-0469-461e-ab81-5ef87b278ccf",
-   "metadata": {
-    "editable": true,
-    "slideshow": {
-     "slide_type": ""
-    },
-    "tags": [
-     "hide-input"
-    ]
-   },
-   "outputs": [
-    {
-     "data": {
-      "text/latex": [
-       "$\\displaystyle f_{0,x+1}^t + f_{0,x-1}^t - 2 f_{0,x}^t = - 2 \\phi_{x}^{t} + f_{0,x+1}^t + f_{0,x-1}^t + 2 f_{1,x}^t + 2 f_{2,x}^t$"
-      ],
-      "text/plain": [
-       "Eq(f_{0,x+1}^t + f_{0,x-1}^t - 2*f_{0,x}^t, -2*\\phi_{x}^{t} + f_{0,x+1}^t + f_{0,x-1}^t + 2*f_{1,x}^t + 2*f_{2,x}^t)"
-      ]
-     },
-     "execution_count": 30,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
-    "rel3=(-2*f0+f0m1+f0p1).subs(-2*f0,-2*phi + 2*f1+ 2*f2)\n",
-    "Eq(-2*f0+f0m1+f0p1,rel3)"
+    "rel2=(f0+f1m+f2p).subs(f1m,phi_m-f0m-f2m).subs(f2p,phi_p-f0p-f1p).subs(-f1p-f2m,f0-phit1)\n",
+    "display(Math(sp.latex(sp.Eq(f0+f1m+f2p,rel2)) + r','))"
    ]
   },
   {
    "cell_type": "markdown",
-   "id": "9e7c9c94-c3b9-457b-8f33-59c93fe18a5b",
-   "metadata": {},
+   "id": "5a6e6c4c-769e-4af0-b83b-6decbe976257",
+   "metadata": {
+    "editable": true,
+    "slideshow": {
+     "slide_type": ""
+    },
+    "tags": []
+   },
    "source": [
-    "Replace the distribution functions in above relation by your collisional form"
+    "where"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 31,
-   "id": "97e2084c-de35-4c41-af9c-7b69be8afb66",
+   "execution_count": 15,
+   "id": "11b3873f-983f-47fe-b395-2187a9a98015",
    "metadata": {
     "editable": true,
     "slideshow": {
      "slide_type": ""
     },
     "tags": [
-     "hide-input"
+     "remove-input",
+     "remove-output"
     ]
    },
    "outputs": [
     {
      "data": {
       "text/latex": [
-       "$\\displaystyle f_{0,x+1}^t + f_{0,x-1}^t - 2 f_{0,x}^t = - 2 \\phi_{x}^{t} + f_{0,x+1}^{t-1} + f_{0,x-1}^{t-1} + 2 f_{1,x-1}^{t-1} + 2 f_{2,x+1}^{t-1} + s_{1} \\left(f_{1,x+1}^{t-1} - f_{1,x-1}^{t-1} - f_{2,x+1}^{t-1} + f_{2,x-1}^{t-1}\\right)$"
+       "$\\displaystyle \\phi_{x+1}^t = \\phi^{t}_{x} s_{2} w_{0} + \\phi_{x+1}^t \\left(- \\frac{s_{1}}{2} - \\frac{s_{2} w_{0}}{2} + 1\\right) + \\phi_{x-1}^t \\left(- \\frac{s_{1}}{2} - \\frac{s_{2} w_{0}}{2} + 1\\right) + \\phi_{x}^{t-1} \\left(s_{1} - 1\\right) + \\left(f_{0,x+1}^{t} + f_{0,x-1}^{t} - 2 f_{0,x}^{t}\\right) \\left(\\frac{s_{1}}{2} + \\frac{s_{2}}{2} - 1\\right).$"
       ],
       "text/plain": [
-       "Eq(f_{0,x+1}^t + f_{0,x-1}^t - 2*f_{0,x}^t, -2*\\phi_{x}^{t} + f_{0,x+1}^{t-1} + f_{0,x-1}^{t-1} + 2*f_{1,x-1}^{t-1} + 2*f_{2,x+1}^{t-1} + s_1*(f_{1,x+1}^{t-1} - f_{1,x-1}^{t-1} - f_{2,x+1}^{t-1} + f_{2,x-1}^{t-1}))"
+       "<IPython.core.display.Math object>"
       ]
      },
-     "execution_count": 31,
      "metadata": {},
-     "output_type": "execute_result"
+     "output_type": "display_data"
     }
    ],
    "source": [
-    "rel3s1=collect(rel3.subs(f0p1,phip1t1*s2*w0-f0p1t1*s2+f0p1t1).subs(f0m1,phim1t1*s2*w0-f0m1t1*s2+f0m1t1).subs(f1,-phim1t1*s2*w0/2+f0m1t1*s2/2+f1m1t1+s1/2*(f2m1t1-f1m1t1)) \n",
+    "term3=sp.collect(fp0+fp1+fp2,[w0*s2,s2,s1/2]).subs(f1p,phit1-f0-f2m).subs(f1p,phit1-f0-f2m).subs(f1m+f2p,rel2-f0)\n",
+    "term4=sp.collect(sp.collect(sp.expand(term3),[f0m,f0,f0p,phi_p,phi_m,phit1]).subs(f0*(-s1-s2+2),-2*f0*(s1/2+s2/2-1)),(s1/2+s2/2-1))\n",
+    "display(Math(sp.latex(sp.Eq(phi_p,term4)) + r'.'))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b376c7ea-07c3-4891-a500-de71f22016de",
+   "metadata": {
+    "editable": true,
+    "slideshow": {
+     "slide_type": ""
+    },
+    "tags": []
+   },
+   "source": [
+    "$$\n",
+    "\\phi_{x+1}^t = \\phi^{t}_{x} s_{2} w_{0} + \\phi_{x+1}^t \\left(- \\frac{s_{1}}{2} - \\frac{s_{2} w_{0}}{2} + 1\\right) + \\phi_{x-1}^t \\left(- \\frac{s_{1}}{2} - \\frac{s_{2} w_{0}}{2} + 1\\right) + \\phi_{x}^{t-1} \\left(s_{1} - 1\\right) + \\left(f_{0,x+1}^{t} + f_{0,x-1}^{t} - 2 f_{0,x}^{t}\\right) \\left(\\frac{s_{1}}{2} + \\frac{s_{2}}{2} - 1\\right)\n",
+    "$$(rel-pre-shift-2)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "70aada59-9771-45f7-9008-c2aff72651a9",
+   "metadata": {
+    "editable": true,
+    "slideshow": {
+     "slide_type": ""
+    },
+    "tags": []
+   },
+   "source": [
+    "To replace the distribution function in the above relation, we manipulate:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "id": "8092788f-3336-4ee1-b4ba-b9454471107e",
+   "metadata": {
+    "editable": true,
+    "slideshow": {
+     "slide_type": ""
+    },
+    "tags": [
+     "remove-input"
+    ]
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle f_{0,x+1}^{t} + f_{0,x-1}^{t} - 2 f_{0,x}^{t} = - 2 \\phi^{t}_{x} + f_{0,x+1}^{t} + f_{0,x-1}^{t} + 2 f_{1,x}^{t} + 2 f_{2,x}^{t},$"
+      ],
+      "text/plain": [
+       "<IPython.core.display.Math object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle f_{0,x+1}^{t} + f_{0,x-1}^{t} - 2 f_{0,x}^{t} = - 2 \\phi^{t}_{x} + f_{0,x+1}^{t-1} + f_{0,x-1}^{t-1} + 2 f_{1,x-1}^{t-1} + 2 f_{2,x+1}^{t-1} + s_{1} \\left(f_{1,x+1}^{t-1} - f_{1,x-1}^{t-1} - f_{2,x+1}^{t-1} + f_{2,x-1}^{t-1}\\right),$"
+      ],
+      "text/plain": [
+       "<IPython.core.display.Math object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle f_{0,x+1}^{t} + f_{0,x-1}^{t} - 2 f_{0,x}^{t} = - 2 \\phi^{t}_{x} + 2 \\phi_{x+1}^{t-1} + 2 \\phi_{x-1}^{t-1} - f_{0,x+1}^{t-1} - f_{0,x-1}^{t-1} - 2 f_{1,x+1}^{t-1} - 2 f_{2,x-1}^{t-1} + s_{1} \\left(- \\phi_{x+1}^{t-1} - \\phi_{x-1}^{t-1} + f_{0,x+1}^{t-1} + f_{0,x-1}^{t-1} + 2 f_{1,x+1}^{t-1} + 2 f_{2,x-1}^{t-1}\\right),$"
+      ],
+      "text/plain": [
+       "<IPython.core.display.Math object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/latex": [
+       "$\\displaystyle f_{0,x+1}^{t} + f_{0,x-1}^{t} - 2 f_{0,x}^{t} = - 2 \\phi^{t}_{x} - \\phi_{x+1}^{t-1} \\left(s_{1} - 2\\right) - \\phi_{x-1}^{t-1} \\left(s_{1} - 2\\right) + \\left(s_{1} - 1\\right) \\left(2 \\phi_{x}^{t-2} + f_{0,x+1}^{t-1} + f_{0,x-1}^{t-1} - 2 f_{0,x}^{t-1}\\right).$"
+      ],
+      "text/plain": [
+       "<IPython.core.display.Math object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "rel3=(-2*f0+f0m+f0p).subs(-2*f0,-2*phi + 2*f1+ 2*f2)\n",
+    "display(Math(sp.latex(sp.Eq(-2*f0+f0m+f0p,rel3)) + r','))\n",
+    "\n",
+    "rel3s1=sp.collect(rel3.subs(f0p,phip1t1*s2*w0-f0p1t1*s2+f0p1t1).subs(f0m,phim1t1*s2*w0-f0m1t1*s2+f0m1t1).subs(f1,-phim1t1*s2*w0/2+f0m1t1*s2/2+f1m1t1+s1/2*(f2m1t1-f1m1t1)) \n",
     "       .subs(f2,-phip1t1*s2*w0/2+f0p1t1*s2/2+f2p1t1+s1/2*(f1p1t1-f2p1t1)),s1)\n",
-    "Eq(-2*f0+f0m1+f0p1,rel3s1)"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "id": "58087138-b7ad-4b8e-a7e1-b7ab3e7dd4a7",
-   "metadata": {},
-   "source": [
-    "Replacing in the above relation the terms $f_{1,x-1}^{t-1}$ and $f_{2,x+1}^{t-1}$ usgin Eq. {eq}`rel-f-1`:"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 32,
-   "id": "99e40163-494a-4300-9272-38fa61b12af2",
-   "metadata": {
-    "editable": true,
-    "slideshow": {
-     "slide_type": ""
-    },
-    "tags": [
-     "hide-input"
-    ]
-   },
-   "outputs": [
-    {
-     "data": {
-      "text/latex": [
-       "$\\displaystyle f_{0,x+1}^t + f_{0,x-1}^t - 2 f_{0,x}^t = 2 \\phi_{x+1}^{t-1} + 2 \\phi_{x-1}^{t-1} - 2 \\phi_{x}^{t} - f_{0,x+1}^{t-1} - f_{0,x-1}^{t-1} - 2 f_{1,x+1}^{t-1} - 2 f_{2,x-1}^{t-1} + s_{1} \\left(- \\phi_{x+1}^{t-1} - \\phi_{x-1}^{t-1} + f_{0,x+1}^{t-1} + f_{0,x-1}^{t-1} + 2 f_{1,x+1}^{t-1} + 2 f_{2,x-1}^{t-1}\\right)$"
-      ],
-      "text/plain": [
-       "Eq(f_{0,x+1}^t + f_{0,x-1}^t - 2*f_{0,x}^t, 2*\\phi_{x+1}^{t-1} + 2*\\phi_{x-1}^{t-1} - 2*\\phi_{x}^{t} - f_{0,x+1}^{t-1} - f_{0,x-1}^{t-1} - 2*f_{1,x+1}^{t-1} - 2*f_{2,x-1}^{t-1} + s_1*(-\\phi_{x+1}^{t-1} - \\phi_{x-1}^{t-1} + f_{0,x+1}^{t-1} + f_{0,x-1}^{t-1} + 2*f_{1,x+1}^{t-1} + 2*f_{2,x-1}^{t-1}))"
-      ]
-     },
-     "metadata": {},
-     "output_type": "display_data"
-    }
-   ],
-   "source": [
+    "display(Math(sp.latex(sp.Eq(-2*f0+f0m+f0p,rel3s1)) + r','))\n",
+    "\n",
     "rel3s2=(rel3s1.subs(f1m1t1,phim1t1-f0m1t1-f2m1t1).subs(f2p1t1,phip1t1-f0p1t1-f1p1t1))\n",
-    "display(Eq(-2*f0+f0m1+f0p1,rel3s2))"
+    "display(Math(sp.latex(sp.Eq(-2*f0+f0m+f0p,rel3s2)) + r','))\n",
+    "\n",
+    "rel3s3=sp.collect(sp.simplify(sp.collect(sp.expand(rel3s2.subs(f2m1t1,phit2-f0t1-f1p1t1)),[f0p1t1,f0m1t1,2*f0t1,phim1t1,phip1t1,phit2])),[s1-1])\n",
+    "display(Math(sp.latex(sp.Eq(-2*f0+f0m+f0p,rel3s3)) + r'.'))"
    ]
   },
   {
-   "cell_type": "code",
-   "execution_count": 33,
-   "id": "ed9aa113-d5d9-4826-8551-5377db155a76",
+   "cell_type": "markdown",
+   "id": "d0de9496-4be8-4243-b544-99e82e5a2fd1",
    "metadata": {
     "editable": true,
     "slideshow": {
      "slide_type": ""
     },
-    "tags": [
-     "hide-input"
-    ]
+    "tags": []
    },
-   "outputs": [
-    {
-     "data": {
-      "text/latex": [
-       "$\\displaystyle f_{0,x+1}^t + f_{0,x-1}^t - 2 f_{0,x}^t = - \\phi_{x+1}^{t-1} \\left(s_{1} - 2\\right) - \\phi_{x-1}^{t-1} \\left(s_{1} - 2\\right) - 2 \\phi_{x}^{t} + \\left(s_{1} - 1\\right) \\left(2 \\phi_{x}^{t-2} + f_{0,x+1}^{t-1} + f_{0,x-1}^{t-1} - 2 f_{0,x}^{t-1}\\right)$"
-      ],
-      "text/plain": [
-       "Eq(f_{0,x+1}^t + f_{0,x-1}^t - 2*f_{0,x}^t, -\\phi_{x+1}^{t-1}*(s_1 - 2) - \\phi_{x-1}^{t-1}*(s_1 - 2) - 2*\\phi_{x}^{t} + (s_1 - 1)*(2*\\phi_{x}^{t-2} + f_{0,x+1}^{t-1} + f_{0,x-1}^{t-1} - 2*f_{0,x}^{t-1}))"
-      ]
-     },
-     "metadata": {},
-     "output_type": "display_data"
-    }
-   ],
-   "source": [
-    "rel3s3=collect(simplify(collect(expand(rel3s2.subs(f2m1t1,phit2-f0t1-f1p1t1)),[f0p1t1,f0m1t1,2*f0t1,phim1t1,phip1t1,phit2])),[s1-1])\n",
-    "display(Eq(-2*f0+f0m1+f0p1,rel3s3))"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "id": "ab013b3f-596d-4d65-90fa-3bb050fe3b89",
-   "metadata": {},
    "source": [
     "Replacing the above relation in $\\phi_{x}^{t+1}$ term:"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 34,
-   "id": "909f097e-bb79-466e-b11c-02a0f16f4822",
+   "execution_count": 17,
+   "id": "75db90ca-87d1-452c-8411-0cee62481b05",
    "metadata": {
     "editable": true,
     "slideshow": {
      "slide_type": ""
     },
     "tags": [
-     "hide-input"
+     "remove-input"
     ]
    },
    "outputs": [
     {
      "data": {
       "text/latex": [
-       "$\\displaystyle \\phi_{x}^{t+1} = \\phi_{x}^{t-1} \\left(s_{1} - 1\\right) - \\phi_{x}^{t} \\left(s_{1} - s_{2} w_{0} + s_{2} - 2\\right) + \\left(- \\frac{\\phi_{x+1}^{t-1}}{2} - \\frac{\\phi_{x-1}^{t-1}}{2}\\right) \\left(s_{1}^{2} + s_{1} s_{2} - 4 s_{1} - 2 s_{2} + 4\\right) + \\left(- \\frac{\\phi_{x+1}^{t}}{2} - \\frac{\\phi_{x-1}^{t}}{2}\\right) \\left(s_{1} + s_{2} w_{0} - 2\\right) + \\left(s_{1} - 1\\right) \\left(s_{1} + s_{2} - 2\\right) \\left(\\phi_{x}^{t-2} + \\frac{f_{0,x+1}^{t-1}}{2} + \\frac{f_{0,x-1}^{t-1}}{2} - f_{0,x}^{t-1}\\right)$"
+       "$\\displaystyle \\phi_{x}^{t+1} = - \\phi^{t}_{x} \\left(s_{1} - s_{2} w_{0} + s_{2} - 2\\right) + \\phi_{x}^{t-1} \\left(s_{1} - 1\\right) + \\left(- \\frac{\\phi_{x+1}^t}{2} - \\frac{\\phi_{x-1}^t}{2}\\right) \\left(s_{1} + s_{2} w_{0} - 2\\right) + \\left(- \\frac{\\phi_{x+1}^{t-1}}{2} - \\frac{\\phi_{x-1}^{t-1}}{2}\\right) \\left(s_{1}^{2} + s_{1} s_{2} - 4 s_{1} - 2 s_{2} + 4\\right) + \\left(s_{1} - 1\\right) \\left(s_{1} + s_{2} - 2\\right) \\left(\\phi_{x}^{t-2} + \\frac{f_{0,x+1}^{t-1}}{2} + \\frac{f_{0,x-1}^{t-1}}{2} - f_{0,x}^{t-1}\\right).$"
       ],
       "text/plain": [
-       "Eq(\\phi_{x}^{t+1}, \\phi_{x}^{t-1}*(s_1 - 1) - \\phi_{x}^{t}*(s_1 - s_2*w_0 + s_2 - 2) + (-\\phi_{x+1}^{t-1}/2 - \\phi_{x-1}^{t-1}/2)*(s_1**2 + s_1*s_2 - 4*s_1 - 2*s_2 + 4) + (-\\phi_{x+1}^{t}/2 - \\phi_{x-1}^{t}/2)*(s_1 + s_2*w_0 - 2) + (s_1 - 1)*(s_1 + s_2 - 2)*(\\phi_{x}^{t-2} + f_{0,x+1}^{t-1}/2 + f_{0,x-1}^{t-1}/2 - f_{0,x}^{t-1}))"
+       "<IPython.core.display.Math object>"
       ]
      },
-     "execution_count": 34,
      "metadata": {},
-     "output_type": "execute_result"
+     "output_type": "display_data"
     }
    ],
    "source": [
-    "term5=simplify(collect(expand(term4.subs(-2*f0+f0m1+f0p1,rel3s3)),[phim1,phip1,phim1t1,phip1t1,phit1,phit2,phi,f0p1t1,f0m1t1,f0t1]))\n",
-    "term5s1=collect(term5,[s1*s1+s1*s2-3*s1-s2+2,s1+w0*s2-2,s1*s1+s1*s2-4*s1-2*s2+4]).subs(s1*s1+s1*s2-3*s1-s2+2,(s1-1)*(s1+s2-2))\n",
-    "Eq(phitp1,term5s1)"
+    "term5=sp.simplify(sp.collect(sp.expand(term4.subs(-2*f0+f0m+f0p,rel3s3)),[phi_m,phi_p,phim1t1,phip1t1,phit1,phit2,phi,f0p1t1,f0m1t1,f0t1]))\n",
+    "term5s1=sp.collect(term5,[s1*s1+s1*s2-3*s1-s2+2,s1+w0*s2-2,s1*s1+s1*s2-4*s1-2*s2+4]).subs(s1*s1+s1*s2-3*s1-s2+2,(s1-1)*(s1+s2-2))\n",
+    "sp.Eq(phitp1,term5s1)\n",
+    "display(Math(sp.latex(sp.Eq(phitp1,term5s1)) + r'.'))"
    ]
   },
   {
    "cell_type": "markdown",
-   "id": "af732d92-fb07-4ef7-9a01-c91b4e0baadc",
-   "metadata": {},
+   "id": "944d3a1d-90e4-4813-9c63-1ee2b0944156",
+   "metadata": {
+    "editable": true,
+    "slideshow": {
+     "slide_type": ""
+    },
+    "tags": []
+   },
    "source": [
-    "Applying a shift in time for the Eq. XX."
+    "Applying a time shift in the Eq. {eq}`rel-pre-shift-2` to replace $f^{t-1}_{0,x+1}/2+f^{t-1}_{0,x-1}/2-f^{t-1}_{0,x}$ in the above equation, we obtain in the final form $\\phi^{t+1}_{x}$ only dependent of previous moments:"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 35,
-   "id": "30ee9264-bc08-49e6-a338-a6edc330f2c0",
+   "execution_count": 19,
+   "id": "81befcc2-2b54-4570-9466-2d7fc3a654ae",
    "metadata": {
     "editable": true,
     "slideshow": {
      "slide_type": ""
     },
     "tags": [
-     "hide-input"
+     "remove-input"
     ]
    },
    "outputs": [
     {
      "data": {
       "text/latex": [
-       "$\\displaystyle \\phi_{x}^{t+1} = \\frac{\\phi_{x+1}^{t-1} s_{1} s_{2} w_{0}}{2} - \\frac{\\phi_{x+1}^{t-1} s_{1} s_{2}}{2} + \\frac{\\phi_{x+1}^{t-1} s_{1}}{2} - \\frac{\\phi_{x+1}^{t-1} s_{2} w_{0}}{2} + \\phi_{x+1}^{t-1} s_{2} - \\phi_{x+1}^{t-1} - \\frac{\\phi_{x+1}^{t} s_{1}}{2} - \\frac{\\phi_{x+1}^{t} s_{2} w_{0}}{2} + \\phi_{x+1}^{t} + \\frac{\\phi_{x-1}^{t-1} s_{1} s_{2} w_{0}}{2} - \\frac{\\phi_{x-1}^{t-1} s_{1} s_{2}}{2} + \\frac{\\phi_{x-1}^{t-1} s_{1}}{2} - \\frac{\\phi_{x-1}^{t-1} s_{2} w_{0}}{2} + \\phi_{x-1}^{t-1} s_{2} - \\phi_{x-1}^{t-1} - \\frac{\\phi_{x-1}^{t} s_{1}}{2} - \\frac{\\phi_{x-1}^{t} s_{2} w_{0}}{2} + \\phi_{x-1}^{t} - \\phi_{x}^{t-1} s_{1} s_{2} w_{0} + \\phi_{x}^{t-1} s_{1} + \\phi_{x}^{t-1} s_{2} w_{0} - \\phi_{x}^{t-1} + \\phi_{x}^{t-2} s_{1} s_{2} - \\phi_{x}^{t-2} s_{1} - \\phi_{x}^{t-2} s_{2} + \\phi_{x}^{t-2} + \\phi_{x}^{t} s_{2} w_{0} - \\phi_{x}^{t} s_{2} + \\phi_{x}^{t}$"
+       "$\\displaystyle \\phi_{x}^{t+1} = \\phi^{t}_{x} \\left(s_{2} w_{0} - s_{2} + 1\\right) + \\phi_{x+1}^t \\left(- \\frac{s_{1}}{2} - \\frac{s_{2} w_{0}}{2} + 1\\right) + \\phi_{x+1}^{t-1} \\left(\\frac{s_{1} s_{2} w_{0}}{2} - \\frac{s_{1} s_{2}}{2} + \\frac{s_{1}}{2} - \\frac{s_{2} w_{0}}{2} + s_{2} - 1\\right) + \\phi_{x-1}^t \\left(- \\frac{s_{1}}{2} - \\frac{s_{2} w_{0}}{2} + 1\\right) + \\phi_{x-1}^{t-1} \\left(\\frac{s_{1} s_{2} w_{0}}{2} - \\frac{s_{1} s_{2}}{2} + \\frac{s_{1}}{2} - \\frac{s_{2} w_{0}}{2} + s_{2} - 1\\right) + \\phi_{x}^{t-1} \\left(- s_{1} s_{2} w_{0} + s_{1} + s_{2} w_{0} - 1\\right) + \\phi_{x}^{t-2} \\left(s_{1} s_{2} - s_{1} - s_{2} + 1\\right).$"
       ],
       "text/plain": [
-       "Eq(\\phi_{x}^{t+1}, \\phi_{x+1}^{t-1}*s_1*s_2*w_0/2 - \\phi_{x+1}^{t-1}*s_1*s_2/2 + \\phi_{x+1}^{t-1}*s_1/2 - \\phi_{x+1}^{t-1}*s_2*w_0/2 + \\phi_{x+1}^{t-1}*s_2 - \\phi_{x+1}^{t-1} - \\phi_{x+1}^{t}*s_1/2 - \\phi_{x+1}^{t}*s_2*w_0/2 + \\phi_{x+1}^{t} + \\phi_{x-1}^{t-1}*s_1*s_2*w_0/2 - \\phi_{x-1}^{t-1}*s_1*s_2/2 + \\phi_{x-1}^{t-1}*s_1/2 - \\phi_{x-1}^{t-1}*s_2*w_0/2 + \\phi_{x-1}^{t-1}*s_2 - \\phi_{x-1}^{t-1} - \\phi_{x-1}^{t}*s_1/2 - \\phi_{x-1}^{t}*s_2*w_0/2 + \\phi_{x-1}^{t} - \\phi_{x}^{t-1}*s_1*s_2*w_0 + \\phi_{x}^{t-1}*s_1 + \\phi_{x}^{t-1}*s_2*w_0 - \\phi_{x}^{t-1} + \\phi_{x}^{t-2}*s_1*s_2 - \\phi_{x}^{t-2}*s_1 - \\phi_{x}^{t-2}*s_2 + \\phi_{x}^{t-2} + \\phi_{x}^{t}*s_2*w_0 - \\phi_{x}^{t}*s_2 + \\phi_{x}^{t})"
+       "<IPython.core.display.Math object>"
       ]
      },
-     "execution_count": 35,
      "metadata": {},
-     "output_type": "execute_result"
+     "output_type": "display_data"
     }
    ],
    "source": [
-    "term6=simplify(expand(term5s1.subs( -f0t1+f0m1t1/2+f0p1t1/2, (phi-(phip1t1+phim1t1)*(1-s1/2-s2*w0/2) - phit2*(s1-1) - phit1*s2*w0)/(s1+s2-2) ) ))\n",
-    "Eq(phitp1,term6)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 36,
-   "id": "9e5c1272-ba84-46b9-9bf6-76ce12da63e1",
-   "metadata": {
-    "editable": true,
-    "slideshow": {
-     "slide_type": ""
-    },
-    "tags": [
-     "hide-input"
-    ]
-   },
-   "outputs": [
-    {
-     "data": {
-      "text/latex": [
-       "$\\displaystyle \\phi_{x+1}^{t-1} \\left(\\frac{s_{1} s_{2} w_{0}}{2} - \\frac{s_{1} s_{2}}{2} + \\frac{s_{1}}{2} - \\frac{s_{2} w_{0}}{2} + s_{2} - 1\\right) + \\phi_{x+1}^{t} \\left(- \\frac{s_{1}}{2} - \\frac{s_{2} w_{0}}{2} + 1\\right) + \\phi_{x-1}^{t-1} \\left(\\frac{s_{1} s_{2} w_{0}}{2} - \\frac{s_{1} s_{2}}{2} + \\frac{s_{1}}{2} - \\frac{s_{2} w_{0}}{2} + s_{2} - 1\\right) + \\phi_{x-1}^{t} \\left(- \\frac{s_{1}}{2} - \\frac{s_{2} w_{0}}{2} + 1\\right) + \\phi_{x}^{t-1} \\left(- s_{1} s_{2} w_{0} + s_{1} + s_{2} w_{0} - 1\\right) + \\phi_{x}^{t-2} \\left(s_{1} s_{2} - s_{1} - s_{2} + 1\\right) + \\phi_{x}^{t} \\left(s_{2} w_{0} - s_{2} + 1\\right)$"
-      ],
-      "text/plain": [
-       "\\phi_{x+1}^{t-1}*(s_1*s_2*w_0/2 - s_1*s_2/2 + s_1/2 - s_2*w_0/2 + s_2 - 1) + \\phi_{x+1}^{t}*(-s_1/2 - s_2*w_0/2 + 1) + \\phi_{x-1}^{t-1}*(s_1*s_2*w_0/2 - s_1*s_2/2 + s_1/2 - s_2*w_0/2 + s_2 - 1) + \\phi_{x-1}^{t}*(-s_1/2 - s_2*w_0/2 + 1) + \\phi_{x}^{t-1}*(-s_1*s_2*w_0 + s_1 + s_2*w_0 - 1) + \\phi_{x}^{t-2}*(s_1*s_2 - s_1 - s_2 + 1) + \\phi_{x}^{t}*(s_2*w_0 - s_2 + 1)"
-      ]
-     },
-     "execution_count": 36,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
-    "collect(term6,[phim1,phip1,phi,phim1t1,phip1t1,phit1,phit2])"
+    "term6=sp.simplify(sp.expand(term5s1.subs( -f0t1+f0m1t1/2+f0p1t1/2, (phi-(phip1t1+phim1t1)*(1-s1/2-s2*w0/2) - phit2*(s1-1) - phit1*s2*w0)/(s1+s2-2) ) ))\n",
+    "term6_2=sp.collect(term6,[phi_m,phi_p,phi,phim1t1,phip1t1,phit1,phit2])\n",
+    "# sp.Eq(phitp1,term6_2)\n",
+    "display(Math(sp.latex(sp.Eq(phitp1,term6_2)) + r'.'))"
    ]
   },
   {

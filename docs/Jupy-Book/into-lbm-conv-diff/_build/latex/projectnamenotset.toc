@@ -1,0 +1,98 @@
+\selectlanguage *{english}
+\contentsline {part}{I\hspace {1em}Lattice Boltzmann Method \sphinxhyphen {} Application to Different Partial Differential Equation}{3}{part.1}%
+\contentsline {chapter}{\numberline {1}Diffusive Equation}{5}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Numerical Discretization}{5}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}FDM Discretization}{5}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Lattice Boltzmann Equation}{6}{subsection.1.1.2}%
+\contentsline {subsubsection}{Lattice Direction Moments}{6}{subsubsection*.3}%
+\contentsline {subsubsection}{Chapmann\sphinxhyphen {}Enskog Analysis}{6}{subsubsection*.4}%
+\contentsline {subsubsection}{Boundary Conditions}{8}{subsubsection*.5}%
+\contentsline {section}{\numberline {1.2}1st Benchmark: Single sine mode on a finite rod (Dirichlet)}{8}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}LBM D1Q3 Solution (\(\mittau =1\))}{9}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}FDM Solution}{9}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}Numerical and Analytical Comparisson}{9}{subsection.1.2.3}%
+\contentsline {chapter}{\numberline {2}Poisson Equation (Steady\sphinxhyphen {}State Diffusive Equation)}{11}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Numerical Discretization}{11}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}FDM Discretization}{11}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Lattice Boltzmann Equation}{12}{subsection.2.1.2}%
+\contentsline {subsubsection}{Lattice Direction Moments}{12}{subsubsection*.6}%
+\contentsline {subsubsection}{Chapmann\sphinxhyphen {}Enskog Analysis}{12}{subsubsection*.7}%
+\contentsline {subsubsection}{Boundary Conditions}{14}{subsubsection*.8}%
+\contentsline {section}{\numberline {2.2}1st Benchmark: Single sine mode on a finite rod (Dirichlet)}{14}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}FDM Solution:}{15}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}LBM D1Q3 Solution With Steady\sphinxhyphen {}Scheme:}{15}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}LBM D1Q2 Solution (Not Accept the Steady\sphinxhyphen {}Scheme):}{15}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}LBM D1Q3 Solution (Transient):}{15}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}Numerical and Analytical Comparisson:}{15}{subsection.2.2.5}%
+\contentsline {section}{\numberline {2.3}2nd Benchmark: 2D Poisson Pressure Field}{15}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}LBM D2Q5 Code}{16}{subsection.2.3.1}%
+\contentsline {chapter}{\numberline {3}Convective Equation (Transport Equation)}{17}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Numerical Discretization}{17}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}FDM Discretization}{17}{subsection.3.1.1}%
+\contentsline {subsubsection}{Forward\sphinxhyphen {}Time and Forward\sphinxhyphen {}Space (FTFS)}{18}{subsubsection*.9}%
+\contentsline {subsubsection}{Forward\sphinxhyphen {}Time and Central\sphinxhyphen {}Space with Small Diffusivity (FTCS\sphinxhyphen {}SD)}{18}{subsubsection*.10}%
+\contentsline {subsection}{\numberline {3.1.2}Lattice Boltzmann Equation}{18}{subsection.3.1.2}%
+\contentsline {subsubsection}{Lattice Direction Moments}{18}{subsubsection*.11}%
+\contentsline {paragraph}{Raw Moments}{18}{paragraph*.12}%
+\contentsline {paragraph}{Hermite Moments}{19}{paragraph*.13}%
+\contentsline {subsubsection}{Chapmann\sphinxhyphen {}Enskog Analysis (Considering Equilibrium State \sphinxhyphen {} Consequently Disregarding Inherited Diffusive Effects)}{19}{subsubsection*.14}%
+\contentsline {subsubsection}{Chapmann\sphinxhyphen {}Enskog Analysis (Full)}{20}{subsubsection*.15}%
+\contentsline {subsubsection}{Boundary Conditions}{21}{subsubsection*.16}%
+\contentsline {section}{\numberline {3.2}Benchmark \sphinxhyphen {} 1D Non\sphinxhyphen {}Linear Convective formulation of the Buckley\sphinxhyphen {}Leverett Equation}{22}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Transient Analytical Solution}{22}{subsection.3.2.1}%
+\contentsline {subsubsection}{Forward Time and Forward Space \sphinxhyphen {} FTFS}{22}{subsubsection*.17}%
+\contentsline {subsubsection}{FDM Solution:}{22}{subsubsection*.18}%
+\contentsline {subsubsection}{Lattice Boltzmann Framework of FTFS:}{22}{subsubsection*.19}%
+\contentsline {subsubsection}{Numerical and Analytical Comparisson}{23}{subsubsection*.20}%
+\contentsline {subsection}{\numberline {3.2.2}Forward\sphinxhyphen {}Time and Central\sphinxhyphen {}Space with Small Diffusivity (FTCS\sphinxhyphen {}SD)}{23}{subsection.3.2.2}%
+\contentsline {subsubsection}{Lattice Boltzmann Method (D1Q3):}{23}{subsubsection*.21}%
+\contentsline {subsubsection}{FDM approach of LBM Framework D1Q3:}{23}{subsubsection*.22}%
+\contentsline {subsubsection}{Numerical and Analytical Comparisson}{23}{subsubsection*.23}%
+\contentsline {chapter}{\numberline {4}Convective\sphinxhyphen {}Diffusive Equation}{25}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Numerical Discretization}{25}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}FDM Discretization}{25}{subsection.4.1.1}%
+\contentsline {subsubsection}{Forward\sphinxhyphen {}Time and Forward\sphinxhyphen {}Space (FTFSCS)}{26}{subsubsection*.24}%
+\contentsline {subsubsection}{Forward\sphinxhyphen {}Time and Central\sphinxhyphen {}Space with Small Diffusivity (FTCS)}{26}{subsubsection*.25}%
+\contentsline {subsubsection}{Forward\sphinxhyphen {}Time and Central\sphinxhyphen {}Space with Small Diffusivity (FTCS\sphinxhyphen {}SD)}{26}{subsubsection*.26}%
+\contentsline {subsection}{\numberline {4.1.2}Lattice Boltzmann Equation}{26}{subsection.4.1.2}%
+\contentsline {subsubsection}{Lattice Direction Moments}{27}{subsubsection*.27}%
+\contentsline {paragraph}{Raw Moments}{27}{paragraph*.28}%
+\contentsline {paragraph}{Hermite Moments}{27}{paragraph*.29}%
+\contentsline {subsubsection}{Chapmann\sphinxhyphen {}Enskog Analysis}{27}{subsubsection*.30}%
+\contentsline {subsubsection}{Boundary Conditions}{29}{subsubsection*.31}%
+\contentsline {section}{\numberline {4.2}1st Benchmark: Decay of Sinoidal Wave}{29}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}LBM D1Q3 Solution}{30}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}FDM Solution (FTCS\sphinxhyphen {}SD) (LBM Framework \(\mittau =1\))}{30}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}FDM Solution (FTCS)}{30}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}FDM Solution (FTFSCS)}{31}{subsection.4.2.4}%
+\contentsline {section}{\numberline {4.3}2nd Benchmark: 1D Perturbation wave\sphinxhyphen {}decay}{31}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Navier\sphinxhyphen {}Stokes Equation}{33}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Numerical Discretization: Lattice Boltzmann Equation}{33}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Lattice Direction Moments: D2Q9 Velocity\sphinxhyphen {}Space Discetization}{33}{subsection.5.1.1}%
+\contentsline {subsubsection}{Raw Moments}{34}{subsubsection*.32}%
+\contentsline {subsubsection}{Hermite Moments}{34}{subsubsection*.33}%
+\contentsline {subsection}{\numberline {5.1.2}Chapmann\sphinxhyphen {}Enskog Analysis: 1st order Lattice Boltzmann Equation}{34}{subsection.5.1.2}%
+\contentsline {subsubsection}{Zero\sphinxhyphen {}Order Moment Balance}{36}{subsubsection*.34}%
+\contentsline {subsubsection}{First\sphinxhyphen {}Order Moment Balance}{36}{subsubsection*.35}%
+\contentsline {subsubsection}{Second\sphinxhyphen {}Order Non\sphinxhyphen {}Equilibrium Moment}{37}{subsubsection*.36}%
+\contentsline {subsubsection}{Balance Equations}{38}{subsubsection*.37}%
+\contentsline {subsection}{\numberline {5.1.3}Lattice Direction Moments: (Multi\sphinxhyphen {}Speed Lattices) D2V17 Velocity\sphinxhyphen {}Space Discetization}{38}{subsection.5.1.3}%
+\contentsline {subsubsection}{Raw Moments}{38}{subsubsection*.38}%
+\contentsline {subsubsection}{Hermite Moments}{39}{subsubsection*.39}%
+\contentsline {section}{\numberline {5.2}Tutorials}{40}{section.5.2}%
+\contentsline {part}{II\hspace {1em}Finite Difference Structure of Lattice Boltzmann Method}{41}{part.2}%
+\contentsline {chapter}{\numberline {6}Intoduction to Difference Finite Scheme derived from Lattice Boltzmann Method: Diffusive Equation}{43}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Diffusive Equation Interpretation with Single Relaxation Time}{43}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}FDM Interpretation for the Lattice D1Q3}{43}{subsection.6.1.1}%
+\contentsline {section}{\numberline {6.2}1st Benchmark: Decay of Sinoidal Wave}{45}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}LBM D1Q3 Code \sphinxhyphen {} FDM Code (Only Diffusive Case \(c=0\))}{45}{subsection.6.2.1}%
+\contentsline {section}{\numberline {6.3}2nd Benchmark: Temperature ramp}{45}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Steady\sphinxhyphen {}State Analytical Solution}{46}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Transient Analytical Solution}{46}{subsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.3.3}LBM D1Q3 Code \sphinxhyphen {} FDM Code}{46}{subsection.6.3.3}%
+\contentsline {section}{\numberline {6.4}Convergence Errors: Fourth\sphinxhyphen {}order Diffusive Equation}{46}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Extension to Lattices with \(d\)\sphinxhyphen {}Dimensions and \(q\)\sphinxhyphen {}Velocities (\(DdQq\)):}{49}{section.6.5}%
+\contentsline {section}{\numberline {6.6}Diffusive Equation Interpretation with Multi\sphinxhyphen {}Relaxation Time (MRT\sphinxhyphen {}Framework)}{49}{section.6.6}%
+\contentsline {subsection}{\numberline {6.6.1}Fourth\sphinxhyphen {}order MRT Diffusive Equation}{51}{subsection.6.6.1}%
+\contentsline {chapter}{\numberline {7}Citations}{55}{chapter.7}%
+\contentsline {chapter}{Bibliography}{57}{chapter*.40}%

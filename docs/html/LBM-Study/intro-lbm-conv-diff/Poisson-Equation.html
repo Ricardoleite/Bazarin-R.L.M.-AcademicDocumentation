@@ -1,49 +1,57 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Poisson Equation (Steady-State Diffusive Equation) &mdash; Academic-Live-Documentation 1.0.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/sphinx_rtd_size.css?v=f26ae176" />
-      <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
-      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
-      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
-      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
-      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/eqno.css?v=188b0fb8" />
-      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=c4599ffd" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/sidebar.css?v=59d17752" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/rolamento-lateral.css?v=9c164f7b" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/toogle-button-hide-input.css?v=f3d80af2" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/center-figures.css?v=a6625654" />
-
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/sphinx_rtd_size.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sphinx-thebe.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/eqno.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/sidebar.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rolamento-lateral.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/toogle-button-hide-input.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/center-figures.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=8d563738"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
-      <script src="../../_static/copybutton.js?v=f281be69"></script>
-      <script>let toggleHintShow = 'Click to show';</script>
-      <script>let toggleHintHide = 'Click to hide';</script>
-      <script>let toggleOpenOnPrint = 'true';</script>
-      <script src="../../_static/togglebutton.js?v=b8b12719"></script>
-      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
-      <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-      <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
-      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-      <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      <script src="../../_static/css/sidebar.js?v=29393464"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+        <script async="async" src="../../_static/sphinx-thebe.js?v=afe5de03"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+        <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../_static/css/sidebar.js?v=29393464"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -210,31 +218,31 @@ m^{neq}_{\alpha} = \displaystyle\sum_{i} c_{i,\alpha}\left( f_i-f_i^{eq}\right) 
 <section id="lattice-direction-moments">
 <h4>Lattice Direction Moments<a class="headerlink" href="#lattice-direction-moments" title="Link to this heading"></a></h4>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"ignore"</span><span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pylab</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">division</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="kn">import</span> <span class="n">S</span><span class="p">,</span> <span class="n">collect</span><span class="p">,</span> <span class="n">expand</span><span class="p">,</span> <span class="n">factor</span><span class="p">,</span> <span class="n">Wild</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="kn">import</span> <span class="n">fraction</span><span class="p">,</span> <span class="n">Rational</span><span class="p">,</span> <span class="n">Symbol</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">Rational</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Math</span><span class="p">,</span> <span class="n">Latex</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pylab</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">S</span><span class="p">,</span> <span class="n">collect</span><span class="p">,</span> <span class="n">expand</span><span class="p">,</span> <span class="n">factor</span><span class="p">,</span> <span class="n">Wild</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">fraction</span><span class="p">,</span> <span class="n">Rational</span><span class="p">,</span> <span class="n">Symbol</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">Rational</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Math</span><span class="p">,</span> <span class="n">Latex</span>
 <span class="c1">#-------------------------------------------------Símbolos----------------------------------------------</span>
-<span class="n">omega</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">'omega, \widehat</span><span class="si">{p}</span><span class="s1">, w'</span><span class="p">)</span>
-<span class="n">wi</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">cs</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">'w_</span><span class="si">{i}</span><span class="s1"> c_</span><span class="si">{x}</span><span class="s1"> c_</span><span class="si">{y}</span><span class="s1"> c_</span><span class="si">{s}</span><span class="s1">'</span><span class="p">)</span>
-<span class="n">fi</span><span class="p">,</span> <span class="n">f0</span><span class="p">,</span> <span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="n">f3</span><span class="p">,</span> <span class="n">f4</span><span class="p">,</span> <span class="n">f5</span><span class="p">,</span> <span class="n">f6</span><span class="p">,</span> <span class="n">f7</span><span class="p">,</span> <span class="n">f8</span><span class="p">,</span>  <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">'f_</span><span class="si">{i}</span><span class="s1"> f_</span><span class="si">{0}</span><span class="s1"> f_</span><span class="si">{1}</span><span class="s1"> f_</span><span class="si">{2}</span><span class="s1"> f_</span><span class="si">{3}</span><span class="s1"> f_</span><span class="si">{4}</span><span class="s1"> f_</span><span class="si">{5}</span><span class="s1"> f_</span><span class="si">{6}</span><span class="s1"> f_</span><span class="si">{7}</span><span class="s1"> f_</span><span class="si">{8}</span><span class="s1">'</span><span class="p">)</span>
+<span class="n">omega</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;omega, \widehat</span><span class="si">{p}</span><span class="s1">, w&#39;</span><span class="p">)</span>
+<span class="n">wi</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">cs</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;w_</span><span class="si">{i}</span><span class="s1"> c_</span><span class="si">{x}</span><span class="s1"> c_</span><span class="si">{y}</span><span class="s1"> c_</span><span class="si">{s}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">fi</span><span class="p">,</span> <span class="n">f0</span><span class="p">,</span> <span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="n">f3</span><span class="p">,</span> <span class="n">f4</span><span class="p">,</span> <span class="n">f5</span><span class="p">,</span> <span class="n">f6</span><span class="p">,</span> <span class="n">f7</span><span class="p">,</span> <span class="n">f8</span><span class="p">,</span>  <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;f_</span><span class="si">{i}</span><span class="s1"> f_</span><span class="si">{0}</span><span class="s1"> f_</span><span class="si">{1}</span><span class="s1"> f_</span><span class="si">{2}</span><span class="s1"> f_</span><span class="si">{3}</span><span class="s1"> f_</span><span class="si">{4}</span><span class="s1"> f_</span><span class="si">{5}</span><span class="s1"> f_</span><span class="si">{6}</span><span class="s1"> f_</span><span class="si">{7}</span><span class="s1"> f_</span><span class="si">{8}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="c1">#-------------------------------------------------Funções----------------------------------------------</span>
-<span class="n">feq</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="s1">'feq'</span><span class="p">)(</span><span class="n">wi</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">)</span>
-<span class="n">fneq</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="s1">'fneq'</span><span class="p">)(</span><span class="n">wi</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">)</span>
-<span class="n">f</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="s1">'f'</span><span class="p">)(</span><span class="n">fi</span><span class="p">)</span>
+<span class="n">feq</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="s1">&#39;feq&#39;</span><span class="p">)(</span><span class="n">wi</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">)</span>
+<span class="n">fneq</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="s1">&#39;fneq&#39;</span><span class="p">)(</span><span class="n">wi</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">)(</span><span class="n">fi</span><span class="p">)</span>
 <span class="c1">#-------------------------------------------------Variáveis----------------------------------------------</span>
 <span class="n">fi</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">,</span><span class="n">f3</span><span class="p">,</span><span class="n">f4</span><span class="p">,</span><span class="n">f5</span><span class="p">,</span><span class="n">f6</span><span class="p">,</span><span class="n">f7</span><span class="p">,</span><span class="n">f8</span><span class="p">])</span>
 <span class="n">w0</span><span class="o">=</span><span class="n">Rational</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">);</span><span class="n">w1</span><span class="o">=</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">);</span><span class="n">w2</span><span class="o">=</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">36</span><span class="p">)</span>
@@ -253,10 +261,10 @@ m^{neq}_{\alpha} = \displaystyle\sum_{i} c_{i,\alpha}\left( f_i-f_i^{eq}\right) 
 </details>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a00</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="p">))</span>
@@ -266,18 +274,18 @@ m^{neq}_{\alpha} = \displaystyle\sum_{i} c_{i,\alpha}\left( f_i-f_i^{eq}\right) 
 <span class="n">axx</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cx</span><span class="o">*</span><span class="n">cx</span><span class="p">))</span>
 <span class="n">axy</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cx</span><span class="o">*</span><span class="n">cy</span><span class="p">))</span>
 <span class="n">ayy</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="o">*</span><span class="n">cy</span><span class="o">*</span><span class="n">cy</span><span class="p">))</span>
-<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\begin</span><span class="si">{gathered}</span><span class="s2">"</span>
-             <span class="sa">r</span><span class="s2">"\underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> =\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2"> }_{\textrm{Zero-Order Moment}} ="</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">a00</span><span class="p">)</span>
-            <span class="o">+</span><span class="sa">r</span><span class="s2">",\quad \quad \underbrace{\frac</span><span class="si">{1}</span><span class="s2">{1-w_</span><span class="si">{0}</span><span class="s2">}\sum_{i=1} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> = \frac</span><span class="si">{1}</span><span class="s2">{1-w_</span><span class="si">{0}</span><span class="s2">}\sum_{i=1} f_</span><span class="si">{i}</span><span class="s2"> }_{\textrm{Zero-Order Moment}} ="</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
-            <span class="o">+</span><span class="sa">r</span><span class="s2">",\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">c_{i,x} }_{\textrm{x-First-Order Moment}} ="</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
-            <span class="o">+</span><span class="sa">r</span><span class="s2">",\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">c_{i,y} }_{\textrm{y-First-Order Moment}} ="</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">ay</span><span class="p">)</span>
-            <span class="o">+</span><span class="sa">r</span><span class="s2">"\end</span><span class="si">{gathered}</span><span class="s2">"</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\begin</span><span class="si">{gathered}</span><span class="s2">&quot;</span>
+             <span class="sa">r</span><span class="s2">&quot;\underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> =\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2"> }_{\textrm{Zero-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">a00</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\frac</span><span class="si">{1}</span><span class="s2">{1-w_</span><span class="si">{0}</span><span class="s2">}\sum_{i=1} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2"> = \frac</span><span class="si">{1}</span><span class="s2">{1-w_</span><span class="si">{0}</span><span class="s2">}\sum_{i=1} f_</span><span class="si">{i}</span><span class="s2"> }_{\textrm{Zero-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">c_{i,x} }_{\textrm{x-First-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">c_{i,y} }_{\textrm{y-First-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">ay</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;\end</span><span class="si">{gathered}</span><span class="s2">&quot;</span>
             <span class="p">))</span>
-<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\begin</span><span class="si">{gathered}</span><span class="s2">"</span>
-            <span class="sa">r</span><span class="s2">"\underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">c_{i,x}c_{i,x} }_{\textrm{xx-Second-Order Moment}} ="</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">axx</span><span class="p">)</span>
-            <span class="o">+</span><span class="sa">r</span><span class="s2">",\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">c_{i,x}c_{i,y} }_{\textrm{xy-Second-Order Moment}} ="</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">axy</span><span class="p">)</span>
-            <span class="o">+</span><span class="sa">r</span><span class="s2">" \quad \quad and \quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">c_{i,y}c_{i,y} }_{\textrm{yy-Second-Order Moment}} ="</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">ayy</span><span class="p">)</span>
-            <span class="o">+</span><span class="sa">r</span><span class="s2">"\end</span><span class="si">{gathered}</span><span class="s2">"</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\begin</span><span class="si">{gathered}</span><span class="s2">&quot;</span>
+            <span class="sa">r</span><span class="s2">&quot;\underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">c_{i,x}c_{i,x} }_{\textrm{xx-Second-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">axx</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;,\quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">c_{i,x}c_{i,y} }_{\textrm{xy-Second-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">axy</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot; \quad \quad and \quad \quad \underbrace{\sum_{i=0} f_</span><span class="si">{i}</span><span class="s2">^</span><span class="si">{eq}</span><span class="s2">c_{i,y}c_{i,y} }_{\textrm{yy-Second-Order Moment}} =&quot;</span> <span class="o">+</span>  <span class="n">sp</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">ayy</span><span class="p">)</span>
+            <span class="o">+</span><span class="sa">r</span><span class="s2">&quot;\end</span><span class="si">{gathered}</span><span class="s2">&quot;</span>
             <span class="p">))</span>
 </pre></div>
 </div>
@@ -450,18 +458,18 @@ f_{i}\left(x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(\boldsym
 <section id="fdm-solution">
 <h3>FDM Solution:<a class="headerlink" href="#fdm-solution" title="Link to this heading"></a></h3>
 <div class="cell tag_hide-input tag_hide-output docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"ignore"</span><span class="p">)</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
-<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'mathtext.fontset'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'cm'</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
 <span class="c1">#--------------------------------------- Parameters (physical units) ------------------------------------------</span>
 <span class="n">L</span> <span class="o">=</span> <span class="mf">1.0</span>             <span class="c1"># Length of the domain</span>
 <span class="n">nu</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">/</span><span class="mf">3.0</span>        <span class="c1"># Diffusion coefficient</span>
@@ -472,13 +480,13 @@ f_{i}\left(x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(\boldsym
 <span class="n">c</span><span class="o">=</span><span class="mf">1.0</span><span class="o">*</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>        <span class="c1"># c=dx/dt</span>
 <span class="n">dt</span><span class="o">=</span><span class="n">dx</span><span class="o">/</span><span class="n">c</span>             <span class="c1"># Time step size</span>
 <span class="n">nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">t_end</span> <span class="o">/</span> <span class="n">dt</span><span class="p">)</span>    <span class="c1"># Time step number</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"dx=</span><span class="si">{</span><span class="n">dx</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> dt=</span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> nt=</span><span class="si">{</span><span class="n">nt</span><span class="si">:</span><span class="s2">d</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span> <span class="c1"># Print values for check</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dx=</span><span class="si">{</span><span class="n">dx</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> dt=</span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> nt=</span><span class="si">{</span><span class="n">nt</span><span class="si">:</span><span class="s2">d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># Print values for check</span>
 <span class="c1">#----------------------------------- Initialization - Numerical Arrays ----------------------------------------</span>
-<span class="n">Tf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span>
+<span class="n">Tf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">Nx</span><span class="p">)</span>
 <span class="n">Tf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="p">(</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">Tfp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span>
-<span class="n">AvTf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nt</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span>
+<span class="n">Tfp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">AvTf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nt</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
 <span class="c1">#----------------------------------------- Maind Loop --------------------------------------------------------</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nt</span><span class="p">):</span>
     <span class="n">Tfp</span><span class="p">[:]</span> <span class="o">=</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">Tf</span><span class="p">[:],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">Tf</span><span class="p">[:],</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
@@ -490,10 +498,10 @@ f_{i}\left(x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(\boldsym
 </div>
 </div>
 </details>
-<details class="admonition hide below-input">
+<details class="hide below-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell output</p>
-<p class="expanded admonition-title">Hide code cell output</p>
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dx=5.0000e-02	 dt=1.2500e-02	 nt=160
@@ -506,26 +514,26 @@ f_{i}\left(x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(\boldsym
 <section id="lbm-d1q3-solution-with-steady-scheme">
 <h3>LBM D1Q3 Solution With Steady-Scheme:<a class="headerlink" href="#lbm-d1q3-solution-with-steady-scheme" title="Link to this heading"></a></h3>
 <div class="cell tag_hide-input tag_hide-output docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"ignore"</span><span class="p">)</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
-<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'mathtext.fontset'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'cm'</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
 <span class="c1">#--------------------------------------- Parameters (physical units) ------------------------------------------</span>
 <span class="n">L</span> <span class="o">=</span> <span class="mf">1.0</span>                <span class="c1"># Length of the domain</span>
 <span class="n">nu</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">/</span><span class="mf">3.0</span>           <span class="c1"># Diffusion coefficient</span>
 <span class="n">t_end</span> <span class="o">=</span> <span class="mf">2.0</span>                <span class="c1"># Total simulation time</span>
 <span class="c1">#--------------------------------------- Lattice-Properties-D1Q3 ----------------------------------------------</span>
 <span class="n">cs</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">3.0</span><span class="p">);</span>
-<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span>
-<span class="n">cx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"int8"</span><span class="p">)</span>  
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">cx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int8&quot;</span><span class="p">)</span>  
 <span class="c1">#------------------------------------- Parameters (numerical units) -------------------------------------------</span>
 <span class="n">Nx</span><span class="o">=</span><span class="mi">21</span>                   <span class="c1">#Square Domain Length</span>
 <span class="n">dx</span> <span class="o">=</span> <span class="n">L</span> <span class="o">/</span> <span class="p">(</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>         <span class="c1"># Spatial step size</span>
@@ -534,15 +542,15 @@ f_{i}\left(x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(\boldsym
 <span class="n">nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">t_end</span> <span class="o">/</span> <span class="n">dt</span><span class="p">)</span>        <span class="c1"># Time step number</span>
 <span class="n">nue</span><span class="o">=</span><span class="n">nu</span><span class="o">/</span><span class="p">(</span><span class="n">c</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span>       <span class="c1"># Diffusion coefficient</span>
 <span class="n">tau</span><span class="o">=</span><span class="n">nue</span><span class="o">/</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mf">0.5</span>   <span class="c1"># Relaxation Time</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"dx=</span><span class="si">{</span><span class="n">dx</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> dt=</span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> nt=</span><span class="si">{</span><span class="n">nt</span><span class="si">:</span><span class="s2">d</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span> <span class="c1"># Print values for check</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"nue=</span><span class="si">{</span><span class="n">nue</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\t</span><span class="s2"> tau=</span><span class="si">{</span><span class="n">tau</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dx=</span><span class="si">{</span><span class="n">dx</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> dt=</span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> nt=</span><span class="si">{</span><span class="n">nt</span><span class="si">:</span><span class="s2">d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># Print values for check</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;nue=</span><span class="si">{</span><span class="n">nue</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\t</span><span class="s2"> tau=</span><span class="si">{</span><span class="n">tau</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="c1">#--------------------------------- Initialization - Numerical Arrays -----------------------------------------</span>
-<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">Nx</span><span class="p">)</span>
 <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="p">(</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span>
-<span class="n">fp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span>
-<span class="n">AvT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nt</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">fp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">AvT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nt</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
     <span class="n">fp</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span><span class="o">=</span><span class="n">w</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">T</span><span class="p">[:]</span>
 <span class="c1">#----------------------------------------- Maind Loop --------------------------------------------------------</span>
@@ -564,10 +572,10 @@ f_{i}\left(x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(\boldsym
 </div>
 </div>
 </details>
-<details class="admonition hide below-input">
+<details class="hide below-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell output</p>
-<p class="expanded admonition-title">Hide code cell output</p>
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dx=5.0000e-02	 dt=1.2500e-02	 nt=160
@@ -581,26 +589,26 @@ nue=0.1667	 tau=1.0000
 <section id="lbm-d1q2-solution-not-accept-the-steady-scheme">
 <h3>LBM D1Q2 Solution (Not Accept the Steady-Scheme):<a class="headerlink" href="#lbm-d1q2-solution-not-accept-the-steady-scheme" title="Link to this heading"></a></h3>
 <div class="cell tag_hide-input tag_hide-output docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"ignore"</span><span class="p">)</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
-<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'mathtext.fontset'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'cm'</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
 <span class="c1">#--------------------------------------- Parameters (physical units) ------------------------------------------</span>
 <span class="n">L</span> <span class="o">=</span> <span class="mf">1.0</span>                <span class="c1"># Length of the domain</span>
 <span class="n">nu</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">/</span><span class="mf">2.0</span>           <span class="c1"># Diffusion coefficient</span>
 <span class="n">t_end</span> <span class="o">=</span> <span class="mf">2.0</span>            <span class="c1"># Total simulation time</span>
 <span class="c1">#--------------------------------------- Lattice-Properties-D1Q2 ----------------------------------------------</span>
 <span class="n">cs</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span>
-<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">2.0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span>
-<span class="n">cx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"int8"</span><span class="p">)</span>  
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">2.0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">cx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int8&quot;</span><span class="p">)</span>  
 <span class="c1">#------------------------------------- Parameters (numerical units) -------------------------------------------</span>
 <span class="n">Nx</span><span class="o">=</span><span class="mi">21</span>                   <span class="c1"># Square Domain Length</span>
 <span class="n">dx</span> <span class="o">=</span> <span class="n">L</span> <span class="o">/</span> <span class="p">(</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>         <span class="c1"># Spatial step size</span>
@@ -609,15 +617,15 @@ nue=0.1667	 tau=1.0000
 <span class="n">nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">t_end</span> <span class="o">/</span> <span class="n">dt</span><span class="p">)</span>        <span class="c1"># Time step number</span>
 <span class="n">nue</span><span class="o">=</span><span class="n">nu</span><span class="o">/</span><span class="p">(</span><span class="n">c</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span>           <span class="c1"># Diffusion coefficient</span>
 <span class="n">tau</span><span class="o">=</span><span class="n">nue</span><span class="o">/</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mf">0.5</span>       <span class="c1"># Relaxation Time</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"dx=</span><span class="si">{</span><span class="n">dx</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> dt=</span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> nt=</span><span class="si">{</span><span class="n">nt</span><span class="si">:</span><span class="s2">d</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span> <span class="c1"># Print values for check</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"nue=</span><span class="si">{</span><span class="n">nue</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\t</span><span class="s2"> tau=</span><span class="si">{</span><span class="n">tau</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dx=</span><span class="si">{</span><span class="n">dx</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> dt=</span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> nt=</span><span class="si">{</span><span class="n">nt</span><span class="si">:</span><span class="s2">d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># Print values for check</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;nue=</span><span class="si">{</span><span class="n">nue</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\t</span><span class="s2"> tau=</span><span class="si">{</span><span class="n">tau</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="c1">#--------------------------------- Initialization - Numerical Arrays -----------------------------------------</span>
-<span class="n">T2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">Nx</span><span class="p">)</span>
 <span class="n">T2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="p">(</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span>
-<span class="n">fp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span>
-<span class="n">AvT2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nt</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">fp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">AvT2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nt</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
 <span class="n">fp</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span><span class="o">=</span><span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">T2</span><span class="p">[:]</span>
 <span class="n">fp</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span><span class="o">=</span><span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">T2</span><span class="p">[:]</span>
 <span class="c1">#----------------------------------------- Maind Loop --------------------------------------------------------</span>
@@ -638,10 +646,10 @@ nue=0.1667	 tau=1.0000
 </div>
 </div>
 </details>
-<details class="admonition hide below-input">
+<details class="hide below-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell output</p>
-<p class="expanded admonition-title">Hide code cell output</p>
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dx=5.0000e-02	 dt=1.2500e-02	 nt=160
@@ -655,26 +663,26 @@ nue=0.2500	 tau=1.0000
 <section id="lbm-d1q3-solution-transient">
 <h3>LBM D1Q3 Solution (Transient):<a class="headerlink" href="#lbm-d1q3-solution-transient" title="Link to this heading"></a></h3>
 <div class="cell tag_hide-input tag_hide-output docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"ignore"</span><span class="p">)</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
-<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'mathtext.fontset'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'cm'</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
 <span class="c1">#--------------------------------------- Parameters (physical units) ------------------------------------------</span>
 <span class="n">L</span> <span class="o">=</span> <span class="mf">1.0</span>                <span class="c1"># Length of the domain</span>
 <span class="n">nu</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">/</span><span class="mf">3.0</span>           <span class="c1"># Diffusion coefficient</span>
 <span class="n">t</span> <span class="o">=</span> <span class="mf">2.0</span>                <span class="c1"># Total simulation time</span>
 <span class="c1">#--------------------------------------- Lattice-Properties-D1Q3 ----------------------------------------------</span>
 <span class="n">cs</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">3.0</span><span class="p">);</span>
-<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span>
-<span class="n">cx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"int8"</span><span class="p">)</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">cx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int8&quot;</span><span class="p">)</span>
 <span class="c1">#------------------------------------- Parameters (numerical units) -------------------------------------------</span>
 <span class="n">Nx</span><span class="o">=</span><span class="mi">21</span>                   <span class="c1"># Square Domain Length</span>
 <span class="n">dx</span> <span class="o">=</span> <span class="n">L</span> <span class="o">/</span> <span class="p">(</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>         <span class="c1"># Spatial step size</span>
@@ -683,15 +691,15 @@ nue=0.2500	 tau=1.0000
 <span class="n">nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="n">dt</span><span class="p">)</span>        <span class="c1"># Time step number</span>
 <span class="n">nue</span><span class="o">=</span><span class="n">nu</span><span class="o">/</span><span class="p">(</span><span class="n">c</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span>       <span class="c1"># Diffusion coefficient</span>
 <span class="n">tau</span><span class="o">=</span><span class="n">nue</span><span class="o">/</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mf">0.5</span>   <span class="c1"># Relaxation Time</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"dx=</span><span class="si">{</span><span class="n">dx</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> dt=</span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> nt=</span><span class="si">{</span><span class="n">nt</span><span class="si">:</span><span class="s2">d</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span> <span class="c1"># Print values for check</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"nue=</span><span class="si">{</span><span class="n">nue</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\t</span><span class="s2"> tau=</span><span class="si">{</span><span class="n">tau</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dx=</span><span class="si">{</span><span class="n">dx</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> dt=</span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> nt=</span><span class="si">{</span><span class="n">nt</span><span class="si">:</span><span class="s2">d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># Print values for check</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;nue=</span><span class="si">{</span><span class="n">nue</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\t</span><span class="s2"> tau=</span><span class="si">{</span><span class="n">tau</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="c1">#--------------------------------- Initialization - Numerical Arrays -----------------------------------------</span>
-<span class="n">Tt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span>
+<span class="n">Tt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">Nx</span><span class="p">)</span>
 <span class="n">Tt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="p">(</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span>
-<span class="n">fp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span>
-<span class="n">AvTt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nt</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">fp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">AvTt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nt</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
     <span class="n">fp</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span><span class="o">=</span><span class="n">w</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">Tt</span><span class="p">[:]</span>
 <span class="c1">#----------------------------------------- Maind Loop --------------------------------------------------------</span>
@@ -712,10 +720,10 @@ nue=0.2500	 tau=1.0000
 </div>
 </div>
 </details>
-<details class="admonition hide below-input">
+<details class="hide below-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell output</p>
-<p class="expanded admonition-title">Hide code cell output</p>
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dx=5.0000e-02	 dt=1.2500e-02	 nt=160
@@ -729,20 +737,20 @@ nue=0.1667	 tau=1.0000
 <section id="numerical-and-analytical-comparisson">
 <h3>Numerical and Analytical Comparisson:<a class="headerlink" href="#numerical-and-analytical-comparisson" title="Link to this heading"></a></h3>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mf">3.5</span><span class="p">))</span>
 <span class="n">xl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nt</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">nt</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span> <span class="n">AvTf</span><span class="p">,</span> <span class="s1">'rs:'</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">'FDM - Steady-State'</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">'none'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span> <span class="n">AvT</span><span class="p">,</span> <span class="s1">'ko:'</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">'LBM $D1Q3$ - Steady-State'</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">'none'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span> <span class="n">AvT2</span><span class="p">,</span> <span class="s1">'cp:'</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">'LBM $D1Q2$'</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">'none'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span> <span class="n">AvTt</span><span class="p">,</span> <span class="s1">'b&gt;:'</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">'LBM $D1Q3$ - Transient'</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">'none'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">"$time-step$"</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">"$\phi_</span><span class="si">{Av}</span><span class="s2">(t)$"</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span> <span class="n">AvTf</span><span class="p">,</span> <span class="s1">&#39;rs:&#39;</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;FDM - Steady-State&#39;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span> <span class="n">AvT</span><span class="p">,</span> <span class="s1">&#39;ko:&#39;</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;LBM $D1Q3$ - Steady-State&#39;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span> <span class="n">AvT2</span><span class="p">,</span> <span class="s1">&#39;cp:&#39;</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;LBM $D1Q2$&#39;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span> <span class="n">AvTt</span><span class="p">,</span> <span class="s1">&#39;b&gt;:&#39;</span> <span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;LBM $D1Q3$ - Transient&#39;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$time-step$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\phi_</span><span class="si">{Av}</span><span class="s2">(t)$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
@@ -780,18 +788,18 @@ nue=0.1667	 tau=1.0000
 <section id="lbm-d2q5-code">
 <h3>LBM D2Q5 Code<a class="headerlink" href="#lbm-d2q5-code" title="Link to this heading"></a></h3>
 <div class="cell tag_skip-execution tag_hide-input tag_hide-output docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"ignore"</span><span class="p">)</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
-<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'mathtext.fontset'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'cm'</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
 <span class="c1">#--------------------------------------- Parameters (physical units) ------------------------------------------</span>
 <span class="c1">#------------Dimensionless-Data----------------</span>
 <span class="n">Lo</span> <span class="o">=</span> <span class="mf">1.0</span>       <span class="c1"># Length of the square domain</span>
@@ -799,9 +807,9 @@ nue=0.1667	 tau=1.0000
 <span class="n">t_end</span> <span class="o">=</span> <span class="mf">0.1</span>    <span class="c1"># Total simulation time</span>
 <span class="c1">#--------------------------------------- Lattice-Properties-D2Q5 ----------------------------------------------</span>
 <span class="n">cs</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">3.</span><span class="p">)</span> <span class="c1">#Lattice sound speed</span>
-<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span> <span class="c1"># Lattice weights</span>
-<span class="n">cx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"int16"</span><span class="p">)</span>  <span class="c1"># Lattice vectors</span>
-<span class="n">cy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"int16"</span><span class="p">)</span>  <span class="c1"># Lattice vectors</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span> <span class="c1"># Lattice weights</span>
+<span class="n">cx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int16&quot;</span><span class="p">)</span>  <span class="c1"># Lattice vectors</span>
+<span class="n">cy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int16&quot;</span><span class="p">)</span>  <span class="c1"># Lattice vectors</span>
 <span class="c1">#------------------------------------- Parameters (numerical units) -------------------------------------------</span>
 <span class="n">Nx</span><span class="o">=</span><span class="mi">201</span> <span class="c1">#Square Domain Length</span>
 <span class="n">Ny</span><span class="o">=</span><span class="n">Nx</span>
@@ -811,16 +819,16 @@ nue=0.1667	 tau=1.0000
 <span class="n">D</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">Do</span> <span class="o">/</span> <span class="p">(</span><span class="n">dx</span> <span class="o">*</span> <span class="n">dx</span><span class="p">);</span> 
 <span class="n">tau</span> <span class="o">=</span> <span class="p">(</span><span class="n">D</span> <span class="o">/</span> <span class="p">(</span><span class="n">cs</span> <span class="o">*</span> <span class="n">cs</span><span class="p">))</span> <span class="o">+</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">);</span> 
 <span class="n">mstep</span><span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">t_end</span> <span class="o">/</span> <span class="n">dt</span><span class="p">)</span>    <span class="c1"># Time step number</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"dx=</span><span class="si">{</span><span class="n">dx</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> dt=</span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> mstep=</span><span class="si">{</span><span class="n">mstep</span><span class="si">:</span><span class="s2">d</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span> <span class="c1"># Print values for check</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"D=</span><span class="si">{</span><span class="n">D</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\t</span><span class="s2"> tau=</span><span class="si">{</span><span class="n">tau</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dx=</span><span class="si">{</span><span class="n">dx</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> dt=</span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="se">\t</span><span class="s2"> mstep=</span><span class="si">{</span><span class="n">mstep</span><span class="si">:</span><span class="s2">d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># Print values for check</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;D=</span><span class="si">{</span><span class="n">D</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\t</span><span class="s2"> tau=</span><span class="si">{</span><span class="n">tau</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details>
-<details class="admonition hide below-input">
+<details class="hide below-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell output</p>
-<p class="expanded admonition-title">Hide code cell output</p>
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dx=5.0000e-03	 dt=4.2214e-06	 mstep=23688
@@ -831,35 +839,35 @@ D=0.1689	 tau=1.0066
 </details>
 </div>
 <div class="cell tag_skip-execution tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#--------------------------------- Initialization - Initial Condition -------------------------------------</span>
 <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">Lo</span><span class="p">,</span><span class="n">Nx</span><span class="p">)</span> <span class="c1">#x-array Length</span>
 <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">Lo</span><span class="p">,</span><span class="n">Ny</span><span class="p">)</span> <span class="c1">#y-array Length</span>
-<span class="n">p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span> <span class="c1">#Allocating Pressure Field</span>
+<span class="n">p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span> <span class="c1">#Allocating Pressure Field</span>
 <span class="c1"># ------------------------North-Boundary---------------------------------</span>
 <span class="n">p</span><span class="p">[:,</span><span class="n">Ny</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span> <span class="c1">#North Boundary</span>
-<span class="n">dxpn</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span> <span class="c1">#Allocating Pressure Field</span>
+<span class="n">dxpn</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span> <span class="c1">#Allocating Pressure Field</span>
 <span class="n">dxpn</span><span class="p">[:]</span><span class="o">=</span><span class="mi">0</span><span class="o">*</span><span class="n">dx</span> <span class="c1"># dxp North Boundary (To be used in Corner BC)</span>
 <span class="c1"># ------------------------South-Boundary---------------------------------</span>
 <span class="n">p</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">[:])</span> <span class="c1">#Pressure South Boundary</span>
-<span class="n">dxps</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span> <span class="c1">#Allocating Grad-Pressure</span>
+<span class="n">dxps</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span> <span class="c1">#Allocating Grad-Pressure</span>
 <span class="n">dxps</span><span class="p">[:]</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">[:])</span><span class="o">*</span><span class="n">dx</span> <span class="c1"># dxp South Boundary (To be used in Corner BC)</span>
 <span class="c1"># ------------------------West-Boundary---------------------------------</span>
 <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sinh</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">y</span><span class="p">[:]))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sinh</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="c1">#West Boundary</span>
-<span class="n">dypw</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Ny</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span> <span class="c1">#Allocating Grad-Pressure</span>
+<span class="n">dypw</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Ny</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span> <span class="c1">#Allocating Grad-Pressure</span>
 <span class="n">dypw</span><span class="p">[:]</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cosh</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">y</span><span class="p">[:]))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sinh</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span> <span class="c1"># dyp West Boundary (To be used in Corner BC)</span>
 <span class="c1"># ------------------------East-Boundary---------------------------------</span>
 <span class="n">p</span><span class="p">[</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">sinh</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">y</span><span class="p">[:]))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sinh</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="c1">#East Boundary</span>
-<span class="n">dype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Ny</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span> <span class="c1">#Allocating Grad-Pressure</span>
+<span class="n">dype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Ny</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span> <span class="c1">#Allocating Grad-Pressure</span>
 <span class="n">dype</span><span class="p">[:]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cosh</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">y</span><span class="p">[:]))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sinh</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span> <span class="c1"># dyp East Boundary (To be used in Corner BC)</span>
 <span class="c1">#----------------------------- Initialization - Distribution Function --------------------------------------</span>
-<span class="n">f</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span> <span class="c1">#Allocating Distribution Function</span>
-<span class="n">fp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span> <span class="c1">#Allocating Post-Colisional Distribution Function</span>
+<span class="n">f</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span> <span class="c1">#Allocating Distribution Function</span>
+<span class="n">fp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span> <span class="c1">#Allocating Post-Colisional Distribution Function</span>
 <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span><span class="o">=</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)</span><span class="o">*</span><span class="n">p</span><span class="p">[:,:]</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span>
     <span class="n">fp</span><span class="p">[</span><span class="n">k</span><span class="p">,:,:]</span><span class="o">=</span><span class="n">w</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">p</span><span class="p">[:,:]</span>
@@ -869,13 +877,13 @@ D=0.1689	 tau=1.0066
 </details>
 </div>
 <div class="cell tag_skip-execution tag_hide-input tag_hide-output docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
 <span class="n">start</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">mstep</span><span class="p">):</span>
     <span class="c1">#*******Streaming********</span>
@@ -910,16 +918,16 @@ D=0.1689	 tau=1.0066
 <span class="n">runtime</span> <span class="o">=</span> <span class="n">end</span><span class="o">-</span><span class="n">start</span><span class="p">;</span>
 <span class="n">nodes_updated</span> <span class="o">=</span> <span class="n">mstep</span><span class="o">*</span><span class="n">Nx</span><span class="o">*</span><span class="n">Ny</span><span class="p">;</span>
 <span class="n">speed</span> <span class="o">=</span> <span class="n">nodes_updated</span><span class="o">/</span><span class="p">(</span><span class="mf">1e6</span><span class="o">*</span><span class="n">runtime</span><span class="p">);</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">'runtime='</span><span class="p">,</span><span class="n">runtime</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">'Mlups='</span><span class="p">,</span><span class="n">speed</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;runtime=&#39;</span><span class="p">,</span><span class="n">runtime</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mlups=&#39;</span><span class="p">,</span><span class="n">speed</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details>
-<details class="admonition hide below-input">
+<details class="hide below-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell output</p>
-<p class="expanded admonition-title">Hide code cell output</p>
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>runtime= 61.68552303314209
@@ -930,41 +938,41 @@ Mlups= 15.514481209567077
 </details>
 </div>
 <div class="cell tag_skip-execution tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ---------------------- Calculating Gradients ------------------------------</span>
-<span class="n">dpx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span>
-<span class="n">dpy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span>
-<span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span>
-<span class="n">v</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span>
-<span class="n">dxr</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">'i,ixy-&gt;xy'</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span>
-<span class="n">dyr</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">'i,ixy-&gt;xy'</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span>
-<span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">'i,ixy-&gt;xy'</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">tau</span><span class="p">))</span>
-<span class="n">v</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">'i,ixy-&gt;xy'</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">tau</span><span class="p">))</span>
+<span class="n">dpx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">dpy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">v</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">dxr</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;i,ixy-&gt;xy&#39;</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span>
+<span class="n">dyr</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;i,ixy-&gt;xy&#39;</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span>
+<span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;i,ixy-&gt;xy&#39;</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">tau</span><span class="p">))</span>
+<span class="n">v</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;i,ixy-&gt;xy&#39;</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">tau</span><span class="p">))</span>
 <span class="c1"># -------------------------- Plot Results -----------------------------------</span>
 <span class="n">fig1</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span><span class="n">ax2</span><span class="p">,</span><span class="n">ax3</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="c1"># -----------------------PLot-1-------------------------------</span>
-<span class="n">img1</span><span class="o">=</span><span class="n">ax1</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">p</span><span class="p">),</span><span class="n">cmap</span><span class="o">=</span><span class="s1">'jet'</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">'none'</span><span class="p">)</span>
+<span class="n">img1</span><span class="o">=</span><span class="n">ax1</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">p</span><span class="p">),</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 <span class="n">fig1</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'$x$'</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'$y$'</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"$Pressure$ $Field$"</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;$Pressure$ $Field$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="c1"># -----------------------PLot-2-------------------------------</span>
-<span class="n">img2</span><span class="o">=</span><span class="n">ax2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">u</span><span class="p">),</span><span class="n">cmap</span><span class="o">=</span><span class="s1">'jet'</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">'none'</span><span class="p">)</span>
+<span class="n">img2</span><span class="o">=</span><span class="n">ax2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">u</span><span class="p">),</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 <span class="n">fig1</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'$x$'</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'$y$'</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"$x-Velocity$ $Field$"</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;$x-Velocity$ $Field$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="c1"># -----------------------PLot-3-------------------------------</span>
-<span class="n">img3</span><span class="o">=</span><span class="n">ax3</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">v</span><span class="p">),</span><span class="n">cmap</span><span class="o">=</span><span class="s1">'jet'</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">'none'</span><span class="p">)</span>
+<span class="n">img3</span><span class="o">=</span><span class="n">ax3</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">v</span><span class="p">),</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 <span class="n">fig1</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img3</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax3</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'$x$'</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'$y$'</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"$y-Velocity$ $Field$"</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;$y-Velocity$ $Field$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">fig1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -975,10 +983,10 @@ Mlups= 15.514481209567077
 </div>
 </div>
 <div class="cell tag_skip-execution tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#----------------------------- Analytical-Slution --------------------------------------</span>
@@ -992,31 +1000,31 @@ Mlups= 15.514481209567077
 </details>
 </div>
 <div class="cell tag_skip-execution tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig1</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span><span class="n">ax2</span><span class="p">,</span><span class="n">ax3</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="c1"># -----------------------PLot-1-------------------------------</span>
-<span class="n">img1</span><span class="o">=</span><span class="n">ax1</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="n">pana</span><span class="p">),</span><span class="n">cmap</span><span class="o">=</span><span class="s1">'jet'</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">'none'</span><span class="p">)</span>
+<span class="n">img1</span><span class="o">=</span><span class="n">ax1</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="n">pana</span><span class="p">),</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 <span class="n">fig1</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'$x$'</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'$y$'</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"$P_</span><span class="si">{num}</span><span class="s2">-P_</span><span class="si">{ana}</span><span class="s2">$"</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;$P_</span><span class="si">{num}</span><span class="s2">-P_</span><span class="si">{ana}</span><span class="s2">$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="c1"># -----------------------PLot-2-------------------------------</span>
-<span class="n">img2</span><span class="o">=</span><span class="n">ax2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">u</span><span class="o">+</span><span class="n">dxp</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="p">),</span><span class="n">cmap</span><span class="o">=</span><span class="s1">'jet'</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">'none'</span><span class="p">)</span>
+<span class="n">img2</span><span class="o">=</span><span class="n">ax2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">u</span><span class="o">+</span><span class="n">dxp</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="p">),</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 <span class="n">fig1</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'$x$'</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'$y$'</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"$Vx_</span><span class="si">{num}</span><span class="s2">-Vx_</span><span class="si">{ana}</span><span class="s2">$"</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;$Vx_</span><span class="si">{num}</span><span class="s2">-Vx_</span><span class="si">{ana}</span><span class="s2">$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="c1"># -----------------------PLot-3-------------------------------</span>
-<span class="n">img3</span><span class="o">=</span><span class="n">ax3</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">v</span><span class="o">+</span><span class="n">dyp</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="p">),</span><span class="n">cmap</span><span class="o">=</span><span class="s1">'jet'</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">'none'</span><span class="p">)</span>
+<span class="n">img3</span><span class="o">=</span><span class="n">ax3</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">v</span><span class="o">+</span><span class="n">dyp</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="p">),</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 <span class="n">fig1</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img3</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax3</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'$x$'</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'$y$'</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"$Vy_</span><span class="si">{num}</span><span class="s2">-Vy_</span><span class="si">{ana}</span><span class="s2">$"</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;$Vy_</span><span class="si">{num}</span><span class="s2">-Vy_</span><span class="si">{ana}</span><span class="s2">$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">fig1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1027,42 +1035,42 @@ Mlups= 15.514481209567077
 </div>
 </div>
 <div class="cell tag_hide-input tag_skip-execution docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig1</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span><span class="n">ax2</span><span class="p">,</span><span class="n">ax3</span><span class="p">,</span><span class="n">ax4</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
-<span class="n">fig1</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">r</span><span class="s2">"$Gradient$ $Pressure$ $Comparison$"</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">fig1</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$Gradient$ $Pressure$ $Comparison$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="c1"># -----------------------PLot-1-------------------------------</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="n">dxp</span><span class="p">[</span><span class="nb">int</span><span class="p">((</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">),:],</span><span class="s1">'k-'</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">'Analytical'</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">[</span><span class="nb">int</span><span class="p">((</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">),:]</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="n">dt</span><span class="p">,</span><span class="s1">'r--'</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">'Numerical'</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="n">dxp</span><span class="p">[</span><span class="nb">int</span><span class="p">((</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">),:],</span><span class="s1">&#39;k-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Analytical&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">[</span><span class="nb">int</span><span class="p">((</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">),:]</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="n">dt</span><span class="p">,</span><span class="s1">&#39;r--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Numerical&#39;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">3.5</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'$y$'</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'$u_</span><span class="si">{x}</span><span class="s1">(0.5,y)$'</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$u_</span><span class="si">{x}</span><span class="s1">(0.5,y)$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 <span class="c1"># -----------------------PLot-2-------------------------------</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="o">-</span><span class="n">dyp</span><span class="p">[</span><span class="nb">int</span><span class="p">((</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">),:],</span><span class="s1">'k-'</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">'Analytical'</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">v</span><span class="p">[</span><span class="nb">int</span><span class="p">((</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">),:]</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="n">dt</span><span class="p">,</span><span class="s1">'r--'</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">'Numerical'</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="o">-</span><span class="n">dyp</span><span class="p">[</span><span class="nb">int</span><span class="p">((</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">),:],</span><span class="s1">&#39;k-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Analytical&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">v</span><span class="p">[</span><span class="nb">int</span><span class="p">((</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">),:]</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="n">dt</span><span class="p">,</span><span class="s1">&#39;r--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Numerical&#39;</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'$y$'</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'$u_</span><span class="si">{y}</span><span class="s1">(0.5,y)$'</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$u_</span><span class="si">{y}</span><span class="s1">(0.5,y)$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 <span class="c1"># -----------------------PLot-3-------------------------------</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="n">dxp</span><span class="p">[:,</span><span class="nb">int</span><span class="p">((</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)],</span><span class="s1">'k-'</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">'Analytical'</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">[:,</span><span class="nb">int</span><span class="p">((</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="n">dt</span><span class="p">,</span><span class="s1">'r--'</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">'Numerical'</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="n">dxp</span><span class="p">[:,</span><span class="nb">int</span><span class="p">((</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)],</span><span class="s1">&#39;k-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Analytical&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">[:,</span><span class="nb">int</span><span class="p">((</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="n">dt</span><span class="p">,</span><span class="s1">&#39;r--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Numerical&#39;</span><span class="p">)</span>
 <span class="n">ax3</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="n">ax3</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.7</span><span class="p">)</span>
 <span class="n">ax3</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'$x$'</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'$u_</span><span class="si">{x}</span><span class="s1">(x,0.5)$'</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$u_</span><span class="si">{x}</span><span class="s1">(x,0.5)$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 <span class="c1"># -----------------------PLot-4-------------------------------</span>
-<span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="o">-</span><span class="n">dyp</span><span class="p">[:,</span><span class="nb">int</span><span class="p">((</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)],</span><span class="s1">'k-'</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">'Analytical'</span><span class="p">)</span>
-<span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">v</span><span class="p">[:,</span><span class="nb">int</span><span class="p">((</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="n">dt</span><span class="p">,</span><span class="s1">'r--'</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">'Numerical'</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="o">-</span><span class="n">dyp</span><span class="p">[:,</span><span class="nb">int</span><span class="p">((</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)],</span><span class="s1">&#39;k-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Analytical&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">v</span><span class="p">[:,</span><span class="nb">int</span><span class="p">((</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="n">dt</span><span class="p">,</span><span class="s1">&#39;r--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Numerical&#39;</span><span class="p">)</span>
 <span class="n">ax4</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="n">ax4</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.</span><span class="p">)</span>
 <span class="n">ax4</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="n">ax4</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'$x$'</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'$u_</span><span class="si">{y}</span><span class="s1">(x,0.5)$'</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$u_</span><span class="si">{y}</span><span class="s1">(x,0.5)$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 <span class="n">fig1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1073,30 +1081,30 @@ Mlups= 15.514481209567077
 </div>
 </div>
 <div class="cell tag_skip-execution tag_hide-input tag_hide-output docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Errop</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">p</span><span class="o">-</span><span class="n">pana</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">pana</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">'ErroP='</span><span class="p">,</span><span class="n">Errop</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ErroP=&#39;</span><span class="p">,</span><span class="n">Errop</span><span class="p">)</span>
 <span class="n">ErroDxp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">dxr</span><span class="o">-</span><span class="n">dxp</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">dxp</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">'ErroDxP='</span><span class="p">,</span><span class="n">ErroDxp</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ErroDxP=&#39;</span><span class="p">,</span><span class="n">ErroDxp</span><span class="p">)</span>
 <span class="n">ErroDyp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">dyr</span><span class="o">-</span><span class="n">dyp</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">dyp</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">'ErroDyP='</span><span class="p">,</span><span class="n">ErroDyp</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ErroDyP=&#39;</span><span class="p">,</span><span class="n">ErroDyp</span><span class="p">)</span>
 <span class="n">ErroU</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">u</span><span class="o">+</span><span class="n">dxp</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">dxp</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">'ErroU='</span><span class="p">,</span><span class="n">ErroU</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ErroU=&#39;</span><span class="p">,</span><span class="n">ErroU</span><span class="p">)</span>
 <span class="n">ErroV</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">v</span><span class="o">+</span><span class="n">dyp</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">dyp</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">'ErroV='</span><span class="p">,</span><span class="n">ErroV</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ErroV=&#39;</span><span class="p">,</span><span class="n">ErroV</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details>
-<details class="admonition hide below-input">
+<details class="hide below-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell output</p>
-<p class="expanded admonition-title">Hide code cell output</p>
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ErroP= 0.00028686139633696554
@@ -1110,10 +1118,10 @@ ErroV= 0.00030410178129034425
 </details>
 </div>
 <div class="cell tag_skip-execution tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ep0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">7.581804223832276e-05</span><span class="p">,</span><span class="mf">1.9455755168783066e-05</span><span class="p">,</span><span class="mf">3.516132010721964e-06</span><span class="p">])</span>
@@ -1129,10 +1137,10 @@ ErroV= 0.00030410178129034425
 </details>
 </div>
 <div class="cell tag_skip-execution tag_hide-input tag_hide-output docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Ep0</span><span class="p">)</span>
@@ -1142,10 +1150,10 @@ ErroV= 0.00030410178129034425
 </div>
 </div>
 </details>
-<details class="admonition hide below-input">
+<details class="hide below-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell output</p>
-<p class="expanded admonition-title">Hide code cell output</p>
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[7.58180422e-05 1.94557552e-05 3.51613201e-06]
@@ -1156,10 +1164,10 @@ ErroV= 0.00030410178129034425
 </details>
 </div>
 <div class="cell tag_skip-execution tag_hide-input tag_hide-output docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Eu0</span><span class="p">)</span>
@@ -1169,10 +1177,10 @@ ErroV= 0.00030410178129034425
 </div>
 </div>
 </details>
-<details class="admonition hide below-input">
+<details class="hide below-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell output</p>
-<p class="expanded admonition-title">Hide code cell output</p>
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[6.49476104e-04 1.61590758e-04 4.06103894e-05]
@@ -1183,10 +1191,10 @@ ErroV= 0.00030410178129034425
 </details>
 </div>
 <div class="cell tag_skip-execution tag_hide-input tag_hide-output docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Ev0</span><span class="p">)</span>
@@ -1196,10 +1204,10 @@ ErroV= 0.00030410178129034425
 </div>
 </div>
 </details>
-<details class="admonition hide below-input">
+<details class="hide below-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell output</p>
-<p class="expanded admonition-title">Hide code cell output</p>
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[6.27617921e-04 1.58097952e-04 4.03779735e-05]
@@ -1210,30 +1218,30 @@ ErroV= 0.00030410178129034425
 </details>
 </div>
 <div class="cell tag_skip-execution tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mf">3.5</span><span class="p">))</span>
-<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'mathtext.fontset'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'cm'</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"$Grid$ $Convergence$ $Test$"</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">Malha</span><span class="p">,</span><span class="n">Ep0</span><span class="p">,</span><span class="s1">'rs--'</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">'none'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'$</span><span class="se">\\</span><span class="s1">tau=1$ - $E_</span><span class="si">{p}</span><span class="s1">=-2.23$'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">Malha</span><span class="p">,</span><span class="n">Eu0</span><span class="p">,</span><span class="s1">'ro:'</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">'none'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'$</span><span class="se">\\</span><span class="s1">tau=1$ - $E_{u_</span><span class="si">{x}</span><span class="s1">}=-2.02$'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">Malha</span><span class="p">,</span><span class="n">Ev0</span><span class="p">,</span><span class="s1">'rv-.'</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">'none'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'$</span><span class="se">\\</span><span class="s1">tau=1$ - $E_{u_</span><span class="si">{y}</span><span class="s1">}=-2.00$'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">Malha</span><span class="p">,</span><span class="n">Ep1</span><span class="p">,</span><span class="s1">'ks--'</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">'none'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'$</span><span class="se">\\</span><span class="s1">tau=0.79$ - $E_</span><span class="si">{p}</span><span class="s1">=-2.01$'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">Malha</span><span class="p">,</span><span class="n">Eu1</span><span class="p">,</span><span class="s1">'ko:'</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">'none'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'$</span><span class="se">\\</span><span class="s1">tau=0.79$ - $E_{u_</span><span class="si">{x}</span><span class="s1">}=-2.03$'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">Malha</span><span class="p">,</span><span class="n">Ev1</span><span class="p">,</span><span class="s1">'kv-.'</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">'none'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'$</span><span class="se">\\</span><span class="s1">tau=0.79$ - $E_{u_</span><span class="si">{y}</span><span class="s1">}=-2.01$'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">Malha</span><span class="p">,</span><span class="mf">4.</span><span class="o">*</span><span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="n">Malha</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span><span class="s1">'k-'</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">'none'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.009</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="s2">"$2nd-order$ $Slope$"</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;$Grid$ $Convergence$ $Test$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">Malha</span><span class="p">,</span><span class="n">Ep0</span><span class="p">,</span><span class="s1">&#39;rs--&#39;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">tau=1$ - $E_</span><span class="si">{p}</span><span class="s1">=-2.23$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">Malha</span><span class="p">,</span><span class="n">Eu0</span><span class="p">,</span><span class="s1">&#39;ro:&#39;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">tau=1$ - $E_{u_</span><span class="si">{x}</span><span class="s1">}=-2.02$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">Malha</span><span class="p">,</span><span class="n">Ev0</span><span class="p">,</span><span class="s1">&#39;rv-.&#39;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">tau=1$ - $E_{u_</span><span class="si">{y}</span><span class="s1">}=-2.00$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">Malha</span><span class="p">,</span><span class="n">Ep1</span><span class="p">,</span><span class="s1">&#39;ks--&#39;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">tau=0.79$ - $E_</span><span class="si">{p}</span><span class="s1">=-2.01$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">Malha</span><span class="p">,</span><span class="n">Eu1</span><span class="p">,</span><span class="s1">&#39;ko:&#39;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">tau=0.79$ - $E_{u_</span><span class="si">{x}</span><span class="s1">}=-2.03$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">Malha</span><span class="p">,</span><span class="n">Ev1</span><span class="p">,</span><span class="s1">&#39;kv-.&#39;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">tau=0.79$ - $E_{u_</span><span class="si">{y}</span><span class="s1">}=-2.01$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">Malha</span><span class="p">,</span><span class="mf">4.</span><span class="o">*</span><span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="n">Malha</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;k-&#39;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.009</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="s2">&quot;$2nd-order$ $Slope$&quot;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">ncol</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mf">8.5</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'$E_{\eta}$'</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">'right'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'$\Delta x$'</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$E_{\eta}$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$\Delta x$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="c1"># plt.savefig('conv', dpi=300, bbox_inches='tight')</span>
+<span class="c1"># plt.savefig(&#39;conv&#39;, dpi=300, bbox_inches=&#39;tight&#39;)</span>
 </pre></div>
 </div>
 </div>

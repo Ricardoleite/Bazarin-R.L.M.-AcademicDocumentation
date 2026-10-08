@@ -1,49 +1,57 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../../">
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Boundary Conditions: Deduction for the Lattice D2Q5 - Poisson Equation &mdash; Academic-Live-Documentation 1.0.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/sphinx_rtd_size.css?v=f26ae176" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/eqno.css?v=188b0fb8" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=c4599ffd" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/sidebar.css?v=59d17752" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/rolamento-lateral.css?v=9c164f7b" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/toogle-button-hide-input.css?v=f3d80af2" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/center-figures.css?v=a6625654" />
-
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/sphinx_rtd_size.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sphinx-thebe.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/eqno.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/sidebar.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/rolamento-lateral.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/toogle-button-hide-input.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/center-figures.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=8d563738"></script>
-      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
-      <script src="../../../_static/copybutton.js?v=f281be69"></script>
-      <script>let toggleHintShow = 'Click to show';</script>
-      <script>let toggleHintHide = 'Click to hide';</script>
-      <script>let toggleOpenOnPrint = 'true';</script>
-      <script src="../../../_static/togglebutton.js?v=b8b12719"></script>
-      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
-      <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-      <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
-      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-      <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      <script src="../../../_static/css/sidebar.js?v=29393464"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+        <script async="async" src="../../../_static/sphinx-thebe.js?v=afe5de03"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+        <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../../_static/css/sidebar.js?v=29393464"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -148,26 +156,26 @@
   <section class="tex2jax_ignore mathjax_ignore" id="boundary-conditions-deduction-for-the-lattice-d2q5-poisson-equation">
 <h1>Boundary Conditions: Deduction for the Lattice D2Q5 - Poisson Equation<a class="headerlink" href="#boundary-conditions-deduction-for-the-lattice-d2q5-poisson-equation" title="Link to this heading"></a></h1>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">division</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="kn">import</span> <span class="n">S</span><span class="p">,</span> <span class="n">collect</span><span class="p">,</span> <span class="n">expand</span><span class="p">,</span> <span class="n">factor</span><span class="p">,</span> <span class="n">Wild</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="kn">import</span> <span class="n">fraction</span><span class="p">,</span> <span class="n">Rational</span><span class="p">,</span> <span class="n">Symbol</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">S</span><span class="p">,</span> <span class="n">collect</span><span class="p">,</span> <span class="n">expand</span><span class="p">,</span> <span class="n">factor</span><span class="p">,</span> <span class="n">Wild</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">fraction</span><span class="p">,</span> <span class="n">Rational</span><span class="p">,</span> <span class="n">Symbol</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">solve</span>
 <span class="c1">#-------------------------------------------------Symbols----------------------------------------------</span>
-<span class="n">p</span><span class="p">,</span> <span class="n">dpx</span><span class="p">,</span> <span class="n">dpy</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">'\widehat</span><span class="si">{p}</span><span class="s1"> </span><span class="se">\\</span><span class="s1">partial_</span><span class="si">{x}</span><span class="s1">\widehat</span><span class="si">{p}</span><span class="s1"> </span><span class="se">\\</span><span class="s1">partial_</span><span class="si">{y}</span><span class="s1">\widehat</span><span class="si">{p}</span><span class="s1">'</span><span class="p">)</span>
-<span class="n">ux</span><span class="p">,</span> <span class="n">uy</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">cs</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">'u_</span><span class="si">{x}</span><span class="s1"> u_</span><span class="si">{y}</span><span class="s1"> </span><span class="se">\\</span><span class="s1">tau c_</span><span class="si">{s}</span><span class="s1">'</span><span class="p">)</span>
-<span class="n">wi</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">'w_</span><span class="si">{i}</span><span class="s1"> c_</span><span class="si">{x}</span><span class="s1"> c_</span><span class="si">{y}</span><span class="s1">'</span><span class="p">)</span>
-<span class="n">fi</span><span class="p">,</span> <span class="n">f0</span><span class="p">,</span> <span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="n">f3</span><span class="p">,</span> <span class="n">f4</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">'f_</span><span class="si">{i}</span><span class="s1"> f_</span><span class="si">{0}</span><span class="s1"> f_</span><span class="si">{1}</span><span class="s1"> f_</span><span class="si">{2}</span><span class="s1"> f_</span><span class="si">{3}</span><span class="s1"> f_</span><span class="si">{4}</span><span class="s1">'</span><span class="p">)</span>
+<span class="n">p</span><span class="p">,</span> <span class="n">dpx</span><span class="p">,</span> <span class="n">dpy</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;\widehat</span><span class="si">{p}</span><span class="s1"> </span><span class="se">\\</span><span class="s1">partial_</span><span class="si">{x}</span><span class="s1">\widehat</span><span class="si">{p}</span><span class="s1"> </span><span class="se">\\</span><span class="s1">partial_</span><span class="si">{y}</span><span class="s1">\widehat</span><span class="si">{p}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">ux</span><span class="p">,</span> <span class="n">uy</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">cs</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;u_</span><span class="si">{x}</span><span class="s1"> u_</span><span class="si">{y}</span><span class="s1"> </span><span class="se">\\</span><span class="s1">tau c_</span><span class="si">{s}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">wi</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;w_</span><span class="si">{i}</span><span class="s1"> c_</span><span class="si">{x}</span><span class="s1"> c_</span><span class="si">{y}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">fi</span><span class="p">,</span> <span class="n">f0</span><span class="p">,</span> <span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="n">f3</span><span class="p">,</span> <span class="n">f4</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;f_</span><span class="si">{i}</span><span class="s1"> f_</span><span class="si">{0}</span><span class="s1"> f_</span><span class="si">{1}</span><span class="s1"> f_</span><span class="si">{2}</span><span class="s1"> f_</span><span class="si">{3}</span><span class="s1"> f_</span><span class="si">{4}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="c1">#-------------------------------------------------Functions----------------------------------------------</span>
-<span class="n">feq</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="s1">'feq'</span><span class="p">)(</span><span class="n">wi</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">)</span>
-<span class="n">f</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="s1">'f'</span><span class="p">)(</span><span class="n">fi</span><span class="p">)</span>
+<span class="n">feq</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="s1">&#39;feq&#39;</span><span class="p">)(</span><span class="n">wi</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">)(</span><span class="n">fi</span><span class="p">)</span>
 <span class="c1">#-------------------------------------------------Arrays----------------------------------------------</span>
 <span class="n">fi</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">f0</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">,</span><span class="n">f3</span><span class="p">,</span><span class="n">f4</span><span class="p">])</span>
 <span class="n">wi</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">Rational</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)])</span>
@@ -187,10 +195,10 @@
 <section id="pressure-moment">
 <h3>Pressure Moment<a class="headerlink" href="#pressure-moment" title="Link to this heading"></a></h3>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">An0</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">wi</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">-</span><span class="n">p</span><span class="p">)</span>
@@ -209,10 +217,10 @@
 <section id="camada-norte">
 <h3>Camada Norte<a class="headerlink" href="#camada-norte" title="Link to this heading"></a></h3>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sols</span> <span class="o">=</span> <span class="n">solve</span><span class="p">([</span><span class="n">An0</span><span class="p">],</span> <span class="p">[</span><span class="n">f4</span><span class="p">],</span> <span class="nb">dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -233,10 +241,10 @@
 <section id="camada-sul">
 <h3>Camada Sul<a class="headerlink" href="#camada-sul" title="Link to this heading"></a></h3>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sols</span> <span class="o">=</span> <span class="n">solve</span><span class="p">([</span><span class="n">An0</span><span class="p">],</span> <span class="p">[</span><span class="n">f2</span><span class="p">],</span> <span class="nb">dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -257,10 +265,10 @@
 <section id="camada-oeste">
 <h3>Camada Oeste<a class="headerlink" href="#camada-oeste" title="Link to this heading"></a></h3>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sols</span> <span class="o">=</span> <span class="n">solve</span><span class="p">([</span><span class="n">An0</span><span class="p">],</span> <span class="p">[</span><span class="n">f1</span><span class="p">],</span> <span class="nb">dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -281,10 +289,10 @@
 <section id="camada-leste">
 <h3>Camada Leste<a class="headerlink" href="#camada-leste" title="Link to this heading"></a></h3>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sols</span> <span class="o">=</span> <span class="n">solve</span><span class="p">([</span><span class="n">An0</span><span class="p">],</span> <span class="p">[</span><span class="n">f3</span><span class="p">],</span> <span class="nb">dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -308,10 +316,10 @@
 <section id="camada-noroeste">
 <h3>Camada Noroeste<a class="headerlink" href="#camada-noroeste" title="Link to this heading"></a></h3>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Bn0</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="p">(</span><span class="n">cx</span><span class="o">+</span><span class="n">cy</span><span class="p">))</span><span class="o">+</span><span class="p">(</span><span class="n">dpx</span><span class="o">+</span><span class="n">dpy</span><span class="p">)</span><span class="o">*</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span>
@@ -327,10 +335,10 @@
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sols</span> <span class="o">=</span> <span class="n">solve</span><span class="p">([</span><span class="n">An0</span><span class="p">,</span> <span class="n">Bn0</span><span class="p">],</span> <span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f4</span><span class="p">],</span> <span class="nb">dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -352,10 +360,10 @@
 <section id="camada-nordeste">
 <h2>Camada Nordeste<a class="headerlink" href="#camada-nordeste" title="Link to this heading"></a></h2>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Bn0</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="p">(</span><span class="n">cx</span><span class="o">-</span><span class="n">cy</span><span class="p">))</span><span class="o">+</span><span class="p">(</span><span class="n">dpx</span><span class="o">-</span><span class="n">dpy</span><span class="p">)</span><span class="o">*</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span>
@@ -371,10 +379,10 @@
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sols</span> <span class="o">=</span> <span class="n">solve</span><span class="p">([</span><span class="n">An0</span><span class="p">,</span> <span class="n">Bn0</span><span class="p">],</span> <span class="p">[</span><span class="n">f3</span><span class="p">,</span><span class="n">f4</span><span class="p">],</span> <span class="nb">dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -395,10 +403,10 @@
 <section id="camada-sudoeste">
 <h2>Camada Sudoeste<a class="headerlink" href="#camada-sudoeste" title="Link to this heading"></a></h2>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Bn0</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="p">(</span><span class="n">cx</span><span class="o">-</span><span class="n">cy</span><span class="p">))</span><span class="o">+</span><span class="p">(</span><span class="n">dpx</span><span class="o">-</span><span class="n">dpy</span><span class="p">)</span><span class="o">*</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span>
@@ -414,10 +422,10 @@
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sols</span> <span class="o">=</span> <span class="n">solve</span><span class="p">([</span><span class="n">An0</span><span class="p">,</span> <span class="n">Bn0</span><span class="p">],</span> <span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">],</span> <span class="nb">dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -438,10 +446,10 @@
 <section id="camada-sudeste">
 <h2>Camada Sudeste<a class="headerlink" href="#camada-sudeste" title="Link to this heading"></a></h2>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Bn0</span><span class="o">=</span><span class="n">simplify</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="p">(</span><span class="n">cx</span><span class="o">+</span><span class="n">cy</span><span class="p">))</span><span class="o">+</span><span class="p">(</span><span class="n">dpx</span><span class="o">+</span><span class="n">dpy</span><span class="p">)</span><span class="o">*</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span>
@@ -457,10 +465,10 @@
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sols</span> <span class="o">=</span> <span class="n">solve</span><span class="p">([</span><span class="n">An0</span><span class="p">,</span> <span class="n">Bn0</span><span class="p">],</span> <span class="p">[</span><span class="n">f2</span><span class="p">,</span><span class="n">f3</span><span class="p">],</span> <span class="nb">dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>

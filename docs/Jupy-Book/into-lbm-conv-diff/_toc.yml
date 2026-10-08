@@ -9,5 +9,8 @@ parts:
       - file: LBM-Study/Convective-Equation
       - file: LBM-Study/Convective-Diffusive-Equation
       - file: Refs/LBM-Study/intro-nse-lbm/Navier-Stokes-Equation
+  - caption: "Finite Difference Structure of Lattice Boltzmann Method"
+    chapters:
+      - file: Refs/LBM-Study/FDM-Belloti/FDM-LBM-Diffusive
       - file: Refs/Citations
       
