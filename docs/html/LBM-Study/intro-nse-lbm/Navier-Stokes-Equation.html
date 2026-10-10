@@ -167,7 +167,7 @@ const thebe_selector_output = ".output, .cell_output"
 \underbrace{\partial_t \rho + \partial_{\alpha}\rho u_{\alpha} = 0}_{\textrm{Mass Balance Equation}},
 \]</div>
 <div class="math notranslate nohighlight" id="equation-ns-eq-lb">
-<span class="eqno">(72)<a class="headerlink" href="#equation-ns-eq-lb" title="Link to this equation"></a></span>\[
+<span class="eqno">(73)<a class="headerlink" href="#equation-ns-eq-lb" title="Link to this equation"></a></span>\[
 \underbrace{\partial_t \rho u_{\alpha} + \partial_{\beta}\left(\rho u_{\alpha}\rho u_{\beta}\right) = \partial_{\beta}\left( -p \delta_{\alpha\beta} + \mu\left(\partial_{\alpha}u_{\beta}+\partial_{\beta}u_{\alpha}\right) \right) + \rho g_{\alpha}}_{\textrm{Momentum Balance Equation}} ,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\rho\)</span> is the fluid density, <span class="math notranslate nohighlight">\(u_{\alpha}\)</span> is the <span class="math notranslate nohighlight">\(\alpha\)</span>-th component of the velocity vector field, <span class="math notranslate nohighlight">\(p\)</span> is the pressure field, <span class="math notranslate nohighlight">\(\delta_{\alpha\beta}\)</span> is the Kronecker delta, <span class="math notranslate nohighlight">\(\mu\)</span> is the dynamic viscosity (a constitutive parameter controlling the intensity of viscous diffusion), and <span class="math notranslate nohighlight">\(g_{\alpha}\)</span> is the <span class="math notranslate nohighlight">\(\alpha\)</span>-th component of the external body acceleration (e.g., gravity).</p>
@@ -175,11 +175,11 @@ const thebe_selector_output = ".output, .cell_output"
 <h2>Numerical Discretization: Lattice Boltzmann Equation<a class="headerlink" href="#numerical-discretization-lattice-boltzmann-equation" title="Link to this heading"></a></h2>
 <p>Describing the problem through the BGK lattice Boltzmann equation:</p>
 <div class="math notranslate nohighlight" id="equation-lb-ns-1st-eq">
-<span class="eqno">(73)<a class="headerlink" href="#equation-lb-ns-1st-eq" title="Link to this equation"></a></span>\[
+<span class="eqno">(74)<a class="headerlink" href="#equation-lb-ns-1st-eq" title="Link to this equation"></a></span>\[
 \underbrace{f_{i}\left(x_{\alpha}+ c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(x_{\alpha}, t)= -\left( \frac{ f_{i} - f_{i}^{eq} }{ \tau} \right) }_{\textrm{1st order space-time discretization}}.
 \]</div>
 <div class="math notranslate nohighlight" id="equation-lb-ns-2nd-eq">
-<span class="eqno">(74)<a class="headerlink" href="#equation-lb-ns-2nd-eq" title="Link to this equation"></a></span>\[
+<span class="eqno">(75)<a class="headerlink" href="#equation-lb-ns-2nd-eq" title="Link to this equation"></a></span>\[
 \underbrace{\hat{f}_{i}\left(x_{\alpha}+ c_{i,\alpha} \Delta t, t+\Delta t\right)- \hat{f}_{i}(x_{\alpha}, t)= -\left( \frac{ \hat{f}_{i} - \hat{f}_{i}^{eq} }{ \tau } \right) + \left(1-\frac{1}{2\tau}F_{i} \right) }_{\textrm{2nd order space-time discretization}}.
 \]</div>
 <p>The equilibrium distribution function is defined by</p>
@@ -525,11 +525,11 @@ f^{eq}_{i} = w_{i}\rho\left( 1 + \frac{c_{i,\alpha} u_{\alpha}}{c_{s}^{2}} + \fr
 </div>
 <p>Applying the Chapmann-Enskog procedure to LB equation, we expand the term <span class="math notranslate nohighlight">\(f_{i}\left(\boldsymbol{x}+\boldsymbol{c}_{i,\alpha} \Delta t, t+\Delta t\right)\)</span> in a Taylor series to recover the derivative form of the equation, i.e.,</p>
 <div class="math notranslate nohighlight" id="equation-ns-eqexp-noteq">
-<span class="eqno">(75)<a class="headerlink" href="#equation-ns-eqexp-noteq" title="Link to this equation"></a></span>\[
+<span class="eqno">(76)<a class="headerlink" href="#equation-ns-eqexp-noteq" title="Link to this equation"></a></span>\[
 f_{i}\left( x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(x_{\alpha}, t)=\displaystyle\sum_{j=1}^{\infty}\frac{\Delta t^{j}}{j!}D_{t}^{j}f_{i}= -\left( \frac{ f_{i} - f_{i}^{eq} }{ \tau } \right),
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(D_{t}f_{i}=\partial_{t}f_{i} + c_{i,\alpha}\partial_{\alpha} f_{i}\)</span>.</p>
-<p>Rescaling to the dimensionless form of the Eq. <a class="reference internal" href="#equation-ns-eqexp-noteq">(75)</a>, we rewrite it in terms of the Knudsen number (<span class="math notranslate nohighlight">\(Kn\)</span>) following the procedure presented in <span id="id1">Kremer [<a class="reference internal" href="../../Citations.html#id12" title="Gilberto M Kremer. An introduction to the Boltzmann equation and transport processes in gases. Springer Science &amp; Business Media, 2010.">11</a>]</span> Section 3.3.1:</p>
+<p>Rescaling to the dimensionless form of the Eq. <a class="reference internal" href="#equation-ns-eqexp-noteq">(76)</a>, we rewrite it in terms of the Knudsen number (<span class="math notranslate nohighlight">\(Kn\)</span>) following the procedure presented in <span id="id1">Kremer [<a class="reference internal" href="../../Citations.html#id12" title="Gilberto M Kremer. An introduction to the Boltzmann equation and transport processes in gases. Springer Science &amp; Business Media, 2010.">11</a>]</span> Section 3.3.1:</p>
 <div class="math notranslate nohighlight">
 \[
 \displaystyle \sum^{\infty}_{j=1}  \frac{Kn^{(j-1)}}{j!} D_{t}^{j} f_{i} = - \frac{1}{Kn}\left( \frac{ f_{i} - f_{eq,i} }{ \tau } \right) \quad \quad \rightarrow \quad \quad \displaystyle \sum^{\infty}_{j=1}  \frac{Kn^{(j)}}{j!} D_{t}^{j} f_{i} = -  \frac{ f_{i} - f_{i}^{eq} }{ \tau },
@@ -783,7 +783,7 @@ f_{i}\left( x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(x_{\alp
 </div>
 <p>Splitting the equation in orders up to the order <span class="math notranslate nohighlight">\(Kn^{3}\)</span> (References with High-Order expansion in Knudsen-order: <span id="id2">Chai <em>et al.</em> [<a class="reference internal" href="../../Citations.html#id13" title="Zhenhua Chai, Nanzhong He, Zhaoli Guo, and Baochang Shi. Lattice Boltzmann model for high-order nonlinear partial differential equations. Physical Review E, 2018. arXiv:0907.1720, doi:10.1103/PhysRevE.97.013304.">12</a>]</span>):</p>
 <div class="math notranslate nohighlight" id="equation-chap-kn-ns-e-noteq">
-<span class="eqno">(77)<a class="headerlink" href="#equation-chap-kn-ns-e-noteq" title="Link to this equation"></a></span>\[\begin{split}
+<span class="eqno">(78)<a class="headerlink" href="#equation-chap-kn-ns-e-noteq" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{ll}
     (Kn^{(0)}):&amp; f_{i}^{(0)}= f_{i}^{eq},\\
     (Kn^{(1)}):&amp; \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)}= - \displaystyle\frac{ f_{i}^{(1)} }{ \tau } , \\
@@ -801,16 +801,16 @@ f_{i}\left( x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(x_{\alp
 \end{split}\]</div>
 <section id="zero-order-moment-balance">
 <h4>Zero-Order Moment Balance<a class="headerlink" href="#zero-order-moment-balance" title="Link to this heading"></a></h4>
-<p>To retrieve the mass balance equation, we sum the Eq. <a class="reference internal" href="#equation-chap-kn-ns-e-noteq">(77)</a> for <span class="math notranslate nohighlight">\(Kn^{(1)}\)</span>, <span class="math notranslate nohighlight">\(Kn^{(2)}\)</span>, and <span class="math notranslate nohighlight">\(Kn^{(3)}\)</span> over <span class="math notranslate nohighlight">\(\sum_{i=0} \)</span>:</p>
+<p>To retrieve the mass balance equation, we sum the Eq. <a class="reference internal" href="#equation-chap-kn-ns-e-noteq">(78)</a> for <span class="math notranslate nohighlight">\(Kn^{(1)}\)</span>, <span class="math notranslate nohighlight">\(Kn^{(2)}\)</span>, and <span class="math notranslate nohighlight">\(Kn^{(3)}\)</span> over <span class="math notranslate nohighlight">\(\sum_{i=0} \)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-ns-e-kn1-b0-all">
-<span class="eqno">(78)<a class="headerlink" href="#equation-ns-e-kn1-b0-all" title="Link to this equation"></a></span>\[\begin{split}
+<span class="eqno">(79)<a class="headerlink" href="#equation-ns-e-kn1-b0-all" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{ll}
 (Kn^{(1)}):&amp; \displaystyle\sum_{i}\left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)f_{i}^{(0)}= - \underbrace{\displaystyle\sum_{i}\left(\displaystyle\frac{ f_{i}^{(1)} }{ \tau } \right)}_{=0},\\
 (Kn^{(1)}):&amp; \partial_{t}^{(0)}  \rho + \partial_{\alpha} \left( \rho u_{\alpha} \right) =0,
 \end{array}
 \end{split}\]</div>
 <div class="math notranslate nohighlight" id="equation-ns-e-kn2-b0-all">
-<span class="eqno">(79)<a class="headerlink" href="#equation-ns-e-kn2-b0-all" title="Link to this equation"></a></span>\[\begin{split}
+<span class="eqno">(80)<a class="headerlink" href="#equation-ns-e-kn2-b0-all" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{ll}
 (Kn^{(2)}):&amp; \displaystyle\sum_{i}\left[ \partial_{t}^{(1)} f_{i}^{(0)} + \displaystyle\left(1 - \frac{1}{2\tau}\right)\left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right) f_{i}^{(1)}   \right]=  - \displaystyle\sum_{i}\left(\displaystyle\frac{ f_{i}^{(2)} }{ \tau } \right), \nonumber \\
 (Kn^{(2)}):&amp; \partial_t^{(1)} \displaystyle\sum_i f_i^{(0)} + \underbrace{\left(1-\frac{1}{2\tau}\right) \partial_t^{(0)} \sum_i f_i^{(1)}}_{=0} + \underbrace{\left(1-\frac{1}{2\tau}\right) \partial_\alpha \sum_i c_{i,\alpha}f_i^{(1)}}_{=0} =\underbrace{-\frac{1}{\tau} \sum_i f_i^{(2)}}_{=0} \\
@@ -819,7 +819,7 @@ f_{i}\left( x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(x_{\alp
 \end{split}\]</div>
 <p>Extending the analysis up to <span class="math notranslate nohighlight">\(Kn^{(3)}\)</span></p>
 <div class="math notranslate nohighlight" id="equation-ns-e-kn3-b0-all">
-<span class="eqno">(81)<a class="headerlink" href="#equation-ns-e-kn3-b0-all" title="Link to this equation"></a></span>\[\begin{split}
+<span class="eqno">(82)<a class="headerlink" href="#equation-ns-e-kn3-b0-all" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{ll}
 (Kn^{(3)}):&amp; \displaystyle\sum_{i}\left[ \partial_{t}^{(2)} f_{i}^{(0)} + \left(2-\displaystyle\frac{1}{\tau}\right)\partial_{t}^{(1)} f_{i}^{(1)} + \displaystyle\left(1 - \frac{1}{6\tau} - \tau\right) \left( \partial_{t}^{(0)} + c_{i,\alpha}\partial_{\alpha} \right)^{2} f_{i}^{(1)} \right] =  - \displaystyle\sum_{i}\left[\displaystyle\frac{f_{i}^{(3)}}{\tau} \right], \\
 (Kn^{(3)}):&amp;  \partial_{t}^{(2)} \displaystyle\sum_{i}f_{i}^{(0)} + \underbrace{\left(2-\displaystyle\frac{1}{\tau}\right)\partial_{t}^{(1)} \sum_{i}f_{i}^{(1)} }_{=0} + \displaystyle\left(1 - \frac{1}{6\tau} - \tau\right) \left( \underbrace{\partial_{t}^{(0)}\partial_{t}^{(0)} \sum_{i}f_{i}^{(1)} }_{=0} + \underbrace{\partial_{\alpha}\partial_{t}^{(0)} \sum_{i}c_{i,\alpha}f_{i}^{(1)} }_{=0} + \underbrace{\partial_{\beta}\partial_{t}^{(0)} \sum_{i}c_{i,\beta}f_{i}^{(1)} }_{=0} + \partial_{\alpha}\partial_{\beta} \sum_{i}c_{i,\alpha}c_{i,\beta}f_{i}^{(1)} \right)  =  - \displaystyle\frac{1}{\tau} \underbrace{ \displaystyle\sum_{i} f_{i}^{(3)} }_{=0}, \\
@@ -829,16 +829,16 @@ f_{i}\left( x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(x_{\alp
 </section>
 <section id="first-order-moment-balance">
 <h4>First-Order Moment Balance<a class="headerlink" href="#first-order-moment-balance" title="Link to this heading"></a></h4>
-<p>To retrieve the momentum balance equation, we sum the Eq. <a class="reference internal" href="#equation-chap-kn-ns-e-noteq">(77)</a> for <span class="math notranslate nohighlight">\(Kn^{(1)}\)</span>, <span class="math notranslate nohighlight">\(Kn^{(2)}\)</span>, and <span class="math notranslate nohighlight">\(Kn^{(3)}\)</span> over <span class="math notranslate nohighlight">\(\sum_{i=0}c_{i,\alpha} \)</span>:</p>
+<p>To retrieve the momentum balance equation, we sum the Eq. <a class="reference internal" href="#equation-chap-kn-ns-e-noteq">(78)</a> for <span class="math notranslate nohighlight">\(Kn^{(1)}\)</span>, <span class="math notranslate nohighlight">\(Kn^{(2)}\)</span>, and <span class="math notranslate nohighlight">\(Kn^{(3)}\)</span> over <span class="math notranslate nohighlight">\(\sum_{i=0}c_{i,\alpha} \)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-ns-e-kn1-b1-all">
-<span class="eqno">(82)<a class="headerlink" href="#equation-ns-e-kn1-b1-all" title="Link to this equation"></a></span>\[\begin{split}
+<span class="eqno">(83)<a class="headerlink" href="#equation-ns-e-kn1-b1-all" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{l}
 (Kn^{(1)}): \displaystyle\sum_{i}\left( \partial_{t}^{(0)} + c_{i,\beta}\partial_{\beta} \right)f_{i}^{(0)}c_{i,\alpha}= - \underbrace{\displaystyle\sum_{i}\left(\displaystyle\frac{ f_{i}^{(1)} }{ \tau } \right)c_{i,\alpha} }_{=0},\\
 (Kn^{(1)}): \partial_{t}^{(0)} \left( \rho u_{\alpha} \right) + \partial_{\beta} \left(\rho u_{\alpha}u_{\beta} + \rho c_{s}^{2}\delta_{\alpha\beta} \right) =0,
 \end{array}
 \end{split}\]</div>
 <div class="math notranslate nohighlight" id="equation-ns-e-kn2-b1-all">
-<span class="eqno">(83)<a class="headerlink" href="#equation-ns-e-kn2-b1-all" title="Link to this equation"></a></span>\[\begin{split}
+<span class="eqno">(84)<a class="headerlink" href="#equation-ns-e-kn2-b1-all" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{ll}
 (Kn^{(2)}):&amp; \displaystyle\sum_{i}\left[ \partial_{t}^{(1)} f_{i}^{(0)} + \displaystyle\left(1 - \frac{1}{2\tau}\right)\left( \partial_{t}^{(0)} + c_{i,\beta}\partial_{\beta} \right) f_{i}^{(1)} \right]c_{i,\alpha} =  - \displaystyle\sum_{i}\left(\displaystyle\frac{ f_{i}^{(2)} }{ \tau } \right)c_{i,\alpha}, \nonumber \\
 (Kn^{(2)}):&amp; \partial_t^{(1)} \displaystyle\sum_i f_i^{(0)}c_{i,\alpha}  + \underbrace{\left(1-\frac{1}{2\tau}\right) \partial_t^{(0)} \sum_i f_i^{(1)}c_{i,\alpha} }_{=0} + \left(1-\frac{1}{2\tau}\right) \partial_\beta \sum_i f_i^{(1)}c_{i,\alpha}c_{i,\beta}  =\underbrace{-\frac{1}{\tau} \sum_i f_i^{(2)}c_{i,\alpha} }_{=0} \\
@@ -847,7 +847,7 @@ f_{i}\left( x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(x_{\alp
 \end{split}\]</div>
 <p>Extending the analysis up to <span class="math notranslate nohighlight">\(Kn^{(3)}\)</span></p>
 <div class="math notranslate nohighlight" id="equation-ns-e-kn3-b1-all">
-<span class="eqno">(85)<a class="headerlink" href="#equation-ns-e-kn3-b1-all" title="Link to this equation"></a></span>\[\begin{split}
+<span class="eqno">(86)<a class="headerlink" href="#equation-ns-e-kn3-b1-all" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{ll}
 (Kn^{(3)}):&amp; \displaystyle\sum_{i}\left[ \partial_{t}^{(2)} f_{i}^{(0)} + \left(2-\displaystyle\frac{1}{\tau}\right)\partial_{t}^{(1)} f_{i}^{(1)} + \displaystyle\left(1 - \frac{1}{6\tau} - \tau\right) \left( \partial_{t}^{(0)} + c_{i,\beta}\partial_{\beta} \right)^{2} f_{i}^{(1)} \right]c_{i,\alpha} =  - \displaystyle\sum_{i}\left[\displaystyle\frac{f_{i}^{(3)}}{\tau} \right]c_{i,\alpha}, \\
 (Kn^{(3)}):&amp;  \partial_{t}^{(2)} \displaystyle\sum_{i}f_{i}^{(0)}c_{i,\alpha} + \underbrace{\left(2-\displaystyle\frac{1}{\tau}\right)\partial_{t}^{(1)} \sum_{i}f_{i}^{(1)}c_{i,\alpha} }_{=0} + \displaystyle\left(1 - \frac{1}{6\tau} - \tau\right) \left( \underbrace{\partial_{t}^{(0)}\partial_{t}^{(0)} \sum_{i}f_{i}^{(1)}c_{i,\alpha} }_{=0} + \partial_{t}^{(0)}\partial_{\beta} \sum_{i}f_{i}^{(1)}c_{i,\alpha}c_{i,\beta} + \partial_{t}^{(0)}\partial_{\gamma} \sum_{i}f_{i}^{(1)}c_{i,\alpha}c_{i,\gamma} + \partial_{\beta}\partial_{\gamma} \sum_{i}c_{i,\alpha}c_{i,\beta}c_{i,\gamma}f_{i}^{(1)} \right)  =  - \displaystyle\frac{1}{\tau} \underbrace{ \displaystyle\sum_{i} f_{i}^{(3)} }_{=0}, \\
@@ -857,7 +857,7 @@ f_{i}\left( x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(x_{\alp
 </section>
 <section id="second-order-non-equilibrium-moment">
 <h4>Second-Order Non-Equilibrium Moment<a class="headerlink" href="#second-order-non-equilibrium-moment" title="Link to this heading"></a></h4>
-<p>To determine the unknow term <span class="math notranslate nohighlight">\(m^{(1)}_{\alpha\beta}\)</span>, we sum the Eq. <a class="reference internal" href="#equation-chap-kn-ns-e-noteq">(77)</a> for <span class="math notranslate nohighlight">\(Kn^{(1)}\)</span> over the second-order moment:</p>
+<p>To determine the unknow term <span class="math notranslate nohighlight">\(m^{(1)}_{\alpha\beta}\)</span>, we sum the Eq. <a class="reference internal" href="#equation-chap-kn-ns-e-noteq">(78)</a> for <span class="math notranslate nohighlight">\(Kn^{(1)}\)</span> over the second-order moment:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{l}
@@ -865,9 +865,9 @@ f_{i}\left( x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(x_{\alp
 (Kn^{(1)}): \partial_{t}^{(0)}  \left(\rho u_{\alpha}u_{\beta} + \rho c_{s}^{2}\delta_{\alpha\beta} \right) + \partial_{\gamma} \left(c_{s}^{2}\rho \left(u_{\alpha}\delta_{\beta\gamma} + u_{\beta}\delta_{\alpha\gamma} + u_{\gamma}\delta_{\alpha\beta} \right) \right) = - \displaystyle\frac{m^{(1)}_{\alpha\beta}}{\tau},
 \end{array}
 \end{split}\]</div>
-<p>notice that third-order moment for the lattice D2Q9 is not correct recovered. Expanding the terms and using Eqs. <a class="reference internal" href="#equation-ns-e-kn1-b0-all">(78)</a> and <a class="reference internal" href="#equation-ns-e-kn1-b1-all">(82)</a> for numerical manipulation:</p>
+<p>notice that third-order moment for the lattice D2Q9 is not correct recovered. Expanding the terms and using Eqs. <a class="reference internal" href="#equation-ns-e-kn1-b0-all">(79)</a> and <a class="reference internal" href="#equation-ns-e-kn1-b1-all">(83)</a> for numerical manipulation:</p>
 <div class="math notranslate nohighlight" id="equation-ns-e-kn1-b2-all">
-<span class="eqno">(87)<a class="headerlink" href="#equation-ns-e-kn1-b2-all" title="Link to this equation"></a></span>\[\begin{split}
+<span class="eqno">(88)<a class="headerlink" href="#equation-ns-e-kn1-b2-all" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{ll}
 (Kn^{(1)}):&amp; \partial_{t}^{(0)}  \left(\rho u_{\alpha}u_{\beta} + \rho c_{s}^{2}\delta_{\alpha\beta} \right) + \partial_{\gamma} \left(c_{s}^{2}\rho \left(u_{\alpha}\delta_{\beta\gamma} + u_{\beta}\delta_{\alpha\gamma} + u_{\gamma}\delta_{\alpha\beta} \right) \right) = - \displaystyle\frac{m^{(1)}_{\alpha\beta}}{\tau},\\
 (Kn^{(1)}):&amp; \partial_{t}^{(0)}  \left(\rho c_{s}^{2}\delta_{\alpha\beta} \right) + \partial_{t}^{(0)}  \left(\rho u_{\alpha}u_{\beta} \right) +  c_{s}^{2} \left(\partial_{\gamma} (\rho u_{\alpha})\delta_{\beta\gamma} + \partial_{\gamma}(\rho u_{\beta} )\delta_{\alpha\gamma} \right) + \partial_{\gamma} \left(c_{s}^{2}\rho u_{\gamma}\delta_{\alpha\beta} \right) = - \displaystyle\frac{m^{(1)}_{\alpha\beta}}{\tau},\\
@@ -906,7 +906,7 @@ f_{i}\left( x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(x_{\alp
 </section>
 <section id="balance-equations">
 <h4>Balance Equations<a class="headerlink" href="#balance-equations" title="Link to this heading"></a></h4>
-<p>To recover the mass balance equation, we sum the Eqs. <a class="reference internal" href="#equation-ns-e-kn1-b0-all">(78)</a>, <a class="reference internal" href="#equation-ns-e-kn2-b0-all">(79)</a>, and <a class="reference internal" href="#equation-ns-e-kn3-b0-all">(81)</a>:</p>
+<p>To recover the mass balance equation, we sum the Eqs. <a class="reference internal" href="#equation-ns-e-kn1-b0-all">(79)</a>, <a class="reference internal" href="#equation-ns-e-kn2-b0-all">(80)</a>, and <a class="reference internal" href="#equation-ns-e-kn3-b0-all">(82)</a>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{l}
@@ -914,7 +914,7 @@ f_{i}\left( x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(x_{\alp
 \partial_{t} \rho + \partial_{\alpha} (\rho u_{\alpha}) + \underbrace{ \left(\tau-\displaystyle\frac{1}{2}\right) \left(\partial_\beta (-c_{s}^{2} \rho\left(\partial_{\beta} u_{\alpha} + \partial_{\alpha} u_{\beta} \right) + \partial_{\gamma} (\rho u_{\alpha}u_{\beta}u_{\gamma}))\right) + ... + \mathcal{O}(Kn^{(&gt; 3)}) }_{\textrm{Numerical Errors}} =0,
 \end{array}
 \end{split}\]</div>
-<p>Repeting the process for momentum balance, we sum the Eqs. <a class="reference internal" href="#equation-ns-e-kn1-b1-all">(82)</a>, <a class="reference internal" href="#equation-ns-e-kn2-b1-all">(83)</a>, <a class="reference internal" href="#equation-ns-e-kn3-b1-all">(85)</a>, and <a class="reference internal" href="#equation-ns-e-kn1-b2-all">(87)</a>:</p>
+<p>Repeting the process for momentum balance, we sum the Eqs. <a class="reference internal" href="#equation-ns-e-kn1-b1-all">(83)</a>, <a class="reference internal" href="#equation-ns-e-kn2-b1-all">(84)</a>, <a class="reference internal" href="#equation-ns-e-kn3-b1-all">(86)</a>, and <a class="reference internal" href="#equation-ns-e-kn1-b2-all">(88)</a>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{l}
@@ -1204,9 +1204,9 @@ f_{i}\left( x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(x_{\alp
 \[\begin{split}\displaystyle \begin{gathered}\underbrace{\sum_{i=0} f_{i}^{eq} c_{i,x}c_{i,x}c_{i,x} }_{\textrm{xxx-Third-Order Moment}} =\rho \left(u^{*}_{x}\right)^{3},\quad \underbrace{\sum_{i=0} f_{i}^{eq} c_{i,x}c_{i,x}c_{i,y} }_{\textrm{xxy-Third-Order Moment}} =\rho \left(u^{*}_{x}\right)^{2} u^{*}_{y},\\[10pt]\underbrace{\sum_{i=0} f_{i}^{eq} c_{i,x}c_{i,y}c_{i,y} }_{\textrm{xyy-Third-Order Moment}} =\rho u^{*}_{x} \left(u^{*}_{y}\right)^{2},\quad \underbrace{\sum_{i=0} f_{i}^{eq} c_{i,y}c_{i,y}c_{i,y} }_{\textrm{yyy-Third-Order Moment}} =\rho \left(u^{*}_{y}\right)^{3}\end{gathered}\end{split}\]</div>
 </div>
 </div>
-<p>Doing the Chapman-Enskog analysis for the lattice D2V17, we obtain the same Eqs. <a class="reference internal" href="#equation-ns-e-kn1-b0-all">(78)</a>, <a class="reference internal" href="#equation-ns-e-kn2-b0-all">(79)</a>, <a class="reference internal" href="#equation-ns-e-kn3-b0-all">(81)</a>, <a class="reference internal" href="#equation-ns-e-kn1-b1-all">(82)</a>, <a class="reference internal" href="#equation-ns-e-kn2-b1-all">(83)</a>, and <a class="reference internal" href="#equation-ns-e-kn3-b1-all">(85)</a>. However, the calculation of the second-order moment of non-equilibrium <span class="math notranslate nohighlight">\( m^{(1)}_{\alpha\beta}\)</span> will change due to the D2V17 be able to correctly recover the third-order moments:</p>
+<p>Doing the Chapman-Enskog analysis for the lattice D2V17, we obtain the same Eqs. <a class="reference internal" href="#equation-ns-e-kn1-b0-all">(79)</a>, <a class="reference internal" href="#equation-ns-e-kn2-b0-all">(80)</a>, <a class="reference internal" href="#equation-ns-e-kn3-b0-all">(82)</a>, <a class="reference internal" href="#equation-ns-e-kn1-b1-all">(83)</a>, <a class="reference internal" href="#equation-ns-e-kn2-b1-all">(84)</a>, and <a class="reference internal" href="#equation-ns-e-kn3-b1-all">(86)</a>. However, the calculation of the second-order moment of non-equilibrium <span class="math notranslate nohighlight">\( m^{(1)}_{\alpha\beta}\)</span> will change due to the D2V17 be able to correctly recover the third-order moments:</p>
 <div class="math notranslate nohighlight" id="equation-ns-e-kn1-b2-all-d2v17">
-<span class="eqno">(89)<a class="headerlink" href="#equation-ns-e-kn1-b2-all-d2v17" title="Link to this equation"></a></span>\[\begin{split}
+<span class="eqno">(90)<a class="headerlink" href="#equation-ns-e-kn1-b2-all-d2v17" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{ll}
 (Kn^{(1)}):&amp; \displaystyle\sum_{i}\left( \partial_{t}^{(0)} + c_{i,\gamma}\partial_{\gamma} \right)f_{i}^{(0)}c_{i,\alpha}c_{i,\beta}= - \displaystyle\sum_{i}\left(\displaystyle\frac{ f_{i}^{(1)} }{ \tau } c_{i,\alpha}c_{i,\beta} \right),\\
 (Kn^{(1)}):&amp; \partial_{t}^{(0)}  \left(\rho u_{\alpha}u_{\beta} + \rho c_{s}^{2}\delta_{\alpha\beta} \right) + \partial_{\gamma} \left(c_{s}^{2}\rho \left(u_{\alpha}\delta_{\beta\gamma} + u_{\beta}\delta_{\alpha\gamma} + u_{\gamma}\delta_{\alpha\beta} \right) \right) = - \displaystyle\frac{m^{(1)}_{\alpha\beta}}{\tau}, \\
@@ -1248,7 +1248,7 @@ f_{i}\left( x_{\alpha} + c_{i,\alpha} \Delta t, t+\Delta t\right)- f_{i}(x_{\alp
             - \displaystyle\frac{m^{(1)}_{\alpha\beta}}{\tau},  \qquad \rightarrow \qquad  m^{(1)}_{\alpha\beta} = -c_{s}^{2} \tau \rho\left(\partial_{\beta} u_{\alpha} + \partial_{\alpha} u_{\beta} \right)
 \end{array}
 \end{split}\]</div>
-<p>Repeting the process for momentum balance, we sum the Eqs. <a class="reference internal" href="#equation-ns-e-kn1-b1-all">(82)</a>, <a class="reference internal" href="#equation-ns-e-kn2-b1-all">(83)</a>, <a class="reference internal" href="#equation-ns-e-kn3-b1-all">(85)</a>, and <a class="reference internal" href="#equation-ns-e-kn1-b2-all-d2v17">(89)</a>:</p>
+<p>Repeting the process for momentum balance, we sum the Eqs. <a class="reference internal" href="#equation-ns-e-kn1-b1-all">(83)</a>, <a class="reference internal" href="#equation-ns-e-kn2-b1-all">(84)</a>, <a class="reference internal" href="#equation-ns-e-kn3-b1-all">(86)</a>, and <a class="reference internal" href="#equation-ns-e-kn1-b2-all-d2v17">(90)</a>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{l}
