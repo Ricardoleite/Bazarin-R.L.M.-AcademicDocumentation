@@ -51,3 +51,6 @@ Academic Material
 
 The full table of contents is generated automatically from the ``_toc.yml`` file
 and appears in the sidebar (HTML) or in the table of contents (PDF).
+
+.. bibliography::
+   :cited:

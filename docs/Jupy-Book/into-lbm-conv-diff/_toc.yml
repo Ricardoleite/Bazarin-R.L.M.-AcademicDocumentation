@@ -12,5 +12,4 @@ parts:
   - caption: "Finite Difference Structure of Lattice Boltzmann Method"
     chapters:
       - file: Refs/LBM-Study/FDM-Belloti/FDM-LBM-Diffusive
-      - file: Refs/Citations
       

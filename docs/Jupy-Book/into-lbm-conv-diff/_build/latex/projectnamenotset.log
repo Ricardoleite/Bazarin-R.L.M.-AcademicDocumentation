@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2026.9.17)  8 OCT 2026 14:16
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2026.10.4)  11 OCT 2026 07:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1442,7 +1442,7 @@ LaTeX Font Info:    Trying to load font information for TU+fontawesomebrands on
 * paper: letterpaper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: twoside 
+* modes: 
 * h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
 * v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
 * \paperwidth=614.295pt
@@ -1464,8 +1464,8 @@ LaTeX Font Info:    Trying to load font information for TU+fontawesomebrands on
 * \voffset=0.0pt
 * \mag=1000
 * \@twocolumnfalse
-* \@twosidetrue
-* \@mparswitchtrue
+* \@twosidefalse
+* \@mparswitchfalse
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
@@ -1735,9 +1735,6 @@ LaTeX Font Info:    Trying to load font information for U+rsfs on input line 10
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 ) [1
 
-] [2
-
-
 ]
 (./projectnamenotset.toc
 LaTeX Info: Redefining \rmfamily on input line 1.
@@ -1757,7 +1754,7 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 
  [1
 
-] [2
+
 
 ]
 File: personalphoto.png Graphic file (type bmp)
@@ -1773,13 +1770,15 @@ Missing character: There is no 💻 (U+1F4BB) in font [FreeSerif.otf]/OT:script=
 tn;language=dflt;!
 Missing character: There is no 👓 (U+1F453) in font [FreeSerif.otf]/OT:script=la
 tn;language=dflt;!
-[1] [2] [3
+[1
 
-] [4]
+] [2] [3
+
+]
 Chapter 1.
 File: mesh-1-diffusive.png Graphic file (type bmp)
 <mesh-1-diffusive.png>
-[5
+[4
 
 ]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
@@ -1794,7 +1793,7 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
 (Font)              scaled to size 6.99925pt on input line 307.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
 (Font)              scaled to size 4.99947pt on input line 307.
- [6] [7]
+ [5] [6]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
 (Font)              scaled to size 8.00085pt on input line 536.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
@@ -1811,13 +1810,13 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 File: 55234d5692dce1c246184742da092377313fdd7752e743ec6a2e20557d7e0a75.png Grap
 hic file (type bmp)
 <55234d5692dce1c246184742da092377313fdd7752e743ec6a2e20557d7e0a75.png>
-[8] [9] [10
-
-]
+[7] [8]
 Chapter 2.
 File: mesh-1-diffusive-steady.png Graphic file (type bmp)
 <mesh-1-diffusive-steady.png>
-[11]
+[9
+
+]
 Overfull \hbox (3.79384pt too wide) detected at line 650
 []
  []
@@ -1832,11 +1831,11 @@ Overfull \hbox (20.0pt too wide) detected at line 670
 []
  []
 
-[12] [13] [14]
+[10] [11] [12]
 File: a26a8ff05423c3e044d97ad61a5b25eb5cee398256b7ea91e983801bf49fecf7.png Grap
 hic file (type bmp)
 <a26a8ff05423c3e044d97ad61a5b25eb5cee398256b7ea91e983801bf49fecf7.png>
- [15]
+ [13]
 File: a5e85de83974bd58d89d09327c8c61612ad7b8ccfe4314bd01e99be1bf2255f3.png Grap
 hic file (type bmp)
 <a5e85de83974bd58d89d09327c8c61612ad7b8ccfe4314bd01e99be1bf2255f3.png>
@@ -1849,34 +1848,34 @@ hic file (type bmp)
 File: cc6a0c3bf3366904a5cdd8aa74d750096a61b6db71c78ad537ee4396c67d7f05.png Grap
 hic file (type bmp)
 <cc6a0c3bf3366904a5cdd8aa74d750096a61b6db71c78ad537ee4396c67d7f05.png>
- [16]
+ [14]
 Chapter 3.
 File: mesh-1-convective.png Graphic file (type bmp)
 <mesh-1-convective.png>
-[17
+[15
 
 ]
 Overfull \hbox (6.10732pt too wide) detected at line 1249
 []
  []
 
-[18] [19] [20] [21]
+[16] [17] [18] [19]
 File: 1D-Displace-BL.png Graphic file (type bmp)
 <1D-Displace-BL.png>
 File: 2dceeb4bae91b609db7f314c69b1836356bdf744293821ec550a0aab1d9fa921.png Grap
 hic file (type bmp)
 <2dceeb4bae91b609db7f314c69b1836356bdf744293821ec550a0aab1d9fa921.png>
- [22]
+ [20]
 File: 0ecf32fa32dd9a1868357f9422b464befeec339ae0f3ff7364b0268ba3bddf66.png Grap
 hic file (type bmp)
 <0ecf32fa32dd9a1868357f9422b464befeec339ae0f3ff7364b0268ba3bddf66.png>
- [23] [24
-
-]
+ [21]
 Chapter 4.
 File: mesh-1-convective-diffusive.png Graphic file (type bmp)
 <mesh-1-convective-diffusive.png>
-[25]
+[22
+
+]
 Overfull \hbox (8.14047pt too wide) detected at line 1750
 []
  []
@@ -1886,7 +1885,7 @@ Overfull \hbox (18.5275pt too wide) detected at line 1773
 []
  []
 
-[26]
+[23]
 Overfull \hbox (1.3834pt too wide) detected at line 1813
 []
  []
@@ -1896,7 +1895,7 @@ Overfull \hbox (20.0pt too wide) detected at line 1813
 []
  []
 
-[27] [28] [29]
+[24] [25] [26]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 2073.
@@ -1910,7 +1909,7 @@ hic file (type bmp)
 File: 157f9ae315ac4c268db31b1d29b58efe387501d8e58ca0e9ee0a7bf411dd8b88.png Grap
 hic file (type bmp)
 <157f9ae315ac4c268db31b1d29b58efe387501d8e58ca0e9ee0a7bf411dd8b88.png>
-[30]
+[27]
 File: e761eb9d778cc14706a1be27827e9a60f7c496c3c2961c0f2fb7c4c7f6b12497.png Grap
 hic file (type bmp)
 <e761eb9d778cc14706a1be27827e9a60f7c496c3c2961c0f2fb7c4c7f6b12497.png>
@@ -1920,16 +1919,16 @@ hic file (type bmp)
 File: eef791156be27567701031b6548697fbf516acb96d41248c65e554192f329b12.png Grap
 hic file (type bmp)
 <eef791156be27567701031b6548697fbf516acb96d41248c65e554192f329b12.png>
- [31]
+ [28]
 File: 58edb49af52dd291687fabed243ea341cc513836856569aeb086df52749e5c9e.png Grap
 hic file (type bmp)
 <58edb49af52dd291687fabed243ea341cc513836856569aeb086df52749e5c9e.png>
- [32]
+ [29]
 Chapter 5.
 File: 5e80c4cd145c3ddfd698dc29a58326c9dd6de4352844f4fbfa38869da1c8afd6.png Grap
 hic file (type bmp)
 <5e80c4cd145c3ddfd698dc29a58326c9dd6de4352844f4fbfa38869da1c8afd6.png>
-[33
+[30
 
 ]
 Overfull \hbox (43.95998pt too wide) detected at line 2221
@@ -1941,7 +1940,7 @@ Overfull \hbox (20.0pt too wide) detected at line 2221
 []
  []
 
-[34]
+[31]
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 2285.
 
@@ -1976,7 +1975,7 @@ LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 2313
 LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 2313
 .
 
-[35]
+[32]
 Overfull \hbox (69.96382pt too wide) detected at line 2347
 []
  []
@@ -1986,7 +1985,7 @@ Overfull \hbox (47.16827pt too wide) detected at line 2380
 []
  []
 
-[36]
+[33]
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 2433.
 
@@ -1998,11 +1997,11 @@ Overfull \hbox (15.93297pt too wide) detected at line 2434
 []
  []
 
-[37]
+[34]
 File: 3df92e67d5bd37c6948ff4e9fe72bdfd03512ea32d2a346073d7ba79cf469d1a.png Grap
 hic file (type bmp)
 <3df92e67d5bd37c6948ff4e9fe72bdfd03512ea32d2a346073d7ba79cf469d1a.png>
- [38]
+ [35]
 
 LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 2555
 .
@@ -2016,109 +2015,74 @@ Overfull \hbox (12.55414pt too wide) detected at line 2556
 []
  []
 
-[39] [40] [41
-
-] [42]
-Chapter 6.
-[43
+[36] [37] [38
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 2662--2665
+Chapter 6.
+[39
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 2660--2663
 \TU/FreeSerif(0)/m/n/10 notice that $[] [] [] [] [] [] [] [] [] [] [][][][]$ an
 d using Eq. [] we have
  []
 
-
-Overfull \hbox (73.38417pt too wide) detected at line 2683
-[]
- []
-
-[44]
+[40]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2743.
+(hyperref)                removing `math shift' on input line 2744.
 
 File: 69053fd6f9da8c2d1c7ebadd2831b9a51623ff3f1f4afc09d37df03bada78940.png Grap
 hic file (type bmp)
 <69053fd6f9da8c2d1c7ebadd2831b9a51623ff3f1f4afc09d37df03bada78940.png>
-[45]
+[41]
 File: 39d476457e161e0f1e8598e65ae1e5d039de6d3b85f309ef1e58a0b6d3064822.png Grap
 hic file (type bmp)
 <39d476457e161e0f1e8598e65ae1e5d039de6d3b85f309ef1e58a0b6d3064822.png>
- [46]
-Overfull \hbox (92.71228pt too wide) detected at line 2874
+ [42]
+Overfull \hbox (11.29716pt too wide) detected at line 2876
 []
  []
 
 
-Overfull \hbox (11.29716pt too wide) detected at line 2881
-[]
- []
-
-
-Overfull \hbox (1.85234pt too wide) detected at line 2885
+Overfull \hbox (1.85234pt too wide) detected at line 2880
 []
  []
 
 File: 3a440122c391caca3638e8d174f3feca89bc6a1f796dd3a778e5d49e763311a3.png Grap
 hic file (type bmp)
 <3a440122c391caca3638e8d174f3feca89bc6a1f796dd3a778e5d49e763311a3.png>
-[47]
+[43]
 File: dd87cc115dae78bb74ff29c3aa999dd5d8cdaea33236e522a771dbcd27a44687.png Grap
 hic file (type bmp)
 <dd87cc115dae78bb74ff29c3aa999dd5d8cdaea33236e522a771dbcd27a44687.png>
 File: 1f2930681a48377c82844249177836919539ffa5f4c574a0356a3d73d2f8e37d.png Grap
 hic file (type bmp)
 <1f2930681a48377c82844249177836919539ffa5f4c574a0356a3d73d2f8e37d.png>
- [48]
+ [44]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 14.40152pt on input line 2964.
+(Font)              scaled to size 14.40152pt on input line 2959.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 14.39845pt on input line 2964.
+(Font)              scaled to size 14.39845pt on input line 2959.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2964.
+(hyperref)                removing `math shift' on input line 2959.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2964.
+(hyperref)                removing `math shift' on input line 2959.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2964.
+(hyperref)                removing `math shift' on input line 2959.
 
 
-Overfull \hbox (218.04692pt too wide) detected at line 2981
+Overfull \hbox (10.61778pt too wide) detected at line 2978
 []
  []
 
-[49]
-Overfull \hbox (130.21887pt too wide) detected at line 3063
-[]
- []
-
-
-Overfull \hbox (20.0pt too wide) detected at line 3063
-[]
- []
-
-
-Overfull \hbox (114.03189pt too wide) detected at line 3083
-[]
- []
-
-
-Overfull \hbox (20.0pt too wide) detected at line 3083
-[]
- []
-
-
-Overfull \hbox (84.17197pt too wide) detected at line 3107
-[]
- []
-
-
+[45]
 Overfull \hbox (22.55379pt too wide) detected at line 3118
 []
  []
@@ -2128,17 +2092,7 @@ Overfull \hbox (20.0pt too wide) detected at line 3118
 []
  []
 
-
-Overfull \hbox (180.93309pt too wide) detected at line 3120
-[]
- []
-
-
-Overfull \hbox (20.0pt too wide) detected at line 3120
-[]
- []
-
-
+[46]
 Overfull \hbox (19.03828pt too wide) detected at line 3122
 []
  []
@@ -2149,7 +2103,7 @@ Overfull \hbox (20.0pt too wide) detected at line 3122
  []
 
 
-Overfull \hbox (390.48283pt too wide) detected at line 3135
+Overfull \hbox (14.08754pt too wide) detected at line 3135
 []
  []
 
@@ -2158,60 +2112,24 @@ Overfull \hbox (20.0pt too wide) detected at line 3135
 []
  []
 
-
-Overfull \hbox (591.44667pt too wide) detected at line 3148
-[]
- []
-
-
-Overfull \hbox (20.0pt too wide) detected at line 3148
-[]
- []
-
-[50]
-Overfull \hbox (291.83635pt too wide) detected at line 3162
-[]
- []
-
-
-Overfull \hbox (282.39153pt too wide) detected at line 3166
-[]
- []
-
-
-Overfull \hbox (147.17084pt too wide) detected at line 3170
-[]
- []
-
-
-Overfull \hbox (75.6444pt too wide) detected at line 3191
-[]
- []
-
-File: f13f7eb2a540b6c4594c7fcb3a5d9844eee60e8ab3ff77f49c85390f2c34255e.png Grap
+[47]
+File: 042473a8219261c580a69ab743099248c73fba041f9a8e111d2a29300cbf1507.png Grap
 hic file (type bmp)
-<f13f7eb2a540b6c4594c7fcb3a5d9844eee60e8ab3ff77f49c85390f2c34255e.png>
-[51]
-File: f5be7b93d6dc918ea2c651f011fcbdfc14d1d6fd28b4ab852bd497ed8bb26a7d.png Grap
+<042473a8219261c580a69ab743099248c73fba041f9a8e111d2a29300cbf1507.png>
+File: de6a8902d9dfb925b7355504bc2bfacd99302f0d4e68099e32c00bf44ee9d733.png Grap
 hic file (type bmp)
-<f5be7b93d6dc918ea2c651f011fcbdfc14d1d6fd28b4ab852bd497ed8bb26a7d.png>
-File: 5ca224fa5aa399b45f991d1a4bec6f72314efc8c911485128239cced27c56558.png Grap
+<de6a8902d9dfb925b7355504bc2bfacd99302f0d4e68099e32c00bf44ee9d733.png>
+File: 4d0b4493f4badb228798f0df908fa83c69333dfef15a82d98de3990dcddcc011.png Grap
 hic file (type bmp)
-<5ca224fa5aa399b45f991d1a4bec6f72314efc8c911485128239cced27c56558.png>
- [52] [53] [54
-
-]
-Chapter 7.
-[55] [56
-
-]
-Underfull \hbox (badness 6252) in paragraph at lines 3259--3261
+<4d0b4493f4badb228798f0df908fa83c69333dfef15a82d98de3990dcddcc011.png>
+ [48] [49]
+Underfull \hbox (badness 6252) in paragraph at lines 3260--3262
 []\TU/FreeSerif(0)/m/n/10 Zhenhua Chai, Nanzhong He, Zhaoli Guo, and Baochang S
 hi. Lattice Boltzmann model for
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3259--3261
+Underfull \hbox (badness 10000) in paragraph at lines 3260--3262
 \TU/FreeSerif(0)/m/n/10 high-order nonlinear partial differential equations. \T
 U/FreeSerif(0)/m/it/10 Physical Review E\TU/FreeSerif(0)/m/n/10 , 2018. [][]arX
 iv:0907.1720[][],
@@ -2252,7 +2170,8 @@ braces):
 >  {english/babelname}  =>  {american}
 >  {english/localnumeral}  =>  {polyglossia@C@localnumeral}
 >  {english/Localnumeral}  =>  {polyglossia@C@localnumeral}.
- [57
+ [50
+
 
 ] (./projectnamenotset.aux
 LaTeX Info: Redefining \rmfamily on input line 19.
@@ -2260,15 +2179,15 @@ LaTeX Info: Redefining \sffamily on input line 19.
 LaTeX Info: Redefining \ttfamily on input line 19.
 )
 Package rerunfilecheck Info: File `projectnamenotset.out' has not changed.
-(rerunfilecheck)             Checksum: FEB4CFBE9C593822A2BB39AB6AABCB7D;9773.
+(rerunfilecheck)             Checksum: 1A1CC692E70D9DCEF632CBFEE432FEAF;9722.
  ) 
 Here is how much of TeX's memory you used:
- 46592 strings out of 478135
- 1077786 string characters out of 5852426
- 1723280 words of memory out of 5000000
- 66311 multiletter control sequences out of 15000+600000
+ 46590 strings out of 478146
+ 1077784 string characters out of 5853002
+ 1721315 words of memory out of 5000000
+ 66306 multiletter control sequences out of 15000+600000
  480754 words of font info for 151 fonts, out of 8000000 for 9000
- 15 hyphenation exceptions out of 8191
+ 17 hyphenation exceptions out of 8191
  99i,25n,115p,2926b,2142s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on projectnamenotset.pdf (61 pages).
+Output written on projectnamenotset.pdf (52 pages).
