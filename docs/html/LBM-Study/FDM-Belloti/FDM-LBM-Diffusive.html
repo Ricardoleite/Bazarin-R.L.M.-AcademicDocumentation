@@ -107,6 +107,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="FDM-LBM-Convective-Diffusive.html">Difference Finite Scheme derived from MRT Lattice Boltzmann for Convective-Diffusive Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="General-FDM-Single-Relaxation.html">Generalized Difference Finite Scheme for Balance Equations derived from Lattice Boltzmann</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Navier-Stokes Equation (NSE) LBM Approach (Two Conserved Moment): Part 1</span></p>
 <ul>
@@ -177,12 +178,12 @@ $$
 m^{neq}_{\alpha} = \displaystyle\sum_{i} e_{i,\alpha}\left( f_i-f_i^{eq}\right)  = -(c_{s}^{2} \tau \delta_{t})\partial_{\alpha}\phi  \quad \quad \textrm{and} \quad\quad \tau = \displaystyle\frac{\nu}{c_{s}^{2} \delta_{t}} +\frac{1}{2}.
 $$ --><section id="fdm-interpretation-for-the-lattice-d1q3">
 <h3>FDM Interpretation for the Lattice D1Q3<a class="headerlink" href="#fdm-interpretation-for-the-lattice-d1q3" title="Link to this heading"></a></h3>
-<p>For simplification we redefine the notation for <span class="math notranslate nohighlight">\(f_i( x_{\alpha} + e_{i,\alpha} \delta t, t+\delta t)=f_{i,x+c_{i}}^{t+1}\)</span>. Using this notation, Eq. <a class="reference internal" href="#equation-lb-fdm-df-eq">(56)</a> can be reinterpreted by applying a shift in <span class="math notranslate nohighlight">\(c_i\)</span> to express the distribution function at the pre-streaming state:</p>
+<p>For simplification we redefine the notation for <span class="math notranslate nohighlight">\(f_i( x_{\alpha} + e_{i,\alpha} \delta t, t+\delta t)=f_{i,x+c_{i}}^{t+1}\)</span>. Using this notation, Eq. <a class="reference internal" href="General-FDM-Single-Relaxation.html#equation-lb-fdm-df-eq">(74)</a> can be reinterpreted by applying a shift in <span class="math notranslate nohighlight">\(c_i\)</span> to express the distribution function at the pre-streaming state:</p>
 <div class="math notranslate nohighlight" id="equation-pre-fdm-lb-df-eq">
 <span class="eqno">(59)<a class="headerlink" href="#equation-pre-fdm-lb-df-eq" title="Link to this equation"></a></span>\[
 f_{i,x}^{t+1}  = f_{i,x-c_{i}}^{t}  - \omega \left( f_{i,x-c_{i}}^{t} - f_{i,x-c_{i}}^{eq,t} \right).
 \]</div>
-<p>Summing the Eq. <a class="reference internal" href="#equation-pre-fdm-lb-df-eq">(59)</a> over all lattice direction and replacing <span class="math notranslate nohighlight">\(f_{i}^{eq}\)</span> by Eq. <a class="reference internal" href="#equation-df-fdm-feq-eq">(57)</a>, we have:</p>
+<p>Summing the Eq. <a class="reference internal" href="General-FDM-Single-Relaxation.html#equation-pre-fdm-lb-df-eq">(78)</a> over all lattice direction and replacing <span class="math notranslate nohighlight">\(f_{i}^{eq}\)</span> by Eq. <a class="reference internal" href="#equation-df-fdm-feq-eq">(57)</a>, we have:</p>
 <div class="math notranslate nohighlight">
 \[
 \displaystyle\sum_{i}\Big( f_{i,x}^{t+1} \Big) = \displaystyle\sum_{i}\Big( f_{i,x-c_{i}}^{t}  - \omega \left( f_{i,x-c_{i}}^{t} - f_{i,x-c_{i}}^{eq,t} \right) \Big) \qquad \rightarrow  \qquad \phi_{x}^{t+1} = \displaystyle\sum_{i}\Big( (1-\omega) f_{i,x-c_{i}}^{t}  + \omega w_{i}\phi_{x-c_{i}}^{t} \Big),
@@ -192,7 +193,7 @@ f_{i,x}^{t+1}  = f_{i,x-c_{i}}^{t}  - \omega \left( f_{i,x-c_{i}}^{t} - f_{i,x-c
 \[
 \phi_{x}^{t+1} = \displaystyle\sum_{i}\Big( (1-\omega) f_{i,x-c_{i}}^{t}  + \omega w_{i}\phi_{x-c_{i}}^{t} \Big) \qquad \rightarrow  \qquad \phi_{x}^{t+1} = \displaystyle\sum_{i}\Big( (1-\omega + \omega w_{i}) \phi_{x-c_{i}}^{t} - (1-\omega) \displaystyle\sum_{k\neq i} f_{k,x-c_{i}}^{t} \Big).
 \]</div>
-<p>Spliting the terms in the above equation and using Eq. <a class="reference internal" href="#equation-pre-fdm-lb-df-eq">(59)</a> for <span class="math notranslate nohighlight">\(f_{i,x-c_{i}}^{t}\)</span>:</p>
+<p>Spliting the terms in the above equation and using Eq. <a class="reference internal" href="General-FDM-Single-Relaxation.html#equation-pre-fdm-lb-df-eq">(78)</a> for <span class="math notranslate nohighlight">\(f_{i,x-c_{i}}^{t}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{ll}
@@ -213,7 +214,7 @@ f_{i,x}^{t+1}  = f_{i,x-c_{i}}^{t}  - \omega \left( f_{i,x-c_{i}}^{t} - f_{i,x-c
 <span class="eqno">(60)<a class="headerlink" href="#equation-last-fdm-form" title="Link to this equation"></a></span>\[
 \phi_{x}^{t+1} = \displaystyle\sum_{i}\Big( (1-\omega + \omega w_{i}) \phi_{x-c_{i}}^{t}\Big) - (1-\omega)\displaystyle\sum_{i}\Bigg( \left(1-\omega + \omega \displaystyle\sum_{k\neq i} \left(w_{k}\right) \right) \phi_{x+c_{i}}^{t-1} \Bigg) + (1-\omega)^{2}\displaystyle\sum_{i}\Bigg( f_{i,x+c_{i}}^{t-1} \Bigg).
 \]</div>
-<p>Interpreting <span class="math notranslate nohighlight">\(f_{i,x+c_{i}}^{t-1}\)</span> with Eq. <a class="reference internal" href="#equation-pre-fdm-lb-df-eq">(59)</a>:</p>
+<p>Interpreting <span class="math notranslate nohighlight">\(f_{i,x+c_{i}}^{t-1}\)</span> with Eq. <a class="reference internal" href="General-FDM-Single-Relaxation.html#equation-pre-fdm-lb-df-eq">(78)</a>:</p>
 <div class="math notranslate nohighlight">
 \[
 f_{i,x+c_{i}}^{t-1}  = f_{i,x}^{t-2}  - \omega \left( f_{i,x}^{t-2} - f_{i,x}^{eq,t-2} \right) ,
@@ -242,7 +243,7 @@ f_{i,x+c_{i}}^{t-1}  = f_{i,x}^{t-2}  - \omega \left( f_{i,x}^{t-2} - f_{i,x}^{e
 <p>Considering a 1D <strong>convection–diffusion equation</strong> with constant coefficients</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{\partial u}{\partial t}+c\frac{\partial u}{\partial x} = \nu\frac{\partial^2 u}{\partial x^2} \qquad x\in\mathbb{R},\ t\ge 0,
+\frac{\partial u}{\partial t}+c\frac{\partial u}{\partial x} = \nu\frac{\partial^2 u}{\partial x^2} \qquad x\in\mathbb{R}, t\ge 0,
 \]</div>
 <p>with <strong>sinusoidal initial condition</strong></p>
 <div class="math notranslate nohighlight">
@@ -263,7 +264,7 @@ u(x,0)=A\sin(kx+\phi),
 <p>If you use a cosine initial condition <span class="math notranslate nohighlight">\(u(x,0)=A\cos(kx+\phi)\)</span>, the solution is the same form:</p>
 <div class="math notranslate nohighlight">
 \[
-u(x,t)=Ae^{-\nu k^{2}t}\cos\big(k(x-ct)+\phi\big).
+u(x,t)=Ae^{-\nu k^{2}t}\cos\left( k(x-ct)+\phi \right).
 \]</div>
 <section id="lbm-d1q3-code-fdm-code-only-diffusive-case-c-0">
 <h3>LBM D1Q3 Code - FDM Code (Only Diffusive Case <span class="math notranslate nohighlight">\(c=0\)</span>)<a class="headerlink" href="#lbm-d1q3-code-fdm-code-only-diffusive-case-c-0" title="Link to this heading"></a></h3>
@@ -685,43 +686,41 @@ $<span class="math notranslate nohighlight">\(
 \end{array}
 \end{split}\]</div>
 <p>Replacing the expanded terms and simplifying the term (this link provide a sympy code that reach the above equation <a class="reference internal" href="appendix/sympy-code-fdm-diffusive-expansion.html"><span class="doc">Sympy code for FDM expansion of LBM diffusive equation</span></a>), we have:</p>
-<div class="math notranslate nohighlight">
-\[
+<!-- $$
 0=\Delta_{t} \omega^{2} \frac{\partial\phi}{\partial t} + \Delta_{x}^{2} a \omega \left(\omega - 2\right) \frac{\partial^{2}\phi}{\partial x^{2}}  + \frac{\Delta_{t}^{2} \omega \left(4 - 3 \omega\right) }{2} \frac{\partial^{2}\phi}{\partial t^{2}} - \Delta_{t} \Delta_{x}^{2} \left(a \omega^{2} - a \omega - \omega + 1\right) \frac{\partial^{3}\phi}{\partial x^{2}\partial t} + \frac{\Delta_{x}^{4} a \omega \left(\omega - 2\right) }{12}\frac{\partial^{4}\phi}{\partial x^{4}}
-\]</div>
-<div class="math notranslate nohighlight">
-\[
+$$
+
+$$
 \Delta_{t} \omega^{2} \frac{\partial\phi}{\partial t} = - \Delta_{x}^{2} a \omega \left(\omega - 2\right) \frac{\partial^{2}\phi}{\partial x^{2}}  - \frac{\Delta_{t}^{2} \omega \left(4 - 3 \omega\right) }{2} \frac{\partial^{2}\phi}{\partial t^{2}} + \Delta_{t} \Delta_{x}^{2} \left(a \omega^{2} - a \omega - \omega + 1\right) \frac{\partial^{3}\phi}{\partial x^{2}\partial t} - \frac{\Delta_{x}^{4} a \omega \left(\omega - 2\right) }{12}\frac{\partial^{4}\phi}{\partial x^{4}}
-\]</div>
-<div class="math notranslate nohighlight">
-\[
+$$
+
+$$
 \frac{\partial\phi}{\partial t} = \frac{a \left(2 - \omega \right)}{\omega} \frac{\Delta_{x}^{2}}{\Delta_{t}} \frac{\partial^{2}\phi}{\partial x^{2}}  + \frac{ \left(3 \omega - 4\right) \Delta_{t}}{2\omega} \frac{\partial^{2}\phi}{\partial t^{2}} + \frac{\left(a \omega^{2} - a \omega - \omega + 1\right)\Delta_{x}^{2}}{\omega^{2}} \frac{\partial^{3}\phi}{\partial x^{2}\partial t} + \frac{ a \left(2 - \omega\right) }{12\omega} \frac{\Delta_{x}^{4}}{\Delta_{t}} \frac{\partial^{4}\phi}{\partial x^{4}}
-\]</div>
+$$ -->
+<div class="math notranslate nohighlight" id="equation-fdm-lbm-diff-replaced-expansions-phi">
+<span class="eqno">(63)<a class="headerlink" href="#equation-fdm-lbm-diff-replaced-expansions-phi" title="Link to this equation"></a></span>\[\begin{split}
+\begin{array}{rl}
+0=&amp;\Delta_{t} \omega^{2} \displaystyle\frac{\partial\phi}{\partial t} + \Delta_{x}^{2} a \omega \left(\omega - 2\right) \frac{\partial^{2}\phi}{\partial x^{2}}  + \frac{\Delta_{t}^{2} \omega \left(4 - 3 \omega\right) }{2} \frac{\partial^{2}\phi}{\partial t^{2}} - \Delta_{t} \Delta_{x}^{2} \left(a \omega^{2} - a \omega - \omega + 1\right) \frac{\partial^{3}\phi}{\partial x^{2}\partial t} + \frac{\Delta_{x}^{4} a \omega \left(\omega - 2\right) }{12}\frac{\partial^{4}\phi}{\partial x^{4}}\\
+\Delta_{t} \omega^{2} \displaystyle\frac{\partial\phi}{\partial t} =&amp; - \Delta_{x}^{2} a \omega \left(\omega - 2\right) \displaystyle\frac{\partial^{2}\phi}{\partial x^{2}}  - \frac{\Delta_{t}^{2} \omega \left(4 - 3 \omega\right) }{2} \frac{\partial^{2}\phi}{\partial t^{2}} + \Delta_{t} \Delta_{x}^{2} \left(a \omega^{2} - a \omega - \omega + 1\right) \frac{\partial^{3}\phi}{\partial x^{2}\partial t} - \frac{\Delta_{x}^{4} a \omega \left(\omega - 2\right) }{12}\frac{\partial^{4}\phi}{\partial x^{4}}\\
+\displaystyle\frac{\partial\phi}{\partial t} =&amp; \displaystyle\frac{a \left(2 - \omega \right)}{\omega} \frac{\Delta_{x}^{2}}{\Delta_{t}} \frac{\partial^{2}\phi}{\partial x^{2}}  + \frac{ \left(3 \omega - 4\right) \Delta_{t}}{2\omega} \frac{\partial^{2}\phi}{\partial t^{2}} + \frac{\left(a \omega^{2} - a \omega - \omega + 1\right)\Delta_{x}^{2}}{\omega^{2}} \frac{\partial^{3}\phi}{\partial x^{2}\partial t} + \frac{ a \left(2 - \omega\right) }{12\omega} \frac{\Delta_{x}^{4}}{\Delta_{t}} \frac{\partial^{4}\phi}{\partial x^{4}}
+\end{array}
+\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\nu=\frac{a \left(2 - \omega \right)}{\omega} \frac{\Delta_{x}^{2}}{\Delta_{t}}\)</span> is the same term recovered in the Chapman-Enskog Analysis. To enforce fourth-order <span class="math notranslate nohighlight">\(\Delta_{x}\)</span> convergence rate, employ the relations</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{\partial\phi}{\partial t} = \nu \frac{\partial^{2}\phi}{\partial x^{2}}, \qquad \frac{\partial^{2}\phi}{\partial t^{2}} = \nu^{2} \frac{\partial^{4}\phi}{\partial x^{4}}, \qquad \frac{\partial^{3}\phi}{\partial x^{2}\partial t} = \nu \frac{\partial^{4}\phi}{\partial x^{4}}
+\frac{\partial\phi}{\partial t} = \nu \frac{\partial^{2}\phi}{\partial x^{2}}, \qquad \frac{\partial^{2}\phi}{\partial t^{2}} = \nu^{2} \frac{\partial^{4}\phi}{\partial x^{4}}, \qquad \frac{\partial^{3}\phi}{\partial x^{2}\partial t} = \nu \frac{\partial^{4}\phi}{\partial x^{4}},
 \]</div>
+<p>to replace the term in Eq. <a class="reference internal" href="#equation-fdm-lbm-diff-replaced-expansions-phi">(63)</a>:</p>
 <div class="math notranslate nohighlight">
-\[
-\frac{\partial\phi}{\partial t} = \nu\frac{\partial^{2}\phi}{\partial x^{2}}  + \frac{a \left(2 - \omega \right)}{\omega} \frac{ \left(3 \omega - 4\right) \nu\Delta_{x}^{2}}{2\omega} \frac{\partial^{4}\phi}{\partial x^{4}} + \frac{\left(a \omega^{2} - a \omega - \omega + 1\right)\nu\Delta_{x}^{2}}{\omega^{2}} \frac{\partial^{4}\phi}{\partial x^{4}} + \frac{\nu\Delta_{x}^{2}}{12} \frac{\partial^{4}\phi}{\partial x^{4}}
-\]</div>
-<div class="math notranslate nohighlight">
-\[
-\frac{\partial\phi}{\partial t} = \nu\frac{\partial^{2}\phi}{\partial x^{2}}  + \frac{ a\left(6 \omega - 8 - 3\omega^{2} + 4 \omega \right) \nu\Delta_{x}^{2}}{2\omega^{2}} \frac{\partial^{4}\phi}{\partial x^{4}} + \frac{\left(a \omega^{2} - a \omega - \omega + 1\right)\nu\Delta_{x}^{2}}{\omega^{2}} \frac{\partial^{4}\phi}{\partial x^{4}} + \frac{\omega^{2}\nu\Delta_{x}^{2}}{12\omega^{2}} \frac{\partial^{4}\phi}{\partial x^{4}}
-\]</div>
-<div class="math notranslate nohighlight">
-\[
-\frac{\partial\phi}{\partial t} = \nu\frac{\partial^{2}\phi}{\partial x^{2}}  + \frac{\nu\Delta_{x}^{2}}{2\omega^{2}}\left( a\left(10 \omega - 8 - 3\omega^{2} \right)  + 2\left(a \omega^{2} - a \omega - \omega + 1\right) + \frac{\omega^{2}}{6} \right) \frac{\partial^{4}\phi}{\partial x^{4}} 
-\]</div>
-<div class="math notranslate nohighlight">
-\[
-\frac{\partial\phi}{\partial t} = \nu\frac{\partial^{2}\phi}{\partial x^{2}}  + \frac{\nu\Delta_{x}^{2}}{2\omega^{2}}\left( a\left(8 \omega - 8 - \omega^{2} \right)  + 2\left(1 - \omega \right) + \frac{\omega^{2}}{6} \right) \frac{\partial^{4}\phi}{\partial x^{4}} 
-\]</div>
-<div class="math notranslate nohighlight">
-\[
-\frac{\partial\phi}{\partial t} = \nu\frac{\partial^{2}\phi}{\partial x^{2}}  - \frac{\nu\Delta_{x}^{2}}{2\omega^{2}}\left( a\left(\omega^{2} - 8 \omega + 8 \right)  - \frac{\omega^{2} - 12\omega + 12 }{6} \right) \frac{\partial^{4}\phi}{\partial x^{4}} + \mathcal{O}(\Delta x)^{4}
-\]</div>
+\[\begin{split}
+\begin{array}{rl}
+\displaystyle\frac{\partial\phi}{\partial t} =&amp; \nu\displaystyle\frac{\partial^{2}\phi}{\partial x^{2}}  + \frac{a \left(2 - \omega \right)}{\omega} \frac{ \left(3 \omega - 4\right) \nu\Delta_{x}^{2}}{2\omega} \frac{\partial^{4}\phi}{\partial x^{4}} + \frac{\left(a \omega^{2} - a \omega - \omega + 1\right)\nu\Delta_{x}^{2}}{\omega^{2}} \frac{\partial^{4}\phi}{\partial x^{4}} + \frac{\nu\Delta_{x}^{2}}{12} \frac{\partial^{4}\phi}{\partial x^{4}}, \\
+\displaystyle\frac{\partial\phi}{\partial t} = &amp; \nu\displaystyle\frac{\partial^{2}\phi}{\partial x^{2}}  + \frac{ a\left(6 \omega - 8 - 3\omega^{2} + 4 \omega \right) \nu\Delta_{x}^{2}}{2\omega^{2}} \frac{\partial^{4}\phi}{\partial x^{4}} + \frac{\left(a \omega^{2} - a \omega - \omega + 1\right)\nu\Delta_{x}^{2}}{\omega^{2}} \frac{\partial^{4}\phi}{\partial x^{4}} + \frac{\omega^{2}\nu\Delta_{x}^{2}}{12\omega^{2}} \frac{\partial^{4}\phi}{\partial x^{4}}, \\
+\displaystyle\frac{\partial\phi}{\partial t} = &amp; \nu\displaystyle\frac{\partial^{2}\phi}{\partial x^{2}}  + \frac{\nu\Delta_{x}^{2}}{2\omega^{2}}\left( a\left(10 \omega - 8 - 3\omega^{2} \right)  + 2\left(a \omega^{2} - a \omega - \omega + 1\right) + \frac{\omega^{2}}{6} \right) \frac{\partial^{4}\phi}{\partial x^{4}}, \\
+\displaystyle\frac{\partial\phi}{\partial t} = &amp; \nu\displaystyle\frac{\partial^{2}\phi}{\partial x^{2}}  + \frac{\nu\Delta_{x}^{2}}{2\omega^{2}}\left( a\left(8 \omega - 8 - \omega^{2} \right)  + 2\left(1 - \omega \right) + \frac{\omega^{2}}{6} \right) \frac{\partial^{4}\phi}{\partial x^{4}}, \\
+\displaystyle\frac{\partial\phi}{\partial t} = &amp; \nu\displaystyle\frac{\partial^{2}\phi}{\partial x^{2}}  - \frac{\nu\Delta_{x}^{2}}{2\omega^{2}}\left( a\left(\omega^{2} - 8 \omega + 8 \right)  - \frac{\omega^{2} - 12\omega + 12 }{6} \right) \frac{\partial^{4}\phi}{\partial x^{4}} + \mathcal{O}(\Delta x)^{4}
+\end{array}
+\end{split}\]</div>
 <div class="cell tag_hide-input docutils container">
 <details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1012,9 +1011,9 @@ ltests[i] = np.array([1.00,0.33,4.03,0.0007675056151646606,4.5801886601000255e-0
 <section id="extension-to-lattices-with-d-dimensions-and-q-velocities-ddqq">
 <h2>Extension to Lattices with <span class="math notranslate nohighlight">\(d\)</span>-Dimensions and <span class="math notranslate nohighlight">\(q\)</span>-Velocities (<span class="math notranslate nohighlight">\(DdQq\)</span>):<a class="headerlink" href="#extension-to-lattices-with-d-dimensions-and-q-velocities-ddqq" title="Link to this heading"></a></h2>
 <p>Through a general mathematical manipulation of the single relaxation time lattice Boltzmann equation, it is possible to derive a general expansion that expresses the lattice framework in a finite-difference form.</p>
-<p>Building on the earlier analysis presented in <span class="bibtex-citation" id="id3">Suga [<a class="reference internal" href="../../Citations.html#id4" title="Shinsuke Suga. An accurate multi-level finite difference scheme for 1d diffusion equations derived from the lattice boltzmann method. Journal of Statistical Physics, 140(3):494–503, 2010.">5</a>]</span>, <span class="bibtex-citation" id="id4">Suga [<a class="reference internal" href="../../Citations.html#id9" title="Shinsuke Suga. Accurate numerical schemes based on the lattice boltzmann methods for multi-dimensional diffusion equations. International Journal of Modern Physics C, 25(04):1350104, 2014.">9</a>]</span> proposed a generalized formulation for diffusive transport on <span class="math notranslate nohighlight">\(DdQq\)</span> lattices, considering both isotropic and anisotropic diffusion. The resulting equations are presented in Eq. <a class="reference internal" href="#equation-suga-2014-eqs">(63)</a>, with truncation-error terms highlighted in red and retained through fourth order in <span class="math notranslate nohighlight">\(\Delta x\)</span>. Notice that additional second-order errors may arise when extending the formulation to higher dimensions:</p>
+<p>Building on the earlier analysis presented in <span class="bibtex-citation" id="id3">Suga [<a class="reference internal" href="../../Citations.html#id4" title="Shinsuke Suga. An accurate multi-level finite difference scheme for 1d diffusion equations derived from the lattice boltzmann method. Journal of Statistical Physics, 140(3):494–503, 2010.">5</a>]</span>, <span class="bibtex-citation" id="id4">Suga [<a class="reference internal" href="../../Citations.html#id9" title="Shinsuke Suga. Accurate numerical schemes based on the lattice boltzmann methods for multi-dimensional diffusion equations. International Journal of Modern Physics C, 25(04):1350104, 2014.">9</a>]</span> proposed a generalized formulation for diffusive transport on <span class="math notranslate nohighlight">\(DdQq\)</span> lattices, considering both isotropic and anisotropic diffusion. The resulting equations are presented in Eq. <a class="reference internal" href="#equation-suga-2014-eqs">(64)</a>, with truncation-error terms highlighted in red and retained through fourth order in <span class="math notranslate nohighlight">\(\Delta x\)</span>. Notice that additional second-order errors may arise when extending the formulation to higher dimensions:</p>
 <div class="math notranslate nohighlight" id="equation-suga-2014-eqs">
-<span class="eqno">(63)<a class="headerlink" href="#equation-suga-2014-eqs" title="Link to this equation"></a></span>\[\begin{split}
+<span class="eqno">(64)<a class="headerlink" href="#equation-suga-2014-eqs" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{lll}
 D1Q3-Isotropic: \qquad &amp; \displaystyle\frac{\partial\phi}{\partial t} = &amp;\nu \displaystyle\frac{\partial^{2}\phi}{\partial x^{2}}  - \textcolor{red} {\frac{\nu\Delta_{x}^{2}}{2\omega^{2}}\left( a\left(\omega^{2} - 8 \omega + 8 \right)  - \frac{\omega^{2} - 12\omega + 12 }{6} \right) \frac{\partial^{4}\phi}{\partial x^{4}} } + \mathcal{O}(\Delta x)^{4}\\
 D2Q9-Isotropic: \qquad &amp; \displaystyle\frac{\partial\phi}{\partial t} = &amp;\nu\left(\displaystyle\frac{\partial^{2}\phi}{\partial x^{2}} + \frac{\partial^{2}\phi}{\partial y^{2}}\right)  - \textcolor{red} { \Delta_{x}^{2} R1 \left( \displaystyle\frac{\partial^{4}\phi}{\partial x^{4}} + \frac{\partial^{4}\phi}{\partial y^{4}} \right) } - \textcolor{red} { \Delta_{x}^{2} R12 \left( \displaystyle\frac{\partial^{4}\phi}{\partial x^{2}\partial y^{2}} \right) } + \mathcal{O}(\Delta x)^{4}\\
@@ -1032,7 +1031,7 @@ D3Q25-Anisotropic: \qquad &amp; \displaystyle\frac{\partial\phi}{\partial t} =&a
 <p>The multiple-relaxation-time (MRT) collision model is a well-established scheme in the LBM literature that allows different non-equilibrium moments to relax independently. This flexibility enables various improvements in the numerical representation of partial differential equations. In the present section, we extend the FDM interpretation to the MRT framework of diffusive equation, following the analysis presented by <span class="bibtex-citation" id="id5">Lin <em>et al.</em> [<a class="reference internal" href="../../Citations.html#id10" title="Yuxin Lin, Ning Hong, Baochang Shi, and Zhenhua Chai. Multiple-relaxation-time lattice boltzmann model-based four-level finite-difference scheme for one-dimensional diffusion equations. Physical Review E, 104(1):015312, 2021.">10</a>]</span>.</p>
 <p>Given the LB equation with MRT for the diffusive equation:</p>
 <div class="math notranslate nohighlight" id="equation-mrt-lb-fdm-diff-eq">
-<span class="eqno">(64)<a class="headerlink" href="#equation-mrt-lb-fdm-diff-eq" title="Link to this equation"></a></span>\[
+<span class="eqno">(65)<a class="headerlink" href="#equation-mrt-lb-fdm-diff-eq" title="Link to this equation"></a></span>\[
 f_i( x_{\alpha} + e_{i,\alpha} \delta t, t+\delta t) = f_i(x_{\alpha}, t)  - (\textbf{M}^{-1}\textbf{S}\textbf{M})_{ik}\left( f_{k} - f_{k}^{eq}  \right), 
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\textbf{M}\)</span> is matrix of moments, <span class="math notranslate nohighlight">\(\textbf{S}\)</span> is the diagonal matrix of relaxation times, and <span class="math notranslate nohighlight">\(\textbf{M}^{-1}\)</span> is the inverse matrix of <span class="math notranslate nohighlight">\(\textbf{M}\)</span>. Considering the problem description in a lattice D1Q3, we have following a Gram-Schmidt procedure:</p>
@@ -1042,7 +1041,7 @@ f_i( x_{\alpha} + e_{i,\alpha} \delta t, t+\delta t) = f_i(x_{\alpha}, t)  - (\t
 \end{split}\]</div>
 <div class="cell tag_remove-input docutils container">
 </div>
-<p>Applying the same shift scheme employed in Eq. <a class="reference internal" href="#equation-pre-fdm-lb-df-eq">(59)</a> to Eq. <a class="reference internal" href="#equation-mrt-lb-fdm-diff-eq">(64)</a>, we obtain</p>
+<p>Applying the same shift scheme employed in Eq. <a class="reference internal" href="General-FDM-Single-Relaxation.html#equation-pre-fdm-lb-df-eq">(78)</a> to Eq. <a class="reference internal" href="#equation-mrt-lb-fdm-diff-eq">(65)</a>, we obtain</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
@@ -1077,7 +1076,7 @@ f_i( x_{\alpha} + e_{i,\alpha} \delta t, t+\delta t) = f_i(x_{\alpha}, t)  - (\t
 </div>
 <p>Using the shift interpretation for the distribution functions, we obtain</p>
 <div class="math notranslate nohighlight" id="equation-rel-f-1">
-<span class="eqno">(65)<a class="headerlink" href="#equation-rel-f-1" title="Link to this equation"></a></span>\[
+<span class="eqno">(66)<a class="headerlink" href="#equation-rel-f-1" title="Link to this equation"></a></span>\[
 f_{0,x}^{t}+f_{1,x+1}^{t}+f_{2,x-1}^{t}=\phi^{t-1}_{x},
 \]</div>
 <p>applying this relation to the equation above:</p>
@@ -1096,7 +1095,7 @@ f_{0,x}^{t}+f_{1,x+1}^{t}+f_{2,x-1}^{t}=\phi^{t-1}_{x},
 </div>
 <p>where</p>
 <div class="math notranslate nohighlight" id="equation-rel-pre-shift-2">
-<span class="eqno">(66)<a class="headerlink" href="#equation-rel-pre-shift-2" title="Link to this equation"></a></span>\[\begin{split}
+<span class="eqno">(67)<a class="headerlink" href="#equation-rel-pre-shift-2" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{ll}
 \phi_{x+1}^t &amp; = \phi^{t}_{x} s_{2} w_{0} + \phi_{x+1}^t \left(- \displaystyle\frac{s_{1}}{2} - \frac{s_{2} w_{0}}{2} + 1\right) + \phi_{x-1}^t \left(- \displaystyle\frac{s_{1}}{2} - \frac{s_{2} w_{0}}{2} + 1\right) + \phi_{x}^{t-1} \left(s_{1} - 1\right) \\
 &amp; + \left(f_{0,x+1}^{t} + f_{0,x-1}^{t} - 2 f_{0,x}^{t}\right) \left(\displaystyle\frac{s_{1}}{2} + \frac{s_{2}}{2} - 1\right)
@@ -1122,11 +1121,11 @@ f_{0,x}^{t}+f_{1,x+1}^{t}+f_{2,x-1}^{t}=\phi^{t-1}_{x},
 \[\begin{split}\displaystyle \begin{aligned}\phi_{x}^{t+1} &amp;= \phi_{x}^{t-1} \left(s_{1} - 1\right) + \left(- \frac{\phi_{x+1}^t}{2} - \frac{\phi_{x-1}^t}{2}\right) \left(s_{1} + s_{2} w_{0} - 2\right) + \left(- \frac{\phi_{x+1}^{t-1}}{2} - \frac{\phi_{x-1}^{t-1}}{2}\right) \left(s_{1}^{2} + s_{1} s_{2} - 4 s_{1} - 2 s_{2} + 4\right) \\ &amp;\quad - \phi^{t}_{x} \left(s_{1} - s_{2} w_{0} + s_{2} - 2\right) + \left(s_{1} - 1\right) \left(s_{1} + s_{2} - 2\right) \left(\phi_{x}^{t-2} + \frac{f_{0,x+1}^{t-1}}{2} + \frac{f_{0,x-1}^{t-1}}{2} - f_{0,x}^{t-1}\right)\end{aligned}.\end{split}\]</div>
 </div>
 </div>
-<p>Applying a time shift in the Eq. <a class="reference internal" href="#equation-rel-pre-shift-2">(66)</a> to replace <span class="math notranslate nohighlight">\(f^{t-1}_{0,x+1}/2+f^{t-1}_{0,x-1}/2-f^{t-1}_{0,x}\)</span> in the above equation, we obtain in the final form <span class="math notranslate nohighlight">\(\phi^{t+1}_{x}\)</span> only dependent of previous moments:</p>
+<p>Applying a time shift in the Eq. <a class="reference internal" href="#equation-rel-pre-shift-2">(67)</a> to replace <span class="math notranslate nohighlight">\(f^{t-1}_{0,x+1}/2+f^{t-1}_{0,x-1}/2-f^{t-1}_{0,x}\)</span> in the above equation, we obtain in the final form <span class="math notranslate nohighlight">\(\phi^{t+1}_{x}\)</span> only dependent of previous moments:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\displaystyle \begin{aligned}\phi_{x}^{t+1} &amp;= \phi^{t}_{x} \left(s_{2} w_{0} - s_{2} + 1\right) + \phi_{x+1}^t \left(- \frac{s_{1}}{2} - \frac{s_{2} w_{0}}{2} + 1\right) + \phi_{x+1}^{t-1} \left(\frac{s_{1} s_{2} w_{0}}{2} - \frac{s_{1} s_{2}}{2} + \frac{s_{1}}{2} - \frac{s_{2} w_{0}}{2} + s_{2} - 1\right) \\ &amp;\quad + \phi_{x-1}^t \left(- \frac{s_{1}}{2} - \frac{s_{2} w_{0}}{2} + 1\right) + \phi_{x-1}^{t-1} \left(\frac{s_{1} s_{2} w_{0}}{2} - \frac{s_{1} s_{2}}{2} + \frac{s_{1}}{2} - \frac{s_{2} w_{0}}{2} + s_{2} - 1\right) + \phi_{x}^{t-1} \left(- s_{1} s_{2} w_{0} + s_{1} + s_{2} w_{0} - 1\right) \\ &amp;\quad + \phi_{x}^{t-2} \left(s_{1} s_{2} - s_{1} - s_{2} + 1\right)\end{aligned}.\end{split}\]</div>
+\[\begin{split}\displaystyle \begin{aligned}\phi_{x}^{t+1} &amp;= \phi^{t}_{x} \left(s_{2} w_{0} - s_{2} + 1\right) + \phi_{x+1}^t \left(- \frac{s_{1}}{2} - \frac{s_{2} w_{0}}{2} + 1\right) \\ &amp;\quad + \phi_{x+1}^{t-1} \left(\frac{s_{1} s_{2} w_{0}}{2} - \frac{s_{1} s_{2}}{2} + \frac{s_{1}}{2} - \frac{s_{2} w_{0}}{2} + s_{2} - 1\right) + \phi_{x-1}^t \left(- \frac{s_{1}}{2} - \frac{s_{2} w_{0}}{2} + 1\right) \\ &amp;\quad + \phi_{x-1}^{t-1} \left(\frac{s_{1} s_{2} w_{0}}{2} - \frac{s_{1} s_{2}}{2} + \frac{s_{1}}{2} - \frac{s_{2} w_{0}}{2} + s_{2} - 1\right) + \phi_{x}^{t-1} \left(- s_{1} s_{2} w_{0} + s_{1} + s_{2} w_{0} - 1\right) \\ &amp;\quad + \phi_{x}^{t-2} \left(s_{1} s_{2} - s_{1} - s_{2} + 1\right)\end{aligned}.\end{split}\]</div>
 </div>
 </div>
 <section id="fourth-order-mrt-diffusive-equation">

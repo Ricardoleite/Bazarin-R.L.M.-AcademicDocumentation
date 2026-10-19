@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2026.10.4)  11 OCT 2026 07:29
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2026.10.4)  19 OCT 2026 00:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2040,12 +2040,7 @@ File: 39d476457e161e0f1e8598e65ae1e5d039de6d3b85f309ef1e58a0b6d3064822.png Grap
 hic file (type bmp)
 <39d476457e161e0f1e8598e65ae1e5d039de6d3b85f309ef1e58a0b6d3064822.png>
  [42]
-Overfull \hbox (11.29716pt too wide) detected at line 2876
-[]
- []
-
-
-Overfull \hbox (1.85234pt too wide) detected at line 2880
+Overfull \hbox (60.52617pt too wide) detected at line 2882
 []
  []
 
@@ -2061,54 +2056,54 @@ hic file (type bmp)
 <1f2930681a48377c82844249177836919539ffa5f4c574a0356a3d73d2f8e37d.png>
  [44]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 14.40152pt on input line 2959.
+(Font)              scaled to size 14.40152pt on input line 2950.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 14.39845pt on input line 2959.
+(Font)              scaled to size 14.39845pt on input line 2950.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2959.
+(hyperref)                removing `math shift' on input line 2950.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2959.
+(hyperref)                removing `math shift' on input line 2950.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2959.
+(hyperref)                removing `math shift' on input line 2950.
 
 
-Overfull \hbox (10.61778pt too wide) detected at line 2978
+Overfull \hbox (10.61778pt too wide) detected at line 2969
 []
  []
 
 [45]
-Overfull \hbox (22.55379pt too wide) detected at line 3118
+Overfull \hbox (22.55379pt too wide) detected at line 3109
 []
  []
 
 
-Overfull \hbox (20.0pt too wide) detected at line 3118
+Overfull \hbox (20.0pt too wide) detected at line 3109
 []
  []
 
 [46]
-Overfull \hbox (19.03828pt too wide) detected at line 3122
+Overfull \hbox (19.03828pt too wide) detected at line 3113
 []
  []
 
 
-Overfull \hbox (20.0pt too wide) detected at line 3122
+Overfull \hbox (20.0pt too wide) detected at line 3113
 []
  []
 
 
-Overfull \hbox (14.08754pt too wide) detected at line 3135
+Overfull \hbox (14.08754pt too wide) detected at line 3126
 []
  []
 
 
-Overfull \hbox (20.0pt too wide) detected at line 3135
+Overfull \hbox (20.0pt too wide) detected at line 3126
 []
  []
 
@@ -2123,13 +2118,42 @@ File: 4d0b4493f4badb228798f0df908fa83c69333dfef15a82d98de3990dcddcc011.png Grap
 hic file (type bmp)
 <4d0b4493f4badb228798f0df908fa83c69333dfef15a82d98de3990dcddcc011.png>
  [48] [49]
-Underfull \hbox (badness 6252) in paragraph at lines 3260--3262
+Chapter 7.
+[50
+
+]
+Overfull \hbox (5.76292pt too wide) detected at line 3423
+[]
+ []
+
+[51]
+Overfull \hbox (5.76292pt too wide) detected at line 3440
+[]
+ []
+
+
+Overfull \hbox (35.12138pt too wide) detected at line 3463
+[]
+ []
+
+
+Overfull \hbox (140.6999pt too wide) detected at line 3486
+[]
+ []
+
+
+Overfull \hbox (58.74911pt too wide) detected at line 3496
+[]
+ []
+
+[52] [53]
+Underfull \hbox (badness 6252) in paragraph at lines 3521--3523
 []\TU/FreeSerif(0)/m/n/10 Zhenhua Chai, Nanzhong He, Zhaoli Guo, and Baochang S
 hi. Lattice Boltzmann model for
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3260--3262
+Underfull \hbox (badness 10000) in paragraph at lines 3521--3523
 \TU/FreeSerif(0)/m/n/10 high-order nonlinear partial differential equations. \T
 U/FreeSerif(0)/m/it/10 Physical Review E\TU/FreeSerif(0)/m/n/10 , 2018. [][]arX
 iv:0907.1720[][],
@@ -2170,7 +2194,7 @@ braces):
 >  {english/babelname}  =>  {american}
 >  {english/localnumeral}  =>  {polyglossia@C@localnumeral}
 >  {english/Localnumeral}  =>  {polyglossia@C@localnumeral}.
- [50
+ [54
 
 
 ] (./projectnamenotset.aux
@@ -2179,15 +2203,15 @@ LaTeX Info: Redefining \sffamily on input line 19.
 LaTeX Info: Redefining \ttfamily on input line 19.
 )
 Package rerunfilecheck Info: File `projectnamenotset.out' has not changed.
-(rerunfilecheck)             Checksum: 1A1CC692E70D9DCEF632CBFEE432FEAF;9722.
+(rerunfilecheck)             Checksum: 97D07C726D0C37E5B9F2ADB8A4C25E8E;10002.
  ) 
 Here is how much of TeX's memory you used:
- 46590 strings out of 478146
- 1077784 string characters out of 5853002
- 1721315 words of memory out of 5000000
- 66306 multiletter control sequences out of 15000+600000
+ 46602 strings out of 478146
+ 1078825 string characters out of 5853002
+ 1730314 words of memory out of 5000000
+ 66318 multiletter control sequences out of 15000+600000
  480754 words of font info for 151 fonts, out of 8000000 for 9000
  17 hyphenation exceptions out of 8191
- 99i,25n,115p,2926b,2142s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 99i,33n,115p,2926b,2142s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on projectnamenotset.pdf (52 pages).
+Output written on projectnamenotset.pdf (56 pages).

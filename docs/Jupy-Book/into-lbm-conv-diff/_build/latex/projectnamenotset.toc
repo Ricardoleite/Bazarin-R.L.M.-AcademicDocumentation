@@ -94,4 +94,6 @@
 \contentsline {section}{\numberline {6.5}Extension to Lattices with \(d\)\sphinxhyphen {}Dimensions and \(q\)\sphinxhyphen {}Velocities (\(DdQq\)):}{45}{section.6.5}%
 \contentsline {section}{\numberline {6.6}Diffusive Equation Interpretation with Multi\sphinxhyphen {}Relaxation Time (MRT\sphinxhyphen {}Framework)}{45}{section.6.6}%
 \contentsline {subsection}{\numberline {6.6.1}Fourth\sphinxhyphen {}order MRT Diffusive Equation}{47}{subsection.6.6.1}%
-\contentsline {chapter}{Bibliography}{50}{chapter*.40}%
+\contentsline {chapter}{\numberline {7}Generalized Difference Finite Scheme for Balance Equations derived from Lattice Boltzmann}{50}{chapter.7}%
+\contentsline {section}{\numberline {7.1}FDS of Single Relaxation Time (SRT) LBM framework}{50}{section.7.1}%
+\contentsline {chapter}{Bibliography}{54}{chapter*.40}%

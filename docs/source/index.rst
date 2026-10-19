@@ -89,6 +89,7 @@ Lattice Boltzmann Method - Application to Different Partial differential Equatio
 
    /LBM-Study/FDM-Belloti/FDM-LBM-Diffusive.ipynb
    /LBM-Study/FDM-Belloti/FDM-LBM-Convective-Diffusive.ipynb
+   /LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation.ipynb
 
 .. raw:: html
 

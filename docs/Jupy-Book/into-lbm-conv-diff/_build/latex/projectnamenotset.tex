@@ -88,7 +88,7 @@
         
 
 \title{Ricardo Leite Martins Bazarin - Academic Documentation}
-\date{Oct 11, 2026}
+\date{Oct 19, 2026}
 \release{}
 \author{Ricardo Leite Martins Bazarin}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -2618,14 +2618,14 @@ where \(\phi(x_{\alpha}, t)\) is the scalar term transported by diffusion.
 \subsection{FDM Interpretation for the Lattice D1Q3}
 \label{\detokenize{Refs/LBM-Study/FDM-Belloti/FDM-LBM-Diffusive:fdm-interpretation-for-the-lattice-d1q3}}
 \sphinxAtStartPar
-For simplification we redefine the notation for \(f_i( x_{\alpha} + e_{i,\alpha} \delta t, t+\delta t)=f_{i,x+c_{i}}^{t+1}\). Using this notation, Eq. \eqref{equation:Refs/LBM-Study/FDM-Belloti/FDM-LBM-Diffusive:LB-fdm-df-Eq} can be reinterpreted by applying a shift in \(c_i\) to express the distribution function at the pre\sphinxhyphen{}streaming state:
+For simplification we redefine the notation for \(f_i( x_{\alpha} + e_{i,\alpha} \delta t, t+\delta t)=f_{i,x+c_{i}}^{t+1}\). Using this notation, Eq. \eqref{equation:Refs/LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation:LB-fdm-df-Eq} can be reinterpreted by applying a shift in \(c_i\) to express the distribution function at the pre\sphinxhyphen{}streaming state:
 \begin{equation}\label{equation:Refs/LBM-Study/FDM-Belloti/FDM-LBM-Diffusive:pre-fdm-LB-df-Eq}
 \begin{split}
 f_{i,x}^{t+1}  = f_{i,x-c_{i}}^{t}  - \omega \left( f_{i,x-c_{i}}^{t} - f_{i,x-c_{i}}^{eq,t} \right).
 \end{split}
 \end{equation}
 \sphinxAtStartPar
-Summing the Eq. \eqref{equation:Refs/LBM-Study/FDM-Belloti/FDM-LBM-Diffusive:pre-fdm-LB-df-Eq} over all lattice direction and replacing \(f_{i}^{eq}\) by Eq. \eqref{equation:Refs/LBM-Study/FDM-Belloti/FDM-LBM-Diffusive:df-fdm-feq-Eq}, we have:
+Summing the Eq. \eqref{equation:Refs/LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation:pre-fdm-LB-df-Eq} over all lattice direction and replacing \(f_{i}^{eq}\) by Eq. \eqref{equation:Refs/LBM-Study/FDM-Belloti/FDM-LBM-Diffusive:df-fdm-feq-Eq}, we have:
 \begin{equation*}
 \begin{split}
 \displaystyle\sum_{i}\Big( f_{i,x}^{t+1} \Big) = \displaystyle\sum_{i}\Big( f_{i,x-c_{i}}^{t}  - \omega \left( f_{i,x-c_{i}}^{t} - f_{i,x-c_{i}}^{eq,t} \right) \Big) \qquad \rightarrow  \qquad \phi_{x}^{t+1} = \displaystyle\sum_{i}\Big( (1-\omega) f_{i,x-c_{i}}^{t}  + \omega w_{i}\phi_{x-c_{i}}^{t} \Big),
@@ -2639,7 +2639,7 @@ using the Eq. \eqref{equation:Refs/LBM-Study/FDM-Belloti/FDM-LBM-Diffusive:momen
 \end{split}
 \end{equation*}
 \sphinxAtStartPar
-Spliting the terms in the above equation and using Eq. \eqref{equation:Refs/LBM-Study/FDM-Belloti/FDM-LBM-Diffusive:pre-fdm-LB-df-Eq} for \(f_{i,x-c_{i}}^{t}\):
+Spliting the terms in the above equation and using Eq. \eqref{equation:Refs/LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation:pre-fdm-LB-df-Eq} for \(f_{i,x-c_{i}}^{t}\):
 \begin{equation*}
 \begin{split}
 \begin{array}{ll}
@@ -2666,7 +2666,7 @@ notice that \(\displaystyle\sum_{i}\Bigg( \displaystyle\sum_{k\neq i} \left( \om
 \end{split}
 \end{equation}
 \sphinxAtStartPar
-Interpreting \(f_{i,x+c_{i}}^{t-1}\) with Eq. \eqref{equation:Refs/LBM-Study/FDM-Belloti/FDM-LBM-Diffusive:pre-fdm-LB-df-Eq}:
+Interpreting \(f_{i,x+c_{i}}^{t-1}\) with Eq. \eqref{equation:Refs/LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation:pre-fdm-LB-df-Eq}:
 \begin{equation*}
 \begin{split}
 f_{i,x+c_{i}}^{t-1}  = f_{i,x}^{t-2}  - \omega \left( f_{i,x}^{t-2} - f_{i,x}^{eq,t-2} \right) ,
@@ -2869,44 +2869,35 @@ To recover the partial differetial equation described by the above equation, we 
 \end{equation}
 \sphinxAtStartPar
 Replacing the expanded terms and simplifying the term (this link provide a sympy code that reach the above equation \DUrole{xref,std,std-doc}{appendix/sympy\sphinxhyphen{}code\sphinxhyphen{}fdm\sphinxhyphen{}diffusive\sphinxhyphen{}expansion}), we have:
-\begin{equation*}
+
+
+\begin{equation}\label{equation:Refs/LBM-Study/FDM-Belloti/FDM-LBM-Diffusive:FDM-LBM-diff-replaced-expansions-phi}
 \begin{split}
-0=\Delta_{t} \omega^{2} \frac{\partial\phi}{\partial t} + \Delta_{x}^{2} a \omega \left(\omega - 2\right) \frac{\partial^{2}\phi}{\partial x^{2}}  + \frac{\Delta_{t}^{2} \omega \left(4 - 3 \omega\right) }{2} \frac{\partial^{2}\phi}{\partial t^{2}} - \Delta_{t} \Delta_{x}^{2} \left(a \omega^{2} - a \omega - \omega + 1\right) \frac{\partial^{3}\phi}{\partial x^{2}\partial t} + \frac{\Delta_{x}^{4} a \omega \left(\omega - 2\right) }{12}\frac{\partial^{4}\phi}{\partial x^{4}}
+\begin{array}{rl}
+0=&\Delta_{t} \omega^{2} \displaystyle\frac{\partial\phi}{\partial t} + \Delta_{x}^{2} a \omega \left(\omega - 2\right) \frac{\partial^{2}\phi}{\partial x^{2}}  + \frac{\Delta_{t}^{2} \omega \left(4 - 3 \omega\right) }{2} \frac{\partial^{2}\phi}{\partial t^{2}} - \Delta_{t} \Delta_{x}^{2} \left(a \omega^{2} - a \omega - \omega + 1\right) \frac{\partial^{3}\phi}{\partial x^{2}\partial t} + \frac{\Delta_{x}^{4} a \omega \left(\omega - 2\right) }{12}\frac{\partial^{4}\phi}{\partial x^{4}}\\
+\Delta_{t} \omega^{2} \displaystyle\frac{\partial\phi}{\partial t} =& - \Delta_{x}^{2} a \omega \left(\omega - 2\right) \displaystyle\frac{\partial^{2}\phi}{\partial x^{2}}  - \frac{\Delta_{t}^{2} \omega \left(4 - 3 \omega\right) }{2} \frac{\partial^{2}\phi}{\partial t^{2}} + \Delta_{t} \Delta_{x}^{2} \left(a \omega^{2} - a \omega - \omega + 1\right) \frac{\partial^{3}\phi}{\partial x^{2}\partial t} - \frac{\Delta_{x}^{4} a \omega \left(\omega - 2\right) }{12}\frac{\partial^{4}\phi}{\partial x^{4}}\\
+\displaystyle\frac{\partial\phi}{\partial t} =& \displaystyle\frac{a \left(2 - \omega \right)}{\omega} \frac{\Delta_{x}^{2}}{\Delta_{t}} \frac{\partial^{2}\phi}{\partial x^{2}}  + \frac{ \left(3 \omega - 4\right) \Delta_{t}}{2\omega} \frac{\partial^{2}\phi}{\partial t^{2}} + \frac{\left(a \omega^{2} - a \omega - \omega + 1\right)\Delta_{x}^{2}}{\omega^{2}} \frac{\partial^{3}\phi}{\partial x^{2}\partial t} + \frac{ a \left(2 - \omega\right) }{12\omega} \frac{\Delta_{x}^{4}}{\Delta_{t}} \frac{\partial^{4}\phi}{\partial x^{4}}
+\end{array}
 \end{split}
-\end{equation*}\begin{equation*}
-\begin{split}
-\Delta_{t} \omega^{2} \frac{\partial\phi}{\partial t} = - \Delta_{x}^{2} a \omega \left(\omega - 2\right) \frac{\partial^{2}\phi}{\partial x^{2}}  - \frac{\Delta_{t}^{2} \omega \left(4 - 3 \omega\right) }{2} \frac{\partial^{2}\phi}{\partial t^{2}} + \Delta_{t} \Delta_{x}^{2} \left(a \omega^{2} - a \omega - \omega + 1\right) \frac{\partial^{3}\phi}{\partial x^{2}\partial t} - \frac{\Delta_{x}^{4} a \omega \left(\omega - 2\right) }{12}\frac{\partial^{4}\phi}{\partial x^{4}}
-\end{split}
-\end{equation*}\begin{equation*}
-\begin{split}
-\frac{\partial\phi}{\partial t} = \frac{a \left(2 - \omega \right)}{\omega} \frac{\Delta_{x}^{2}}{\Delta_{t}} \frac{\partial^{2}\phi}{\partial x^{2}}  + \frac{ \left(3 \omega - 4\right) \Delta_{t}}{2\omega} \frac{\partial^{2}\phi}{\partial t^{2}} + \frac{\left(a \omega^{2} - a \omega - \omega + 1\right)\Delta_{x}^{2}}{\omega^{2}} \frac{\partial^{3}\phi}{\partial x^{2}\partial t} + \frac{ a \left(2 - \omega\right) }{12\omega} \frac{\Delta_{x}^{4}}{\Delta_{t}} \frac{\partial^{4}\phi}{\partial x^{4}}
-\end{split}
-\end{equation*}
+\end{equation}
 \sphinxAtStartPar
 where \(\nu=\frac{a \left(2 - \omega \right)}{\omega} \frac{\Delta_{x}^{2}}{\Delta_{t}}\) is the same term recovered in the Chapman\sphinxhyphen{}Enskog Analysis. To enforce fourth\sphinxhyphen{}order \(\Delta_{x}\) convergence rate, employ the relations
 \begin{equation*}
 \begin{split}
-\frac{\partial\phi}{\partial t} = \nu \frac{\partial^{2}\phi}{\partial x^{2}}, \qquad \frac{\partial^{2}\phi}{\partial t^{2}} = \nu^{2} \frac{\partial^{4}\phi}{\partial x^{4}}, \qquad \frac{\partial^{3}\phi}{\partial x^{2}\partial t} = \nu \frac{\partial^{4}\phi}{\partial x^{4}}
+\frac{\partial\phi}{\partial t} = \nu \frac{\partial^{2}\phi}{\partial x^{2}}, \qquad \frac{\partial^{2}\phi}{\partial t^{2}} = \nu^{2} \frac{\partial^{4}\phi}{\partial x^{4}}, \qquad \frac{\partial^{3}\phi}{\partial x^{2}\partial t} = \nu \frac{\partial^{4}\phi}{\partial x^{4}},
 \end{split}
-\end{equation*}\begin{equation*}
+\end{equation*}
+\sphinxAtStartPar
+to replace the term in Eq. \eqref{equation:Refs/LBM-Study/FDM-Belloti/FDM-LBM-Diffusive:FDM-LBM-diff-replaced-expansions-phi}:
+\begin{equation*}
 \begin{split}
-\frac{\partial\phi}{\partial t} = \nu\frac{\partial^{2}\phi}{\partial x^{2}}  + \frac{a \left(2 - \omega \right)}{\omega} \frac{ \left(3 \omega - 4\right) \nu\Delta_{x}^{2}}{2\omega} \frac{\partial^{4}\phi}{\partial x^{4}} + \frac{\left(a \omega^{2} - a \omega - \omega + 1\right)\nu\Delta_{x}^{2}}{\omega^{2}} \frac{\partial^{4}\phi}{\partial x^{4}} + \frac{\nu\Delta_{x}^{2}}{12} \frac{\partial^{4}\phi}{\partial x^{4}}
-\end{split}
-\end{equation*}\begin{equation*}
-\begin{split}
-\frac{\partial\phi}{\partial t} = \nu\frac{\partial^{2}\phi}{\partial x^{2}}  + \frac{ a\left(6 \omega - 8 - 3\omega^{2} + 4 \omega \right) \nu\Delta_{x}^{2}}{2\omega^{2}} \frac{\partial^{4}\phi}{\partial x^{4}} + \frac{\left(a \omega^{2} - a \omega - \omega + 1\right)\nu\Delta_{x}^{2}}{\omega^{2}} \frac{\partial^{4}\phi}{\partial x^{4}} + \frac{\omega^{2}\nu\Delta_{x}^{2}}{12\omega^{2}} \frac{\partial^{4}\phi}{\partial x^{4}}
-\end{split}
-\end{equation*}\begin{equation*}
-\begin{split}
-\frac{\partial\phi}{\partial t} = \nu\frac{\partial^{2}\phi}{\partial x^{2}}  + \frac{\nu\Delta_{x}^{2}}{2\omega^{2}}\left( a\left(10 \omega - 8 - 3\omega^{2} \right)  + 2\left(a \omega^{2} - a \omega - \omega + 1\right) + \frac{\omega^{2}}{6} \right) \frac{\partial^{4}\phi}{\partial x^{4}} 
-\end{split}
-\end{equation*}\begin{equation*}
-\begin{split}
-\frac{\partial\phi}{\partial t} = \nu\frac{\partial^{2}\phi}{\partial x^{2}}  + \frac{\nu\Delta_{x}^{2}}{2\omega^{2}}\left( a\left(8 \omega - 8 - \omega^{2} \right)  + 2\left(1 - \omega \right) + \frac{\omega^{2}}{6} \right) \frac{\partial^{4}\phi}{\partial x^{4}} 
-\end{split}
-\end{equation*}\begin{equation*}
-\begin{split}
-\frac{\partial\phi}{\partial t} = \nu\frac{\partial^{2}\phi}{\partial x^{2}}  - \frac{\nu\Delta_{x}^{2}}{2\omega^{2}}\left( a\left(\omega^{2} - 8 \omega + 8 \right)  - \frac{\omega^{2} - 12\omega + 12 }{6} \right) \frac{\partial^{4}\phi}{\partial x^{4}} + \mathcal{O}(\Delta x)^{4}
+\begin{array}{rl}
+\displaystyle\frac{\partial\phi}{\partial t} =& \nu\displaystyle\frac{\partial^{2}\phi}{\partial x^{2}}  + \frac{a \left(2 - \omega \right)}{\omega} \frac{ \left(3 \omega - 4\right) \nu\Delta_{x}^{2}}{2\omega} \frac{\partial^{4}\phi}{\partial x^{4}} + \frac{\left(a \omega^{2} - a \omega - \omega + 1\right)\nu\Delta_{x}^{2}}{\omega^{2}} \frac{\partial^{4}\phi}{\partial x^{4}} + \frac{\nu\Delta_{x}^{2}}{12} \frac{\partial^{4}\phi}{\partial x^{4}}, \\
+\displaystyle\frac{\partial\phi}{\partial t} = & \nu\displaystyle\frac{\partial^{2}\phi}{\partial x^{2}}  + \frac{ a\left(6 \omega - 8 - 3\omega^{2} + 4 \omega \right) \nu\Delta_{x}^{2}}{2\omega^{2}} \frac{\partial^{4}\phi}{\partial x^{4}} + \frac{\left(a \omega^{2} - a \omega - \omega + 1\right)\nu\Delta_{x}^{2}}{\omega^{2}} \frac{\partial^{4}\phi}{\partial x^{4}} + \frac{\omega^{2}\nu\Delta_{x}^{2}}{12\omega^{2}} \frac{\partial^{4}\phi}{\partial x^{4}}, \\
+\displaystyle\frac{\partial\phi}{\partial t} = & \nu\displaystyle\frac{\partial^{2}\phi}{\partial x^{2}}  + \frac{\nu\Delta_{x}^{2}}{2\omega^{2}}\left( a\left(10 \omega - 8 - 3\omega^{2} \right)  + 2\left(a \omega^{2} - a \omega - \omega + 1\right) + \frac{\omega^{2}}{6} \right) \frac{\partial^{4}\phi}{\partial x^{4}}, \\
+\displaystyle\frac{\partial\phi}{\partial t} = & \nu\displaystyle\frac{\partial^{2}\phi}{\partial x^{2}}  + \frac{\nu\Delta_{x}^{2}}{2\omega^{2}}\left( a\left(8 \omega - 8 - \omega^{2} \right)  + 2\left(1 - \omega \right) + \frac{\omega^{2}}{6} \right) \frac{\partial^{4}\phi}{\partial x^{4}}, \\
+\displaystyle\frac{\partial\phi}{\partial t} = & \nu\displaystyle\frac{\partial^{2}\phi}{\partial x^{2}}  - \frac{\nu\Delta_{x}^{2}}{2\omega^{2}}\left( a\left(\omega^{2} - 8 \omega + 8 \right)  - \frac{\omega^{2} - 12\omega + 12 }{6} \right) \frac{\partial^{4}\phi}{\partial x^{4}} + \mathcal{O}(\Delta x)^{4}
+\end{array}
 \end{split}
 \end{equation*}
 \begin{sphinxuseclass}{cell}
@@ -3004,7 +2995,7 @@ where \(\textbf{M}\) is matrix of moments, \(\textbf{S}\) is the diagonal matrix
 \end{sphinxuseclass}
 \end{sphinxuseclass}
 \sphinxAtStartPar
-Applying the same shift scheme employed in Eq. \eqref{equation:Refs/LBM-Study/FDM-Belloti/FDM-LBM-Diffusive:pre-fdm-LB-df-Eq} to Eq. \eqref{equation:Refs/LBM-Study/FDM-Belloti/FDM-LBM-Diffusive:MRT-LB-fdm-diff-Eq}, we obtain
+Applying the same shift scheme employed in Eq. \eqref{equation:Refs/LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation:pre-fdm-LB-df-Eq} to Eq. \eqref{equation:Refs/LBM-Study/FDM-Belloti/FDM-LBM-Diffusive:MRT-LB-fdm-diff-Eq}, we obtain
 
 \begin{sphinxuseclass}{cell}
 \begin{sphinxuseclass}{tag_remove-input}\begin{sphinxVerbatimOutput}
@@ -3249,6 +3240,276 @@ Making the term \(\left(3 s_{1}^{2} s_{2} w_{0} - 2 s_{1}^{2} s_{2} - 6 s_{1}^{2
 
 \end{sphinxuseclass}
 \end{sphinxuseclass}
+\sphinxstepscope
+
+
+\chapter{Generalized Difference Finite Scheme for Balance Equations derived from Lattice Boltzmann}
+\label{\detokenize{Refs/LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation:generalized-difference-finite-scheme-for-balance-equations-derived-from-lattice-boltzmann}}\label{\detokenize{Refs/LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation::doc}}
+\sphinxAtStartPar
+In the remainder of this section, we develop a generalized finite difference scheme (FDS) interpretation of balance equation within the LBM framework. Initially, we dedvelop the analysis under a single relaxation time (SRT) framework and subsequently we extendo MRT framework. In both case are considered a generalized lattice \(DdQq\).
+
+\sphinxAtStartPar
+Given the lattice Boltzmann (LB) equatioin in a SRT formulation:
+\begin{equation}\label{equation:Refs/LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation:LB-fdm-df-Eq}
+\begin{split}
+f_i( x_{\alpha} + c_{i} \delta t, t+\delta t) = f_i(x_{\alpha}, t)  -\left( \frac{ f_{i} - f_{i}^{eq} }{ \tau } \right) \qquad \rightarrow \qquad f_i^{'} = f_i  - \omega\left( f_{i} - f_{i}^{eq} \right), 
+\end{split}
+\end{equation}
+\sphinxAtStartPar
+where \(f^{eq}_{i}\) is the equilibrium distribution function that define the moments conserved also called by equilibrium moments in a expansion of Hermite bases:
+\begin{equation}\label{equation:Refs/LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation:general-df-fdm-feq-Eq}
+\begin{split}
+f^{eq}_{i}\left(m^{(0)},...,m^{(n)}\right)=w_{i}\displaystyle\sum_{\theta=0}^{\infty} \displaystyle\frac{ a^{(\theta)}\left(m^{(0)},...,m^{(n)}\right)\mathcal{H}^{(\theta)} }{\theta! c_{s}^{2\theta} },
+\end{split}
+\end{equation}
+\sphinxAtStartPar
+where \(a^{(\theta)}\) is a tensor of order \(\theta\) called expansion coefficient, \(\mathcal{H}^{(\theta)}\) is Hermite polynomial tensor of order \(\theta\). The terms \(m^{(0)}(x_{\alpha}, t)\) up to \(m^{(n)}(x_{\alpha}, t)\) are examples of a consecutive list of \(n\) conservative moments that can be recovered by normal product of distribution funcion with specific polynomes \(\mathcal{C}^{(\theta)}\) due to its ortogonality with Hermite polynomes. So, as example
+\begin{equation}\label{equation:Refs/LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation:general-conserved-moments-fdm-fi-df}
+\begin{split}
+\begin{array}{c}
+\sum_{i}f_{i}\mathcal{C}^{(0)}=\displaystyle\sum_{i}f_{i}^{eq}\mathcal{C}^{(0)}=m^{(0)}, \qquad \sum_{i}f_{i}\mathcal{C}^{(1)}=\displaystyle\sum_{i}f_{i}^{eq}\mathcal{C}^{(1)}=m^{(1)},\\
+\sum_{i}f_{i}\mathcal{C}^{(2)}=\displaystyle\sum_{i}f_{i}^{eq}\mathcal{C}^{(2)}=m^{(2)}, \qquad ... \qquad, \textrm{ and } \qquad \sum_{i}f_{i}\mathcal{C}^{(\theta)}=\displaystyle\sum_{i}f_{i}^{eq}\mathcal{C}^{(\theta)}=m^{(\theta)}. 
+\end{array}
+\end{split}
+\end{equation}
+\sphinxAtStartPar
+The expansion coefficients for each order are recovered by the product of distribution funcion with the respective Hermite polynomial tensor of order, as given in the equation bellow up to the third\sphinxhyphen{}order:
+\begin{equation}\label{equation:Refs/LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation:general-moments-fdm-fi-df}
+\begin{split}
+\begin{array}{c}
+\displaystyle\sum_{i}f_{i}\mathcal{H}^{(0)}=\displaystyle\sum_{i}f_{i}^{eq}\mathcal{H}^{(0)}=a^{(0)}, \qquad \displaystyle\sum_{i}f_{i}^{eq}\mathcal{H}^{(1)}_{\alpha} =a^{(1)}_{\alpha}, \qquad \displaystyle \sum_{i} f_{i}^{eq} \mathcal{H}^{(2)}_{\alpha\beta} =a^{(2)}_{\alpha\beta},\\
+\displaystyle\sum_{i} f_{i}^{eq} \mathcal{H}^{(3)}_{\alpha\beta\gamma} = a^{(3)}_{\alpha\beta\gamma}, \qquad ... \qquad, \textrm{ and } \qquad \displaystyle\sum_{i} f_{i}^{eq} \mathcal{H}^{(q)}_{\alpha\beta\gamma} = a^{(q)}_{\alpha\beta\gamma}.
+\end{array}
+\end{split}
+\end{equation}
+
+\section{FDS of Single Relaxation Time (SRT) LBM framework}
+\label{\detokenize{Refs/LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation:fds-of-single-relaxation-time-srt-lbm-framework}}
+\sphinxAtStartPar
+For simplification we redefine the notation for \(f_i( x_{\alpha} + e_{i,\alpha} \delta t, t+\delta t)=f_{i,x+c_{i}}^{t+1}\). Reinterpreting the Eq. \eqref{equation:Refs/LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation:LB-fdm-df-Eq} in pre\sphinxhyphen{}streaming moment, we apply a shift in \(c_{i}\):
+\begin{equation}\label{equation:Refs/LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation:pre-fdm-LB-df-Eq}
+\begin{split}
+f_{i,x_{\alpha}}^{t+1}  = f_{i,x_{\alpha}-c_{i}}^{t}  - \omega \left( f_{i,x_{\alpha}-c_{i}}^{t} - f_{i,x_{\alpha}-c_{i}}^{eq,t} \right).
+\end{split}
+\end{equation}
+\sphinxAtStartPar
+Multiplying by the \(n\)\sphinxhyphen{}order of polynome of the \(\mathcal{C}^{(n)}\), that correct recover a conserved moment and summing the Eq. \eqref{equation:Refs/LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation:pre-fdm-LB-df-Eq} over all lattice direction, we have:
+\begin{equation*}
+\begin{split}
+\begin{array}{rl}
+\displaystyle\sum_{i}\Big( f_{i,x_{\alpha}}^{t+1}\mathcal{C}^{(n)} \Big) = & \displaystyle\sum_{i}\Big( f_{i,x_{\alpha}-c_{i}}^{t}\mathcal{C}^{(n)}  - \omega \left( f_{i,x_{\alpha}-c_{i}}^{t}\mathcal{C}^{(n)} - f_{i,x_{\alpha}-c_{i}}^{eq,t}\mathcal{C}^{(n)} \right) \Big), \\
+m_{x_{\alpha}}^{(n)t+1} = & \displaystyle\sum_{i}\Big( (1-\omega) f_{i,x_{\alpha}-c_{i}}^{t}\mathcal{C}^{(n)}  + \textcolor{blue}{\omega f_{i,x_{\alpha}-c_{i}}^{eq,t}\mathcal{C}^{(n)} }\Big),
+\end{array}
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+where the blue color highligth the terms that are dependent of only know moments. Given that we know all the moment described in the equilibrium distribution function, we have
+\begin{equation*}
+\begin{split}
+m_{x_{\alpha}}^{(n)t+1} = \textcolor{blue}{\sum_{i}\left(\omega f_{i,x_{\alpha}-c_{i}}^{eq,t}\mathcal{C}^{(n)} \right)} + \sum_{i}\left( (1-\omega) f_{i,x_{\alpha}-c_{i}}^{t}\mathcal{C}^{(n)}  \right),
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+using the Eq. \eqref{equation:Refs/LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation:general-conserved-moments-fdm-fi-df} to replace \(f_{i,x_{\alpha}-c_{i}}^{t}\) in the above equation:
+\begin{equation*}
+\begin{split}
+\begin{array}{rl}
+m_{x_{\alpha}}^{(n)t+1} = & \textcolor{blue}{\displaystyle\sum_{i}\left(\omega f_{i,x_{\alpha}-c_{i}}^{eq,t}\mathcal{C}^{(n)} \right)} + \sum_{i}\left( (1-\omega) f_{i,x_{\alpha}-c_{i}}^{t}\mathcal{C}^{(n)}  \right), \\
+m_{x_{\alpha}}^{(n)t+1} = & \textcolor{blue}{\displaystyle\sum_{i}\left(\omega f_{i,x_{\alpha}-c_{i}}^{eq,t}\mathcal{C}^{(n)} + (1-\omega)m_{x_{\alpha}-c_{i}}^{(n)t} \right)} - (1-\omega) \sum_{i}\left( \sum_{k\neq i} \left(f_{k,x_{\alpha}-c_{i}}^{t}\mathcal{C}^{(n)}  \right) \right).
+\end{array}
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+Repeting the process of shift in \(c_{k}\) the unknow distribution function and write it terms of pre collisional function, we have:
+\begin{equation}\label{equation:Refs/LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation:SRT-FDM-Exp-Step1}
+\begin{split}
+\begin{array}{rl}
+m_{x_{\alpha}}^{(n)t+1} = & \textcolor{blue}{\displaystyle\sum_{i}\left(\omega f_{i,x_{\alpha}-c_{i}}^{eq,t}\mathcal{C}^{(n)} + (1-\omega)m_{x_{\alpha}-c_{i}}^{(n)t} \right)} \\
+&- (1-\omega) \displaystyle\sum_{i}\left( \sum_{k\neq i} \left(\left( (1-\omega)f_{k,x_{\alpha}-c_{i}-c_{k}}^{t-1}  + \omega f_{k,x_{\alpha}-c_{i}-c_{k}}^{eq,t-1} \right)\mathcal{C}^{(n)}  \right) \right), \\
+m_{x_{\alpha}}^{(n)t+1} = & \textcolor{blue}{\displaystyle\sum_{i}\left(\omega f_{i,x_{\alpha}-c_{i}}^{eq,t}\mathcal{C}^{(n)} + (1-\omega)m_{x_{\alpha}-c_{i}}^{(n)t} \right)} - \textcolor{blue}{(1-\omega) \displaystyle\sum_{i}\left( \sum_{k\neq i} \left( \omega f_{k,x_{\alpha}-c_{i}-c_{k}}^{eq,t-1} \mathcal{C}^{(n)}  \right) \right)} \\
+&- (1-\omega) \displaystyle\sum_{i}\left( \sum_{k\neq i} \left( (1-\omega)f_{k,x_{\alpha}-c_{i}-c_{k}}^{t-1} \mathcal{C}^{(n)}  \right) \right),
+\end{array}
+\end{split}
+\end{equation}
+\sphinxAtStartPar
+By expansion of terms under the \(\sum_{i} \sum_{k\neq i}\), we observe the presence of permutations in the shifts applied. The Table \eqref{equation:Refs/LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation:perm-symmetry-table} Illustra these shift permutation between index \(i\) and \(k\) for the case \(\sum_{i}\left( \sum_{k\neq i}  f_{k,x_{\alpha}-c_{i}-c_{k}}^{t-1} \right)\).
+\begin{equation}\label{equation:Refs/LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation:perm-symmetry-table}
+\begin{split}
+\begin{array}{c|c|c|c|c|c|c|c}
+i \backslash k & 0 & 1 & 2 & 3 & 4 & \cdots & q \\
+\hline
+0
+& \times
+& f_{1,x_{\alpha}-c_{0}-c_{1}}^{t-1}
+& f_{2,x_{\alpha}-c_{0}-c_{2}}^{t-1}
+& f_{3,x_{\alpha}-c_{0}-c_{3}}^{t-1}
+& f_{4,x_{\alpha}-c_{0}-c_{4}}^{t-1}
+& \cdots
+& f_{q,x_{\alpha}-c_{0}-c_{q}}^{t-1} \\
+\hline
+1
+& f_{0,x_{\alpha}-c_{1}-c_{0}}^{t-1}
+& \times
+& f_{2,x_{\alpha}-c_{1}-c_{2}}^{t-1}
+& f_{3,x_{\alpha}-c_{1}-c_{3}}^{t-1}
+& f_{4,x_{\alpha}-c_{1}-c_{4}}^{t-1}
+& \cdots
+& f_{q,x_{\alpha}-c_{1}-c_{q}}^{t-1} \\
+\hline
+2
+& f_{0,x_{\alpha}-c_{2}-c_{0}}^{t-1}
+& f_{1,x_{\alpha}-c_{2}-c_{1}}^{t-1}
+& \times
+& f_{3,x_{\alpha}-c_{2}-c_{3}}^{t-1}
+& f_{4,x_{\alpha}-c_{2}-c_{4}}^{t-1}
+& \cdots
+& f_{q,x_{\alpha}-c_{2}-c_{q}}^{t-1} \\
+\hline
+3
+& f_{0,x_{\alpha}-c_{3}-c_{0}}^{t-1}
+& f_{1,x_{\alpha}-c_{3}-c_{1}}^{t-1}
+& f_{2,x_{\alpha}-c_{3}-c_{2}}^{t-1}
+& \times
+& f_{4,x_{\alpha}-c_{3}-c_{4}}^{t-1}
+& \cdots
+& f_{q,x_{\alpha}-c_{3}-c_{q}}^{t-1} \\
+\hline
+4
+& f_{0,x_{\alpha}-c_{4}-c_{0}}^{t-1}
+& f_{1,x_{\alpha}-c_{4}-c_{1}}^{t-1}
+& f_{2,x_{\alpha}-c_{4}-c_{2}}^{t-1}
+& f_{3,x_{\alpha}-c_{4}-c_{3}}^{t-1}
+& \times
+& \cdots
+& f_{q,x_{\alpha}-c_{4}-c_{q}}^{t-1} \\
+\hline
+\vdots
+& \vdots
+& \vdots
+& \vdots
+& \vdots
+& \vdots
+& \ddots
+& \vdots \\
+\hline
+q
+& f_{0,x_{\alpha}-c_{q}-c_{0}}^{t-1}
+& f_{1,x_{\alpha}-c_{q}-c_{1}}^{t-1}
+& f_{2,x_{\alpha}-c_{q}-c_{2}}^{t-1}
+& f_{3,x_{\alpha}-c_{q}-c_{3}}^{t-1}
+& f_{4,x_{\alpha}-c_{q}-c_{4}}^{t-1}
+& \cdots
+& \times \\
+\hline
+\end{array}
+\end{split}
+\end{equation}
+\sphinxAtStartPar
+Notice that in diagonal from left to right the terms has the same shift with index \(i\) and \(k\) inverted. In this way, we can rewrite the terms avoiding these shift permutations:
+\begin{equation*}
+\begin{split}
+\displaystyle\sum_{i}\left( \sum_{k\neq i} \left( (1-\omega)f_{k,x_{\alpha}-c_{i}-c_{k}}^{t-1} \mathcal{C}^{(n)}  \right) \right)= \displaystyle\sum_{i}\left( \sum_{k= i+1} \left( (1-\omega) \left( f_{i,x_{\alpha}-c_{i}-c_{k}}^{t-1} + f_{k,x_{\alpha}-c_{i}-c_{k}}^{t-1} \right) \mathcal{C}^{(n)}  \right) \right).
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+Replace the index the above interpretation in the Eq. \eqref{equation:Refs/LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation:SRT-FDM-Exp-Step1}, we have
+\begin{equation*}
+\begin{split}
+\begin{array}{ll}
+m_{x_{\alpha}}^{(n)t+1} = & \textcolor{blue}{\displaystyle\sum_{i}\left(\omega f_{i,x_{\alpha}-c_{i}}^{eq,t}\mathcal{C}^{(n)} + (1-\omega)m_{x_{\alpha}-c_{i}}^{(n)t} \right)} - \textcolor{blue}{(1-\omega) \displaystyle\sum_{i}\left( \sum_{k= i+1} \left( \omega \left(f_{i,x_{\alpha}-c_{i}-c_{k}}^{eq,t-1} + f_{k,x_{\alpha}-c_{i}-c_{k}}^{eq,t-1} \right) \mathcal{C}^{(n)}  \right) \right)} \\
+&- (1-\omega) \displaystyle\sum_{i}\left( \sum_{k= i+1} \left( (1-\omega)\left(f_{i,x_{\alpha}-c_{i}-c_{k}}^{t-1} + f_{k,x_{\alpha}-c_{i}-c_{k}}^{t-1} \right) \mathcal{C}^{(n)}  \right) \right),
+\end{array}
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+using the Eq. \eqref{equation:Refs/LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation:general-conserved-moments-fdm-fi-df} to replace \(\left(f_{i,x_{\alpha}-c_{i}-c_{k}}^{t-1} + f_{k,x_{\alpha}-c_{i}-c_{k}}^{t-1} \right)\) in the above equation:
+\begin{equation*}
+\begin{split}
+\boxed{ \left(f_{i,x_{\alpha}-c_{i}-c_{k}}^{t-1} + f_{k,x_{\alpha}-c_{i}-c_{k}}^{t-1} \right) \mathcal{C}^{(n)} = m_{x_{\alpha}-c_{i}-c_{k}}^{(n)t-1} - \sum_{j\neq k\neq i} f_{j,x_{\alpha}-c_{i}-c_{k}}^{t-1} \mathcal{C}^{(n)} }
+\end{split}
+\end{equation*}\begin{equation*}
+\begin{split}
+\begin{array}{rl}
+m_{x_{\alpha}}^{(n)t+1} = & \textcolor{blue}{\displaystyle\sum_{i}\left(\omega f_{i,x_{\alpha}-c_{i}}^{eq,t}\mathcal{C}^{(n)} + (1-\omega)m_{x_{\alpha}-c_{i}}^{(n)t} \right)} - \textcolor{blue}{(1-\omega) \displaystyle\sum_{i}\left( \sum_{k= i+1} \left( \omega \left(f_{i,x_{\alpha}-c_{i}-c_{k}}^{eq,t-1} + f_{k,x_{\alpha}-c_{i}-c_{k}}^{eq,t-1} \right) \mathcal{C}^{(n)}  \right) \right)} \\
+&- (1-\omega) \displaystyle\sum_{i}\left( \sum_{k= i+1}  (1-\omega)m_{x_{\alpha}-c_{i}-c_{k}}^{(n)t-1}  \right) + (1-\omega)^{2} \displaystyle\sum_{i}\left( \sum_{k= i+1} \left( \sum_{j\neq k\neq i} f_{j,x_{\alpha}-c_{i}-c_{k}}^{t-1} \mathcal{C}^{(n)} \right) \right), \\
+m_{x_{\alpha}}^{(n)t+1} = & \textcolor{blue}{\displaystyle\sum_{i}\left(\omega f_{i,x_{\alpha}-c_{i}}^{eq,t}\mathcal{C}^{(n)} + (1-\omega)m_{x_{\alpha}-c_{i}}^{(n)t} \right)} \\
+&- \textcolor{blue}{(1-\omega) \displaystyle\sum_{i}\left( \sum_{k= i+1} \left( \omega \left(f_{i,x_{\alpha}-c_{i}-c_{k}}^{eq,t-1} + f_{k,x_{\alpha}-c_{i}-c_{k}}^{eq,t-1} \right) \mathcal{C}^{(n)}  + (1-\omega)m_{x_{\alpha}-c_{i}-c_{k}}^{(n)t-1} \right) \right)} \\
+&+ (1-\omega)^{2} \displaystyle\sum_{i}\left( \sum_{k= i+1} \left( \sum_{j\neq k\neq i} f_{j,x_{\alpha}-c_{i}-c_{k}}^{t-1} \mathcal{C}^{(n)} \right) \right),
+\end{array}
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+Repeting the same processes applied before to find moments in previous time step:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+write the unknow distribution function in a pre\sphinxhyphen{}collisional term shifted in \(c_{j}\):
+
+\end{itemize}
+\begin{equation*}
+\begin{split}
+\boxed{  f_{j,x_{\alpha}-c_{i}-c_{k}}^{t-1} =  (1-\omega)f_{j,x_{\alpha}-c_{i}-c_{k}-c_{j}}^{t-2}  + \omega f_{j,x_{\alpha}-c_{i}-c_{k}-c_{j}}^{eq,t-2} }\quad,
+\end{split}
+\end{equation*}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Split the sum to avoid permutations of shifted terms:
+
+\end{itemize}
+\begin{equation*}
+\begin{split}
+\boxed{ \displaystyle\sum_{i}\left( \sum_{k= i+1} \left( \sum_{j\neq k\neq i} f_{j,x_{\alpha}-c_{i}-c_{k}-c_{j}}^{t-2} \right) \right) = \displaystyle\sum_{i}\left( \sum_{k= i+1} \left( \sum_{j= k+1} \left(f_{i,x_{\alpha}-c_{i}-c_{k}-c_{j}}^{t-2} + f_{k,x_{\alpha}-c_{i}-c_{k}-c_{j}}^{t-2} + f_{j,x_{\alpha}-c_{i}-c_{k}-c_{j}}^{t-2} \right) \right) \right) }\quad,
+\end{split}
+\end{equation*}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+The Eq. \eqref{equation:Refs/LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation:general-conserved-moments-fdm-fi-df} to extract from unknow distribution functions the conserved moment:
+
+\end{itemize}
+\begin{equation*}
+\begin{split}
+\boxed{ \left(f_{i,x_{\alpha}-c_{i}-c_{k}-c_{j}}^{t-2} + f_{k,x_{\alpha}-c_{i}-c_{k}-c_{j}}^{t-2} + f_{j,x_{\alpha}-c_{i}-c_{k}-c_{j}}^{t-2} \right) \mathcal{C}^{(n)} = m_{x_{\alpha}-c_{i}-c_{k}-c_{j}}^{(n)t-2} - \sum_{l\neq j\neq k\neq i} f_{l,x_{\alpha}-c_{i}-c_{k}-c_{j}}^{t-2} \mathcal{C}^{(n)} }\quad.
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+Considering that this process can be repeated \(q-1\) times, and replacing the lattice index \(i,k,j,l\) by \(i_{0},i_{1},i_{2},i_{3}\), respectively, to create a order \(i_{n}\) index, we will have:
+\begin{equation*}
+\begin{split}
+\begin{array}{rl}
+m_{x_{\alpha}}^{(n)t+1} = & \textcolor{blue}{\displaystyle\sum_{i_{0}}\left(\omega f_{i_{0},x_{\alpha}-c_{i_{0}}}^{eq,t}\mathcal{C}^{(n)} + (1-\omega)m_{x_{\alpha}-c_{i_{0}}}^{(n)t} \right)} \\
+&- \textcolor{blue}{(1-\omega) \displaystyle\sum_{i_{0}}\left( \sum_{i_{1}= i_{0}+1}  \omega \left(f_{i_{0},x_{\alpha}-c_{i_{0}}-c_{i_{1}}}^{eq,t-1} + f_{i_{1},x_{\alpha}-c_{i_{0}}-c_{i_{1}}}^{eq,t-1} \right) \mathcal{C}^{(n)}  + (1-\omega)m_{x_{\alpha}-c_{i_{0}}-c_{i_{1}}}^{(n)t-1}  \right)} \\
+&+ \textcolor{blue}{(1-\omega)^{2} \displaystyle\sum_{i_{0}}\left( \sum_{i_{1}= i_{0}+1} \left( \sum_{i_{2}= i_{1}+1}  \omega \left(f_{i_{0},x_{\alpha}-c_{i_{0}}-c_{i_{1}}-c_{i_{2}}}^{eq,t-2} + f_{i_{1},x_{\alpha}-c_{i_{0}}-c_{i_{1}}-c_{i_{2}}}^{eq,t-2} + f_{i_{2},x_{\alpha}-c_{i_{0}}-c_{i_{1}}-c_{i_{2}}}^{eq,t-2} \right) \mathcal{C}^{(n)}  + (1-\omega)m_{x_{\alpha}-c_{i_{0}}-c_{i_{1}}-c_{i_{2}}}^{(n)t-2} \right) \right)} \\
+& \vdots \\
+&+ (-1)^{q-1}(1-\omega)^{q-1} \displaystyle\sum_{i_{0}}\left( \sum_{i_{1}= i_{0}+1} \cdots \left( \sum_{i_{q-1}= i_{q-2}+1} \left(f_{i_{0},x_{\alpha}-c_{i_{0}}\cdots-c_{i_{q-1}}}^{t-q+1)} + \cdots + f_{i_{q-1},x_{\alpha}-c_{i_{0}}\cdots-c_{i_{q-1}}}^{t-q+1)}\right) \mathcal{C}^{(n)} \right) + (1-\omega)m_{x_{\alpha}-c_{i_{0}}\cdots-c_{i_{q-1}}}^{(n)t-q+1}  \right),
+\end{array}
+\end{split}
+\end{equation*}\begin{equation*}
+\begin{split}
+\begin{array}{rl}
+m_{x_{\alpha}}^{(n)t+1} = & \textcolor{blue}{\displaystyle\sum_{i_{0}}\left(\omega f_{i_{0},x_{\alpha}-c_{i_{0}}}^{eq,t}\mathcal{C}^{(n)} + (1-\omega)m_{x_{\alpha}-c_{i_{0}}}^{(n)t} \right)} \\
+&- \textcolor{blue}{(1-\omega) \displaystyle\sum_{i_{0}}\left( \sum_{i_{1}= i_{0}+1}  \omega \left(f_{i_{0},x_{\alpha}-c_{i_{0}}-c_{i_{1}}}^{eq,t-1} + f_{i_{1},x_{\alpha}-c_{i_{0}}-c_{i_{1}}}^{eq,t-1} \right) \mathcal{C}^{(n)}  + (1-\omega)m_{x_{\alpha}-c_{i_{0}}-c_{i_{1}}}^{(n)t-1}  \right)} \\
+&+ \textcolor{blue}{(1-\omega)^{2} \displaystyle\sum_{i_{0}}\left( \sum_{i_{1}= i_{0}+1} \left( \sum_{i_{2}= i_{1}+1}  \omega \left(\begin{array}{c}f_{i_{0},x_{\alpha}-c_{i_{0}}-c_{i_{1}}-c_{i_{2}}}^{eq,t-2}\\ + f_{i_{1},x_{\alpha}-c_{i_{0}}-c_{i_{1}}-c_{i_{2}}}^{eq,t-2}\\ + f_{i_{2},x_{\alpha}-c_{i_{0}}-c_{i_{1}}-c_{i_{2}}}^{eq,t-2}\end{array} \right) \mathcal{C}^{(n)}  + (1-\omega)m_{x_{\alpha}-c_{i_{0}}-c_{i_{1}}-c_{i_{2}}}^{(n)t-2} \right) \right)} \\
+& \vdots \\
+&+ (-1)^{q-1}(1-\omega)^{q-1} \displaystyle\sum_{i_{0}}\left( \sum_{i_{1}= i_{0}+1} \cdots \left( \sum_{i_{q-1}= i_{q-2}+1} \left(\begin{array}{c}f_{i_{0},x_{\alpha}-c_{i_{0}}\cdots-c_{i_{q-1}}}^{t-q+1)} \\ \vdots \\ + f_{i_{q-1},x_{\alpha}-c_{i_{0}}\cdots-c_{i_{q-1}}}^{t-q+1)} \end{array}\right) \mathcal{C}^{(n)} \right) + (1-\omega)m_{x_{\alpha}-c_{i_{0}}\cdots-c_{i_{q-1}}}^{(n)t-q+1}  \right),
+\end{array}
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+notice by the lattice symmetry at the step \(q-1\) all shifts will be canceled by its opposite, so the last term can reduced to:
+\begin{equation*}
+\begin{split}
+\begin{array}{rl}
+m_{x_{\alpha}}^{(n)t+1} = & \textcolor{blue}{\displaystyle\sum_{i_{0}}\left(\omega f_{i_{0},x_{\alpha}-c_{i_{0}}}^{eq,t}\mathcal{C}^{(n)} + (1-\omega)m_{x_{\alpha}-c_{i_{0}}}^{(n)t} \right)} \\
+&- \textcolor{blue}{(1-\omega) \displaystyle\sum_{i_{0}}\left( \sum_{i_{1}= i_{0}+1}  \omega \left(f_{i_{0},x_{\alpha}-c_{i_{0}}-c_{i_{1}}}^{eq,t-1} + f_{i_{1},x_{\alpha}-c_{i_{0}}-c_{i_{1}}}^{eq,t-1} \right) \mathcal{C}^{(n)}  + (1-\omega)m_{x_{\alpha}-c_{i_{0}}-c_{i_{1}}}^{(n)t-1}  \right)} \\
+&+ \textcolor{blue}{(1-\omega)^{2} \displaystyle\sum_{i_{0}}\left( \sum_{i_{1}= i_{0}+1} \left( \sum_{i_{2}= i_{1}+1}  \omega \left(\begin{array}{c}f_{i_{0},x_{\alpha}-c_{i_{0}}-c_{i_{1}}-c_{i_{2}}}^{eq,t-2}\\ + f_{i_{1},x_{\alpha}-c_{i_{0}}-c_{i_{1}}-c_{i_{2}}}^{eq,t-2}\\ + f_{i_{2},x_{\alpha}-c_{i_{0}}-c_{i_{1}}-c_{i_{2}}}^{eq,t-2}\end{array} \right) \mathcal{C}^{(n)}  + (1-\omega)m_{x_{\alpha}-c_{i_{0}}-c_{i_{1}}-c_{i_{2}}}^{(n)t-2} \right) \right)} \\
+& \vdots \\
+&+ \textcolor{blue}{(-1)^{q-1}(1-\omega)^{q-1} m_{x_{\alpha}}^{(n)t-q+1}},
+\end{array}
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+where all terms are described in terms of know previous moments.
+
 \begin{sphinxthebibliography}{CHGS18}
 \bibitem[Anc94]{index:id5}
 \sphinxAtStartPar
