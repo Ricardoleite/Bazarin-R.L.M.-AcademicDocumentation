@@ -25,7 +25,106 @@ rock simulation using the Lattice Boltzmann Method on High-Performance Computing
 
 - |:eyeglasses:| `Google Scholar: https://scholar.google.com.br/citations <https://scholar.google.com.br/citations?user=ybe2TbQAAAAJ&hl=pt-BR>`_
 
-Articles Published in Periodics:
+.. Articles Published in Periodics:
+.. ================================
+
+.. - `2021-Boundary Effects on the Tortuosity and Permeability of Idealized Porous Media <https://doi.org/10.1007/s11242-020-01530-w>`_
+
+..   - Authors: Bazarin, De Lai, Naaktgeboren, Junqueira.
+..   - Area: (Porous media fluid-flow) Single-phase porous properties characterization in fractal porous media
+
+.. - `2021-Moments-based method for boundary conditions in the lattice Boltzmann framework: A comparative analysis for the lid driven cavity flow <https://doi.org/10.1016/j.compfluid.2021.105142>`_
+
+..   - Authors: Bazarin, Philippi, Randles, Hegele Jr.
+..   - Area: (Boundary conditions modeling)
+
+.. - `2024-Improved lattice Boltzmann model for immiscible multicomponent systems with high viscosity gradients at the interface <https://doi.org/10.1103/PhysRevE.110.015303>`_
+
+..   - Authors: Bazarin, Naaktgeboren, Junqueira, Philippi, Hegele Jr.
+..   - Area: (Multicomponent/multiphase modeling)Numerical modeling for multicomponent fluid-flow
+
+.. - `2025-Lattice Boltzmann method assessment for the Buckley–Leverett equation: Extension to dynamic capillary effect <https://doi.org/10.1063/5.0264878>`_
+
+..   - Authors: Bazarin, dos Santos, Siebert.
+..   - Area: (Porous media fluid-flow - Multicomponent/multiphase modeling) Numerical modeling of multicomponent/multiphase flow in porous-continuous porous media.
+..   - Suplemetar Materials - `C++ code of lattice Boltzmann simulation presented. <https://github.com/poro-labcc/Buckley-Leverett-Equation-Non-Linear-Convective-Diffusive-Lattice-Boltzmann-Method>`_
+
+.. .. raw:: html
+
+..    <iframe src="_static/references-map.html?bib=bib/mypub.bibtex"
+..          width="100%"
+..          height="200"
+..          style="border:0; border-radius:12px;">
+..    </iframe>
+
+
+
+Academic Material:
+==================
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Porous Media - Multiphase Flow in Porous Continuous Porous Media:
+
+   /Porous-Media-Study/Intro/Intro-PM-MFinPCPM
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Lattice Boltzmann Method - Application to Different Partial differential Equation: Convective-Diffusive-Equation (CDE) LBM Approach (One Conserved Moment)
+
+   /LBM-Study/intro-lbm-conv-diff/Diffusive-Equation
+   /LBM-Study/intro-lbm-conv-diff/Poisson-Equation
+   /LBM-Study/intro-lbm-conv-diff/Convective-Equation
+   /LBM-Study/intro-lbm-conv-diff/Convective-Diffusive-Equation
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Lattice Boltzmann Method - Application to Different Partial differential Equation: CDE - Finite Difference Structure of LBM (One Conserved Moment)
+
+   /LBM-Study/FDM-Belloti/FDM-LBM-Diffusive.ipynb
+   /LBM-Study/FDM-Belloti/FDM-LBM-Convective-Diffusive.ipynb
+   /LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation.ipynb
+
+.. raw:: html
+
+   <iframe src="_static/references-map.html?bib=bib/fdm-lbm.bibtex"
+         width="100%"
+         height="200"
+         style="border:0; border-radius:12px;">
+   </iframe>
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Lattice Boltzmann Method - Application to Different Partial differential Equation: Navier-Stokes Equation (NSE) LBM Approach (Two Conserved Moment)
+
+   /LBM-Study/intro-nse-lbm/Navier-Stokes-Equation
+   /LBM-Study/Ementa
+   
+.. toctree::
+   :maxdepth: 1
+   :caption: References:
+
+   /Citations
+
+.. raw:: html
+
+   <iframe src="_static/references-map.html?bib=bib/references.bib"
+         width="100%"
+         height="200"
+         style="border:0; border-radius:12px;">
+   </iframe>
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Appendix:
+
+   /Porous-Media-Study/Intro/trans-eq/base-trans-eq
+   /LBM-Study/intro-lbm-conv-diff/appendix/bcs-D2Q5-poisson-equation
+   /LBM-Study/FDM-Belloti/appendix/sympy-code-fdm-diffusive-expansion
+   /LBM-Study/FDM-Belloti/appendix/sympy-code-mrt-fdm-diffusive-expansion-4th
+   /LBM-Study/FDM-Belloti/appendix/sympy-code-mrt-fdm-diffusive-expansion-6th
+   
+Articles Published in Periodicals:
 ================================
 
 - `2021-Boundary Effects on the Tortuosity and Permeability of Idealized Porous Media <https://doi.org/10.1007/s11242-020-01530-w>`_
@@ -56,77 +155,3 @@ Articles Published in Periodics:
          height="200"
          style="border:0; border-radius:12px;">
    </iframe>
-
-
-
-Academic Material:
-==================
-
-Porous Media - Multiphase Flow in Porous Continuous Porous Media:
-#################################################################
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Introduction:
-
-   /Porous-Media-Study/Intro/Intro-PM-MFinPCPM
-
-Lattice Boltzmann Method - Application to Different Partial differential Equation:
-##################################################################################
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Convective-Diffusive-Equation (CDE) LBM Approach (One Conserved Moment): Part 1
-
-   /LBM-Study/intro-lbm-conv-diff/Diffusive-Equation
-   /LBM-Study/intro-lbm-conv-diff/Poisson-Equation
-   /LBM-Study/intro-lbm-conv-diff/Convective-Equation
-   /LBM-Study/intro-lbm-conv-diff/Convective-Diffusive-Equation
-
-.. toctree::
-   :maxdepth: 1
-   :caption: CDE - Finite Difference Structure of LBM (One Conserved Moment): Part 2
-
-   /LBM-Study/FDM-Belloti/FDM-LBM-Diffusive.ipynb
-   /LBM-Study/FDM-Belloti/FDM-LBM-Convective-Diffusive.ipynb
-   /LBM-Study/FDM-Belloti/General-FDM-Single-Relaxation.ipynb
-
-.. raw:: html
-
-   <iframe src="_static/references-map.html?bib=bib/fdm-lbm.bibtex"
-         width="100%"
-         height="200"
-         style="border:0; border-radius:12px;">
-   </iframe>
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Navier-Stokes Equation (NSE) LBM Approach (Two Conserved Moment): Part 1
-
-   /LBM-Study/intro-nse-lbm/Navier-Stokes-Equation
-   /LBM-Study/Ementa
-   
-.. toctree::
-   :maxdepth: 1
-   :caption: References:
-
-   /Citations
-
-.. raw:: html
-
-   <iframe src="_static/references-map.html?bib=bib/references.bib"
-         width="100%"
-         height="200"
-         style="border:0; border-radius:12px;">
-   </iframe>
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Appendix:
-
-   /Porous-Media-Study/Intro/trans-eq/base-trans-eq
-   /LBM-Study/intro-lbm-conv-diff/appendix/bcs-D2Q5-poisson-equation
-   /LBM-Study/FDM-Belloti/appendix/sympy-code-fdm-diffusive-expansion
-   /LBM-Study/FDM-Belloti/appendix/sympy-code-mrt-fdm-diffusive-expansion-4th
-   /LBM-Study/FDM-Belloti/appendix/sympy-code-mrt-fdm-diffusive-expansion-6th
-   

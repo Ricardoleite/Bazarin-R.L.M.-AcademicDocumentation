@@ -1,49 +1,57 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Generalized Difference Finite Scheme for Balance Equations derived from Lattice Boltzmann &mdash; Academic-Live-Documentation 1.0.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/sphinx_rtd_size.css?v=f26ae176" />
-      <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
-      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
-      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
-      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
-      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/eqno.css?v=188b0fb8" />
-      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=c4599ffd" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/sidebar.css?v=59d17752" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/rolamento-lateral.css?v=9c164f7b" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/toogle-button-hide-input.css?v=f3d80af2" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/center-figures.css?v=a6625654" />
-
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/sphinx_rtd_size.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sphinx-thebe.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/eqno.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/sidebar.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rolamento-lateral.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/toogle-button-hide-input.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/center-figures.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=8d563738"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
-      <script src="../../_static/copybutton.js?v=f281be69"></script>
-      <script>let toggleHintShow = 'Click to show';</script>
-      <script>let toggleHintHide = 'Click to hide';</script>
-      <script>let toggleOpenOnPrint = 'true';</script>
-      <script src="../../_static/togglebutton.js?v=b8b12719"></script>
-      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
-      <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-      <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
-      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-      <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      <script src="../../_static/css/sidebar.js?v=29393464"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+        <script async="async" src="../../_static/sphinx-thebe.js?v=afe5de03"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+        <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../_static/css/sidebar.js?v=29393464"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -70,18 +78,18 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Porous Media - Multiphase Flow in Porous Continuous Porous Media:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Porous-Media-Study/Intro/Intro-PM-MFinPCPM.html">Introdution</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Convective-Diffusive-Equation (CDE) LBM Approach (One Conserved Moment): Part 1</span></p>
+<p class="caption" role="heading"><span class="caption-text">Lattice Boltzmann Method - Application to Different Partial differential Equation: Convective-Diffusive-Equation (CDE) LBM Approach (One Conserved Moment)</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro-lbm-conv-diff/Diffusive-Equation.html">Diffusive Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro-lbm-conv-diff/Poisson-Equation.html">Poisson Equation (Steady-State Diffusive Equation)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro-lbm-conv-diff/Convective-Equation.html">Convective Equation (Transport Equation)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro-lbm-conv-diff/Convective-Diffusive-Equation.html">Convective-Diffusive Equation</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">CDE - Finite Difference Structure of LBM (One Conserved Moment): Part 2</span></p>
+<p class="caption" role="heading"><span class="caption-text">Lattice Boltzmann Method - Application to Different Partial differential Equation: CDE - Finite Difference Structure of LBM (One Conserved Moment)</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="FDM-LBM-Diffusive.html">Intoduction to Difference Finite Scheme derived from Lattice Boltzmann Method: Diffusive Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FDM-LBM-Convective-Diffusive.html">Difference Finite Scheme derived from MRT Lattice Boltzmann for Convective-Diffusive Equation</a></li>
@@ -90,7 +98,7 @@
 </ul>
 </li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Navier-Stokes Equation (NSE) LBM Approach (Two Conserved Moment): Part 1</span></p>
+<p class="caption" role="heading"><span class="caption-text">Lattice Boltzmann Method - Application to Different Partial differential Equation: Navier-Stokes Equation (NSE) LBM Approach (Two Conserved Moment)</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro-nse-lbm/Navier-Stokes-Equation.html">Navier-Stokes Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Ementa.html">Conteúdo - Introdução aos Métodos de Lattice Boltzmann e Differenças Finitas</a></li>
@@ -332,8 +340,8 @@ m_{x_{\alpha}}^{(n)t+1} = &amp; \textcolor{blue}{\displaystyle\sum_{i_{0}}\left(
 \end{array}
 \end{split}\]</div>
 <p>notice by the lattice symmetry at the step <span class="math notranslate nohighlight">\(q-1\)</span> all shifts will be canceled by its opposite, so the last term can reduced to:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
+<div class="math notranslate nohighlight" id="equation-srt-generalized-expanded-fdm-form">
+<span class="eqno">(81)<a class="headerlink" href="#equation-srt-generalized-expanded-fdm-form" title="Link to this equation"></a></span>\[\begin{split}
 \begin{array}{rl}
 m_{x_{\alpha}}^{(n)t+1} = &amp; \textcolor{blue}{\displaystyle\sum_{i_{0}}\left(\omega f_{i_{0},x_{\alpha}-c_{i_{0}}}^{eq,t}\mathcal{C}^{(n)} + (1-\omega)m_{x_{\alpha}-c_{i_{0}}}^{(n)t} \right)} \\
 &amp;- \textcolor{blue}{(1-\omega) \displaystyle\sum_{i_{0}}\left( \sum_{i_{1}= i_{0}+1}  \omega \left(f_{i_{0},x_{\alpha}-c_{i_{0}}-c_{i_{1}}}^{eq,t-1} + f_{i_{1},x_{\alpha}-c_{i_{0}}-c_{i_{1}}}^{eq,t-1} \right) \mathcal{C}^{(n)}  + (1-\omega)m_{x_{\alpha}-c_{i_{0}}-c_{i_{1}}}^{(n)t-1}  \right)} \\
@@ -343,6 +351,43 @@ m_{x_{\alpha}}^{(n)t+1} = &amp; \textcolor{blue}{\displaystyle\sum_{i_{0}}\left(
 \end{array}
 \end{split}\]</div>
 <p>where all terms are described in terms of know previous moments.</p>
+<p>The Eq. <a class="reference internal" href="#equation-srt-generalized-expanded-fdm-form">(81)</a> can mathmatically summarized in the form:</p>
+<div class="math notranslate nohighlight" id="equation-srt-generalized-fdm-form">
+<span class="eqno">(82)<a class="headerlink" href="#equation-srt-generalized-fdm-form" title="Link to this equation"></a></span>\[
+\begin{array}{rl}
+m_{x_{\alpha}}^{(n)t+1} = &amp; \displaystyle \sum_{q_{0}=1}^{q}  \left( (-1)^{q_{0}-1}(1-\omega)^{q_{0}-1} \sum_{0\le i_0 &lt;i_1 &lt;\cdots &lt;i_{q_{0}-1} &lt;q}  \left( \left(\prod_{q_{1} = 1}^{q_{0}}T_{\Delta x}^{c_{q_{1}-1}} \right) \left(\omega \sum_{q_{1}=1}^{q_{0}} f_{i_{q_{1}-1},x_{\alpha}}^{eq,t-q_{0}+1}\mathcal{C}^{(n)} + (1-\omega)m_{x_{\alpha}}^{(n)t-q_{0}+1}\right) \right)\right),
+\end{array}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(T_{\Delta x}^{c_{q_{1}-1}}\)</span> is shift parameter, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[
+T_{\Delta x}^{c_{0}} f_{i_{0},x_{\alpha}}^{eq,t} = f_{i_{0},x_{\alpha}-c_{0}}^{eq,t} \qquad \text{and} \qquad T_{\Delta x}^{c_{0}} m_{x_{\alpha}}^{(n)t} = m_{x_{\alpha}-c_{0}}^{(n)t},
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+\displaystyle\sum_{0\le i_0 &lt;i_1 &lt;\cdots &lt;i_{q_{0}-1} &lt;q} = \sum_{i_0=0}^{q-1} \left( \sum_{i_1=i_0+1}^{q-1} \left( \sum_{i_2=i_1+1}^{q-1} \left( \cdots \sum_{i_{q-1}=i_{q-2}+1}^{q-1} \qquad \right)\right)\right).
+\]</div>
+<p>The symbolic representation of the expression can be expanded automatically using the SymPy library in Python, as given in the following code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+
+<span class="n">OrderT</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span>
+    <span class="nb">sum</span><span class="p">(</span>
+        <span class="p">(</span><span class="o">-</span><span class="n">omg1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="o">*</span> <span class="n">sp</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">Txc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">idx</span><span class="p">)</span>
+        <span class="o">*</span> <span class="p">(</span><span class="n">omega</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">feq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">idx</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">omega</span><span class="p">)</span><span class="o">*</span><span class="n">us</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">q</span><span class="p">),</span> <span class="n">n</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+<p>For detailed implementations and applications of this symbolic formulation, see in:</p>
+<ul class="simple">
+<li><p>Diffusive equation 1D, 2D and 3D: XX</p></li>
+<li><p>Convective-Diffusive equation 1D, 2D and 3D: XX</p></li>
+</ul>
 </section>
 </section>
 
