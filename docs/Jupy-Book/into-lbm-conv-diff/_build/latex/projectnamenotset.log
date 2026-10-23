@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2026.10.4)  19 OCT 2026 00:44
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2026.10.4)  22 OCT 2026 23:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2122,12 +2122,12 @@ Chapter 7.
 [50
 
 ]
-Overfull \hbox (5.76292pt too wide) detected at line 3423
+Overfull \hbox (10.77492pt too wide) detected at line 3423
 []
  []
 
 [51]
-Overfull \hbox (5.76292pt too wide) detected at line 3440
+Overfull \hbox (10.77492pt too wide) detected at line 3440
 []
  []
 
@@ -2137,23 +2137,34 @@ Overfull \hbox (35.12138pt too wide) detected at line 3463
  []
 
 
-Overfull \hbox (140.6999pt too wide) detected at line 3486
+Overfull \hbox (17.30031pt too wide) detected at line 3487
+[]
+ []
+
+[52]
+Overfull \hbox (17.30031pt too wide) detected at line 3500
 []
  []
 
 
-Overfull \hbox (58.74911pt too wide) detected at line 3496
+LaTeX Font Warning: Command \small invalid in math mode on input line 3512.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 3512.
+
+
+Overfull \hbox (23.54439pt too wide) detected at line 3513
 []
  []
 
-[52] [53]
-Underfull \hbox (badness 6252) in paragraph at lines 3521--3523
+[53] [54] [55]
+Underfull \hbox (badness 6252) in paragraph at lines 3632--3634
 []\TU/FreeSerif(0)/m/n/10 Zhenhua Chai, Nanzhong He, Zhaoli Guo, and Baochang S
 hi. Lattice Boltzmann model for
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3521--3523
+Underfull \hbox (badness 10000) in paragraph at lines 3632--3634
 \TU/FreeSerif(0)/m/n/10 high-order nonlinear partial differential equations. \T
 U/FreeSerif(0)/m/it/10 Physical Review E\TU/FreeSerif(0)/m/n/10 , 2018. [][]arX
 iv:0907.1720[][],
@@ -2194,7 +2205,7 @@ braces):
 >  {english/babelname}  =>  {american}
 >  {english/localnumeral}  =>  {polyglossia@C@localnumeral}
 >  {english/Localnumeral}  =>  {polyglossia@C@localnumeral}.
- [54
+ [56
 
 
 ] (./projectnamenotset.aux
@@ -2203,15 +2214,15 @@ LaTeX Info: Redefining \sffamily on input line 19.
 LaTeX Info: Redefining \ttfamily on input line 19.
 )
 Package rerunfilecheck Info: File `projectnamenotset.out' has not changed.
-(rerunfilecheck)             Checksum: 97D07C726D0C37E5B9F2ADB8A4C25E8E;10002.
+(rerunfilecheck)             Checksum: 7C7AEEBB248475F79711820DE55CBB1D;10114.
  ) 
 Here is how much of TeX's memory you used:
- 46602 strings out of 478146
- 1078825 string characters out of 5853002
- 1730314 words of memory out of 5000000
- 66318 multiletter control sequences out of 15000+600000
- 480754 words of font info for 151 fonts, out of 8000000 for 9000
+ 46625 strings out of 478146
+ 1079629 string characters out of 5853002
+ 1732316 words of memory out of 5000000
+ 66338 multiletter control sequences out of 15000+600000
+ 480778 words of font info for 154 fonts, out of 8000000 for 9000
  17 hyphenation exceptions out of 8191
- 99i,33n,115p,2926b,2142s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 99i,34n,115p,2926b,2183s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on projectnamenotset.pdf (56 pages).
+Output written on projectnamenotset.pdf (58 pages).
