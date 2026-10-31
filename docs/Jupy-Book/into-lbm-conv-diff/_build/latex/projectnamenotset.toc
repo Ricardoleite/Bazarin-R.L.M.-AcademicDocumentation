@@ -96,5 +96,9 @@
 \contentsline {subsection}{\numberline {6.6.1}Fourth\sphinxhyphen {}order MRT Diffusive Equation}{47}{subsection.6.6.1}%
 \contentsline {chapter}{\numberline {7}Generalized Difference Finite Scheme for Balance Equations derived from Lattice Boltzmann}{50}{chapter.7}%
 \contentsline {section}{\numberline {7.1}FDS of Single\sphinxhyphen {}Relaxation Time (SRT) LBM framework}{51}{section.7.1}%
-\contentsline {section}{\numberline {7.2}FDS of Multi\sphinxhyphen {}Relaxation Time (MRT) LBM framework}{54}{section.7.2}%
-\contentsline {chapter}{Bibliography}{56}{chapter*.40}%
+\contentsline {subsection}{\numberline {7.1.1}One\sphinxhyphen {}Conservative Moment}{51}{subsection.7.1.1}%
+\contentsline {subsection}{\numberline {7.1.2}\(n\)\sphinxhyphen {}Conservative Moments}{54}{subsection.7.1.2}%
+\contentsline {section}{\numberline {7.2}FDS of Multi\sphinxhyphen {}Relaxation Time (MRT) LBM framework}{58}{section.7.2}%
+\contentsline {section}{\numberline {7.3}One\sphinxhyphen {}Dimensional Cases: \(D1Qq\) Lattices}{62}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}\(D1Q3\)}{63}{subsection.7.3.1}%
+\contentsline {chapter}{Bibliography}{65}{chapter*.40}%
