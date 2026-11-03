@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2026.9.17)  31 OCT 2026 17:09
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2026.10.4)  3 NOV 2026 00:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1391,11 +1391,6 @@ Writing index file projectnamenotset.idx
 LaTeX Info: Redefining \rmfamily on input line 19.
 LaTeX Info: Redefining \sffamily on input line 19.
 LaTeX Info: Redefining \ttfamily on input line 19.
-
-
-LaTeX Warning: Label `equation:Refs/LBM-Study/FDM-Belloti/General-FDM-Single-Re
-laxation:srt-generalized-fdm-form' multiply defined.
-
 )
 \openout1 = `projectnamenotset.aux'.
 
@@ -1764,12 +1759,7 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 ]
 File: personalphoto.png Graphic file (type bmp)
 <personalphoto.png>
-
-Missing character: There is no 🇧 (U+1F1E7) in font [FreeSerif.otf]/OT:script=la
-tn;language=dflt;!
-Missing character: There is no 🇷 (U+1F1F7) in font [FreeSerif.otf]/OT:script=la
-tn;language=dflt;!
-[1
+ [1
 
 ] [2
 
@@ -2159,12 +2149,12 @@ Overfull \hbox (3.09013pt too wide) detected at line 3628
  []
 
 
-Overfull \hbox (15.44092pt too wide) detected at line 3651
+Overfull \hbox (17.6481pt too wide) detected at line 3651
 []
  []
 
 
-Overfull \hbox (15.44092pt too wide) detected at line 3672
+Overfull \hbox (17.6481pt too wide) detected at line 3672
 []
  []
 
@@ -2178,7 +2168,7 @@ LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 3681
 .
 
 
-Overfull \hbox (3.2041pt too wide) detected at line 3682
+Overfull \hbox (37.81844pt too wide) detected at line 3682
 []
  []
 
@@ -2198,80 +2188,106 @@ Overfull \hbox (19.01126pt too wide) detected at line 3711
 []
  []
 
-
-Overfull \hbox (15.89748pt too wide) detected at line 3725
-[]
- []
-
 [55]
-Overfull \hbox (15.89748pt too wide) detected at line 3738
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 3733.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 3733.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 3743.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 3743.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 3769.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 3769.
+
+
+Overfull \hbox (39.26031pt too wide) detected at line 3770
 []
  []
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 3750.
+LaTeX Font Warning: Command \small invalid in math mode on input line 3783.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 3750.
+LaTeX Font Warning: Command \small invalid in math mode on input line 3783.
 
 
-Overfull \hbox (23.54439pt too wide) detected at line 3751
+Overfull \hbox (14.72482pt too wide) detected at line 3784
 []
  []
 
-[56] [57]
-Overfull \hbox (158.09897pt too wide) detected at line 3890
+[56]
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 3797.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 3797.
+
+
+Overfull \hbox (8.09076pt too wide) detected at line 3798
 []
  []
 
-[58]
-Overfull \hbox (54.51968pt too wide) detected at line 3917
+[57] [58]
+Overfull \hbox (158.09897pt too wide) detected at line 3923
+[]
+ []
+
+[59]
+Overfull \hbox (54.51968pt too wide) detected at line 3950
 []
  []
 
 
-Overfull \hbox (2.3989pt too wide) detected at line 3925
+Overfull \hbox (2.3989pt too wide) detected at line 3958
 []
  []
 
-[59] [60]
+[60] [61]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3991.
-
-[61]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 4057.
-
-
-Overfull \hbox (99.60326pt too wide) detected at line 4135
-[]
- []
-
-
-Overfull \hbox (20.0pt too wide) detected at line 4135
-[]
- []
+(hyperref)                removing `math shift' on input line 4024.
 
 [62]
-Overfull \hbox (8.29901pt too wide) detected at line 4162
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 4090.
+
+
+Overfull \hbox (99.60326pt too wide) detected at line 4168
 []
  []
 
 
-Overfull \hbox (20.0pt too wide) detected at line 4162
+Overfull \hbox (20.0pt too wide) detected at line 4168
 []
  []
 
 [63]
-Underfull \hbox (badness 6252) in paragraph at lines 4174--4176
+Overfull \hbox (8.29901pt too wide) detected at line 4195
+[]
+ []
+
+
+Overfull \hbox (20.0pt too wide) detected at line 4195
+[]
+ []
+
+[64]
+Underfull \hbox (badness 6252) in paragraph at lines 4207--4209
 []\TU/FreeSerif(0)/m/n/10 Zhenhua Chai, Nanzhong He, Zhaoli Guo, and Baochang S
 hi. Lattice Boltzmann model for
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4174--4176
+Underfull \hbox (badness 10000) in paragraph at lines 4207--4209
 \TU/FreeSerif(0)/m/n/10 high-order nonlinear partial differential equations. \T
 U/FreeSerif(0)/m/it/10 Physical Review E\TU/FreeSerif(0)/m/n/10 , 2018. [][]arX
 iv:0907.1720[][],
@@ -2312,7 +2328,7 @@ braces):
 >  {english/babelname}  =>  {american}
 >  {english/localnumeral}  =>  {polyglossia@C@localnumeral}
 >  {english/Localnumeral}  =>  {polyglossia@C@localnumeral}.
- [64
+ [65
 
 
 ] (./projectnamenotset.aux
@@ -2320,19 +2336,16 @@ LaTeX Info: Redefining \rmfamily on input line 19.
 LaTeX Info: Redefining \sffamily on input line 19.
 LaTeX Info: Redefining \ttfamily on input line 19.
 )
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package rerunfilecheck Info: File `projectnamenotset.out' has not changed.
 (rerunfilecheck)             Checksum: 9F0FB7CB616EAF769316297818F3341E;10427.
  ) 
 Here is how much of TeX's memory you used:
- 46635 strings out of 478135
- 1080342 string characters out of 5852426
- 1865357 words of memory out of 5000000
- 66351 multiletter control sequences out of 15000+600000
+ 46636 strings out of 478146
+ 1080426 string characters out of 5853002
+ 1874314 words of memory out of 5000000
+ 66349 multiletter control sequences out of 15000+600000
  480778 words of font info for 154 fonts, out of 8000000 for 9000
- 15 hyphenation exceptions out of 8191
+ 17 hyphenation exceptions out of 8191
  99i,34n,115p,2926b,2297s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on projectnamenotset.pdf (66 pages).
+Output written on projectnamenotset.pdf (67 pages).
