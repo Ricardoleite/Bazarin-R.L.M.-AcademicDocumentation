@@ -1,23 +1,14 @@
 #!/bin/bash
 set -euo pipefail
 
-source ~/jb-env/bin/activate
+source "$HOME/jb-env/bin/activate"
+cd -- "$(dirname -- "${BASH_SOURCE[0]}")"
 
-RUN_DIR="$(pwd)"
+OUTPUT_DIR="$HOME/static-web-pages/book"
+mkdir -p -- "$OUTPUT_DIR"
 
-# Remove cached build files and rebuild.
-jupyter book clean . --all
-jupyter book build . --builder pdflatex --path-output .
+jupyter book clean "$OUTPUT_DIR" --all
+jupyter book build . --builder pdflatex --path-output "$OUTPUT_DIR"
 
-# Copy the newly generated PDF.
-PDF=$(find ./_build/latex -maxdepth 1 -type f -name "*.pdf" -print -quit)
-
-if [[ -z "$PDF" ]]; then
-    echo "PDF file was not found."
-    exit 1
-fi
-
-cp -f "$PDF" "$RUN_DIR/"
-echo "PDF copied to: $RUN_DIR/$(basename "$PDF")"
-
-deactivate
+cp -- "$OUTPUT_DIR"/_build/latex/*.pdf "$OUTPUT_DIR/"
+printf 'PDF copied to: %s\n' "$OUTPUT_DIR"
